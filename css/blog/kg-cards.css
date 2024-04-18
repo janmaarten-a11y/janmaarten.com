@@ -1,0 +1,47 @@
+/* Overwrite style of native Ghost elements */
+.kg-layout-split .kg-header-card-content {
+    grid-template-columns: 38% 62% !important;
+}
+
+.kg-header-card.kg-width-full.kg-layout-split h2.kg-header-card-heading, 
+.kg-signup-card.kg-width-full.kg-layout-split h2.kg-signup-card-heading {
+    font-size: clamp(3.6rem,4vw,5.2rem) !important;
+    line-height: 1.2;
+}
+
+.kg-header-card.kg-width-full.kg-layout-split .kg-header-card-subheading, 
+.kg-header-card.kg-width-wide .kg-header-card-subheading {
+    font-size: clamp(1.05em,2vw,2rem) !important;
+    line-height: 1.4;
+}
+
+.kg-gallery-image:not(:first-of-type) {
+    margin: 0 0 0 2px !important;
+}
+
+.kg-gallery-row:not(:first-of-type) {
+    margin: 2px 0 0 !important;
+}
+
+@media (max-width: 640px) {
+    .kg-layout-split .kg-header-card-content {
+        grid-template-columns: 1fr !important;;
+    }
+}
+
+.tag-hash-content-experience {
+    padding: 0 0 2rem 0;
+}
+.tag-hash-content-experience .feed-title {
+    font-size: 1.6rem;
+    font-weight: normal;
+}
+.tag-hash-content-experience .sub-heading {
+    font-size: 1.1rem;
+}
+.tag-hash-content-experience .feed-right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: inherit;
+}

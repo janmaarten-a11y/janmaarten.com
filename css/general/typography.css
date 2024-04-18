@@ -1,0 +1,65 @@
+/* typography system */
+.h1 {
+    font-size: 2.6rem;
+    line-height: 4rem;
+    font-weight: var(--font-weight-bold);
+}
+
+.h2 {
+    font-size: 2rem;
+    line-height: 3.2rem;
+    font-weight: var(--font-weight-bold);
+}
+
+.h3 {
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    font-weight: var(--font-weight-bold);
+}
+
+.h4, h5, h6 {
+    font-size: 1.4rem;
+    line-height: 3.2rem;
+    font-weight: var(--font-weight-bold);
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.body-1 {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-regular);
+    line-height: 3.2rem;
+}
+
+.sub-heading-large {
+    font-size: 2rem;
+    font-weight: var(--font-weight-regular);
+    line-height: 3.2rem;
+}
+
+.sub-heading {
+    font-size: 1.4rem;
+    font-weight: var(--font-weight-regular);
+    line-height: 2.4rem;
+}
+
+/* font change */
+
+.has-serif-title .h1,
+.has-serif-title .h2,
+.has-serif-title .h3,
+.has-serif-title .h4,
+.has-serif-title .h5,
+.has-serif-title .h6,
+.has-serif-body .section-title,
+.has-serif-body .body-1,
+.has-serif-body .sub-heading,
+.has-serif-body .sub-heading-large {
+    font-family: var(--font-serif);
+}

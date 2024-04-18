@@ -1,0 +1,148 @@
+label {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-text-color);
+    margin-top: 3.2rem;
+    margin-bottom: .8rem;
+    font-family: var(--font-base);
+    /* flex-basis: 100%; */
+}
+
+label + label {
+    margin-top: 2rem;
+}
+
+label input,
+label textarea {
+    margin-top: 0.7rem;
+}
+
+label p {
+    display: block;
+}
+
+input,
+textarea {
+    /* flex: 1 0 0; */
+    height: var(--form-input-height);
+    padding: 0 1.5rem;
+    font-size: 1.6rem;
+    color: var(--primary-text-color);
+    appearance: none;
+    background-color: var(--input-background-color);
+    border: 0;
+    border-radius: 4px;
+    outline: none;
+    font-family: var(--font-base);
+    border: 1px solid #767676;
+    width: 100%;
+}
+
+
+input:focus,
+textarea:focus {
+    border-color: var(--diabled-background-color);
+    outline: 2px solid var(--ghost-accent-color);
+}
+
+textarea {
+    height: 100%;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    resize: vertical;
+}
+
+fieldset {
+    border: 0;
+    padding: 0;
+    margin-bottom: 2.4rem;
+}
+
+.has-serif-body input,
+.has-serif-body textarea {
+    font-family: var(--font-serif);
+}
+
+.form-wrapper {
+    position: relative;
+    /* max-width: 480px; */
+}
+
+input, 
+.form-wrapper button {
+    max-width: 38rem;
+}
+
+.form-button {
+    /* position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center; */
+    height: 40px;
+    padding: 0 15px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--white-color);
+    /* cursor: pointer; */
+    background-color: var(--brand-color);
+    border: 0;
+    border-radius: 4px;
+    outline: none;
+}
+
+.form-button.with-icon {
+    width: 40px;
+    padding: 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.form-wrapper .loader,
+.form-wrapper .success {
+    display: none;
+}
+
+.form-wrapper .loader .icon {
+    width: 28px;
+    height: 28px;
+}
+
+.form-wrapper.loading .default,
+.form-wrapper.success .default,
+.form-wrapper.success .loader {
+    display: none;
+}
+
+.form-wrapper.loading .loader {
+    display: block;
+}
+
+.form-wrapper.success .success {
+    display: flex;
+    align-items: center;
+}
+
+.inline-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.contact-form {
+    margin-top: 3rem;
+}
+
+.contact-form .button {
+    margin-top: 1.5rem;
+}
+
+.subscription-wrapper {
+    margin-top: 3.2rem;
+}
+
+.subscribe-title {
+    color: var(--secondary-text-color);
+    margin-bottom: 1.6rem;
+}

@@ -1,0 +1,35 @@
+.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-content {
+    flex-grow: 1;
+    padding: 8rem 0 2rem;
+}
+
+.section-container {
+    margin-top: var(--spacepsection);
+}
+
+.section-container.reset-spacing {
+    margin-top: calc(var(--spacepsection) - 6rem);
+}
+
+.custom-page .site-main .section-container:first-child {
+    margin-top: 0;
+}
+
+.section-container.post-expanded {
+    margin-bottom: 10.4rem;
+    margin-top: 16rem;
+}
+
+.is-head-brand .site-content {
+    padding-top: max(8vmin, 5rem);
+}
+
+.gh-content.reset-space {
+    margin-top: 0;
+}
