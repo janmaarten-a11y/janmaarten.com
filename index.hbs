@@ -1,0 +1,129 @@
+{{!< default}}
+
+<div class="content-area">
+    <main class="site-main" id="main">
+        <section class="container wide">
+            <div class="hero-wrapper">
+                <h1 class="h1 home-hero-header">{{@custom.hero_text}}</h1>
+                {{#if @site.description}}
+                    <p class="body-1 hero-desc"> {{@site.description}}</p>
+                {{/if}}
+            </div>
+            {{!--<div class="subscription-wrapper">
+                <div class="body-1 subscribe-title"> {{@custom.email_signup_text}} </div>
+                {{> "subscription-box"}}--}}
+            </div>
+        </section>
+
+        {{#if @custom.personal_project_title}}
+            <section class="section-container">
+                <header class="feed-header container wide">
+                    <div class="feed-header-wrapper">
+                        <h2 class="section-title feed-header-title">{{@custom.personal_project_title}}</h2>
+                    </div>
+                </header>
+                {{#get "pages" filter="tag:hash-content-personal-project" order="published_at desc"}}
+                    <div class="cards kg-grid kg-grid-2col gh-feed container wide">
+                        {{#foreach pages}}
+                            {{> "components/card-project"}}
+                        {{/foreach}}
+                    </div>
+                {{/get}}
+            </section>
+        {{/if}}
+
+        <section class="section-container">
+            <header class="feed-header container wide">
+                {{#if @custom.feed_title}}
+                    <div class="feed-header-wrapper">
+                        <h2 class="section-title feed-header-title">{{@custom.feed_title}}</h2>
+                    </div>
+                {{/if}}
+            </header>
+            {{#get "posts" limit="all" include="tags"}}
+                <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed container wide">
+                    {{#foreach posts}}
+                        {{^has tag="#overlays"}}
+                        {{> "loop" noDate=false}}
+                        {{/has}}
+                    {{/foreach}}
+                </div>
+            {{/get}}
+            <div class="container wide">
+                <a href="/blog/" class="button button-secondary round">{{t 'View all posts' count=pagination.total}} {{> "icons/arrow-right"}}</a>
+            </div>
+        </section>
+
+        <section class="section-container">
+            <div class="webring container wide">
+                <h2 id="a11y-webring-club">a11y-webring.club</h2>
+                <nav class="a11y-webring-club" aria-labelledby="a11y-webring-club"></nav>
+                    <p>This site is a member of the <a rel="external" href="https://a11y-webring.club/" style="white-space: nowrap;">a11y-webring.club</a>.</p>
+                    <ul class="webring-nav">
+                        <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/prev">Previous website</a></li>
+                        <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/random">Random website</a></li>
+                        <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/next">Next website</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        {{!-- {{#if @custom.case_study_title}}
+            <section class="section-container case-study">
+                <header class="feed-header container wide">
+                        <div class="feed-header-wrapper">
+                            <h2 class="section-title feed-header-title">{{@custom.case_study_title}}</h2>
+                        </div>
+                </header>
+                {{#get "pages" include="tags" filter="tag:hash-content-case-study" limit="4" order="published_at desc"}}
+                    <div class="cards kg-grid {{#match @custom.card_style "Full row"}}full-row{{else}}kg-grid-2col{{/match}} gh-feed container wide">
+                        {{#foreach pages}}
+                            {{> "components/card-project" showVisual=true isOverlay=true isLarge=true postFeedStyle=@custom.card_style }}
+                        {{/foreach}}
+                    </div>
+                {{/get}}
+                <div class="container wide">
+                    <a href="/works/" class="button button-secondary round">{{t 'View all case studies'}} {{> "icons/arrow-right"}}</a>
+                </div>
+            </section>
+        {{/if}}
+
+        {{#if @custom.testimonial_title }}
+            <section class="section-container testimonials">
+                <header class="feed-header container wide">
+                        <div class="feed-header-wrapper">
+                            <h2 class="section-title feed-header-title">{{@custom.testimonial_title}}</h2>
+                        </div>
+                </header>
+                {{#get "pages" include="tags" filter="tag:hash-content-testimonial" limit="4" order="published_at desc"}}
+                    <div class="cards kg-grid kg-grid-2col container wide">
+                        {{#foreach pages}}
+                            {{> "components/testimonial" }}
+                        {{/foreach}}
+                    </div>
+                {{/get}}
+            </section>
+        {{/if}}
+
+        {{#if @custom.experience_title }}
+            <section class="section-container experiences">
+                <header class="feed-header container wide">
+                        <div class="feed-header-wrapper">
+                            <h2 class="section-title feed-header-title">{{@custom.experience_title}}</h2>
+                        </div>
+                </header>
+                {{#get "pages" include="tags" filter="tag:hash-content-experience" order="published_at desc"}}
+                    <div class="container wide">
+                        {{#foreach pages}}
+                            {{> "components/experience" }}
+                        {{/foreach}}
+                    </div>
+                {{/get}}
+            </section>
+        {{/if}} --}}
+
+    </main>
+</div>
+
+{{#contentFor "body_class"}}{{#if next}} paged-next{{/if}}{{#if @member}} logged-in{{/if}}{{/contentFor}}
+

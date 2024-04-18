@@ -1,0 +1,18 @@
+{{#page}}
+    <section class="container wide {{#if feature_image }}with-feature-image{{/if}}">
+        <div class="hero-wrapper">
+            <h1 class="h1 hero-header">{{title}}</h1>
+            {{#if custom_excerpt}}
+                <p class="body-1 hero-desc"> {{{custom_excerpt}}}</p>
+            {{/if}}
+        </div>
+        {{#if feature_image}}
+            <div class="media-wrapper">
+                <img 
+                    src="{{img_url feature_image size="m"}}" 
+                    alt="{{title}}
+                    ">
+            </div>
+        {{/if}}
+    </section>
+{{/page}}

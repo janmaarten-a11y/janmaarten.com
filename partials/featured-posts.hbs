@@ -1,0 +1,20 @@
+{{#get "posts" filter="featured:true+tag:-hash-en" limit="7" as |featured|}}
+    {{#if featured}}
+    <section class="kg-canvas">
+        <div class="kg-width-full featured-container">
+            <div class="featured-wrapper container wide">
+                <div class="feed-header-wrapper">
+                    {{#if @custom.featured_title}}
+                        <h2 class="feed-header-title">{{@custom.featured_title}}</h2>
+                    {{/if}}
+                </div>
+                <div class="featured-feed">
+                    {{#foreach featured}}
+                        {{> "components/card-project" showVisual=true isOverlay=true postFeedStyle=@custom.card_style }}
+                    {{/foreach}}
+                </div>
+            </div>
+        </div>
+    </section>
+    {{/if}}
+{{/get}}

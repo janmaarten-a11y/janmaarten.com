@@ -1,0 +1,13 @@
+{{#unless @member}}
+    <form class="form-wrapper cover-form inline-form" data-members-form>
+        <label for="sub-email">
+            <p>{{t 'Enter your email'}} (required):</p>
+            <input id="sub-email" class="auth-email" type="email" data-members-email {{!--placeholder="{{t 'Enter your email'}}"--}} required="true" autocomplete="email">
+        </label>
+        <button class="button button-primary" type="submit" aria-label="Subscribe">
+            <span class="default">{{t 'Subscribe'}}</span>
+            <span class="loader">{{> icons/loader}}</span>
+            <span class="success">{{t 'Email sent. Check your inbox'}}</span>
+        </button>
+    </form>
+{{/unless}}

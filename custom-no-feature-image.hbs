@@ -1,0 +1,16 @@
+{{!< default}}
+
+<main class="site-main">
+
+    {{#post}}
+        {{> "content" no_image=true}}
+    {{/post}}
+
+    {{#is "post"}}
+        {{#post}}
+            {{> "comments"}}
+        {{/post}}
+        {{> "related-posts"}}
+    {{/is}}
+
+</main>

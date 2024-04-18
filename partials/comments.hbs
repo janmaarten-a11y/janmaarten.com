@@ -1,0 +1,21 @@
+{{#has tag="#no-comments"}}
+    {{else}}
+{{!-- {{#if comments}} --}}
+    <section class="gh-comments kg-canvas">
+        <header class="feed-header">
+            <h2 class="section-title feed-header-title">Discussion{{!--t 'Member discussion'--}}</h3>
+            {{!-- Utterances! --}}
+            <script src="https://utteranc.es/client.js"
+                repo="janmaarten-a11y/janmaarten.com"
+                issue-term="title"
+                label="blog"
+                theme="boxy-light"
+                crossorigin="anonymous"
+                async>
+            </script>
+            {{!-- {{comment_count class="gh-comments-count"}} --}}
+        </header>
+        {{!-- {{comments title="" count=false}} --}}
+    </section>
+{{!-- {{/if}} --}}
+{{/has}}

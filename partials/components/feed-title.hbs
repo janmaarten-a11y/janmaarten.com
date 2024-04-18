@@ -1,0 +1,11 @@
+<header class="feed-header container wide">
+    <div class="feed-header-wrapper">
+        <h2 class="section-title feed-header-title">{{title}}</h2>
+        {{#if view_all}}
+            <a class="section-title link-view-all button button-text" href="{{url}}">
+                <span class="link-label">View all</span>
+                {{> icons/arrow-right}}
+            </a>
+        {{/if}}
+    </div>
+</header>

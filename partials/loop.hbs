@@ -1,0 +1,61 @@
+
+    {{#if noDate}}
+        <div class="date-wrapper post-year-{{date format="Y"}} post-date-{{date format="M"}}" data-month="{{date format="MMMM YYYY"}}">
+            <h2 class="section-title year-post-label">{{date format="YYYY"}}‘s {{t 'posts'}}</h2>
+            {{!-- <div class="section-title month-post-label"> ✦ {{date format="MMMM"}}</div> --}}
+        </div>
+    {{/if}}
+
+<article class="feed {{post_class}} {{!--{{#if noDate}}archive-wrapper{{/if}}--}} post-year-{{date format="Y"}} post-date-{{date format="M"}}" data-month="{{date format="MMMM YYYY"}}">
+    
+
+    {{#match @custom.feed_layout "!=" "Text-only"}}
+        {{#match @custom.feed_layout "!=" "Minimal"}}
+            {{#if feature_image}}
+                <div class="feed-image u-placeholder square {{#match @custom.feed_layout "Expanded vertical"}} vertical{{/match}}">
+                        <img class="u-object-fit"
+                            srcset="{{img_url feature_image size="xs" format="webp"}} 150w,
+                                    {{img_url feature_image size="s" format="webp"}} 400w"
+                            sizes="(min-width: 576px) 160px, 40vw"
+                            src="{{img_url feature_image size="s"}}"
+                            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                            loading="lazy"
+                        >
+                </div>
+            {{/if}}
+        {{/match}}
+    {{/match}}
+    <div class="feed-wrapper">
+        <h3 class="feed-title">{{title}} {{#if canonical_url}}{{> "icons/arrow-upright"}}{{/if}}</h3>
+        {{#if excerpt}}
+            <div class="feed-excerpt">{{excerpt words="20"}}</div>
+        {{/if}}
+        {{!-- <div class="dot-spacer"></div> --}}
+        <div class="feed-right">
+            <div class="feed-visibility feed-visibility-{{visibility}}">
+                {{> icons/star}}
+            </div>
+            <time class="feed-calendar" datetime="{{date format="YYYY-MM-DD"}}">
+                {{date published_at format="MMM DD, YYYY"}}
+            </time>
+            {{#primary_tag}}
+            <span class="feed-meta-tag post-tag post-tag-{{slug}}">{{name}}</span>
+            {{/primary_tag}}
+            <div class="reading-time">
+                {{reading_time}}
+            </div>
+            {{!-- <div class="feed-icon">
+                {{#if noLink}}
+                    {{> icons/arrow-down}}
+                {{else}}
+                    {{> icons/arrow-right}}
+                {{/if}}
+            </div> --}}
+        </div>
+    </div>
+    {{#if noLink}}
+        <a class="u-permalink" href="#{{slug}}" aria-label="{{title}}"></a>
+    {{else}}
+        <a class="u-permalink" href={{#if canonical_url}}{{canonical_url}}{{else}}{{url}}{{/if}} aria-label="{{title}}"{{#if canonical_url}} rel="external"{{/if}}></a>
+    {{/if}}
+</article>

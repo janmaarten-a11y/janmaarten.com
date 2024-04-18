@@ -1,0 +1,53 @@
+routes:
+  /contact/:
+    template: contact
+    data: page.contact
+  /blog/:
+    template: blog
+    controller: channel
+    data: page.blog
+    filter: tag:-[hash-overlays]
+  /tags/:
+    template: tags
+    data: page.tags
+  /works/:
+    template: works
+    data: page.works
+  /now/:
+    template: now
+    controller: channel
+    data: page.now
+    filter: tag:now
+  /overlay-timeline/:
+    template: overlays
+    controller: channel
+    data: page.overlays
+    filter: tag:hash-overlays
+  /ai-timeline/:
+    template: now
+    controller: channel
+    data: page.ai-timeline
+    filter: tag:hash-ai-timeline
+  /timeline/:
+    template: timeline
+    controller: channel
+    data: page.timeline
+    filter: tag:hash-timeline
+  /books/:
+    template: books
+    controller: channel
+    data: page.books
+    filter: tag:books+tag:-hash-book-reading
+  /feed/:
+    template: feed
+    content_type: text/xml
+    filter: tag:-[hash-overlays]
+collections:
+  /:
+    permalink: /{slug}/
+    template: index
+    filter: tag:-[hash-overlays]
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

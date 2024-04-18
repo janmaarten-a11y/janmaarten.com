@@ -1,0 +1,55 @@
+
+<article class="card {{post_class}} {{#if isOverlay}}card-overlay{{/if}}" data-month="{{date format="MMMM YYYY"}}"
+    {{#if showVisual}}{{#if feature_image}}style="
+      background: var(--black-color);
+        background-image: url('{{img_url feature_image size='l' format='webp'}}');
+        background-image: -webkit-image-set(
+            url('{{img_url feature_image size='xl' format='webp'}}') 1140w,
+            url('{{img_url feature_image size='l' format='webp'}}') 960w,
+            url('{{img_url feature_image size='m' format='webp'}}') 750w);
+        background-image: image-set(
+            url('{{img_url feature_image size='xl' format='webp'}}'),
+            url('{{img_url feature_image size='l' format='webp'}}'),
+            url('{{img_url feature_image size='m' format='webp'}}'));
+        background-image: image-set(
+            url('{{img_url feature_image size='xl' format='webp'}}') 1140w,
+            url('{{img_url feature_image size='l' format='webp'}}') 960w,
+            url('{{img_url feature_image size='m' format='webp'}}') 750w);
+        background-size: cover;
+        background-position: center right;
+        background-repeat:no-repeat;
+        min-height:30rem;"
+    {{/if}}{{/if}}
+    >
+    <div class="card-wrapper">
+        {{#unless hideTags}}
+            {{#unless isPost}}
+                {{#match tags.length ">" 1}}
+                    <div class="tags-list">
+                        {{#foreach tags limit="2"}}
+                            <div class="sub-heading tag-item">
+                                {{name}}
+                            </div>
+                        {{/foreach}}
+                    </div>
+                {{/match}}
+            {{/unless}}
+        {{/unless}}
+        {{#if twitter_description}}    
+            <div class="sub-heading card-excerpt">{{twitter_description}}{{#if canonical_url}}{{> "icons/arrow-upright"}}{{/if}}</div>
+        {{/if}}
+        <h3 class="{{#if isLarge}}h2{{else}}h3{{/if}} card-title">
+            {{title}}
+        </h3>
+        {{!--{{#unless isOverlay}}--}}
+        {{#if custom_excerpt}}
+            <div class="sub-heading card-excerpt">{{excerpt words="20"}}</div>
+        {{/if}}
+        {{!--{{/unless}}--}}
+    </div>
+    {{#if canonical_url}}
+    <a class="u-permalink" href={{canonical_url}} aria-label="{{title}} (Opens in a new window)" rel="external" target="_blank"></a>
+    {{else}}
+    <a class="u-permalink" href={{url}} aria-label="{{title}}"></a>
+    {{/if}}
+</article>

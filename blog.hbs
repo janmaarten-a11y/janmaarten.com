@@ -1,0 +1,89 @@
+{{!< default}}
+<div class="content-area custom-page">
+    <main class="site-main">
+
+        {{> "page-header"}}
+
+        {{#match @custom.blog_featured_post_type "=" "Show featured posts"}}
+            <section class="section-container featured-posts">
+                {{#get "posts" include="tags" filter="featured:true" limit="12" as |featured|}}
+                    {{#if featured}}
+                        <header class="feed-header featured-header container wide">
+                                <div class="feed-header-wrapper">
+                                    <h2 class="section-title feed-header-title">{{@custom.featured_title}}</h2>
+                                </div>
+                        </header>
+                        <div class="carousel-wrapper">
+
+                        </div>
+                        <div class="cards container wide">
+                            <div class="featured-feed">
+
+                            {{#foreach featured}}
+                                {{> "components/card-project" showVisual=true isOverlay=true isPost=true postFeedStyle=@custom.card_style imageSizes="215px"}}
+                            {{/foreach}}
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/get}}
+            </section>
+        {{/match}}
+
+        {{!-- show the latest post --}}
+        {{#match @custom.blog_featured_post_type "=" "Show latest post"}}
+            <section class="section-container post-expanded">
+                {{#get "posts" include="tags" limit="1"}}
+                    {{#foreach posts}}
+                        <header class="single-header kg-canvas">
+                            <div class="single-meta">
+                                {{^has visibility="public"}}
+                                    <span class="single-meta-item single-visibility">
+                                        {{> icons/star}}
+                                        {{visibility}}-only post
+                                    </span>
+                                {{/has}}
+                                <span class="single-meta-item single-meta-length">
+                                    <time datetime="{{date format="YYYY-MM-DD"}}">
+                                        {{date published_at format="MMM DD, YYYY"}}
+                                    </time>
+                                </span>
+                                <span class="single-meta-item single-meta-length">
+                                    <div class="reading-time">
+                                        {{reading_time}}
+                                    </div>
+                                </span>
+                                {{#primary_tag}}
+                                    <span class="single-meta-item single-meta-tag">
+                                        <a class="post-tag post-tag-{{slug}}" href="{{url}}"{{#if canonical_url}} rel="external"{{/if}}>{{name}}</a>
+                                    </span>
+                                {{/primary_tag}}
+                            </div>
+                            <h1 class="single-title">{{title}} {{#if canonical_url}}{{> "icons/arrow-upright"}}{{/if}}</h1>
+                            {{#if custom_excerpt}}
+                                <div class="single-excerpt">
+                                    {{custom_excerpt}}
+                                </div>
+                            {{/if}}
+                        </header>
+                        <div class="single-content gh-content kg-canvas">
+                            {{ content }}
+                        </div>
+                    {{/foreach}}
+                {{/get}}
+            </section>
+        {{/match}}
+        
+        <section class="section-container reset-spacing">
+            <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed container wide">
+                {{#foreach posts}}
+                    {{> "loop" noDate=true}}
+                {{/foreach}}
+            </div>
+            {{pagination}}
+            {{!-- {{pagination secondLink="/tags/" secondText="Explore by Topics"}} --}}
+        </section>
+
+    </main>
+</div>
+
+{{#contentFor "body_class"}}{{#if next}} paged-next{{/if}}{{#if @member}} logged-in{{/if}}{{/contentFor}}

@@ -1,0 +1,66 @@
+{{!< default}}
+
+<div class="content-area">
+    <main class="site-main">
+        {{#tag}}
+            <section class="taxonomy">
+                <header class="single-header kg-canvas">
+                    {{#if feature_image}}
+                        <div class="taxonomy-media u-placeholder square">
+                            <img class="u-object-fit" src="{{img_url feature_image size="s"}}" alt="{{name}}">
+                        </div>
+                    {{/if}}
+                    <div class="tag-wrapper">
+                        <h1 class="h1 single-title">{{name}}</h1>
+
+                        {{#if description}}
+                            <div class="sub-heading-large single-excerpt">{{description}}</div>
+                        {{/if}}
+                    </div>
+                </header>
+
+            </section>
+        {{/tag}}
+
+        <div class="kg-canvas">
+            <div class="post-feed gh-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}}">
+                {{#foreach posts}}
+                    {{> "loop" noDate=true}}
+                {{/foreach}}
+            </div>
+        </div>
+
+        {{pagination}}
+        
+        {{#tag}}
+            <div class="tag-list-wrapper container wide">
+                {{#get "tags" limit="16" include='count.posts' order='count.posts desc' filter="id:-{{id}}+visibility:public" as |tags|}}
+                    {{#if tags}}
+                        <div class="wave-separator"></div>
+                        <div class="tag-list-container">
+                            <h3 class="section-title related-title">{{t "Explore more topics"}}</h3>
+                            <div class="tag-list">
+                                {{#foreach tags}}
+                                    <a class="tag-list-item-wrapper {{slug}}" href="{{url}}">
+                                        {{#if feature_image}}
+                                            <div class="taxonomy-media-small u-placeholder square round">
+                                                <img class="u-object-fit" src="{{img_url feature_image size="s"}}" alt="{{name}}">
+                                            </div>
+                                        {{/if}}
+                                        <div class="tag-list-item">
+                                            <span class="body-1 tag-list-item-count">{{name}}</span>    
+                                            ({{count.posts}})
+                                        </div>
+                                    </a>
+                                {{/foreach}}
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/get}}
+            </div>
+        {{/tag}}
+
+    </main>
+</div>
+
+{{#contentFor "body_class"}}{{#if next}} paged-next{{/if}}{{#if @site.logo}}{{#if @site.cover_image}} with-alt-header{{/if}}{{/if}}{{/contentFor}}

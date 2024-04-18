@@ -1,0 +1,192 @@
+{
+    "name": "portforkioto",
+    "description": "Personal portfolio based on the Kyoto theme by Themex Studio",
+    "version": "1.3.0",
+    "private": true,
+    "engines": {
+        "ghost": ">=5.0.0"
+    },
+    "license": "MIT",
+    "author": {
+        "name": "Jan Maarten",
+        "email": "tech@janmaarten.com",
+        "url": "https://janmaarten.com"
+    },
+    "keywords": [
+        "ghost",
+        "theme",
+        "ghost-theme"
+    ],
+    "docs": "https://themex.studio/docs/kyoto-docs/",
+    "config": {
+        "posts_per_page": 50,
+        "image_sizes": {
+            "xs": {
+                "width": 150
+            },
+            "s": {
+                "width": 400
+            },
+            "m": {
+                "width": 750
+            },
+            "l": {
+                "width": 960
+            },
+            "xl": {
+                "width": 1140
+            },
+            "xxl": {
+                "width": 1920
+            }
+        },
+        "card_assets": true,
+        "custom": {
+            "title_font": {
+                "type": "select",
+                "options": [
+                    "Modern sans-serif",
+                    "Elegant serif"
+                ],
+                "default": "Modern sans-serif"
+            },
+            "body_font": {
+                "type": "select",
+                "options": [
+                    "Modern sans-serif",
+                    "Elegant serif"
+                ],
+                "default": "Modern sans-serif"
+            },
+            "background_color": {
+                "type": "color",
+                "default": "#ffffff"
+            },
+            "profile_photo": {
+                "type": "image",
+                "description": "Min 80px height"
+            },
+            "tagline_text": {
+                "type": "text",
+                "default": "Designer and creator."
+            },
+            "hero_text": {
+                "type": "text",
+                "default": "I’m Kyoto — a designer and creator.",
+                "group": "homepage"
+            },
+            "email_signup_text": {
+                "type": "text",
+                "default": "Subscribe to my monthly newsletter",
+                "group": "homepage"
+            },
+            "featured_title": {
+                "type": "text",
+                "default": "Featured",
+                "group": "homepage"
+            },
+            "feed_title": {
+                "type": "text",
+                "default": "Thoughts",
+                "group": "homepage"
+            },
+            "feed_layout": {
+                "type": "select",
+                "options": [
+                    "Expanded",
+                    "Right thumbnail",
+                    "Text-only",
+                    "Minimal"
+                ],
+                "default": "Minimal",
+                "group": "homepage"
+            },
+            "personal_project_title": {
+                "type": "text",
+                "default": "Creating",
+                "group": "homepage",
+                "description": "Leave it empty to hide this content"
+            },
+            "case_study_title": {
+                "type": "text",
+                "default": "Case studies",
+                "group": "homepage",
+                "description": "Leave it empty to hide this content"
+            },
+            "card_style": {
+                "type": "select",
+                "options": [
+                    "Full row",
+                    "Grid"
+                ],
+                "default": "Grid",
+                "group": "homepage",
+                "description": "Define the style of the case study cards"
+            },
+            "testimonial_title": {
+                "type": "text",
+                "default": "Testimonials",
+                "group": "homepage",
+                "description": "Leave it empty to hide this content"
+            },
+            "experience_title": {
+                "type": "text",
+                "default": "Experiences",
+                "group": "homepage",
+                "description": "Leave it empty to hide this content"
+            },
+            "blog_featured_post_type": {
+                "type": "select",
+                "options": [
+                    "Show latest post",
+                    "Show featured posts",
+                    "Hide"
+                ],
+                "default": "Show featured posts",
+                "group": "homepage",
+                "description": "Define the style of the top section on the Blog page"
+            },
+            "selected_tags_on_tags_page": {
+                "type": "text",
+                "group": "homepage",
+                "description": "Enter tag slug to show on the Tags page. Separate by comma. Example: design,form,style"
+            },
+            "show_author": {
+                "type": "boolean",
+                "default": false,
+                "group": "post"
+            },
+            "show_social_share": {
+                "type": "boolean",
+                "default": false,
+                "group": "post"
+            },
+            "show_subscription_box": {
+                "type": "boolean",
+                "default": false,
+                "group": "post"
+            }
+        }
+    },
+    "scripts": {
+        "dev": "gulp",
+        "test": "gscan .",
+        "zip": "gulp zip"
+    },
+    "devDependencies": {
+        "@tryghost/shared-theme-assets": "2.3.2",
+        "autoprefixer": "10.4.14",
+        "beeper": "2.1.0",
+        "cssnano": "6.0.1",
+        "gscan": "4.37.1",
+        "gulp": "4.0.2",
+        "gulp-concat": "2.6.1",
+        "gulp-livereload": "4.0.2",
+        "gulp-postcss": "9.0.1",
+        "gulp-uglify": "3.0.2",
+        "gulp-zip": "5.1.0",
+        "postcss": "8.4.25",
+        "postcss-easy-import": "4.0.0",
+        "pump": "3.0.0"
+    }
+}

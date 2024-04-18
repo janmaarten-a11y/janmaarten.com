@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{meta_title}}</title>
+
+    {{!-- <link rel="preconnect" href= "https://fonts.googleapis.com">
+    <link rel="preconnect" href= "https://fonts.gstatic.com" crossorigin>
+    <link href= "https://fonts.googleapis.com/css2?family=Inter:wght@100..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{asset "built/screen.css"}}">
+    <style>
+        :root {
+            --background-color: {{@custom.background_color}};
+        }
+    </style>
+    <script>
+        /* The script for calculating the color contrast was taken from
+        https://gomakethings.com/dynamically-changing-the-text-color-based-on-background-color-contrast-with-vanilla-js/ */
+        var accentColor = getComputedStyle(document.documentElement).getPropertyValue('--background-color');
+        accentColor = accentColor.trim().slice(1);
+        var r = parseInt(accentColor.substr(0, 2), 16);
+        var g = parseInt(accentColor.substr(2, 2), 16);
+        var b = parseInt(accentColor.substr(4, 2), 16);
+        var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+        var textColor = (yiq >= 128) ? 'dark' : 'light';
+
+        document.documentElement.className = `has-${textColor}-text`;
+    </script>
+    {{ghost_head}}
+</head>
+
+<body class="{{body_class}}{{block "body_class"}}{{#match @custom.title_font "=" "Elegant serif"}} has-serif-title{{/match}}{{#match @custom.body_font "=" "Elegant serif"}} has-serif-body{{/match}}">
+<div class="site">
+    {{#post}}{{#has tag="#long-form"}}<progress class="reading-progress" value="0" max="100" aria-label="Reading progress"></progress>{{/has}}{{/post}}
+    <header id="gh-head" class="gh-head gh-outer">
+        <a class="skip-to-content-link" href="#main">
+            Skip to content
+        </a>
+        <div class="gh-head-inner container wide {{#unless @custom.profile_photo}}no-profile{{/unless}}">
+            {{!-- <div class="gh-head-nav"> --}}
+                <div class="gh-head-brand">
+                    <div class="gh-head-brand-wrapper">
+                        <div class="gh-head-logo-text">
+                            {{#if @site.logo }}
+                                <a href="{{@site.url}}">
+                                    <figure class="gh-head-logo-wrapper">
+                                        <img
+                                            srcset="{{img_url @site.logo size="s" format="webp"}} 400w"
+                                            sizes="480px"
+                                            src="{{img_url @site.logo size="s"}}"
+                                            alt="{{@site.title}}"
+                                            loading="lazy"
+                                        >
+                                    </figure>
+                                </a>
+                            {{else}}
+                                <a class="h1" href="{{@site.url}}">
+                                    {{@site.title}}
+                                </a>
+                            {{/if}}
+                        </div>
+                        {{#if @custom.tagline_text }}
+                            <div class="sub-heading tagline">
+                                {{@custom.tagline_text}}
+                            </div>
+                        {{/if}}
+                    </div>
+                    <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
+                    <button class="gh-burger"></button>
+                </div>
+
+                <nav class="gh-head-menu">
+                    {{navigation}}
+                    {{!-- <div class="head-action-social">
+                        <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
+                        <div class="social">
+                            {{#if @site.twitter}}
+                                <a class="social-item social-item-twitter"
+                                    href="{{twitter_url @site.twitter}}" target="_blank"
+                                    rel="noopener noreferrer" aria-label="Twitter">
+                                    {{> icons/twitter}}
+                                </a>
+                            {{/if}}
+                            {{#if @site.facebook}}
+                                <a class="social-item social-item-facebook"
+                                    href="{{facebook_url @site.facebook}}" target="_blank"
+                                    rel="noopener noreferrer" aria-label="Facebook">
+                                    {{> icons/facebook}}
+                                </a>
+                            {{/if}}
+                        </div> 
+
+                    </div>--}}
+                </nav>
+            {{!-- </div> --}}
+            {{#if @custom.profile_photo }}
+                <div class="gh-head-actions">
+                    <div class="gh-head-brand-wrapper">
+                        <a class="head-logo-wrap" href="{{@site.url}}">
+                            <figure class="head-logo round">
+                                <img
+                                    srcset="{{img_url @custom.profile_photo size="s" format="webp"}} 400w"
+                                    sizes="48px"
+                                    src="{{img_url @custom.profile_photo size="s"}}"
+                                    alt="{{@site.title}}"
+                                    loading="lazy"
+                                    class="u-object-fit"
+                                >
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+            {{/if}}
+        </div>
+        {{!--<div class="container wide">
+            <div class="wave-separator"></div>
+        </div>--}}
+    </header>
+
+    <div class="site-content">
+        {{{body}}}
+    </div>
+    {{> footer}}
+    <a style="display:none" rel="me" href="https://mastodon.social/@janmaarten">Mastodon</a>
+</div>
+
+{{#is "post, page"}}
+    {{> "pswp"}}
+{{/is}}
+
+<script src="{{asset "built/main.min.js"}}"></script>
+<script src="{{asset "js/prism.js"}}"></script>
+
+{{!-- TOC --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.10.0/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        tocSelector: '.toc',
+        contentSelector: '.single-content',
+        headingSelector: 'h2, h3',
+        hasInnerContainers: true,
+    });
+</script>
+{{!-- TOC --}}
+
+{{!-- Progress --}}
+{{#is "post"}}
+  <script>
+    const progressBar = document.querySelector('.reading-progress');
+
+    function updateProgress() {
+      const totalHeight = document.body.clientHeight;
+      const windowHeight = document.documentElement.clientHeight;
+      const position = window.scrollY;
+      const progress = position / (totalHeight - windowHeight) * 100;
+      progressBar.setAttribute('value', progress);
+      requestAnimationFrame(updateProgress);
+    }
+
+    requestAnimationFrame(updateProgress);
+  </script>
+{{/is}}
+{{!-- Progress --}}
+{{ghost_foot}}
+
+</body>
+</html>

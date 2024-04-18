@@ -1,0 +1,56 @@
+<div class="kg-side-bar time-line">
+    <div class="single-meta meta-sticky-top">
+        {{^has visibility="public"}}
+            <span class="single-meta-item single-visibility">
+                {{> icons/star}}
+                {{visibility}}-only post
+            </span>
+        {{/has}}
+        <span class="single-meta-item single-meta-length">
+            <p id={{slug}} class="aanchor-indent"></p>
+            <time datetime="{{date format="YYYY-MM-DD"}}">
+                {{date published_at format="MMM DD, YYYY"}}
+            </time>
+        </span>
+    </div>
+</div>
+<div class="timeline-content gh-content">
+    {{#if showTitle}}
+        {{#match tags.length ">" 1}}
+            <div class="tags-list">
+                {{#foreach tags limit="2"}}
+                    <div class="sub-heading tag-item">
+                        {{name}}
+                    </div>
+                {{/foreach}}
+            </div>
+        {{/match}}
+        <h3 class="h2 single-title">{{title}}</h3>
+        {{!-- <div class="view-arrow">
+            {{#if canonical_url}}{{> "icons/arrow-upright"}}{{else}}{{> "icons/arrow-right"}}{{/if}}
+        </div> --}}
+
+    {{/if}}
+    {{#if custom_excerpt}}
+        <p>
+            {{custom_excerpt}}
+        </p>
+    {{/if}}
+
+    {{ content }}
+
+    {{#if feature_image}}
+        <figure class="single-media kg-width-{{width}}">
+            <img 
+                srcset="{{img_url feature_image size="m"}} 750w,
+                        {{img_url feature_image size="l"}} 960w"
+                sizes="(min-width: 1023px) 640px, 100vw" 
+                src="{{img_url feature_image size="l"}}" 
+                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}">
+        </figure>
+    {{/if}}
+
+    {{!-- {{#if link}}
+        <a class="u-permalink" href={{#if canonical_url}}{{canonical_url}}{{else}}{{url}}{{/if}} aria-label="{{title}}"></a>
+    {{/if}} --}}
+</div>

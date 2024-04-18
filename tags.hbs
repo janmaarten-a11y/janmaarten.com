@@ -1,0 +1,46 @@
+{{!< default}}
+<div class="content-area">
+    <main class="site-main">
+
+        {{> "page-header"}}
+
+        {{#if @custom.selected_tags_on_tags_page}}
+            {{#get "tags" filter="slug:[{{@custom.selected_tags_on_tags_page}}]"}}
+                {{#foreach tags}}
+                    <section class="section-container">
+
+                        {{> "components/feed-title" title=name view_all=true}}
+                        
+                        {{#get "posts" include="tags" filter="tag:{{slug}}" limit="7" order="featured desc,published_at desc"}}
+                            <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed container wide">
+                                {{#foreach posts}}
+                                    {{> "loop"}}
+                                {{/foreach}}
+                            </div>
+                        {{/get}}
+                    </section>
+                {{/foreach}}
+            {{/get}}
+        {{else}}
+            {{#get "tags" limit="5" include="count.posts" order="count.posts desc"}}
+                {{#foreach tags}}
+                    <section class="section-container">
+
+                        {{> "components/feed-title" title=name view_all=true}}
+                        
+                        {{#get "posts" include="tags" filter="tag:{{slug}}" limit="7" order="featured desc,published_at desc"}}
+                            <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed container wide">
+                                {{#foreach posts}}
+                                    {{> "loop"}}
+                                {{/foreach}}
+                            </div>
+                        {{/get}}
+                    </section>
+                {{/foreach}}
+            {{/get}}
+        {{/if}}
+
+    </main>
+</div>
+
+{{#contentFor "body_class"}}{{#if next}} paged-next{{/if}}{{#if @member}} logged-in{{/if}}{{/contentFor}}

@@ -1,0 +1,77 @@
+{{!< default}}
+
+<div class="content-area custom-page">
+    <main class="site-main">
+
+        {{> "page-header"}}
+        
+
+        {{#if @custom.case_study_title}}
+            <section class="section-container case-study">
+                <header class="feed-header container wide">
+                        <div class="feed-header-wrapper">
+                            <h2 class="section-title feed-header-title">{{@custom.case_study_title}}</h2>
+                        </div>
+                </header>
+                {{#get "pages" include="tags" filter="tag:hash-content-case-study" order="published_at desc"}}
+                    <div class="cards kg-grid {{#match @custom.card_style "Full row"}}full-row{{else}}kg-grid-2col{{/match}} gh-feed container full">
+                        {{#foreach pages}}
+                            {{> "components/card-project" showVisual=true isOverlay=true isLarge=true postFeedStyle=@custom.card_style }}
+                        {{/foreach}}
+                    </div>
+                {{/get}}
+            </section>
+        {{/if}}
+        {{#if @custom.personal_project_title}}
+            <section class="section-container">
+                <header class="feed-header container wide">
+                    <div class="feed-header-wrapper">
+                        <h2 class="section-title feed-header-title">{{@custom.personal_project_title}}</h2>
+                    </div>
+                </header>
+                {{#get "pages" filter="tag:hash-content-personal-project" order="published_at desc"}}
+                    <div class="cards kg-grid kg-grid-2col gh-feed container wide">
+                        {{#foreach pages}}
+                            {{> "components/card-project"}}
+                        {{/foreach}}
+                    </div>
+                {{/get}}
+            </section>
+        {{/if}}
+        {{#if @custom.experience_title }}
+            <section class="section-container">
+                <header class="feed-header container wide">
+                        <div class="feed-header-wrapper">
+                            <h2 class="section-title feed-header-title">{{@custom.experience_title}}</h2>
+                        </div>
+                </header>
+                {{#get "pages" include="tags" filter="tag:hash-content-experience" order="published_at desc"}}
+                    <div class="container wide">
+                        {{#foreach pages}}
+                            {{> "components/experience" }}
+                        {{/foreach}}
+                    </div>
+                {{/get}}
+            </section>
+        {{/if}}
+        {{#if @custom.testimonial_title }}
+            <section class="section-container testimonials">
+                <header class="feed-header container wide">
+                        <div class="feed-header-wrapper">
+                            <h2 class="section-title feed-header-title">{{@custom.testimonial_title}}</h2>
+                        </div>
+                </header>
+                {{#get "pages" include="tags" filter="tag:hash-content-testimonial" limit="6" order="published_at desc"}}   
+                    <div class="cards kg-grid kg-grid-2col container wide">
+                        {{#foreach pages}}
+                            {{> "components/testimonial" }}
+                        {{/foreach}}
+                    </div>
+                {{/get}}
+            </section>
+        {{/if}}
+
+    </main>
+</div>
+
+{{#contentFor "body_class"}}{{#if next}} paged-next{{/if}}{{#if @member}} logged-in{{/if}}{{/contentFor}}

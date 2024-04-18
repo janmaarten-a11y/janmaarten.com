@@ -1,0 +1,12 @@
+{{#get "posts" limit="5" filter="tags:[{{post.tags}}]+id:-{{post.id}}" as |related|}}
+    {{#if related}}
+        <section class="section-container related-wrapper kg-canvas">
+            <h3 class="section-title related-title">{{t 'Similar thoughts'}}</h3>
+            <div class="post-feed gh-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}}">
+                {{#foreach posts}}
+                    {{> "loop"}}
+                {{/foreach}}
+            </div>
+        </section>
+    {{/if}}
+{{/get}}

@@ -1,0 +1,14 @@
+<article class="feed {{post_class}} no-link" data-month="{{date format="MMMM YYYY"}}">
+    <div class="feed-wrapper">
+        <div>
+            <div class="sub-heading feed-sub-title">{{ content }}</div>
+            <h3 class="feed-title">{{title}}</h3>
+        </div>
+        <div class="dot-spacer"></div>
+        <div class="feed-right">
+            {{#if excerpt}}
+                <div class="feed-calendar">{{excerpt}}</div>
+            {{/if}}
+        </div>
+    </div>
+</article>
