@@ -1,0 +1,246 @@
+#gh-head {
+    background-color: transparent;
+    height: var(--navbar-height);
+}
+
+.gh-outer {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.gh-head-inner {
+    /* grid-template-columns: calc(100% - 10.8rem - var(--head-nav-gap)) auto;
+    -moz-column-gap:var(--head-nav-gap);
+    display:grid;
+    grid-auto-flow:row dense; */
+    column-gap:var(--head-nav-gap);
+    display: flex;
+    justify-content: space-between;
+}
+/* 
+.no-profile.gh-head-inner {
+    grid-template-columns: 1fr auto auto; 
+    grid-template-columns: 3fr 2fr auto;
+    grid-template-columns: 5fr 2fr auto;
+} */
+
+.is-head-middle-logo .gh-head-inner {
+    grid-template-columns: 1fr auto 1fr;
+}
+
+.gh-head-logo-text {
+    font-weight: var(--font-weight-bold);
+    height: 4rem;
+}
+
+.gh-head-logo-wrapper {
+    position: relative;
+    height: 100%;
+    width: auto;
+}
+
+.gh-head-logo-wrapper img {
+    height: 100%;
+    margin: auto;
+}
+
+.head-logo-wrap:hover {
+    opacity: 1;
+}
+
+.head-logo-wrap:hover .head-logo {
+    scale: 1.06;
+}
+
+.head-logo {
+    aspect-ratio: 1/1;
+    position: relative;
+    height: 10.8rem;
+    transition: scale .15s var(--animation-base);
+}
+
+.gh-head-brand,.gh-head-menu {
+    margin-bottom: 2rem;
+}
+
+.gh-head-brand-wrapper {
+    flex-direction: column;
+    align-items: start;
+    gap: .4rem;
+}
+
+.gh-head .nav li {
+    position: relative;
+}
+
+.gh-head .nav li::after {
+    background: var(--brand-color);
+    bottom: -.1rem;
+    content: "";
+    display: block;
+    height: .2rem;
+    left: 50%;
+    position: absolute;
+    transition: width .25s ease 0s,left .25s ease 0s;
+    width: 0;
+}
+
+.gh-head .nav li:hover::after {
+    left: 0;
+    width: 100%;
+}
+
+.gh-head .nav li:hover a {
+    color: var(--brand-color);
+}
+
+.gh-head .nav li.nav-current::after {
+    background: var(--brand-color);
+    bottom: -.1rem;
+    content: "";
+    display: block;
+    height: .2rem;
+    left: calc(50% - 1rem);
+    position: absolute;
+    transition: width .25s ease 0s,left .25s ease 0s;
+    width: 2rem;
+}
+
+.gh-head .nav li.nav-current a {
+    color: var(--brand-color);
+}
+
+.gh-head-menu {
+    min-width: 320px;
+    justify-content:right;
+}
+
+.gh-head-menu,
+.gh-head-actions {
+    font-weight: 400;
+    font-size: 1.2rem;
+    text-transform: lowercase;
+    height: 4rem;
+}
+
+.is-head-open .gh-head-menu .gh-search,
+.is-head-open #gh-head .gh-head-actions {
+    display: none;
+}
+
+.head-action-social {
+    display: flex;
+    align-items: center;
+    gap: var(--head-nav-gap);
+    display:none;
+}
+.social {
+    display: flex;
+    align-items: center;
+}
+
+.social-item {
+    color: var(--secondary-text-color);
+    line-height: 0;
+}
+
+.social-item + .social-item {
+    margin-left: 15px;
+}
+
+.social-item + .social-item-rss {
+    margin-left: 24px;
+}
+
+.social-item .icon {
+    width: 2rem;
+    height: 2rem;
+    fill: currentColor;
+}
+
+.social-item-rss .icon,
+.gh-icon-btn .svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+.gh-icon-btn svg {
+    stroke: var(--secondary-text-color);
+
+}
+
+.gh-dropdown {
+    border-radius: .6rem 0 .6rem .6rem;
+    right: 16px;
+    margin-top: .8rem;
+    padding: 1.2rem 2rem;
+}
+
+.gh-dropdown li a {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.gh-head .nav .gh-dropdown li.nav-current:after {
+    left: 0;
+}
+
+.gh-head .nav .gh-dropdown li::after {
+    left: 0;
+}
+
+.has-serif-body .gh-head-menu .nav li,
+.has-serif-body .gh-head-link,
+.has-serif-body .gh-head-btn {
+    font-family: var(--font-serif);
+}
+
+@media (min-width: 992px) {
+    .is-head-left-logo .gh-head-menu {
+        margin: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    /* #gh-head .gh-head-brand {
+        height: 10.8rem;
+    }
+    #gh-head .nav {
+        align-items: start;
+    }
+    #gh-head .gh-head-actions,
+    #gh-head .gh-head-menu {
+        justify-content: start;
+    } */
+    /* #gh-head .gh-head-inner {
+        display: block;
+    } */
+    #gh-head .gh-head-inner {
+        gap:0;
+    }
+    #gh-head .gh-burger,
+    #gh-head .gh-search.gh-icon-btn {
+        display: none;
+    }
+    #gh-head .nav li,
+    #gh-head .gh-head-actions, 
+    #gh-head .gh-head-menu {
+        opacity: 1;
+        transform: none;
+        position: relative;
+        visibility: visible;
+        justify-content: flex-end;
+    }
+    #gh-head .gh-head-brand {
+        display: flex;
+        aspect-ratio: 1/1;
+    }
+    #gh-head .nav a {
+        font-size: inherit;
+        font-weight: normal;
+        text-transform: lowercase;
+    }
+    #gh-head .gh-head-menu {
+        min-width: 240px;
+    }
+}
