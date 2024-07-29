@@ -14,6 +14,7 @@ User-agent: GPTBot
 User-agent: ChatGPT-User
 User-agent: Google-Extended
 User-agent: CCBot
+User-agent: Perplexity-ai
 User-agent: PerplexityBot
 User-agent: 360Spider
 User-agent: anthropic-ai
@@ -37,6 +38,8 @@ User-agent: BomboraBot
 User-agent: Buck
 User-agent: BVBot
 User-agent: Cincraw
+User-agent: Claudebot
+User-agent: Claude-web
 User-agent: Clickagy
 User-agent: Cocolyzebot
 User-agent: Conductor
