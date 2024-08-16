@@ -14,6 +14,7 @@ User-agent: 360Spider
 User-agent: A6-Indexer
 User-agent: Abonti
 User-agent: AdIdxBot
+User-agent: AdsBot-Google
 User-agent: adscanner
 User-agent: AhrefsBot
 User-agent: Amazonbot
@@ -37,6 +38,7 @@ User-agent: Clickagy
 User-agent: Cocolyzebot
 User-agent: cohere-ai
 User-agent: Conductor
+User-agent: DataForSeoBot
 User-agent: DF Bot 1.0
 User-agent: Diffbot
 User-agent: DomainStatsBot
@@ -53,6 +55,7 @@ User-agent: GPTBot
 User-agent: GrapeshotCrawler
 User-agent: HTTrack
 User-agent: ICC-Crawler
+User-agent: ImagesiftBot
 User-agent: img2dataset
 User-agent: Internet-structure-research-project-bot
 User-agent: Linguee
@@ -68,6 +71,7 @@ User-agent: omgili
 User-agent: omgilibot
 User-agent: OAI-SearchBot
 User-agent: OnalyticaBot
+User-agent: peer39_crawler
 User-agent: Perplexity-ai
 User-agent: PerplexityBot
 User-agent: PetalBot
