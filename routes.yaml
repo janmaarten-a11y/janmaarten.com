@@ -18,21 +18,6 @@ routes:
     controller: channel
     data: page.now
     filter: tag:now
-  /overlay-timeline/:
-    template: overlays
-    controller: channel
-    data: page.overlays
-    filter: tag:hash-overlays
-  /ai-timeline/:
-    template: now
-    controller: channel
-    data: page.ai-timeline
-    filter: tag:hash-ai-timeline
-  /timeline/:
-    template: timeline
-    controller: channel
-    data: page.timeline
-    filter: tag:hash-timeline
   /books/:
     template: books
     controller: channel
