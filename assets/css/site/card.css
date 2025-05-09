@@ -38,7 +38,7 @@
     margin: .4rem 0
 }
 
-.card-overlay .card-title {
+:not(.featured-posts) .card-overlay .card-title {
     color: var(--primary-text-color-overlay);
     font-size: 2.4rem;
     font-family: var(--font-serif);
@@ -56,6 +56,9 @@
     font-size: 1.4rem;
   }
 
+.featured-posts .card-overlay .card-excerpt {
+    display:none;
+}
 .card-image,
 .placeholder {
     position: relative;
