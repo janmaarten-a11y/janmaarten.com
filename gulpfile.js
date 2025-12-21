@@ -10,7 +10,7 @@ const beeper = require('beeper');
 const zip = require('gulp-zip');
 
 // postcss plugins
-const easyimport = require('postcss-easy-import');
+const postcssImport = require('postcss-import');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
@@ -39,7 +39,7 @@ function css(done) {
     pump([
         src('assets/css/screen.css', {sourcemaps: true}),
         postcss([
-            easyimport,
+            postcssImport,
             autoprefixer(),
             cssnano()
         ]),
