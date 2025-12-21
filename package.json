@@ -174,20 +174,20 @@
         "zip": "gulp zip"
     },
     "devDependencies": {
-        "@tryghost/shared-theme-assets": "2.3.2",
-        "autoprefixer": "10.4.14",
-        "beeper": "2.1.0",
-        "cssnano": "6.0.1",
+        "@tryghost/shared-theme-assets": "2.5.2",
+        "autoprefixer": "10.4.23",
+        "beeper": "3.0.0",
+        "cssnano": "7.1.2",
         "gscan": "5.2.1",
-        "gulp": "5.0.0",
+        "gulp": "5.0.1",
         "gulp-concat": "2.6.1",
         "gulp-livereload": "4.0.2",
-        "gulp-postcss": "9.0.1",
+        "gulp-postcss": "10.0.0",
         "gulp-uglify": "3.0.2",
-        "gulp-zip": "5.1.0",
+        "gulp-zip": "6.1.0",
         "postcss": "8.5.6",
         "postcss-import": "16.1.1",
-        "pump": "3.0.0"
+        "pump": "3.0.3"
     },
     "overrides": {
         "glob": "^10.4.5"
