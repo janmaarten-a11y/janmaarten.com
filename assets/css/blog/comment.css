@@ -1,5 +1,14 @@
+.gh-comments.kg-canvas {
+    margin-top:100px;
+}
+.gh-comments.kg-canvas h2 {
+    font-size:2rem;
+}
+.utterances {
+    max-width: 860px;
+  }
 
- .comments {
+.comments {
     display: flex;
     flex-direction: column;
     align-items: center;

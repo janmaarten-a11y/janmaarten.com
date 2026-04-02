@@ -39,7 +39,7 @@ abbr[title] {
 
 b,
 strong {
-    font-weight: var(--font-weight-bold);
+    font-weight: 700;
 }
 
 code,

@@ -6,7 +6,7 @@ routes:
     template: blog
     controller: channel
     data: page.blog
-    filter: tags:-[hash-overlays]
+    filter: tag:-[hash-overlays]
   /tags/:
     template: tags
     data: page.tags
@@ -22,22 +22,16 @@ routes:
     template: books
     controller: channel
     data: page.books
-    filter: tags:books+tags:-hash-book-reading
-  /archive/:
-    template: archive
-    controller: channel
-    data: page.archive
-    order: published_at desc
-    filter: tags:-[now]
+    filter: tag:books+tag:-hash-book-reading
   /feed/:
     template: feed
     content_type: text/xml
-    filter: tags:-[hash-overlays]
+    filter: tag:-[hash-overlays]
 collections:
   /:
     permalink: /{slug}/
     template: index
-    filter: tags:-[hash-overlays]
+    filter: tag:-[hash-overlays]
 
 taxonomies:
   tag: /tag/{slug}/

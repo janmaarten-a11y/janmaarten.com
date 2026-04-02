@@ -4,13 +4,13 @@
             <div class="author-images">
                 {{#foreach authors limit="3"}}
                     <div class="author-image-placeholder u-placeholder square">
-                        <a href="{{url}}" title="{{name}}">
+                        {{!-- <a href="{{url}}" title="{{name}}"> --}}
                             {{#if profile_image}}
                                 <img class="author-image u-object-fit" src="{{img_url profile_image size="xs"}}" alt="{{name}}" loading="lazy">
                             {{else}}
                                 <span class="u-object-fit">{{> icons/avatar}}</span>
                             {{/if}}
-                        </a>
+                        {{!-- </a> --}}
                     </div>
                 {{/foreach}}
             </div>

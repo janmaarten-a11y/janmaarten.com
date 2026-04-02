@@ -9,18 +9,20 @@
 }
 
 .gh-head-inner {
-    grid-template-columns: calc(100% - 10.8rem - var(--head-nav-gap)) auto;
-    /* display: flex;
-    gap: var(--head-nav-gap); */
+    /* grid-template-columns: calc(100% - 10.8rem - var(--head-nav-gap)) auto;
+    -moz-column-gap:var(--head-nav-gap);
+    display:grid;
+    grid-auto-flow:row dense; */
+    column-gap:var(--head-nav-gap);
+    display: flex;
+    justify-content: space-between;
 }
-
-.gh-head-nav {
-    flex: 1 0 0;
-}
-
+/* 
 .no-profile.gh-head-inner {
-    grid-template-columns: 1fr;
-}
+    grid-template-columns: 1fr auto auto; 
+    grid-template-columns: 3fr 2fr auto;
+    grid-template-columns: 5fr 2fr auto;
+} */
 
 .is-head-middle-logo .gh-head-inner {
     grid-template-columns: 1fr auto 1fr;
@@ -57,7 +59,7 @@
     transition: scale .15s var(--animation-base);
 }
 
-.gh-head-brand {
+.gh-head-brand,.gh-head-menu {
     margin-bottom: 2rem;
 }
 
@@ -65,10 +67,6 @@
     flex-direction: column;
     align-items: start;
     gap: .4rem;
-}
-
-.gh-head .nav {
-    padding-right: 1.2rem;
 }
 
 .gh-head .nav li {
@@ -113,13 +111,16 @@
 }
 
 .gh-head-menu {
-    gap: 0;
+    min-width: 320px;
+    justify-content:right;
 }
 
 .gh-head-menu,
 .gh-head-actions {
-    font-size: 1.5rem;
-    font-weight: var(--font-weight-bold);
+    font-weight: 400;
+    font-size: 1.2rem;
+    text-transform: lowercase;
+    height: 4rem;
 }
 
 .is-head-open .gh-head-menu .gh-search,
@@ -130,7 +131,8 @@
 .head-action-social {
     display: flex;
     align-items: center;
-    gap: 1.6rem;
+    gap: var(--head-nav-gap);
+    display:none;
 }
 .social {
     display: flex;
@@ -140,6 +142,10 @@
 .social-item {
     color: var(--secondary-text-color);
     line-height: 0;
+}
+
+.social-item + .social-item {
+    margin-left: 15px;
 }
 
 .social-item + .social-item-rss {
@@ -159,23 +165,20 @@
 }
 
 .gh-icon-btn svg {
-    stroke: var(--primary-text-color);
+    stroke: var(--secondary-text-color);
 
 }
 
 .gh-dropdown {
-    border-radius: 1.2rem 0 1.2rem 1.2rem;
+    border-radius: .6rem 0 .6rem .6rem;
     right: 16px;
-    margin-top: .4rem;
-    padding: 1.6rem 2rem;
-    background-color: var(--base-contrast);
-
+    margin-top: .8rem;
+    padding: 1.2rem 2rem;
 }
 
 .gh-dropdown li a {
     padding-left: 0;
     padding-right: 0;
-    color: var(--primary-text-color) !important;
 }
 
 .gh-head .nav .gh-dropdown li.nav-current:after {
@@ -192,108 +195,6 @@
     font-family: var(--font-serif);
 }
 
-
-.gh-theme-toggle {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    scale: .75;
-}
-
-.theme-toggle-icon {
-    position: relative;
-    width: 24px;
-    height: 24px;
-}
-
-.moon-or-sun {
-    position: relative;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 1px solid var(--secondary-text-color);
-    background: var(--secondary-text-color);
-    transform: scale(1);
-    transition: all 0.45s ease;
-    overflow: hidden;
-}
-
-.moon-or-sun::before {
-    content: "";
-    position: absolute;
-    right: -9px;
-    top: -9px;
-    height: 24px;
-    width: 24px;
-    border: 2px solid var(--secondary-text-color);
-    border-radius: 50%;
-    transform: translate(0, 0);
-    opacity: 1;
-    transition: transform 0.45s ease;
-}
-
-.moon-or-sun::after {
-    content: "";
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin: -4px 0 0 -4px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    box-shadow: 0 -23px 0 var(--secondary-text-color),
-        0 23px 0 var(--secondary-text-color),
-        23px 0 0 var(--secondary-text-color),
-        -23px 0 0 var(--secondary-text-color),
-        15px 15px 0 var(--secondary-text-color),
-        -15px 15px 0 var(--secondary-text-color),
-        15px -15px 0 var(--secondary-text-color),
-        -15px -15px 0 var(--secondary-text-color);
-    transform: scale(0);
-    transition: all 0.35s ease;
-}
-
-.moon-mask {
-    position: absolute;
-    right: -9px;
-    top: -8px;
-    height: 24px;
-    width: 24px;
-    border-radius: 50%;
-    border: 0;
-    background: var(--background-color);
-    transform: translate(0, 0);
-    opacity: 1;
-    transition: background 0.25s ease, transform 0.45s ease;
-}
-
-/* Dark theme styles */
-[data-theme="dark"] .moon-or-sun {
-    transform: scale(0.55);
-    overflow: visible;
-}
-
-[data-theme="dark"] .moon-or-sun::before {
-    transform: translate(14px, -14px);
-    opacity: 0;
-}
-
-[data-theme="dark"] .moon-or-sun::after {
-    transform: scale(1);
-}
-
-[data-theme="dark"] .moon-mask {
-    transform: translate(14px, -14px);
-    opacity: 0;
-}
-
 @media (min-width: 992px) {
     .is-head-left-logo .gh-head-menu {
         margin: 0;
@@ -301,32 +202,45 @@
 }
 
 @media (max-width: 767px) {
-    #gh-head .gh-head-brand {
+    /* #gh-head .gh-head-brand {
         height: 10.8rem;
     }
     #gh-head .nav {
         align-items: start;
     }
-    #gh-head .gh-head-actions, #gh-head .gh-head-menu {
+    #gh-head .gh-head-actions,
+    #gh-head .gh-head-menu {
         justify-content: start;
+    } */
+    /* #gh-head .gh-head-inner {
+        display: block;
+    } */
+    #gh-head .gh-head-inner {
+        gap:0;
     }
-    .is-head-open:not(.is-head-brand):not(.is-head-dark):not(.is-head-transparent) #gh-head {
-        background-color: var(--background-color);
-    }
-    .is-head-open:not(.is-head-brand):not(.is-head-dark):not(.is-head-transparent) #gh-head .head-separator {
+    #gh-head .gh-burger,
+    #gh-head .gh-search.gh-icon-btn {
         display: none;
     }
-    .is-head-open #gh-head .gh-head-menu {
-        padding-bottom: 4rem;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2rem;
+    #gh-head .nav li,
+    #gh-head .gh-head-actions, 
+    #gh-head .gh-head-menu {
+        opacity: 1;
+        transform: none;
+        position: relative;
+        visibility: visible;
+        justify-content: flex-end;
     }
-    .gh-theme-toggle {
-        scale: 1.125;
-        margin-top: 1.6rem;
+    #gh-head .gh-head-brand {
+        display: flex;
+        aspect-ratio: 1/1;
     }
-    .gh-head-brand .gh-search {
-        margin-right: 1.6rem;
+    #gh-head .nav a {
+        font-size: inherit;
+        font-weight: normal;
+        text-transform: lowercase;
+    }
+    #gh-head .gh-head-menu {
+        min-width: 240px;
     }
 }

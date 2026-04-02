@@ -36,8 +36,7 @@ is the very first element in the post content */
     margin-top: 1.2rem;
 }
 
-.gh-content > [id] + .kg-card,
-.gh-content > p + .toc-container  {
+.gh-content > [id] + .kg-card {
     margin-top: 2.8rem;
 }
 
@@ -87,6 +86,7 @@ is the very first element in the post content */
 
 .gh-content :not(.kg-card):not([id]) + .kg-card:not(.kg-width-wide):not(.kg-width-full) {
     margin-top: 3.6rem;
+
 }
 
 .gh-content .kg-card:not(.kg-width-wide):not(.kg-width-full) + :not(.kg-card):not([id]) {
@@ -95,32 +95,34 @@ is the very first element in the post content */
 
 /* Now the content typography styles */
 .gh-content h1 {
-    font-size: clamp(3.2rem,3vw,4rem);
+    font-size: 4.8rem;
     letter-spacing: .012em;
 }
 
 .gh-content h2 {
-    font-size: 3.2rem;
+    font-size: 2.6rem;
     letter-spacing: .004em;
 }
 
 .gh-content h3 {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
     letter-spacing: .004em;
 }
 
-.gh-content h4,
+.gh-content h4 {
+    font-size: 1.8rem;
+}
+
 .gh-content h5 {
-    font-size: var(--base-text-size);
+    font-size: 1.6rem;
 }
 
 .gh-content h6 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     text-transform: uppercase;
-    color: var(--brand-color);
-    margin-bottom: -5.6rem !important;
-    --content-spacing-multiplier: 7;
-    font-family: var(--gh-font-body, var(--font-system));
+    color: var(--tertiary-text-color);
+    margin-bottom: -6.4rem !important;
+    margin-top: 6.4rem !important;
 }
 
 .serie-page .gh-content h2 {
@@ -142,19 +144,28 @@ is the very first element in the post content */
 
 .gh-content a {
     word-break: break-word;
-    text-decoration: underline;
-    text-decoration-color: var(--underline-color, #FFF8B4);
+    text-decoration: none;
+    /* text-decoration-color: var(--underline-color, #FFF8B4);
     text-decoration-skip-ink: none;
     text-decoration-thickness: 0.8rem;
     text-underline-offset: -0.4rem;
     transition: text-decoration 300 var(--animation-base);
-    color: inherit;
+    color: inherit; */
+    outline:none;
+    color: var(--underline-color);
+    border-bottom: 2px solid var(--underline-color);
+}
+.gh-content a:focus,
+.gh-content a:focus-visible {
+    background: rgba(31, 0, 255, 0.2);
+    color: var(--primary-text-color);
+    border-bottom: 4px solid var(--primary-text-color);
 }
 
-.gh-content a:not([class]):hover {
+/* .gh-content a:not([class]):hover {
     text-decoration-thickness: 2rem;
     text-underline-offset: -1.6rem;
-}
+} */
 
 .gh-content a[class]:hover {
     opacity: 1;
@@ -166,50 +177,6 @@ is the very first element in the post content */
 .gh-content > p {
     font-size: var(--base-text-size);
     letter-spacing: 0;
-}
-
-.gh-content.hero-intro.tag-hash-intro-animate > ol,
-.gh-content.hero-intro.tag-hash-intro-animate > ul,
-.gh-content.hero-intro.tag-hash-intro-animate > dl,
-.gh-content.hero-intro.tag-hash-intro-animate > p {
-    font-size: clamp(2.4rem, 5vw, 3.2rem);
-    line-height: 1.33;
-    font-weight: 600;
-}
-
-.gh-content.hero-intro > ol,
-.gh-content.hero-intro > ul,
-.gh-content.hero-intro > dl,
-.gh-content.hero-intro > p {
-    font-size: 1.8rem;
-    margin-top: 1.6rem;
-}
-
-.gh-content.hero-intro > p strong {
-    padding: .2rem .6rem;
-    border-radius: 0.6rem;
-    background-color: var(--underline-color, #fff8b4);
-}
-
-.intro-highlight {
-    color: var(--primary-text-color);
-}
-
-.sentence {
-    transition: color 0.3s ease, filter 0.3s ease;
-}
-
-.hero-intro {
-    margin-top: 0;
-}
-
-.hero-intro.tag-hash-intro-animate,
-.gh-content.hero-intro.tag-hash-intro-animate > [id] {
-    color: var(--disabled-text-color);
-}
-
-.gh-content.hero-intro.tag-hash-intro-animate > h6 {
-    margin-bottom: 0 !important;
 }
 
 .gh-content .kg-callout-card .kg-callout-text,
@@ -276,7 +243,7 @@ is the very first element in the post content */
     background: var(--color-cream);
     display: inline-block;
     position: absolute;
-    top: -14px;
+    top: -12px;
     right: -7px;
     border-radius: 50%;
 }
@@ -291,33 +258,19 @@ is the very first element in the post content */
 
 .timeline-content.gh-content {
     margin-top: -2rem;
-    padding-left: 3.2rem;
 }
 
-.timeline-content.gh-content .single-title a {
-    text-decoration: none;
+.timeline-content.gh-content {
+    padding-left: 3.2rem;
 }
 
 .timeline-content .toc-container {
     display: none;
 }
 
-.post-full-meta {
-    display: flex;
-    gap: 1.2rem;
-}
-
-.post-full-meta .single-meta-item {
-    font-size: 1.4rem;
-}
-
-.post-full-meta .tags-list {
-    margin-top: 0;
-}
-
 .view-arrow {
     position: absolute;
-    top: -2.8rem;
+    top: -3rem;
     right: 0;
     padding: .8rem;
     background-color: var(--input-background-color);
@@ -343,49 +296,9 @@ is the very first element in the post content */
     fill: var(--white-color);
 }
 
-/* footnote */
-.footnote { 
-    margin-left: 0.25rem; 
-    margin-right: 0.5rem;
-}
-.footnote a { 
-    text-decoration: none;
-    color: var(--brand-color);
-    font-weight: 400;
-    font-size: 0.9em;
-}
-
-.footnote-list {
-    padding: 2.4rem 0 4.8rem 2.4rem;
-    font-size: 0.9em;
-    border-top: 1px solid var(--divider-color);
-    border-bottom: 1px solid var(--divider-color);
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
-.footnote-list li {
-    padding-top: 1.6rem;
-    line-height: 1.5;
-}
-
-.error-icon .icon {
-    height: 20rem;
-    width: 20rem;
-}
-
-.error-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
 @media (max-width: 767px) {
     
-    .gh-content h1 {
+    /* .gh-content h1 {
         font-size: 3.6rem;
     }
     
@@ -413,11 +326,17 @@ is the very first element in the post content */
     .gh-content .kg-product-card .kg-product-card-description > p {
         font-size: 2rem;
         line-height: 1.66;
+    } */
+    
+    .kg-card.kg-callout-card {
+        flex-wrap: wrap;
+    }
+    .kg-callout-emoji {
+        flex-basis: 100%;
     }
 
     .time-line {
         border: 0;
-        margin-right: 0;
     }
 
     .time-line::before {

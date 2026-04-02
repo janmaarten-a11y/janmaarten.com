@@ -42,30 +42,25 @@
         },
         "card_assets": true,
         "custom": {
-            "color_combinations": {
+            "title_font": {
                 "type": "select",
                 "options": [
-                    "Default",
-                    "Onyx",
-                    "Rust",
-                    "Fossil",
-                    "Mint",
-                    "Ember",
-                    "Ice",
-                    "Pure"
+                    "Modern sans-serif",
+                    "Elegant serif"
                 ],
-                "default": "Default",
-                "description": "Preset color combination"
+                "default": "Modern sans-serif"
             },
-            "appearance": {
+            "body_font": {
                 "type": "select",
                 "options": [
-                    "light",
-                    "dark",
-                    "system",
-                    "user"
+                    "Modern sans-serif",
+                    "Elegant serif"
                 ],
-                "default": "system"
+                "default": "Modern sans-serif"
+            },
+            "background_color": {
+                "type": "color",
+                "default": "#ffffff"
             },
             "profile_photo": {
                 "type": "image",
@@ -131,6 +126,12 @@
             "testimonial_title": {
                 "type": "text",
                 "default": "Testimonials",
+                "group": "homepage",
+                "description": "Leave it empty to hide this content"
+            },
+            "experience_title": {
+                "type": "text",
+                "default": "Experiences",
                 "group": "homepage",
                 "description": "Leave it empty to hide this content"
             },

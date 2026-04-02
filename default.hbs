@@ -1,74 +1,37 @@
 <!DOCTYPE html>
-<html lang="{{@site.locale}}" class="is-color-{{#match @custom.color_combinations "Onyx"}}onyx{{else match @custom.color_combinations "Rust"}}rust{{else match @custom.color_combinations "Fossil"}}fossil{{else match @custom.color_combinations "Mint"}}mint{{else match @custom.color_combinations "Ember"}}ember{{else match @custom.color_combinations "Ice"}}ice{{else match @custom.color_combinations "Pure"}}pure{{else}}default{{/match}}">
+<html lang="{{@site.locale}}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{meta_title}}</title>
+
+    {{!-- <link rel="preconnect" href= "https://fonts.googleapis.com">
+    <link rel="preconnect" href= "https://fonts.gstatic.com" crossorigin>
+    <link href= "https://fonts.googleapis.com/css2?family=Inter:wght@100..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{asset "built/screen.css"}}">
+    <style>
+        :root {
+            --background-color: {{@custom.background_color}};
+        }
+    </style>
     <script>
-        // Theme switching system (from Kyoto v1.3.0+)
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-            updateThemeToggleIcon(theme);
-        }
+        /* The script for calculating the color contrast was taken from
+        https://gomakethings.com/dynamically-changing-the-text-color-based-on-background-color-contrast-with-vanilla-js/ */
+        var accentColor = getComputedStyle(document.documentElement).getPropertyValue('--background-color');
+        accentColor = accentColor.trim().slice(1);
+        var r = parseInt(accentColor.substr(0, 2), 16);
+        var g = parseInt(accentColor.substr(2, 2), 16);
+        var b = parseInt(accentColor.substr(4, 2), 16);
+        var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+        var textColor = (yiq >= 128) ? 'dark' : 'light';
 
-        function getColorScheme() {
-            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-
-        function updateThemeToggleIcon(theme) {
-            var toggle = document.querySelector('.gh-theme-toggle');
-            if (toggle) {
-                toggle.setAttribute('data-theme', theme);
-            }
-        }
-
-        function toggleTheme() {
-            var currentTheme = document.documentElement.getAttribute('data-theme');
-            var newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            setTheme(newTheme);
-        }
-
-        var themeSetting = '{{@custom.appearance}}';
-        var savedTheme = localStorage.getItem('theme');
-
-        if (themeSetting === 'user') {
-            if (savedTheme) {
-                setTheme(savedTheme);
-            } else {
-                setTheme(getColorScheme());
-            }
-        } else if (themeSetting === 'light') {
-            setTheme('light');
-        } else if (themeSetting === 'dark') {
-            setTheme('dark');
-        } else if (themeSetting === 'system') {
-            setTheme(getColorScheme());
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var themeToggle = document.querySelector('.gh-theme-toggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', function() {
-                    if (themeSetting === 'user') {
-                        toggleTheme();
-                    }
-                });
-            }
-        });
-
-        if (themeSetting === 'system') {
-            window.matchMedia('(prefers-color-scheme: dark)').addListener(function(e) {
-                setTheme(e.matches ? 'dark' : 'light');
-            });
-        }
+        document.documentElement.className = `has-${textColor}-text`;
     </script>
     {{ghost_head}}
 </head>
 
-<body class="{{body_class}}{{block "body_class"}}">
+<body class="{{body_class}}{{block "body_class"}}{{#match @custom.title_font "=" "Elegant serif"}} has-serif-title{{/match}}{{#match @custom.body_font "=" "Elegant serif"}} has-serif-body{{/match}}">
 <div class="site">
     {{#post}}{{#has tag="#long-form"}}<progress class="reading-progress" value="0" max="100" aria-label="Reading progress"></progress>{{/has}}{{/post}}
     <header id="gh-head" class="gh-head gh-outer">
@@ -76,56 +39,62 @@
             Skip to content
         </a>
         <div class="gh-head-inner container wide {{#unless @custom.profile_photo}}no-profile{{/unless}}">
-            <div class="gh-head-brand">
-                <div class="gh-head-brand-wrapper">
-                    <div class="gh-head-logo-text">
-                        {{#if @site.logo }}
-                            <a class="gh-head-logo" href="{{@site.url}}">
-                                <figure class="gh-head-logo-wrapper">
-                                    <img
-                                        srcset="{{img_url @site.logo size="s" format="webp"}} 400w"
-                                        sizes="480px"
-                                        src="{{img_url @site.logo size="s"}}"
-                                        alt="{{@site.title}}"
-                                        loading="lazy"
-                                    >
-                                </figure>
-                            </a>
-                        {{else}}
-                            <a class="h1" href="{{@site.url}}">
-                                {{@site.title}}
-                            </a>
+            {{!-- <div class="gh-head-nav"> --}}
+                <div class="gh-head-brand">
+                    <div class="gh-head-brand-wrapper">
+                        <div class="gh-head-logo-text">
+                            {{#if @site.logo }}
+                                <a href="{{@site.url}}">
+                                    <figure class="gh-head-logo-wrapper">
+                                        <img
+                                            srcset="{{img_url @site.logo size="s" format="webp"}} 400w"
+                                            sizes="480px"
+                                            src="{{img_url @site.logo size="s"}}"
+                                            alt="{{@site.title}}"
+                                            loading="lazy"
+                                        >
+                                    </figure>
+                                </a>
+                            {{else}}
+                                <a class="h1" href="{{@site.url}}">
+                                    {{@site.title}}
+                                </a>
+                            {{/if}}
+                        </div>
+                        {{#if @custom.tagline_text }}
+                            <div class="sub-heading tagline">
+                                {{@custom.tagline_text}}
+                            </div>
                         {{/if}}
                     </div>
-                    {{#if @custom.tagline_text }}
-                        <div class="sub-heading tagline">
-                            {{@custom.tagline_text}}
-                        </div>
-                    {{/if}}
-                </div>
-                <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
-                <button class="gh-burger" aria-label="Toggle navigation menu"></button>
-            </div>
-
-            <nav class="gh-head-menu">
-                {{navigation}}
-                <div class="head-action-social">
-                    {{#match @custom.appearance "user"}}
-                        <button
-                            class="gh-theme-toggle gh-icon-btn"
-                            data-a11y="false"
-                            aria-label="{{#if @site.dark_mode_active}}Activate light mode{{else}}Activate dark mode{{/if}}"
-                            title="{{#if @site.dark_mode_active}}Activate light mode{{else}}Activate dark mode{{/if}}"
-                        >
-                            <div class="theme-toggle-icon">
-                                <div class="moon-or-sun"></div>
-                                <div class="moon-mask"></div>
-                            </div>
-                        </button>
-                    {{/match}}
                     <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
+                    <button class="gh-burger"></button>
                 </div>
-            </nav>
+
+                <nav class="gh-head-menu">
+                    {{navigation}}
+                    {{!-- <div class="head-action-social">
+                        <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
+                        <div class="social">
+                            {{#if @site.twitter}}
+                                <a class="social-item social-item-twitter"
+                                    href="{{social_url type="twitter"}}" target="_blank"
+                                    rel="noopener noreferrer" aria-label="Twitter">
+                                    {{> icons/twitter}}
+                                </a>
+                            {{/if}}
+                            {{#if @site.facebook}}
+                                <a class="social-item social-item-facebook"
+                                    href="{{social_url type="facebook"}}" target="_blank"
+                                    rel="noopener noreferrer" aria-label="Facebook">
+                                    {{> icons/facebook}}
+                                </a>
+                            {{/if}}
+                        </div> 
+
+                    </div>--}}
+                </nav>
+            {{!-- </div> --}}
             {{#if @custom.profile_photo }}
                 <div class="gh-head-actions">
                     <div class="gh-head-brand-wrapper">
@@ -145,9 +114,9 @@
                 </div>
             {{/if}}
         </div>
-        <div class="container wide head-separator">
+        {{!--<div class="container wide">
             <div class="wave-separator"></div>
-        </div>
+        </div>--}}
     </header>
 
     <div class="site-content">
@@ -162,53 +131,38 @@
 {{/is}}
 
 <script src="{{asset "built/main.min.js"}}"></script>
+<script src="{{asset "js/prism.js"}}"></script>
 
-{{#is "post, page"}}
-<script src="{{asset "js/tocbot.js"}}"></script>
+{{!-- TOC --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.10.0/tocbot.min.js"></script>
 <script>
-    var content = document.querySelector('.single-content');
-    var tocContainer = document.querySelector('.toc');
-
-    if (content && tocContainer) {
-        var customConfig = window.tocbotConfig || {};
-        var headingSelector = customConfig.headingSelector || 'h2, h3';
-
-        if (content.querySelector(headingSelector)) {
-            tocbot.init(Object.assign({
-                tocSelector: '.toc',
-                contentSelector: '.single-content',
-                headingSelector: 'h2, h3',
-                hasInnerContainers: true,
-                collapsibleClass: 'is-collapsible',
-                scrollSmooth: false,
-                scrollSmoothDuration: 300,
-                scrollSmoothOffset: -150,
-                headingsOffset: 150,
-                ignoreSelector: '.kg-card h2, .kg-card h3, .kg-card h4, .kg-card h5, .kg-card h6, .toc-sidebar h2, .toc-sidebar h3, .toc-sidebar h4, .toc-sidebar h5, .toc-sidebar h6'
-            }, customConfig));
-        }
-    }
+    tocbot.init({
+        tocSelector: '.toc',
+        contentSelector: '.single-content',
+        headingSelector: 'h2, h3',
+        hasInnerContainers: true,
+    });
 </script>
-{{/is}}
+{{!-- TOC --}}
 
-{{!-- Progress bar for long-form posts --}}
+{{!-- Progress --}}
 {{#is "post"}}
   <script>
-    var progressBar = document.querySelector('.reading-progress');
-    if (progressBar) {
-      function updateProgress() {
-        var totalHeight = document.body.clientHeight;
-        var windowHeight = document.documentElement.clientHeight;
-        var position = window.scrollY;
-        var progress = position / (totalHeight - windowHeight) * 100;
-        progressBar.setAttribute('value', progress);
-        requestAnimationFrame(updateProgress);
-      }
+    const progressBar = document.querySelector('.reading-progress');
+
+    function updateProgress() {
+      const totalHeight = document.body.clientHeight;
+      const windowHeight = document.documentElement.clientHeight;
+      const position = window.scrollY;
+      const progress = position / (totalHeight - windowHeight) * 100;
+      progressBar.setAttribute('value', progress);
       requestAnimationFrame(updateProgress);
     }
+
+    requestAnimationFrame(updateProgress);
   </script>
 {{/is}}
-
+{{!-- Progress --}}
 {{ghost_foot}}
 
 </body>

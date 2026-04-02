@@ -61,6 +61,10 @@
 
 @media (max-width: 767px) {
     .author-list {
+        flex-direction: column;
+        margin-left: 0;
+    }
+    .author-meta {
         margin-left: 0;
     }
 }

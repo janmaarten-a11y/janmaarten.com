@@ -8,6 +8,8 @@ This website is built using [Ghost](https://ghost.org/) using a customized versi
 
 It's updated using the [Deploy Ghost Theme](https://github.com/marketplace/actions/deploy-ghost-theme?ref=themex.studio) GitHub Action.
 
+Blog post comments are powered by [utteranc.es](https://utteranc.es/), via issues in this repository.
+
 Web fonts are served by [Bunny Fonts](https://fonts.bunny.net/), which is a privacy respecting mirror of Google Fonts that doesn't track you. 
 
 The site also uses [Plausible](https://plausible.io/) analytics, largely to see when and where traffic happens. No user data is collected from it.

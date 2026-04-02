@@ -14,6 +14,31 @@
     width: 100%;
 }
 
+.kg-card.kg-toggle-card {
+    background: var(--hero-background-color);
+    box-shadow: none;
+    border-radius: 4px;
+    padding: 0;
+    border: 1px dashed var(--ghost-accent-color);
+}
+.kg-card.kg-toggle-card .kg-toggle-card-icon {
+    padding:10px;
+    width:44px;
+    height:44px;
+    margin-left: 0;
+    margin-right:1rem;
+}
+.kg-card.kg-toggle-card .kg-toggle-heading {
+    align-items: center;
+    justify-content: left;
+    flex-direction: row-reverse;
+    padding: 1rem 1.5rem;
+}
+.kg-card.kg-toggle-card .kg-toggle-heading svg {
+    color:var(--ghost-accent-color);
+    width: 24px;
+}
+
 .kg-card.kg-toggle-card .kg-toggle-heading-text {
     font-size: var(--base-text-size);
     font-weight: 700;
@@ -26,21 +51,26 @@
 .kg-card.kg-button-card a.kg-btn {
     font-size: 1.5rem;
 }
+.kg-card.kg-toggle-card[data-kg-toggle-state="open"] .kg-toggle-content {
+    padding:0 1.2rem 1.2rem 1.2rem;
+}
+.kg-card.kg-toggle-card[data-kg-toggle-state="open"] .kg-toggle-content p:first-child{
+    margin-top:0;
+}
 
 .kg-callout-card-accent a {
     text-decoration: underline;
 }
 
 blockquote.kg-blockquote-alt {
-    font-size: clamp(4.8rem, 5.2vw, 5.6rem);
+    font-size: clamp(2.4rem, 3vw, 2.8rem);
     font-style: normal;
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-bold);
     line-height: 1.25;
     color: var(--primary-text-color);
-    text-align: center;
+    text-align: left;
     padding-left: 0;
     padding-right: 0;
-    grid-column: wide;
 }
 
 .kg-canvas > blockquote.kg-blockquote-alt {
@@ -116,24 +146,10 @@ blockquote.kg-blockquote-alt {
     width: 100%;
 }
 
-.kg-flex {
-    display: flex;
-}
-
-.kg-flex-4col {
-    gap: 24px;
-    flex: 1 1 calc(25% - 24px);
-}
-
 .kg-grid {
     display: grid;
-    column-gap: 2.4rem;
-    row-gap: 2.4rem;
-}
-
-.kg-grid.tiny {
-    column-gap: .1rem;
-    row-gap: .1rem;
+    column-gap: 24px;
+    row-gap: 24px;
 }
 
 .kg-grid-2col {
@@ -144,10 +160,6 @@ blockquote.kg-blockquote-alt {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.kg-grid-4col {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
 @media (max-width: 767px) {
     .kg-canvas .kg-side-bar {
         grid-column: main-start/main-end;
@@ -156,7 +168,8 @@ blockquote.kg-blockquote-alt {
     }
 }
 
-@media (max-width: 575px) {
+@media (max-width: 767px) {
+    .kg-grid.twothirds,
     .kg-grid-2col {
         grid-template-columns: 1fr;
     } 
@@ -164,8 +177,5 @@ blockquote.kg-blockquote-alt {
     .kg-grid-3col {
         grid-template-columns: 1fr 1fr;
     }
-    
-    .kg-grid-4col {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
+
 }

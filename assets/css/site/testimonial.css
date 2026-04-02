@@ -1,3 +1,7 @@
+.testimonial-name {
+    font-size: 1.3rem;
+}
+
 .testimonial-image {
     position: relative;
     aspect-ratio: 1/1;
@@ -7,16 +11,20 @@
 .testimonial-wrapper {
     display: flex;
     gap: 1.6rem;
-    margin-top: 2.4rem;
+    margin-top: 1.4rem;
     margin-bottom: 5.6rem;
 }
 
 .testimonial-content {
     padding-right: 24px;
+    font-family: var(--font-long-form);
+    font-size:1.6rem;
 }
 
-.testimonial-desc {
+.sub-heading.testimonial-desc {
     color: var(--tertiary-text-color);
+    font-size: 1.1rem;
+    line-height: 1.5;
 }
 
 .testimonial-author {
@@ -28,8 +36,8 @@
 .testimonial-content::before {
     content: "";
 	position: absolute;
-	top: -2px;
-	left: -22px;
+	top: -6px;
+	left: -30px;
 	right: 0;
 	height: 3.2rem;
     width: 3.2rem;
