@@ -1,0 +1,8 @@
+<a href="{{url}}" class="category-card{{#if feature_image}} has-image{{/if}}" style="background-color: {{accent_color}};">
+    {{#if feature_image}}
+        <div class="category-card-media u-placeholder square">
+            <img class="u-object-fit" src="{{img_url feature_image size="s"}}" alt="{{name}}">
+        </div>
+    {{/if}}
+    <span class="category-card-title label">{{name}}</span>
+</a>

@@ -1,0 +1,18 @@
+{{!< default}}
+
+<div class="content-area custom-page">
+    <main class="site-main">
+        <div class="container medium">
+            <div class="error-content">
+                <div class="error-icon">
+                    {{> "icons/not-found"}}
+                </div>
+                <h1 class="error-title hero-header">{{t 'Page not found'}}</h1>
+                <p class="error-body body-2 hero-desc">{{t 'Looks like we\'re still cooking up something special!'}}</p>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+{{#contentFor "body_class"}}{{#if next}} paged-next{{/if}}{{#if @member}} logged-in{{/if}}{{/contentFor}}

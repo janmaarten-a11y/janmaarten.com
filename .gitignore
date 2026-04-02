@@ -2,3 +2,8 @@ node_modules/
 dist/
 yarn.lock
 yarn-error.log
+site_header.html
+site_footer.html
+.github/copilot-instructions.md
+site_footer.html
+portfolio.code-workspace
