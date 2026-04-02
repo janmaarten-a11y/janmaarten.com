@@ -79,32 +79,40 @@ function darkPage() {
 }
 function footerGroup() {
     const footerNav = document.querySelector(".footer-nav");
-    const items = document.querySelectorAll(".footer-nav .nav li");
+    if (!footerNav) return;
+    const navList = footerNav.querySelector("ul.nav");
+    if (!navList) return;
+    const items = navList.querySelectorAll("li");
 
     const groups = [];
     let index = null;
     items.forEach(item => {
         const text = item.textContent.trim();
         const PREFIXFOOTERHEADER = "#";
-        if (text.includes(PREFIXFOOTERHEADER)) {
+        if (text.startsWith(PREFIXFOOTERHEADER)) {
             index = index === null ? 0 : ++index;
             groups[index] = { header: "", items: [] };
             groups[index].header = text.slice(PREFIXFOOTERHEADER.length);
-        } else {
-            groups[index].items.push({ text, link: item.childNodes[0].href });
+        } else if (index !== null) {
+            const anchor = item.querySelector("a");
+            const link = anchor ? anchor.href : "#";
+            groups[index].items.push({ text, link });
         }
     })
-    document.querySelector(".footer-nav ul.nav").remove();
+    navList.remove();
     groups.forEach((group) => {
         const div = document.createElement('div');
         const h3 = document.createElement('h3');
         h3.classList.add("footer-group-header");
-        h3.innerHTML = group.header;
+        h3.textContent = group.header;
         const ul = document.createElement("ul");
         ul.classList.add("nav");
         group.items.forEach((item) => {
             const li = document.createElement("li");
-            li.innerHTML = `<a href="${item.link}">${item.text}</a>`;
+            const a = document.createElement("a");
+            a.href = item.link;
+            a.textContent = item.text;
+            li.appendChild(a);
             ul.append(li);
         })
         div.append(h3, ul);
