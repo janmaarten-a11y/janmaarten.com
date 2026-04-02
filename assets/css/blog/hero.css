@@ -1,0 +1,30 @@
+/* Initial blur state to prevent flash */
+.hero-intro.tag-hash-animate:not([data-processed]) *,
+.hero-intro.animate:not([data-processed]) * {
+    filter: blur(var(--intro-blur-max));
+    opacity: 0.6;
+}
+
+.hero-intro .word-reveal {
+    display: inline;
+    transition: color 0.3s ease-out, filter 0.3s ease-out;
+    will-change: filter, opacity;
+    color: var(--disabled-text-color);
+}
+
+.hero-intro .element-reveal {
+    transition: filter 0.3s ease-out, opacity 0.3s ease-out;
+    will-change: filter, opacity;
+}
+
+.hero-intro .word-reveal.word-highlighted {
+    color: var(--primary-text-color);
+}
+
+.hero-intro .word-reveal strong {
+    font-weight: 600;
+}
+
+.hero-intro > * + * {
+    margin-top: 2.4rem !important;
+}

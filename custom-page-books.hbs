@@ -1,0 +1,57 @@
+{{!< default}}
+
+<div class="content-area custom-page books-template">
+    <main class="site-main">
+
+        {{> "page-header"}}
+        
+        {{#page}}
+            {{#if og_title}}
+                <section class="section-container">
+                    <header class="feed-header container medium">
+                        <div class="feed-header-wrapper">
+                            <h2 class="section-title feed-header-title">{{og_title}}</h2>
+                        </div>
+                    </header>
+                    {{#get "posts" include="tags" filter="tags:[{{twitter_description}}]+featured:true" order="published_at desc"}}
+                        {{#if posts}}
+                            <div class="cards kg-grid kg-grid-2col gh-feed container medium">
+                                {{#foreach posts}}
+                                    {{> "components/card-project" showVisual=true isOverlay=false isLarge=false hideTags=true }}
+                                {{/foreach}}
+                            </div>
+                        {{/if}}
+                    {{/get}}
+                </section>
+            {{/if}}
+
+
+            {{!-- exlude the books in the reading list above (tag:hash-book-reading) --}}
+            <section class="section-container books">
+                {{#if og_description}}
+                    <header class="feed-header container medium">
+                        <div class="feed-header-wrapper">
+                            <h2 class="section-title feed-header-title">
+                                {{og_description}}
+                                {{#get "posts" include="tags" filter="tags:[{{twitter_description}}]+featured:false" limit="100" order="published_at desc"}}
+                                    <span>{{t '({count})' count=posts.length}}</span>
+                                {{/get}}
+                            </h2>
+                        </div>
+                    </header>
+                {{/if}}
+                {{#get "posts" include="tags" filter="tags:[{{twitter_description}}]+featured:false" limit="100" order="published_at desc"}}
+                    {{#if posts}}
+                    <div class="cards kg-grid kg-grid-3col gh-feed container medium">
+                        {{#foreach posts}}
+                            {{> "components/card-project" showVisual=true isOverlay=false isLarge=false hideTags=true imageSizes="200px"}}
+                        {{/foreach}}
+                    </div>
+                    {{/if}}
+                {{/get}}
+            </section>
+        {{/page}}
+    </main>
+</div>
+
+{{#contentFor "body_class"}}{{#if next}} paged-next{{/if}}{{#if @member}} logged-in{{/if}}{{/contentFor}}

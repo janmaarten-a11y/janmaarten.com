@@ -1,0 +1,45 @@
+{{!-- Use this template if you want to show content of all post in one page --}}
+
+{{!< default}}
+<div class="content-area">
+    <main class="site-main serie-page">
+        
+        {{> "page-header"}}
+
+        {{#page}}
+            {{^has tag="#u-hide-overview"}}
+                <section class="section-container serie-overview">
+                    <header class="feed-header container medium">
+                        <div class="feed-header-wrapper">
+                            <h2 class="section-title feed-header-title">{{t 'On this page'}}</h2>
+                        </div>
+                    </header>
+                    {{#get "posts" filter="tags:[{{twitter_description}}]" limit="100" order="published_at desc"}}
+                        <div class="post-feed container medium">
+                            {{#foreach posts}}
+                                {{> "loop" noDate=false noLink=true}}
+                            {{/foreach}}
+                        </div>
+                    {{/get}}
+                </section>
+            {{/has}}
+
+            <div class="gh-feed">
+                {{#get "posts" filter="tags:[{{twitter_description}}]" include="tags" limit="100" order="published_at desc"}}
+                    {{#foreach posts}}
+                        <section class="section-container post-expanded">
+                            <div class="single-content gh-content kg-canvas">
+                                {{> "components/post-full" showTitle=true link=true}}
+                            </div>
+                            <div class="container medium">
+                                <div class="wave-separator"></div>
+                            </div>
+                        </section>
+                    {{/foreach}}
+                {{/get}}
+            </div>
+        {{/page}}
+    </main>
+</div>
+
+{{#contentFor "body_class"}}{{#if next}} paged-next{{/if}}{{#if @member}} logged-in{{/if}}{{/contentFor}}

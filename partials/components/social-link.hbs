@@ -1,0 +1,23 @@
+<div class="social">
+    {{#if @custom.linkedin_url}}
+        <a class="social-item social-item-linkedin"
+            href="{{@custom.linkedin_url}}" target="_blank"
+            rel="noopener noreferrer" aria-label="LinkedIn">
+            {{> "icons/linkedin" }}
+        </a>
+    {{/if}}
+    {{#if @site.twitter}}
+        <a class="social-item social-item-twitter"
+            href="{{@site.twitter}}" target="_blank"
+            rel="noopener noreferrer" aria-label="Twitter">
+            {{> "icons/twitter" }}
+        </a>
+    {{/if}}
+    {{#if @site.facebook}}
+        <a class="social-item social-item-facebook"
+            href="{{@site.facebook}}" target="_blank"
+            rel="noopener noreferrer" aria-label="Facebook">
+            {{> "icons/facebook" }}
+        </a>
+    {{/if}}
+</div>
