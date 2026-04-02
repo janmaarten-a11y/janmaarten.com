@@ -5,7 +5,7 @@
 
 .kg-header-card.kg-width-full.kg-layout-split h2.kg-header-card-heading, 
 .kg-signup-card.kg-width-full.kg-layout-split h2.kg-signup-card-heading {
-    font-size: clamp(3.6rem,4vw,5.2rem) !important;
+    font-size: clamp(4.8rem, 4.5vw, 7.2rem) !important;
     line-height: 1.2;
 }
 
@@ -23,25 +23,115 @@
     margin: 2px 0 0 !important;
 }
 
-@media (max-width: 640px) {
+.kg-card.kg-bookmark-card a.kg-bookmark-container,
+.kg-card.kg-bookmark-card a.kg-bookmark-container:hover,
+.kg-card.kg-audio-card,
+.kg-card.kg-file-card a.kg-file-card-container,
+.kg-card.kg-product-card .kg-product-card-container {
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+}
+
+.kg-product-card-container {
+    font-family: var(--gh-font-body, var(--font-base));
+}
+
+
+/* table */
+
+.kg-canvas table {
+    grid-column: full;
+    padding: 0 8vw;
+}
+
+.gh-content table:not(.gist table) {
+    background: none;
+    overflow-x: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: var(--content-width);
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.gh-content table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.6rem;
+    margin: 2rem 0;
+}
+
+.gh-content table:not(.gist table) td,
+.gh-content table:not(.gist table) th {
+    padding: 1.6rem 3.2rem 1.6rem 0;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid var(--divider-color);
+    white-space: nowrap;
+    white-space: normal;
+    min-width: unset;
+    font-size: 1em;
+    /* min-width: 20rem; */
+}
+
+.gh-content table:not(.gist table) th {
+    font-weight: 600;
+    text-transform: none;
+    color: var(--primary-text-color);
+    font-size: 1em;
+}
+
+.gh-content table tr:last-child td {
+    border-bottom: none;
+}
+
+.gh-content table:not(.gist table) th {
+    background-color: transparent;
+    /* min-width: calc(var(--content-width) / 3); */
+}
+
+.gh-content table:not(.gist table) tr {
+    min-width: var(--content-width);
+}
+
+.gh-content table:not(.gist table) td:first-child,
+.gh-content table:not(.gist table) th:first-child {
+    background-image: linear-gradient(90deg, var(--background-color) 50%, hsla(0, 0%, 100%, 0));
+    background-repeat: no-repeat;
+    background-size: 20px 100%;
+}
+
+.gh-content table:not(.gist table) td:last-child,
+.gh-content table:not(.gist table) th:last-child {
+    background-image: linear-gradient(270deg, var(--background-color) 50%, hsla(0, 0%, 100%, 0));
+    background-repeat: no-repeat;
+    background-size: 20px 100%;
+    background-position: 100% 0;
+}
+
+.gh-content table:not(.highlight) tr:hover td {
+    background-color: transparent;
+}
+
+.gh-content table:not(.gist table) thead,
+.gh-content table:not(.gist table) tbody {
+    /* display: table; */
+    width: 100%;
+}
+
+
+@media (max-width: 767px) {
     .kg-layout-split .kg-header-card-content {
         grid-template-columns: 1fr !important;;
     }
-}
 
-.tag-hash-content-experience {
-    padding: 0 0 2rem 0;
-}
-.tag-hash-content-experience .feed-title {
-    font-size: 1.6rem;
-    font-weight: normal;
-}
-.tag-hash-content-experience .sub-heading {
-    font-size: 1.1rem;
-}
-.tag-hash-content-experience .feed-right {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  color: inherit;
+    .kg-canvas table {
+        padding: 0 4vw;
+    }
+
+    .gh-content table:not(.gist table) td,
+    .gh-content table:not(.gist table) th {
+        min-width: 8rem;
+    }
 }

@@ -12,29 +12,44 @@
     color: var(--secondary-text-color);
 }
 
-.share-link {
+.social {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.share-link,
+.social-item {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3.2rem;
-    height: 3.2rem;
     color: var(--primary-text-color);
     font-size: 1.6rem;
     line-height: 0;
     font-weight: 400;
     letter-spacing: 0.04rem;
+    transition: all .15s var(--ease-in-out-quad);
     border-radius: 50%;
     background-color: var(--divider-color);
-    transition: all .15s var(--ease-in-out-quad);
+}
+.share-link {
+    width: 3.2rem;
+    height: 3.2rem;
+}
+.social-item {
+    width: 4rem;
+    height: 4rem;
 }
 
-.share-link:hover {
+.share-link:hover,
+.social-item:hover {
     background-color: var(--brand-color);
     border-color: var(--brand-color);
     color: var(--white-color);
 }
 
-.share-link:hover .icon {
+.share-link:hover .icon,
+.social-item:hover .icon {
     fill: var(--white-color);
 }
 
@@ -42,11 +57,17 @@
     font-family: var(--font-serif);
 }
 
-.share-link .icon {
+.share-link .icon,
+.social-item .icon {
     width: 18px;
     height: 18px;
     fill: var(--primary-text-color);
     transition: fill .15s var(--ease-in-out-quad);
+}
+
+.social-item .icon {
+    width: 24px;
+    height: 24px;
 }
 
 .share-link-label {

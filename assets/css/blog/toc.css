@@ -59,9 +59,9 @@
     margin-top: 0;
 }
 
-.toc-list-item.is-active-li a {
+/* .toc-list-item.is-active-li a {
     font-weight: var(--font-weight-bold);
-}
+} */
 
 .toc-list-item a {
     text-decoration: none;

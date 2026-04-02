@@ -6,7 +6,6 @@ label {
     margin-top: 3.2rem;
     margin-bottom: .8rem;
     font-family: var(--font-base);
-    /* flex-basis: 100%; */
 }
 
 label + label {
@@ -18,13 +17,9 @@ label textarea {
     margin-top: 0.7rem;
 }
 
-label p {
-    display: block;
-}
-
 input,
 textarea {
-    /* flex: 1 0 0; */
+    flex: 1 0 0;
     height: var(--form-input-height);
     padding: 0 1.5rem;
     font-size: 1.6rem;
@@ -34,16 +29,19 @@ textarea {
     border: 0;
     border-radius: 4px;
     outline: none;
-    font-family: var(--font-base);
-    border: 1px solid #767676;
+    font-family: var(--gh-font-body, var(--font-base));
     width: 100%;
+    transition: all .15s var(--ease-out-cubic);
 }
 
+input {
+    height: var(--form-input-height);
+}
 
 input:focus,
 textarea:focus {
-    border-color: var(--diabled-background-color);
-    outline: 2px solid var(--ghost-accent-color);
+    box-shadow: 0 0 0 2px var(--brand-color);
+    background: var(--background-color);
 }
 
 textarea {
@@ -66,27 +64,22 @@ fieldset {
 
 .form-wrapper {
     position: relative;
-    /* max-width: 480px; */
-}
-
-input, 
-.form-wrapper button {
-    max-width: 38rem;
+    max-width: 480px;
 }
 
 .form-button {
-    /* position: absolute;
+    position: absolute;
     top: 5px;
     right: 5px;
     display: flex;
     align-items: center;
-    justify-content: center; */
+    justify-content: center;
     height: 40px;
     padding: 0 15px;
     font-size: 1.6rem;
     font-weight: 700;
     color: var(--white-color);
-    /* cursor: pointer; */
+    cursor: pointer;
     background-color: var(--brand-color);
     border: 0;
     border-radius: 4px;
@@ -126,7 +119,6 @@ input,
 
 .inline-form {
     display: flex;
-    flex-direction: column;
     gap: 1.6rem;
 }
 
@@ -145,4 +137,13 @@ input,
 .subscribe-title {
     color: var(--secondary-text-color);
     margin-bottom: 1.6rem;
+}
+
+@media (max-width: 767px) {
+    .inline-form {
+        flex-direction: column;
+    }
+    .inline-form input {
+        flex: unset;
+    }
 }

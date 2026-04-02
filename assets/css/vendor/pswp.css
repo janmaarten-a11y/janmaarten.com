@@ -35,8 +35,7 @@
 }
 .pswp__bg {
   backface-visibility: hidden;
-  background-color: rgba(0, 0, 0, 0.85);
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: var(--overlay-bg);
   height: 100%;
   left: 0;
   opacity: 0;

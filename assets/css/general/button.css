@@ -7,7 +7,7 @@
     outline: none;
     border: 0;
     color: var(--brand-color);
-    font-family: var(--font-base);
+    font-family: var(--gh-font-body, var(--font-base));
     font-size: 1.6rem;
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.5px;
@@ -15,26 +15,19 @@
     cursor: pointer;
 }
 
-.button:hover,
-.button.button-secondary:hover {
-    color: var(--ghost-accent-color);
-    border-color: var(--ghost-accent-color);
-}
-
-.button:focus-visible {
-    outline: 4px solid var(--ghost-accent-color);
-    outline-offset: 4px;
+.button:hover {
+    opacity: .75;
 }
 
 .button.button-primary {
     background-color: var(--brand-color);
-    color: var(--base-contrast);
+    color: var(--primary-text-color-invert);
     text-decoration: none;
 }
 
 .button.button-secondary {
     color: var(--primary-text-color);
-    border: solid 2px var(--divider-color);
+    border: solid 1px var(--divider-color);
     background-color: transparent;
 }
 
@@ -61,7 +54,7 @@
 }
 
 .button-icon:hover .icon {
-    color: var(--ghost-accent-color);
+    opacity: 0.8;
 }
 
 .button-text {

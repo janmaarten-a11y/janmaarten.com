@@ -18,7 +18,6 @@
 @import "blog/featured.css";
 @import "blog/pagination.css";
 @import "blog/single.css";
-@import "blog/single-long-form.css";
 @import "blog/content.css";
 @import "blog/author.css";
 @import "blog/share.css";
@@ -30,6 +29,9 @@
 @import "blog/archive.css";
 @import "blog/prism.css";
 @import "blog/kg-cards.css";
+@import "blog/single-long-form.css";
+@import "blog/logo-board.css";
+@import "blog/hero.css";
 @import "vendor/tiny-slider.css";
 @import "vendor/pswp.css";
 @import "misc/kg.css";

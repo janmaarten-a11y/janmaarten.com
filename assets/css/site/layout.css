@@ -4,13 +4,22 @@
     min-height: 100vh;
 }
 
+.site-layout {
+    display: flex;
+    flex-direction: column;
+}
+
 .site-content {
     flex-grow: 1;
-    padding: 8rem 0 2rem;
+    padding: 8rem 0;
 }
 
 .section-container {
     margin-top: var(--spacepsection);
+}
+
+.section-container.small {
+    margin-top: calc(var(--spacepsection) - 6.4rem);
 }
 
 .section-container.reset-spacing {
@@ -26,10 +35,47 @@
     margin-top: 16rem;
 }
 
+.section-container.post-expanded .single-cta-base {
+    margin-bottom: 0 !important;
+}
+
 .is-head-brand .site-content {
     padding-top: max(8vmin, 5rem);
 }
 
 .gh-content.reset-space {
     margin-top: 0;
+}
+
+/* Section order */
+.section-hero {
+    order: 1;
+}
+
+.section-logo-board {
+    order: 2;
+}
+
+.section-personal-project {
+    order: 3;
+}
+
+.section-blog {
+    order: 4;
+}
+
+.section-case-study {
+    order: 5;
+}
+
+.section-testimonials {
+    order: 6;
+}
+
+.section-experiences {
+    order: 7;
+}
+
+.page-works .page-header {
+    margin-bottom: calc(var(--spacepsection) * -1 + 5.6rem);
 }
