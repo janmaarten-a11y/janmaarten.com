@@ -1,10 +1,15 @@
 {{#page}}
-    <section class="container wide {{#if feature_image }}with-feature-image{{/if}}">
+    <div class="page-header container wide{{#if feature_image }} with-feature-image{{/if}}">
         <div class="hero-wrapper">
             <h1 class="h1 hero-header">{{title}}</h1>
             {{#if custom_excerpt}}
-                <p class="body-1 hero-desc"> {{{custom_excerpt}}}</p>
+                <p class="sub-heading-large hero-desc">
+                    {{{custom_excerpt}}}
+                </p>
             {{/if}}
+            {{!-- {{#if showCount}}
+                <span class="body-1 hero-desc">{{plural ../pagination.total empty='posts' singular='% post' plural='% posts'}} dsfsdsd</span>
+            {{/if}} --}}
         </div>
         {{#if feature_image}}
             <div class="media-wrapper">
@@ -14,5 +19,5 @@
                     ">
             </div>
         {{/if}}
-    </section>
+    </div>
 {{/page}}

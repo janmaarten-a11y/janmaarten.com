@@ -9,10 +9,15 @@
         target="_blank" rel="noopener noreferrer">
         {{> icons/facebook}}
     </a>
-    <a class="share-link"
+    {{!-- <a class="share-link"
         href="https://pinterest.com/pin/create/button/?url={{url absolute='true'}}&amp;media=&amp;description={{encode title}}"
         target="_blank" rel="noopener noreferrer"
         data-pin-do="none">
         {{> icons/pinterest}}
+    </a> --}}
+    <a class="share-link share-link-linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&url={{url absolute='true'}}&title={{encode title}}"
+        target="_blank" rel="noopener noreferrer">
+        {{> icons/linkedin}}
     </a>
 </div>

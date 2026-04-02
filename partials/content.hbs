@@ -1,16 +1,22 @@
-<article class="single {{post_class}}">
+<article class="single ghost-content {{post_class}}">
 
     {{#match @page.show_title_and_feature_image}}
         <header class="single-header kg-canvas">
             {{#if isTiny}}<div class="tiny-image-wrap">{{/if}}
+            {{#if expanded}}<div class="expanded-image-wrap">{{/if}}
             <div class="single-heading-wrap">
                 {{#is "post"}}
                     {{#unless isTiny}}
                         <div class="single-meta">
                             {{^has visibility="public"}}
                                 <span class="single-meta-item single-visibility">
-                                    {{> icons/star}}
-                                    {{visibility}}-only post
+                                    {{#has visibility="tiers"}}
+                                        {{> icons/star}}
+                                        {{tiers}}-only post
+                                    {{else}}
+                                        {{> icons/star}}
+                                        {{visibility}}-only post
+                                    {{/has}}
                                 </span>
                             {{/has}}
                             <span class="single-meta-item single-meta-length">
@@ -37,11 +43,9 @@
                 <h1 class="single-title">{{title}}</h1>
 
                 {{#if custom_excerpt}}
-                {{^has tag="#no-excerpt-on-post"}}
                     <div class="sub-heading-large single-excerpt">
                         {{{custom_excerpt}}}
                     </div>
-                    {{/has}}
                 {{/if}}
 
                 {{#if isTiny}}
@@ -88,6 +92,7 @@
                     </figure>
                 {{/unless}}
             {{/if}}
+            {{#if expanded}}</div>{{/if}}
             {{#if isTiny}}</div>{{/if}}
         </header>
      {{/match}}
@@ -101,14 +106,14 @@
                 {{#has visibility="public"}}
                     <div class="single-content gh-content kg-canvas">
                         <div class="single-cta">
-                            <div class="single-cta-title">
+                            <div class="h2 single-cta-title">
                                 {{#if @custom.email_signup_text}}
                                     {{@custom.email_signup_text}}
                                 {{else}}
                                     {{@site.description}}
                                 {{/if}}
                             </div>
-                            {{!-- {{> subscription-box}} --}}
+                            {{> subscription-box}}
                             <p class="sub-heading single-cta-desc">
                                 {{t 'No spam, no sharing to third party. Only you and me.'}}
                             </p>
