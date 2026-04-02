@@ -4,8 +4,12 @@
 
         {{> "page-header"}}
 
+        <section class="category-grid-container container wide">
+            {{> "components/category-grid"}}
+        </section>
+
         {{#if @custom.selected_tags_on_tags_page}}
-            {{#get "tags" filter="slug:[{{@custom.selected_tags_on_tags_page}}]"}}
+            {{#get "tags" filter="slug:[{{@custom.selected_tags_on_tags_page}}]" limit="100"}}
                 {{#foreach tags}}
                     <section class="section-container">
 

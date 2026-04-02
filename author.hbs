@@ -1,5 +1,5 @@
 {{!< default}}
- 
+
 <div class="content-area">
     <main class="site-main">
         {{#author}}
@@ -25,26 +25,7 @@
 
                         <div class="single-excerpt">{{bio}}</div>
 
-                        <div class="share author-social">
-                            {{#if website}}
-                                <a class="share-link author-social-item"
-                                    href="{{website}}" target="_blank" rel="noopener noreferrer">
-                                    {{> icons/link}}
-                                </a>
-                            {{/if}}
-                            {{#if facebook}}
-                                <a class="share-link author-social-item"
-                                    href="https://www.facebook.com/{{facebook}}" target="_blank" rel="noopener noreferrer">
-                                    {{> icons/facebook}}
-                                </a>
-                            {{/if}}
-                            {{#if twitter}}
-                                <a class="share-link author-social-item"
-                                    href="https://twitter.com/{{twitter}}" target="_blank" rel="noopener noreferrer">
-                                    {{> icons/twitter}}
-                                </a>
-                            {{/if}}
-                        </div>
+                        {{> "components/staff-social-link"}}
                     </div>
                 </header>
             </section>
@@ -53,7 +34,7 @@
         <div class="kg-canvas">
             <div class="post-feed gh-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}}">
                 {{#foreach posts}}
-                    {{> "loop"}}
+                    {{> "loop" noDate=false}}
                 {{/foreach}}
             </div>
 
@@ -62,5 +43,5 @@
         </div>
     </main>
 </div>
-{{#contentFor "scripts"}}<meta name="robots" CONTENT="noindex,nofollow">{{/contentFor}}
+
 {{#contentFor "body_class"}}{{#if next}} paged-next{{/if}}{{#if @site.logo}}{{#if @site.cover_image}} with-alt-header{{/if}}{{/if}}{{/contentFor}}
