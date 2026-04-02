@@ -21,11 +21,15 @@
     "This post is for paying subscribers only": "Cet article est réservé aux abonnés payants uniquement",
     "Subscribe to continue reading": "Abonnez-vous pour continuer la lecture",
     "This post is for subscribers only": "Cet article est réservé aux abonnés seulement",
-    "This post is for subscribers on the {tiers} only": "Cet article est réservé aux abonnés du niveau {tiers} uniquement",
+    "This post is only for subscribers on the": "Cet article est réservé aux abonnés du",
     "Upgrade now": "Mettre à niveau maintenant",
     "Already have an account?": "Vous avez déjà un compte ?",
     "Popular Topics": "Sujets populaires",
     "{visibility}-only post": "Article {visibility}-uniquement",
     "Similar thoughts": "Réflexions similaires",
-    "Member discussion": "Discussion des membres"
+    "Member discussion": "Discussion des membres",
+    "View all": "Voir tout",
+    "View all ({count})": "Voir tout ({count})",
+    "Page not found": "Page non trouvée",
+    "Looks like we're still cooking up something special!": "On dirait qu'on cuisine encore quelque chose de spécial !"
 }
