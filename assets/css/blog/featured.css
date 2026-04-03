@@ -12,38 +12,58 @@
     position: relative;
 }
 
-.featured-wrapper .u-placeholder {
-    margin-bottom: 2rem;
-}
-
 .featured-wrapper .post-title {
     margin-bottom: 0;
     font-size: 1.8rem;
     font-weight: 700;
 }
 
-.has-serif-title .featured-wrapper .post-title {
-    font-family: var(--font-serif);
+/* Grid layout for featured posts (replaces carousel) */
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+    padding-top: 1.6rem;
 }
 
-.featured-title {
-    margin-bottom: 4.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--light-gray-color);
-    font-size: 1.5rem;
-    letter-spacing: 0.05rem;
-    text-transform: uppercase;
+@media (max-width: 767px) {
+    .featured-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
-.has-serif-title .featured-title {
-    font-family: var(--font-serif);
+/* Constrain cards within grid */
+.featured-posts .card-overlay {
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    border-radius: 0.4rem;
 }
 
-.featured-feed {
-    opacity: 0;
-    padding-top: 3rem;
+/* Fix title: sans-serif, smaller */
+.featured-posts .card-overlay .card-title {
+    font-family: var(--font-base);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.3;
 }
 
-.featured-feed.tns-slider {
-    opacity: 1;
+/* Constrain the overlay within the card */
+.featured-posts .card-overlay .card-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: flex-end;
+    padding: 1.6rem;
+    background: linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,.1) 60%, transparent 100%);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+
+/* Hide excerpt and tags on featured cards */
+.featured-posts .card-overlay .card-excerpt,
+.featured-posts .card-overlay .tags-list {
+    display: none;
 }
