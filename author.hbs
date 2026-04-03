@@ -25,26 +25,7 @@
 
                         <div class="single-excerpt">{{bio}}</div>
 
-                        <div class="share author-social">
-                            {{#if website}}
-                                <a class="share-link author-social-item"
-                                    href="{{website}}" target="_blank" rel="noopener noreferrer">
-                                    {{> icons/link}}
-                                </a>
-                            {{/if}}
-                            {{#if facebook}}
-                                <a class="share-link author-social-item"
-                                    href="https://www.facebook.com/{{facebook}}" target="_blank" rel="noopener noreferrer">
-                                    {{> icons/facebook}}
-                                </a>
-                            {{/if}}
-                            {{#if twitter}}
-                                <a class="share-link author-social-item"
-                                    href="https://twitter.com/{{twitter}}" target="_blank" rel="noopener noreferrer">
-                                    {{> icons/twitter}}
-                                </a>
-                            {{/if}}
-                        </div>
+                        {{> "components/staff-social-link"}}
                     </div>
                 </header>
             </section>
