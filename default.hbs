@@ -70,18 +70,18 @@
                             </div>
                         {{/if}}
                     </div>
-                    <button class="gh-theme-toggle gh-icon-btn" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
-                        <div class="theme-toggle-icon">
-                            <div class="moon-or-sun"></div>
-                            <div class="moon-mask"></div>
-                        </div>
-                    </button>
                     <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
                     <button class="gh-burger"></button>
                 </div>
 
                 <nav class="gh-head-menu">
                     {{navigation}}
+                    <button class="gh-theme-toggle gh-icon-btn" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <div class="theme-toggle-icon">
+                            <div class="moon-or-sun"></div>
+                            <div class="moon-mask"></div>
+                        </div>
+                    </button>
                     {{!-- <div class="head-action-social">
                         <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
                         <div class="social">

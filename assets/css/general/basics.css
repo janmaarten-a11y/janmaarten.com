@@ -51,12 +51,18 @@
     --hero-background-color: rgb(255 255 255 / 6%);
     --base-contrast: hsla(214,70%,4%,0.92);
     --background-color: #111;
-    --underline-color: #7b6bdb;
+    --underline-color: #9b8ee8;
+    --brand-color: #9b8ee8;
+    --ghost-accent-color: #9b8ee8;
 }
 
 .dark-page body,
 [data-theme="dark"] body {
     background-color: var(--background-color);
+}
+
+[data-theme="dark"] .gh-head-logo-wrapper img {
+    filter: invert(1) brightness(2);
 }
 
 @media (max-width: 767px) {
