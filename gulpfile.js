@@ -52,9 +52,10 @@ function js(done) {
     pump([
         src([
             'node_modules/@tryghost/shared-theme-assets/assets/js/v1/lib/vendor/**/*.js',
-            'node_modules/@tryghost/shared-theme-assets/assets/js/v1/lib/*.js',
+            'node_modules/@tryghost/shared-theme-assets/assets/js/v1/lib/!(dropdown).js',
+            'assets/js/lib/dropdown.js',
             'node_modules/@tryghost/shared-theme-assets/assets/js/v1/main.js',
-            'assets/js/lib/*.js',
+            'assets/js/lib/!(dropdown).js',
             'assets/js/main.js'
         ], {sourcemaps: true}),
         concat('main.min.js'),
