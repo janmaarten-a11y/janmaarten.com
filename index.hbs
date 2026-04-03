@@ -25,7 +25,7 @@
                 {{#get "pages" filter="tag:hash-content-personal-project" order="published_at desc"}}
                     <div class="cards kg-grid kg-grid-2col gh-feed container wide">
                         {{#foreach pages}}
-                            {{> "components/card-project"}}
+                            {{> "components/card-project" showVisual=true isSmall=true}}
                         {{/foreach}}
                     </div>
                 {{/get}}
