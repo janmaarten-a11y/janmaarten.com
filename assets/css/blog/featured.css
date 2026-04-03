@@ -21,14 +21,14 @@
 /* Grid layout for featured posts (replaces carousel) */
 .featured-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.6rem;
     padding-top: 1.6rem;
 }
 
 @media (max-width: 767px) {
     .featured-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
     }
 }
 
