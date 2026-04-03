@@ -7,8 +7,8 @@
 
         {{#post}}
             {{#if html}}
-                <section class="container wide">
-                    <div class="single-content gh-content kg-canvas">
+                <section class="blogroll-intro container wide">
+                    <div class="single-content gh-content">
                         {{content}}
                     </div>
                 </section>
@@ -16,10 +16,8 @@
         {{/post}}
 
         {{#match @site.recommendations_enabled}}
-            <section class="section-container">
-                <div class="container wide">
-                    {{recommendations limit="all" order="title asc"}}
-                </div>
+            <section class="blogroll-list container wide">
+                {{recommendations limit="100" order="title asc"}}
             </section>
         {{/match}}
 
