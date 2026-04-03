@@ -4,13 +4,9 @@
 
     {{#post}}
         {{> "content" width="wide"}}
+        {{> "comments"}}
     {{/post}}
 
-    {{#is "post"}}
-        {{#post}}
-            {{> "comments"}}
-        {{/post}}
-        {{> "related-posts"}}
-    {{/is}}
+    {{> "related-posts"}}
 
 </main>
