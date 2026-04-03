@@ -3,19 +3,22 @@
     padding-bottom: 2rem;
 }
 
+.footer-divider {
+    border-top: 1px solid var(--primary-text-color);
+    opacity: 0.1;
+}
+
 .footer-inner-main {
-    padding: 6.4rem 0 6.4rem;
+    padding: 4rem 0 2rem;
     align-items: flex-start;
 }
 
 .footer-copyright {
-    padding-top: 2rem;
-    border-top: 1px solid var(--divider-color);
-    margin-top: 2rem;
+    padding-top: 0;
+    padding-bottom: 2rem;
     color: var(--tertiary-text-color);
     line-height: 32px;
     font-size: 1.1rem;
-    text-align: center;
 }
 .footer-copyright p {
     padding-bottom: 1rem;
@@ -81,8 +84,8 @@
     font-size: 1.2rem;
     list-style: symbols(cyclic "←" "?" "→");
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 1.2rem;
+    flex-direction: column;
+    gap: 0.4rem;
 }
 .webring-nav li {
     margin-left: 1.8rem;
@@ -90,11 +93,4 @@
 .webring-nav a:hover {
     text-decoration: underline;
     color: var(--ghost-accent-color);
-}
-
-@media (max-width: 767px) {
-    .webring-nav {
-        flex-direction: column;
-        gap: 0.4rem;
-    }
 }
