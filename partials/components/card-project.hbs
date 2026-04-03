@@ -1,26 +1,32 @@
 
-<article class="card {{post_class}} {{#if isOverlay}}card-overlay{{/if}}" data-month="{{date format="MMMM YYYY"}}"
-    {{#if showVisual}}{{#if feature_image}}style="
-      background: var(--black-color);
-        background-image: url('{{img_url feature_image size='l' format='webp'}}');
-        background-image: -webkit-image-set(
-            url('{{img_url feature_image size='xl' format='webp'}}') 1140w,
-            url('{{img_url feature_image size='l' format='webp'}}') 960w,
-            url('{{img_url feature_image size='m' format='webp'}}') 750w);
-        background-image: image-set(
-            url('{{img_url feature_image size='xl' format='webp'}}'),
-            url('{{img_url feature_image size='l' format='webp'}}'),
-            url('{{img_url feature_image size='m' format='webp'}}'));
-        background-image: image-set(
-            url('{{img_url feature_image size='xl' format='webp'}}') 1140w,
-            url('{{img_url feature_image size='l' format='webp'}}') 960w,
-            url('{{img_url feature_image size='m' format='webp'}}') 750w);
-        background-size: cover;
-        background-position: center right;
-        background-repeat:no-repeat;
-        min-height:30rem;"
-    {{/if}}{{/if}}
-    >
+<article class="card {{post_class}} {{#if isOverlay}}card-overlay{{/if}}" data-month="{{date format="MMMM YYYY"}}">
+    {{#if showVisual}}
+        {{#if feature_image}}
+            {{#if isSmall}}
+                <figure class="card-image small-image">
+                    <img
+                        srcset="{{img_url feature_image size="s" format="webp"}} 400w"
+                        sizes="200px"
+                        src="{{img_url feature_image size="s"}}"
+                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                    >
+                </figure>
+            {{else}}
+                <figure class="card-image">
+                    <img
+                        srcset="{{#if isLarge}}{{img_url feature_image size="xl" format="webp"}} 1140w,
+                                {{img_url feature_image size="xxl" format="webp"}} 1920w{{else}}{{img_url feature_image size="m" format="webp"}} 750w,
+                                {{img_url feature_image size="l" format="webp"}} 960w
+                                {{/if}}"
+                        sizes="{{#if isLarge}}640px{{else}}410px{{/if}}"
+                        src="{{img_url feature_image size="m"}}"
+                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                        loading="lazy"
+                    >
+                </figure>
+            {{/if}}
+        {{/if}}
+    {{/if}}
     <div class="card-wrapper">
         {{#unless hideTags}}
             {{#unless isPost}}
@@ -41,11 +47,11 @@
         <h3 class="{{#if isLarge}}h2{{else}}h3{{/if}} card-title">
             {{title}}
         </h3>
-        {{!--{{#unless isOverlay}}--}}
-        {{#if custom_excerpt}}
-            <div class="sub-heading card-excerpt">{{excerpt words="20"}}</div>
-        {{/if}}
-        {{!--{{/unless}}--}}
+        {{#unless isOverlay}}
+            {{#if custom_excerpt}}
+                <div class="sub-heading card-excerpt">{{excerpt words="20"}}</div>
+            {{/if}}
+        {{/unless}}
     </div>
     {{#if canonical_url}}
     <a class="u-permalink" href={{canonical_url}} aria-label="{{title}} (Opens in a new window)" rel="external" target="_blank"></a>
