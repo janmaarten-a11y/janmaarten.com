@@ -4,14 +4,10 @@
 
     {{#post}}
         {{> "content" width="wide"}}
+        <div id="webmentions" class="kg-canvas"></div>
+        {{> "comments"}}
     {{/post}}
 
-    {{#is "post"}}
-        {{#post}}
-            <div id="webmentions" class="kg-canvas"></div>
-            {{> "comments"}}
-        {{/post}}
-        {{> "related-posts"}}
-    {{/is}}
+    {{> "related-posts"}}
 
 </main>
