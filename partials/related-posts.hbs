@@ -1,4 +1,4 @@
-{{#get "posts" limit="5" filter="tags:[{{post.tags}}]+id:-{{post.id}}" as |related|}}
+{{#get "posts" limit="5" filter="tag:{{post.primary_tag.slug}}+id:-{{post.id}}" as |related|}}
     {{#if related}}
         <section class="section-container related-wrapper kg-canvas">
             <h3 class="section-title related-title">{{t 'Similar thoughts'}}</h3>
