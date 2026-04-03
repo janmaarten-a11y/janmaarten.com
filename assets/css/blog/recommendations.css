@@ -1,0 +1,61 @@
+/* Blogroll / Recommendations */
+.recommendations {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recommendation {
+    border-top: 1px solid var(--divider-color);
+}
+
+.recommendation:last-child {
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.recommendation a {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.6rem 0;
+    text-decoration: none;
+    color: var(--primary-text-color);
+}
+
+.recommendation a:hover .recommendation-title {
+    color: var(--ghost-accent-color);
+    text-decoration: underline;
+}
+
+.recommendation-favicon {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 0.4rem;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+}
+
+.recommendation-content {
+    min-width: 0;
+}
+
+.recommendation-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.recommendation-url {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--tertiary-text-color);
+    margin-top: 0.2rem;
+}
+
+.recommendation-description {
+    font-size: 1.2rem;
+    color: var(--secondary-text-color);
+    line-height: 1.5;
+    margin-top: 0.4rem;
+}

@@ -1,0 +1,20 @@
+{{#if recommendations}}
+    <ul class="recommendations">
+        {{#foreach recommendations as |rec|}}
+        <li class="recommendation">
+            <a href="{{rec.url}}" data-recommendation="{{rec.id}}" target="_blank" rel="noopener noreferrer">
+                {{#if rec.favicon}}
+                    <img class="recommendation-favicon" src="{{rec.favicon}}" alt="" loading="lazy" onerror="this.style.display='none';">
+                {{/if}}
+                <div class="recommendation-content">
+                    <h3 class="recommendation-title">{{rec.title}}</h3>
+                    <span class="recommendation-url">{{readable_url rec.url}}</span>
+                    {{#if rec.description}}
+                        <p class="recommendation-description">{{rec.description}}</p>
+                    {{/if}}
+                </div>
+            </a>
+        </li>
+        {{/foreach}}
+    </ul>
+{{/if}}

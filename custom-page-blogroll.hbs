@@ -1,0 +1,27 @@
+{{!< default}}
+
+<div class="content-area custom-page">
+    <main class="site-main">
+
+        {{> "page-header"}}
+
+        {{#post}}
+            {{#if html}}
+                <section class="container wide">
+                    <div class="single-content gh-content kg-canvas">
+                        {{content}}
+                    </div>
+                </section>
+            {{/if}}
+        {{/post}}
+
+        {{#match @site.recommendations_enabled}}
+            <section class="section-container">
+                <div class="container wide">
+                    {{recommendations limit="all" order="title asc"}}
+                </div>
+            </section>
+        {{/match}}
+
+    </main>
+</div>
