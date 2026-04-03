@@ -59,6 +59,21 @@
 .featured-posts .card-overlay .card-excerpt {
     display:none;
 }
+
+/* Small project card images (logos) */
+.card-image.small-image {
+    width: 4.8rem;
+    height: 4.8rem;
+    margin-bottom: 0.8rem;
+    aspect-ratio: 1/1;
+    border-radius: 0.6rem;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .section-personal-project .card-image img {
+    filter: grayscale(1) brightness(10);
+}
+
 .card-image,
 .placeholder {
     position: relative;

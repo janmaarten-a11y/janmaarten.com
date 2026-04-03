@@ -6,21 +6,17 @@
 
         {{#match @custom.blog_featured_post_type "=" "Show featured posts"}}
             <section class="section-container featured-posts">
-                {{#get "posts" include="tags" filter="featured:true" limit="12" as |featured|}}
+                {{#get "posts" include="tags" filter="featured:true" limit="2" as |featured|}}
                     {{#if featured}}
                         <header class="feed-header featured-header container wide">
                                 <div class="feed-header-wrapper">
                                     <h2 class="section-title feed-header-title">{{@custom.featured_title}}</h2>
                                 </div>
                         </header>
-                        <div class="carousel-wrapper">
-
-                        </div>
                         <div class="cards container wide">
-                            <div class="featured-feed">
-
+                            <div class="featured-grid">
                             {{#foreach featured}}
-                                {{> "components/card-project" showVisual=true isOverlay=true isPost=true postFeedStyle=@custom.card_style imageSizes="215px"}}
+                                {{> "components/card-project" showVisual=true isOverlay=true isPost=true imageSizes="215px"}}
                             {{/foreach}}
                             </div>
                         </div>

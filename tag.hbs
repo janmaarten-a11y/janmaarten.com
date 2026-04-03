@@ -23,11 +23,19 @@
         {{/tag}}
 
         <div class="kg-canvas">
-            <div class="post-feed gh-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}}">
-                {{#foreach posts}}
-                    {{> "loop" noDate=true}}
-                {{/foreach}}
-            </div>
+            {{#match @custom.feed_layout "Minimal"}}
+                <div class="post-feed gh-feed">
+                    {{#foreach posts}}
+                        {{> "loop" noDate=true}}
+                    {{/foreach}}
+                </div>
+            {{else}}
+                <div class="post-feed gh-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}}">
+                    {{#foreach posts}}
+                        {{> "loop" noDate=false}}
+                    {{/foreach}}
+                </div>
+            {{/match}}
         </div>
 
         {{pagination}}
@@ -39,19 +47,9 @@
                         <div class="wave-separator"></div>
                         <div class="tag-list-container">
                             <h3 class="section-title related-title">{{t "Explore more topics"}}</h3>
-                            <div class="tag-list">
+                            <div class="tag-list kg-grid kg-grid-4col tiny">
                                 {{#foreach tags}}
-                                    <a class="tag-list-item-wrapper {{slug}}" href="{{url}}">
-                                        {{#if feature_image}}
-                                            <div class="taxonomy-media-small u-placeholder square round">
-                                                <img class="u-object-fit" src="{{img_url feature_image size="s"}}" alt="{{name}}">
-                                            </div>
-                                        {{/if}}
-                                        <div class="tag-list-item">
-                                            <span class="body-1 tag-list-item-count">{{name}}</span>    
-                                            ({{count.posts}})
-                                        </div>
-                                    </a>
+                                    {{> "components/category-card"}}
                                 {{/foreach}}
                             </div>
                         </div>

@@ -1,0 +1,25 @@
+{{!< default}}
+
+<div class="content-area custom-page">
+    <main class="site-main">
+
+        {{> "page-header"}}
+
+        {{#post}}
+            {{#if html}}
+                <section class="blogroll-intro container wide">
+                    <div class="single-content gh-content">
+                        {{content}}
+                    </div>
+                </section>
+            {{/if}}
+        {{/post}}
+
+        {{#match @site.recommendations_enabled}}
+            <section class="blogroll-list container wide">
+                {{recommendations limit="100" order="title asc"}}
+            </section>
+        {{/match}}
+
+    </main>
+</div>
