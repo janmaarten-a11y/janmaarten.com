@@ -244,3 +244,34 @@
         min-width: 240px;
     }
 }
+
+/* Theme toggle */
+.gh-theme-toggle {
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    color: var(--primary-text-color);
+    cursor: pointer;
+    display: inline-flex;
+    height: 30px;
+    justify-content: center;
+    outline: none;
+    padding: 0;
+    width: 30px;
+}
+.gh-theme-toggle:hover {
+    color: var(--ghost-accent-color);
+}
+.gh-theme-toggle:focus-visible {
+    outline: 4px solid var(--ghost-accent-color);
+    outline-offset: 4px;
+}
+.gh-theme-toggle .theme-icon-dark {
+    display: none;
+}
+[data-theme="dark"] .gh-theme-toggle .theme-icon-light {
+    display: none;
+}
+[data-theme="dark"] .gh-theme-toggle .theme-icon-dark {
+    display: block;
+}
