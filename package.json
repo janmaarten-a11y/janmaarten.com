@@ -58,10 +58,6 @@
                 ],
                 "default": "Modern sans-serif"
             },
-            "background_color": {
-                "type": "color",
-                "default": "#ffffff"
-            },
             "profile_photo": {
                 "type": "image",
                 "description": "Min 80px height"

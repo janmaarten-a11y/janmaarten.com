@@ -40,7 +40,8 @@
 }
 
 :root.has-light-text,
-:root.dark-page {
+:root.dark-page,
+[data-theme="dark"] {
     --primary-text-color: rgb(255 255 255 / 90%);
     --secondary-text-color: rgb(255 255 255 / 65%);
     --tertiary-text-color: rgb(255 255 255 / 45%);
@@ -49,10 +50,18 @@
     --input-background-color: rgb(255 255 255 / 8%);
     --hero-background-color: rgb(255 255 255 / 6%);
     --base-contrast: hsla(214,70%,4%,0.92);
+    --background-color: #111;
+    --underline-color: #9b8ee8;
+    --brand-color: #9b8ee8;
 }
 
-.dark-page body {
-    background-color: var(--black-color);
+.dark-page body,
+[data-theme="dark"] body {
+    background-color: var(--background-color);
+}
+
+[data-theme="dark"] .gh-head-logo-wrapper img {
+    filter: invert(1) brightness(2);
 }
 
 @media (max-width: 767px) {
