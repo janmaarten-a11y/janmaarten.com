@@ -35,8 +35,8 @@
 /* Constrain cards within grid */
 .featured-posts .card-overlay {
     aspect-ratio: 3/2;
-    overflow: hidden;
     border-radius: 0.4rem;
+    min-height: 16rem !important;
 }
 
 /* Fix title: sans-serif, smaller */
