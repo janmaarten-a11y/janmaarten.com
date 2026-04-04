@@ -71,7 +71,7 @@
 }
 
 [data-theme="dark"] .section-personal-project .card-image img {
-    filter: grayscale(1) brightness(10);
+    filter: brightness(0) invert(1);
 }
 
 .card-image,
