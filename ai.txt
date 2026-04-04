@@ -1,0 +1,15 @@
+# ai.txt - janmaarten.com
+# This file sets permissions for text and data mining per https://site.spawning.ai/spawning-ai-txt
+# All content on this site is opted out of commercial AI training.
+
+User-Agent: *
+Disallow: /
+Disallow: AI-Training
+Disallow: AI-Scraping
+
+# Permissions
+Allowed-For: None
+Not-Allowed-For: AI-Training, AI-Scraping, Commercial-Use
+
+# Contact
+Contact: https://janmaarten.com/contact/
