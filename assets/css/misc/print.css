@@ -125,7 +125,7 @@
         font-family: Georgia, serif !important;
     }
     .tag-hash-long-form p.dropcap:first-letter {
-        font-size: 24pt !important;
+        font-size: 3rem !important;
     }
     /* Callout/note cards — match body text */
     .kg-callout-card .kg-callout-text {
