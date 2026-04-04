@@ -14,9 +14,7 @@ function bookmarkFocus() {
     const bookmarkDescription = document.querySelectorAll('.kg-bookmark-description');
     bookmarkDescription .forEach(element => {
         element.setAttribute('tabindex', '-1');
-        element.setAttribute('aria-hidden', 'true');
     });
-    bookmarkDescription[0];
 }
 
 
@@ -100,10 +98,13 @@ function footerGroup() {
         }
     })
     navList.remove();
-    groups.forEach((group) => {
-        const div = document.createElement('div');
+    groups.forEach((group, i) => {
+        const nav = document.createElement('nav');
+        var headingId = 'footer-group-' + i;
+        nav.setAttribute('aria-labelledby', headingId);
         const h3 = document.createElement('h3');
         h3.classList.add("footer-group-header");
+        h3.id = headingId;
         h3.textContent = group.header;
         const ul = document.createElement("ul");
         ul.classList.add("nav");
@@ -115,7 +116,7 @@ function footerGroup() {
             li.appendChild(a);
             ul.append(li);
         })
-        div.append(h3, ul);
-        footerNav.appendChild(div);
+        nav.append(h3, ul);
+        footerNav.appendChild(nav);
     });
 }

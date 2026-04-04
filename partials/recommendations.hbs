@@ -2,7 +2,7 @@
     <ul class="recommendations">
         {{#foreach recommendations as |rec|}}
         <li class="recommendation">
-            <a href="{{rec.url}}" data-recommendation="{{rec.id}}" target="_blank" rel="noopener noreferrer">
+            <a href="{{rec.url}}" data-recommendation="{{rec.id}}" rel="noopener noreferrer">
                 {{#if rec.favicon}}
                     <img class="recommendation-favicon" src="{{rec.favicon}}" alt="" loading="lazy" onerror="this.style.display='none';">
                 {{/if}}
