@@ -6,6 +6,7 @@
     .gh-theme-toggle,
     .site-footer,
     .related-wrapper,
+    .related-content,
     .wm-section,
     .gh-comments,
     .single-footer,
@@ -64,6 +65,20 @@
     .single-title {
         font-size: 22pt !important;
         margin-bottom: 0.5em !important;
+    }
+
+    .single-excerpt {
+        font-size: 1.5rem !important;
+    }
+
+    .single-header {
+        text-align: left !important;
+    }
+
+    .author-list {
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        margin-left: 0 !important;
     }
 
     .single-content.gh-content,
@@ -177,10 +192,17 @@
         border: 1px solid #aaa !important;
         border-radius: 4px !important;
         break-inside: avoid;
+        overflow: hidden !important;
+        margin-bottom: 0.8em !important;
+    }
+
+    .kg-bookmark-card + .kg-bookmark-card {
+        margin-top: 0.8em !important;
     }
 
     .kg-bookmark-container {
         border: none !important;
+        box-shadow: none !important;
     }
 
     .kg-bookmark-thumbnail {
