@@ -134,15 +134,15 @@
 
     /* Author image — smaller in print */
     .author-image-placeholder {
-        width: 3rem !important;
-        height: 3rem !important;
-        min-width: 3rem !important;
+        width: 1rem !important;
+        height: 1rem !important;
+        min-width: 1rem !important;
         padding-bottom: 0 !important;
     }
 
     .author-image-placeholder .author-image {
-        width: 3rem !important;
-        height: 3rem !important;
+        width: 1rem !important;
+        height: 1rem !important;
     }
 
     .author-images {
