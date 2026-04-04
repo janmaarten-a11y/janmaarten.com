@@ -47,11 +47,9 @@
         <h3 class="{{#if isLarge}}h2{{else}}h3{{/if}} card-title">
             {{title}}
         </h3>
-        {{#unless isOverlay}}
-            {{#if custom_excerpt}}
-                <div class="sub-heading card-excerpt">{{excerpt words="20"}}</div>
-            {{/if}}
-        {{/unless}}
+        {{#if custom_excerpt}}
+            <div class="sub-heading card-excerpt">{{excerpt words="20"}}</div>
+        {{/if}}
     </div>
     {{#if canonical_url}}
     <a class="u-permalink" href={{canonical_url}} aria-label="{{title}} (Opens in a new window)" rel="external noopener" target="_blank"></a>
