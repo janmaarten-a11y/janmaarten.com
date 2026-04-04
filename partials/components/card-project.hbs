@@ -54,7 +54,7 @@
         {{/unless}}
     </div>
     {{#if canonical_url}}
-    <a class="u-permalink" href={{canonical_url}} aria-label="{{title}} (Opens in a new window)" rel="external" target="_blank"></a>
+    <a class="u-permalink" href={{canonical_url}} aria-label="{{title}} (Opens in a new window)" rel="external noopener" target="_blank"></a>
     {{else}}
     <a class="u-permalink" href={{url}} aria-label="{{title}}"></a>
     {{/if}}
