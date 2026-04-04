@@ -87,11 +87,17 @@
 
     .single-content.gh-content,
     .section-container.post-expanded .gh-content {
-        font-size: 12pt !important;
+        font-size: 11pt !important;
     }
 
     .gh-content > * + * {
         margin-top: 0.8em !important;
+    }
+
+    .gh-content p,
+    .gh-content li,
+    .gh-content blockquote {
+        font-size: 11pt !important;
     }
 
     .gh-content h2 {
