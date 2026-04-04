@@ -89,7 +89,7 @@
 
 .full-row .card-image {
     aspect-ratio: 5/2;
-    max-height: 30rem;
+    min-height: 528px;
 }
 .tag-hash-ss2 ,
 .tag-hash-ss2 .card-image img {
