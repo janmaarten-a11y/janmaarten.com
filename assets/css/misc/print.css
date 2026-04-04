@@ -203,6 +203,20 @@
         break-inside: avoid;
     }
 
+    /* Embeds — show fallback blockquote text, hide iframes */
+    .kg-embed-card iframe {
+        display: none !important;
+    }
+
+    .kg-embed-card blockquote {
+        display: block !important;
+        border: 1px solid #aaa !important;
+        border-radius: 4px !important;
+        padding: 1em !important;
+        font-size: 10pt !important;
+        break-inside: avoid;
+    }
+
     /* Code blocks */
     pre[class*="language-"] {
         background: #f5f5f5 !important;
