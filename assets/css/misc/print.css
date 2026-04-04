@@ -1,0 +1,170 @@
+@media print {
+    /* Hide non-content elements */
+    #gh-head,
+    .skip-to-content-link,
+    .reading-progress,
+    .gh-theme-toggle,
+    .site-footer,
+    .related-wrapper,
+    .wm-section,
+    .gh-comments,
+    .single-footer,
+    .content-cta,
+    .single-cta,
+    .subscription-wrapper,
+    .share,
+    .pagination,
+    .gh-loadmore,
+    .pswp {
+        display: none !important;
+    }
+
+    /* Reset background and colors */
+    body,
+    body.with-custom-background {
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    :root {
+        --primary-text-color: #000 !important;
+        --secondary-text-color: #333 !important;
+        --tertiary-text-color: #555 !important;
+        --background-color: #fff !important;
+        --brand-color: #000 !important;
+    }
+
+    /* Typography — smaller for print */
+    body {
+        font-size: 11pt !important;
+        line-height: 1.6 !important;
+    }
+
+    .single-title {
+        font-size: 22pt !important;
+        margin-bottom: 0.5em !important;
+    }
+
+    .single-content.gh-content,
+    .section-container.post-expanded .gh-content {
+        font-size: 11pt !important;
+    }
+
+    .gh-content h2 {
+        font-size: 16pt !important;
+        margin-top: 1.5em !important;
+    }
+
+    .gh-content h3 {
+        font-size: 14pt !important;
+        margin-top: 1.2em !important;
+    }
+
+    .gh-content h4 {
+        font-size: 12pt !important;
+    }
+
+    /* Long-form posts — same sizing in print */
+    .tag-hash-long-form .single-content h2,
+    .tag-hash-long-form .single-content h3 {
+        font-size: 16pt !important;
+    }
+
+    .tag-hash-long-form .single-content h3 {
+        font-size: 14pt !important;
+    }
+
+    .tag-hash-long-form .single-content p,
+    .tag-hash-long-form .single-content blockquote,
+    .tag-hash-long-form .single-content li {
+        font-size: 11pt !important;
+        font-family: Georgia, serif !important;
+    }
+
+    /* Links — show URL in print */
+    .gh-content a[href]:not(.kg-bookmark-container)::after {
+        content: " (" attr(href) ")";
+        font-size: 9pt;
+        color: #555;
+        word-break: break-all;
+    }
+
+    .gh-content a {
+        color: #000 !important;
+        text-decoration: underline !important;
+        border: none !important;
+    }
+
+    /* Layout — full width, no padding tricks */
+    .container,
+    .container.wide,
+    .kg-canvas {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .kg-canvas {
+        display: block !important;
+    }
+
+    .kg-width-wide,
+    .kg-width-full {
+        width: 100% !important;
+    }
+
+    /* Images */
+    img {
+        max-width: 100% !important;
+        break-inside: avoid;
+    }
+
+    .kg-image-card,
+    .kg-gallery-card {
+        break-inside: avoid;
+    }
+
+    /* Code blocks — keep background for readability */
+    pre[class*="language-"] {
+        background: #f5f5f5 !important;
+        border: 1px solid #ddd !important;
+        font-size: 9pt !important;
+        padding: 0.8em !important;
+        break-inside: avoid;
+        white-space: pre-wrap !important;
+        word-wrap: break-word !important;
+    }
+
+    code {
+        font-size: 9pt !important;
+    }
+
+    /* Bookmark cards — simplify for print */
+    .kg-bookmark-container {
+        border: 1px solid #aaa !important;
+        break-inside: avoid;
+    }
+
+    .kg-bookmark-thumbnail {
+        display: none !important;
+    }
+
+    /* Meta */
+    .single-meta {
+        font-size: 9pt !important;
+        color: #555 !important;
+    }
+
+    figcaption {
+        font-size: 9pt !important;
+    }
+
+    /* Page breaks */
+    h2, h3 {
+        break-after: avoid;
+    }
+
+    p {
+        orphans: 3;
+        widows: 3;
+    }
+}
