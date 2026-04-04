@@ -34,10 +34,31 @@
         --brand-color: #000 !important;
     }
 
-    /* Typography — smaller for print */
+    /* Layout */
+    .site-content {
+        padding-top: 1rem !important;
+    }
+
+    .container,
+    .container.wide,
+    .kg-canvas {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .kg-canvas {
+        display: block !important;
+    }
+
+    .kg-width-wide,
+    .kg-width-full {
+        width: 100% !important;
+    }
+
+    /* Typography */
     body {
-        font-size: 11pt !important;
-        line-height: 1.6 !important;
+        font-size: 12pt !important;
+        line-height: 1.5 !important;
     }
 
     .single-title {
@@ -47,7 +68,11 @@
 
     .single-content.gh-content,
     .section-container.post-expanded .gh-content {
-        font-size: 11pt !important;
+        font-size: 12pt !important;
+    }
+
+    .gh-content > * + * {
+        margin-top: 0.8em !important;
     }
 
     .gh-content h2 {
@@ -77,8 +102,34 @@
     .tag-hash-long-form .single-content p,
     .tag-hash-long-form .single-content blockquote,
     .tag-hash-long-form .single-content li {
-        font-size: 11pt !important;
+        font-size: 12pt !important;
         font-family: Georgia, serif !important;
+    }
+
+    /* Callout/note cards — match body text */
+    .kg-callout-card .kg-callout-text {
+        font-size: 12pt !important;
+    }
+
+    /* Author image — smaller in print */
+    .taxonomy-media {
+        width: 80px !important;
+        margin: 0.5rem 0 !important;
+    }
+
+    .single-media {
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* Meta */
+    .single-meta {
+        font-size: 9pt !important;
+        color: #555 !important;
+    }
+
+    figcaption {
+        font-size: 9pt !important;
     }
 
     /* Links — show URL in print */
@@ -95,23 +146,6 @@
         border: none !important;
     }
 
-    /* Layout — full width, no padding tricks */
-    .container,
-    .container.wide,
-    .kg-canvas {
-        max-width: 100% !important;
-        padding: 0 !important;
-    }
-
-    .kg-canvas {
-        display: block !important;
-    }
-
-    .kg-width-wide,
-    .kg-width-full {
-        width: 100% !important;
-    }
-
     /* Images */
     img {
         max-width: 100% !important;
@@ -123,7 +157,7 @@
         break-inside: avoid;
     }
 
-    /* Code blocks — keep background for readability */
+    /* Code blocks */
     pre[class*="language-"] {
         background: #f5f5f5 !important;
         border: 1px solid #ddd !important;
@@ -138,24 +172,19 @@
         font-size: 9pt !important;
     }
 
-    /* Bookmark cards — simplify for print */
-    .kg-bookmark-container {
+    /* Bookmark cards */
+    .kg-bookmark-card {
         border: 1px solid #aaa !important;
+        border-radius: 4px !important;
         break-inside: avoid;
+    }
+
+    .kg-bookmark-container {
+        border: none !important;
     }
 
     .kg-bookmark-thumbnail {
         display: none !important;
-    }
-
-    /* Meta */
-    .single-meta {
-        font-size: 9pt !important;
-        color: #555 !important;
-    }
-
-    figcaption {
-        font-size: 9pt !important;
     }
 
     /* Page breaks */
