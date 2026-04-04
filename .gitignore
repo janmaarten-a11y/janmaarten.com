@@ -4,6 +4,9 @@ yarn.lock
 yarn-error.log
 site_header.html
 site_footer.html
-.github/copilot-instructions.md
+.github/**-in**
 site_footer.html
 portfolio.code-workspace
+.github/agents/
+**/.DS_Store
+.github/skills/

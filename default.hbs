@@ -16,6 +16,8 @@
         function setTheme(theme) {
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
+            var toggle = document.querySelector('.gh-theme-toggle');
+            if (toggle) { toggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false'); }
         }
         function getSystemTheme() {
             return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -78,7 +80,7 @@
 
                 <nav class="gh-head-menu">
                     {{navigation}}
-                    <button class="gh-theme-toggle gh-icon-btn" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <button class="gh-theme-toggle gh-icon-btn" onclick="toggleTheme()" aria-label="Dark mode" aria-pressed="false" title="Toggle dark mode">
                         <div class="theme-toggle-icon">
                             <div class="moon-or-sun"></div>
                             <div class="moon-mask"></div>

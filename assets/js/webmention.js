@@ -57,7 +57,7 @@
                 var photo = author.photo || '';
                 var url = author.url || r.url || '#';
                 if (photo) {
-                    html += '<a href="' + escapeHtml(url) + '" class="wm-avatar-link" target="_blank" rel="noopener noreferrer" title="' + name + '">';
+                    html += '<a href="' + escapeHtml(url) + '" class="wm-avatar-link" rel="noopener noreferrer">';
                     html += '<img src="' + escapeHtml(photo) + '" alt="' + name + '" class="wm-avatar" loading="lazy">';
                     html += '</a>';
                 }
@@ -91,9 +91,9 @@
                 }
                 html += '<div class="wm-reply-content">';
                 html += '<div class="wm-reply-meta">';
-                html += '<a href="' + escapeHtml(authorUrl) + '" class="wm-reply-author" target="_blank" rel="noopener noreferrer">' + name + '</a>';
+                html += '<a href="' + escapeHtml(authorUrl) + '" class="wm-reply-author" rel="noopener noreferrer">' + name + '</a>';
                 if (dateStr) {
-                    html += ' <a href="' + escapeHtml(sourceUrl) + '" class="wm-reply-date" target="_blank" rel="noopener noreferrer">' + dateStr + '</a>';
+                    html += ' <a href="' + escapeHtml(sourceUrl) + '" class="wm-reply-date" rel="noopener noreferrer">' + dateStr + '</a>';
                 }
                 html += '</div>';
                 if (content) {
