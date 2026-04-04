@@ -125,7 +125,7 @@
         font-family: Georgia, serif !important;
     }
     .tag-hash-long-form p.dropcap:first-letter {
-        font-size: 3rem !important;
+        font-size: 5rem !important;
     }
     /* Callout/note cards — match body text */
     .kg-callout-card .kg-callout-text {
@@ -158,15 +158,18 @@
         margin-top: 1rem !important;
         margin-bottom: 1rem !important;
     }
-
+    .author-name {
+        font-size: 10pt !important;
+    }
     /* Meta */
+
     .single-meta {
-        font-size: 9pt !important;
+        font-size: 10pt !important;
         color: #555 !important;
     }
 
     figcaption {
-        font-size: 9pt !important;
+        font-size: 10pt !important;
     }
 
     /* Links — show URL in print */
