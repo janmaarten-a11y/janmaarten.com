@@ -7,6 +7,7 @@
     .site-footer,
     .related-wrapper,
     .related-content,
+    .related-title,
     .wm-section,
     .gh-comments,
     .single-footer,
@@ -124,11 +125,7 @@
         font-family: Georgia, serif !important;
     }
     .tag-hash-long-form p.dropcap:first-letter {
-        font-size: 16pt;
-        float: left;
-        line-height: .6; /* from 1 */
-        margin-right: 0.05em;
-        margin-top:.8rem;
+        font-size: 16pt !important;
     }
     /* Callout/note cards — match body text */
     .kg-callout-card .kg-callout-text {
@@ -136,7 +133,23 @@
     }
 
     /* Author image — smaller in print */
-    .taxonomy-media, .author-image {
+    .author-image-placeholder {
+        width: 3rem !important;
+        height: 3rem !important;
+        min-width: 3rem !important;
+        padding-bottom: 0 !important;
+    }
+
+    .author-image-placeholder .author-image {
+        width: 3rem !important;
+        height: 3rem !important;
+    }
+
+    .author-images {
+        margin-right: 0.5rem !important;
+    }
+
+    .taxonomy-media {
         width: 80px !important;
         margin: 0.5rem 0 !important;
     }
