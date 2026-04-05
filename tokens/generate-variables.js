@@ -85,8 +85,8 @@ for (const [name, value] of Object.entries(tokens.radii)) {
 // Layout & misc
 lines.push('');
 lines.push('  /* Layout */');
-lines.push('  --gutter: var(--space-m-l);');
-lines.push('  --wrapper-width: 85rem;');
+lines.push('  --gutter: 5vw;');
+lines.push('  --wrapper-width: 1034px;');
 lines.push('  --transition-duration: 250ms;');
 lines.push('  --transition-timing: ease;');
 lines.push('  --tracking: -0.04ch;');

@@ -3,21 +3,21 @@
 
 :root {
   /* Colors */
-  --color-gray-100: #f9f8f7;
-  --color-gray-200: #e5e4e3;
-  --color-gray-300: #afaeac;
-  --color-gray-400: #81807e;
-  --color-gray-500: #656361;
-  --color-gray-600: #494745;
-  --color-gray-700: #3c3a38;
-  --color-gray-800: #2f2e2c;
-  --color-gray-900: #171614;
-  --color-teal: #17706c;
-  --color-teal-subdued: #3fbfb9;
-  --color-indigo: #3b528b;
-  --color-indigo-subdued: #7ad47f;
-  --color-purple: #440154;
-  --color-purple-subdued: #e8d44d;
+  --color-gray-100: oklch(97.96% 0.0017 67.8);
+  --color-gray-200: oklch(91.94% 0.0017 67.8);
+  --color-gray-300: oklch(75.10% 0.0031 84.6);
+  --color-gray-400: oklch(60.01% 0.0032 84.6);
+  --color-gray-500: oklch(50.09% 0.0040 67.7);
+  --color-gray-600: oklch(39.92% 0.0043 67.7);
+  --color-gray-700: oklch(34.98% 0.0044 67.7);
+  --color-gray-800: oklch(30.15% 0.0038 84.6);
+  --color-gray-900: oklch(20.05% 0.0042 84.6);
+  --color-teal: oklch(49.51% 0.0790 190.3);
+  --color-teal-subdued: oklch(73.46% 0.1099 190.5);
+  --color-indigo: oklch(44.84% 0.0979 266.0);
+  --color-indigo-subdued: oklch(79.27% 0.1467 145.2);
+  --color-purple: oklch(28.50% 0.1366 318.1);
+  --color-purple-subdued: oklch(86.25% 0.1521 100.8);
 
   /* Spacing */
   --space-3xs: clamp(0.125rem, 0.11rem + 0.10vw, 0.1875rem);
