@@ -1,0 +1,37 @@
+/* Block — Prose
+   Rich-text content styling. */
+
+.prose {
+  --flow-space: var(--space-s-m);
+  max-width: 65ch;
+}
+
+.prose :is(h2, h3, h4) {
+  --flow-space: 1.5em;
+}
+
+.prose :is(h2, h3, h4) + * {
+  --flow-space: var(--space-s);
+}
+
+.prose :is(p, li, dl, blockquote) {
+  max-inline-size: 65ch;
+  text-wrap: pretty;
+}
+
+.prose img {
+  border-radius: var(--border-radius-medium);
+}
+
+.prose :is(ul, ol):not([class]) li + li {
+  padding-block-start: var(--space-2xs);
+}
+
+.prose ul:not([class]) li::marker {
+  color: var(--color-primary);
+  content: "– ";
+}
+
+.prose ol:not([class]) li::marker {
+  color: var(--color-primary);
+}

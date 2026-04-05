@@ -1,0 +1,81 @@
+/* CUBE CSS — Global styles
+   Low-specificity, element-level styling */
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-base);
+  font-size: var(--size-step-00);
+  font-weight: var(--font-regular);
+  line-height: var(--leading-standard);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  accent-color: var(--color-primary);
+  letter-spacing: var(--tracking);
+}
+
+main {
+  flex: auto;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-fine);
+  letter-spacing: var(--tracking-s);
+}
+
+h1 {
+  font-size: var(--size-step-5);
+}
+
+h2 {
+  font-size: var(--size-step-3);
+}
+
+h3 {
+  font-size: var(--size-step-1);
+}
+
+a {
+  color: var(--color-primary);
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+blockquote {
+  border-inline-start: 3px solid var(--color-primary);
+  padding-inline-start: var(--space-m);
+  font-style: italic;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+pre {
+  overflow-x: auto;
+  padding: var(--space-s);
+  border-radius: var(--border-radius-medium);
+  background-color: var(--color-bg-accent);
+}
+
+hr {
+  border: none;
+  border-top: var(--stroke);
+  margin-block: var(--space-l);
+}

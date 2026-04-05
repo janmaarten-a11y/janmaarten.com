@@ -1,0 +1,26 @@
+/* Block — Skip link */
+
+.skip-link {
+  position: absolute;
+  top: var(--space-s);
+  left: var(--space-s);
+  z-index: 999;
+  padding: var(--space-xs) var(--space-s);
+  background: var(--color-bg);
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: var(--font-bold);
+  border-radius: var(--border-radius-medium);
+}
+
+.skip-link:not(:focus) {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
