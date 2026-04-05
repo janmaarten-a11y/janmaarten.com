@@ -22,8 +22,8 @@
 .year-post-label,
 .month-post-label {
     color: var(--tertiary-text-color);
-    padding-top: 6rem;
-    margin-bottom: 2rem;
+    padding-top: var(--space-2xl);
+    margin-bottom: var(--space-m);
     font-family: var(--font-base);
 }
 
@@ -33,7 +33,7 @@
 
 .has-serif-title .year-post-label,
 .has-serif-title .month-post-label {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
 }
 
 /* Archive page */

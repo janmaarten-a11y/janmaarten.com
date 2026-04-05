@@ -1,5 +1,5 @@
 .single-header {
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-m);
 }
 
 .single-header-narrow {
@@ -13,13 +13,13 @@
 }
 
 .single-meta {
-    margin-bottom: 1.2rem;
+    margin-bottom: var(--space-xs);
     color: var(--tertiary-text-color);
     text-align: center;
     align-items: center;
     display: flex;
     justify-content: flex-start;
-    font-size: 1.6rem;
+    font-size: var(--size-step-min-1);
 }
 
 .single-visibility {
@@ -47,27 +47,27 @@
 
 .single-title {
     margin-bottom: 0;
-    letter-spacing: -0.1rem;
+    letter-spacing: var(--tracking-s);
     text-align: left;
     font-size: clamp(3.2rem, 3vw, 4rem);
 }
 
 .has-serif-title .single-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
 }
 
 .single-excerpt {
-    margin-top: 2rem;
+    margin-top: var(--space-m);
     color: var(--primary-text-color);
     text-align: left;
 }
 
 .has-serif-body .single-excerpt {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
 }
 
 .single-media {
-    margin-top: 4.5rem;
+    margin-top: var(--space-xl);
     margin-bottom: 0;
 }
 

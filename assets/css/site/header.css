@@ -56,11 +56,11 @@
     aspect-ratio: 1/1;
     position: relative;
     height: 10.8rem;
-    transition: scale .15s var(--animation-base);
+    transition: scale var(--transition-duration) var(--animation-base);
 }
 
 .gh-head-brand,.gh-head-menu {
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-m);
 }
 
 .gh-head-brand-wrapper {
@@ -81,7 +81,7 @@
     height: .2rem;
     left: 50%;
     position: absolute;
-    transition: width .25s ease 0s,left .25s ease 0s;
+    transition: width var(--transition-duration) ease 0s, left var(--transition-duration) ease 0s;
     width: 0;
 }
 
@@ -102,7 +102,7 @@
     height: .2rem;
     left: calc(50% - 1rem);
     position: absolute;
-    transition: width .25s ease 0s,left .25s ease 0s;
+    transition: width var(--transition-duration) ease 0s, left var(--transition-duration) ease 0s;
     width: 2rem;
 }
 
@@ -118,7 +118,7 @@
 .gh-head-menu,
 .gh-head-actions {
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: var(--size-step-min-2);
     text-transform: lowercase;
     height: 4rem;
 }
@@ -170,10 +170,10 @@
 }
 
 .gh-dropdown {
-    border-radius: .6rem 0 .6rem .6rem;
+    border-radius: var(--border-radius-medium) 0 var(--border-radius-medium) var(--border-radius-medium);
     right: 16px;
-    margin-top: .8rem;
-    padding: 1.2rem 2rem;
+    margin-top: var(--space-xs);
+    padding: var(--space-xs) var(--space-m);
 }
 
 .gh-dropdown li a {

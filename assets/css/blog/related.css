@@ -4,11 +4,11 @@
 
 .related-content {
     border-top: 2px solid var(--primary-text-color);
-    padding: 4.5rem 0 3rem;
+    padding: var(--space-xl) 0 var(--space-l);
 }
 
 .related-title {
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-l);
     color: var(--tertiary-text-color);
 }
 
@@ -17,5 +17,5 @@
 }
 
 .has-serif-title .related-title  {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
 }

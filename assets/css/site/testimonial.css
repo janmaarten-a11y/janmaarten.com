@@ -1,5 +1,5 @@
 .testimonial-name {
-    font-size: 1.3rem;
+    font-size: var(--size-step-min-1);
 }
 
 .testimonial-image {
@@ -10,21 +10,21 @@
 
 .testimonial-wrapper {
     display: flex;
-    gap: 1.6rem;
-    margin-top: 1.4rem;
-    margin-bottom: 5.6rem;
+    gap: var(--space-s);
+    margin-top: var(--space-s);
+    margin-bottom: var(--space-2xl);
 }
 
 .testimonial-content {
     padding-right: 24px;
     font-family: var(--font-long-form);
-    font-size:1.6rem;
+    font-size: var(--size-step-min-1);
 }
 
 .sub-heading.testimonial-desc {
     color: var(--tertiary-text-color);
-    font-size: 1.1rem;
-    line-height: 1.5;
+    font-size: var(--size-step-min-2);
+    line-height: var(--leading-fine);
 }
 
 .testimonial-author {

@@ -9,7 +9,7 @@ body:not(.paged-next) .infinite-scroll-button {
 }
 
 .infinite-scroll-button {
-    margin-top: 3rem;
+    margin-top: var(--space-l);
     min-width: 110px;
 }
 
@@ -29,8 +29,8 @@ body:not(.paged-next) .infinite-scroll-button {
 .load-more {
     display: flex;
     justify-content: center;
-    margin-top: 3.2rem;
-    gap: 2.4rem;
+    margin-top: var(--space-l);
+    gap: var(--space-m);
     /* flex-direction: column; */
 }
 

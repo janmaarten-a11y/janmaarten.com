@@ -15,10 +15,10 @@
 }
 
 .tag-list-container {
-    margin-top: 6rem;
+    margin-top: var(--space-2xl);
     padding-top: var(--spacepsection);
     font-weight: 400;
-    font-size: 2rem;
+    font-size: var(--size-step-1);
 }
 
 .tag-list {
@@ -30,7 +30,7 @@
 }
 
 .tag-list-label {
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-m);
     color: var(--secondary-text-color);
 }
 
@@ -52,7 +52,7 @@
 }
 
 .has-serif-body .tag-list-item {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
 }
 
 .tag-list-item-count {
