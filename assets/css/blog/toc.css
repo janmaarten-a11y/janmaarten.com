@@ -1,62 +1,134 @@
-/* Table of contents — collapsible sidebar for #long-form posts */
+/* Table of contents — triggered by #show-toc tag
+   Desktop: sticky sidebar left of content
+   Mobile: collapsible <details> above content */
 
-.toc-container {
+/* ---- Desktop TOC ---- */
+.toc-desktop {
     grid-column: wide-start / main-start;
     position: absolute;
     top: 0;
     bottom: 0;
     width: 100%;
+    display: block;
 }
 
-.toc-sidebar {
+.toc-desktop .toc-header {
     position: sticky;
-    top: var(--space-xl);
-    max-height: calc(100vh - var(--space-3xl));
-    overflow-y: auto;
-    font-size: var(--size-step-min-2);
-    padding: 0 var(--space-s) 0 0;
+    top: var(--space-l);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    cursor: pointer;
+    padding-right: var(--space-s);
+    user-select: none;
 }
 
-.toc-sidebar summary {
-    font-size: var(--size-step-min-1);
+.toc-desktop .toc-header h4 {
+    font-size: var(--size-step-min-2);
     font-weight: var(--font-semi-bold);
     font-variant: all-petite-caps;
-    cursor: pointer;
-    list-style: none;
-    padding-bottom: var(--space-xs);
-    border-bottom: 1px solid var(--divider-color);
-    margin-bottom: var(--space-xs);
+    letter-spacing: 0.05em;
+    margin: 0;
+    white-space: nowrap;
 }
 
-.toc-sidebar summary::-webkit-details-marker {
-    display: none;
+.toc-desktop .toc-header .icon {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    fill: currentColor;
+    transition: transform var(--transition-duration) var(--transition-timing);
+    transform: rotate(90deg);
 }
 
-.toc-sidebar summary::marker {
-    content: "";
+.toc-desktop.collapsed .toc-header .icon {
+    transform: rotate(0deg);
 }
 
-.toc {
+.toc-desktop .toc {
+    position: sticky;
+    top: calc(var(--space-l) + 2.4em);
+    max-height: calc(100vh - var(--space-3xl) - 3em);
+    overflow-y: auto;
+    padding: var(--space-3xs) var(--space-s) 0 0;
+    transition: opacity var(--transition-duration) var(--transition-timing),
+                max-height var(--transition-duration) var(--transition-timing);
+}
+
+.toc-desktop.collapsed .toc {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
     padding: 0;
 }
 
-.toc > .toc-list {
-    margin: var(--space-xs) 0;
-    padding-left: 0;
+/* ---- Mobile TOC ---- */
+.toc-mobile {
+    grid-column: main-start / main-end;
+    display: none;
+    margin-bottom: var(--space-m);
+    background-color: var(--hero-background-color);
+    border-radius: var(--border-radius-medium);
+    padding: var(--space-s);
 }
 
-.toc-list {
+.toc-mobile summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    font-size: var(--size-step-min-2);
+    font-weight: var(--font-semi-bold);
+    font-variant: all-petite-caps;
+    letter-spacing: 0.05em;
+    cursor: pointer;
     list-style: none;
+}
+
+.toc-mobile summary::-webkit-details-marker {
+    display: none;
+}
+
+.toc-mobile summary::marker {
+    content: "";
+}
+
+.toc-mobile summary .icon {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    fill: currentColor;
+    transition: transform var(--transition-duration) var(--transition-timing);
+}
+
+.toc-mobile[open] summary .icon {
+    transform: rotate(90deg);
+}
+
+.toc-mobile-nav {
+    padding-top: var(--space-xs);
+}
+
+/* ---- Shared list styles ---- */
+.toc-list,
+.toc-mobile-nav .toc-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.toc-list .toc-list {
     padding-left: var(--space-s);
 }
 
-.toc > .toc-list {
-    padding-left: 0;
-}
-
 .toc-list-item {
+    font-size: var(--size-step-min-2);
     padding: var(--space-3xs) 0;
     line-height: var(--leading-fine);
+}
+
+/* Nested items smaller */
+.toc-list .toc-list .toc-list-item {
+    font-size: 0.85em;
 }
 
 .toc-list-item a {
@@ -74,27 +146,13 @@
     font-weight: var(--font-semi-bold);
 }
 
-/* Nested items slightly smaller */
-.toc-list .toc-list .toc-list-item {
-    font-size: 0.9em;
-}
-
-@media (max-width: 767px) {
-    .toc-container {
-        grid-column: main-start / main-end;
-        position: relative;
-        margin-bottom: var(--space-m);
+/* ---- Responsive ---- */
+@media (max-width: 991px) {
+    .toc-desktop {
+        display: none;
     }
 
-    .toc-sidebar {
-        position: static;
-        max-height: none;
-        background-color: var(--hero-background-color);
-        padding: var(--space-s);
-        border-radius: var(--border-radius-medium);
-    }
-
-    .toc-sidebar[open] {
-        padding-bottom: var(--space-s);
+    .toc-mobile {
+        display: block;
     }
 }

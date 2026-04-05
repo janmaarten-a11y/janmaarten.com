@@ -118,17 +118,64 @@
 <script src="{{asset "built/main.min.js"}}"></script>
 <script src="{{asset "js/prism.js"}}"></script>
 
-{{!-- TOC — only init when a .toc container exists (long-form posts) --}}
+{{!-- TOC — init when .toc-desktop or .toc-mobile exists (#show-toc posts) --}}
 <script src="{{asset "js/tocbot.js"}}"></script>
 <script>
-    if (document.querySelector('.toc')) {
+(function() {
+    var desktop = document.querySelector('.toc-desktop');
+    var mobile = document.querySelector('.toc-mobile');
+    if (!desktop && !mobile) return;
+
+    // Init tocbot for desktop nav
+    if (desktop) {
         tocbot.init({
-            tocSelector: '.toc',
+            tocSelector: '.toc-desktop .toc',
             contentSelector: '.single-content',
             headingSelector: 'h2, h3',
             hasInnerContainers: true,
         });
     }
+
+    // Clone TOC into mobile nav
+    if (desktop && mobile) {
+        var desktopList = desktop.querySelector('.toc-list');
+        var mobileNav = mobile.querySelector('.toc-mobile-nav');
+        if (desktopList && mobileNav) {
+            mobileNav.appendChild(desktopList.cloneNode(true));
+        }
+    }
+
+    // Desktop: toggle collapse on header click
+    if (desktop) {
+        var header = desktop.querySelector('.toc-header');
+        if (header) {
+            header.addEventListener('click', function() {
+                desktop.classList.toggle('collapsed');
+                var expanded = !desktop.classList.contains('collapsed');
+                header.setAttribute('aria-expanded', String(expanded));
+            });
+        }
+
+        // Auto-collapse when scrolled to sticky position
+        var autoCollapsed = false;
+        var manualToggle = false;
+        header.addEventListener('click', function() { manualToggle = true; });
+
+        window.addEventListener('scroll', function() {
+            if (manualToggle) return;
+            var rect = desktop.getBoundingClientRect();
+            if (rect.top <= 32 && !autoCollapsed) {
+                autoCollapsed = true;
+                desktop.classList.add('collapsed');
+                header.setAttribute('aria-expanded', 'false');
+            } else if (rect.top > 32 && autoCollapsed) {
+                autoCollapsed = false;
+                desktop.classList.remove('collapsed');
+                header.setAttribute('aria-expanded', 'true');
+            }
+        }, { passive: true });
+    }
+})();
 </script>
 
 {{!-- Progress --}}
