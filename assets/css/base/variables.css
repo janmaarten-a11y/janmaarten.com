@@ -69,8 +69,8 @@
   --border-radius-medium: 0.3rem;
 
   /* Layout */
-  --gutter: var(--space-m-l);
-  --wrapper-width: 85rem;
+  --gutter: 5vw;
+  --wrapper-width: 1034px;
   --transition-duration: 250ms;
   --transition-timing: ease;
   --tracking: -0.04ch;
