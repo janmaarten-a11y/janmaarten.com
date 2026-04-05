@@ -74,14 +74,12 @@
 }
 
 .webring p {
-    font-size: var(--size-step-min-2);
     color: var(--secondary-text-color);
     margin-bottom: var(--space-xs);
 }
 
 .webring-nav {
     padding: 0;
-    font-size: var(--size-step-min-2);
     list-style: symbols(cyclic "←" "?" "→");
     display: flex;
     flex-direction: column;

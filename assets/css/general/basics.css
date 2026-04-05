@@ -32,6 +32,7 @@
     --font-serif: var(--font-display);
     --font-long-form: "EB Garamond", Georgia, serif;
     --font-weight-regular: var(--font-regular);
+    --font-weight-semi-bold: var(--font-semi-bold);
     --font-weight-bold: var(--font-bold);
     --navbar-height: 14rem;
     --form-input-height: 4rem;

@@ -2,25 +2,25 @@
 .h1 {
     font-size: var(--size-step-5);
     line-height: var(--leading-fine);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-semi-bold);
 }
 
 .h2 {
     font-size: var(--size-step-3);
     line-height: var(--leading-fine);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-semi-bold);
 }
 
 .h3 {
     font-size: var(--size-step-1);
     line-height: var(--leading-fine);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-semi-bold);
 }
 
 .h4, h5, h6 {
     font-size: var(--size-step-0);
     line-height: var(--leading-fine);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-semi-bold);
 }
 
 .section-title {

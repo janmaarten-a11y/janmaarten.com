@@ -108,7 +108,7 @@
 .gh-head-menu,
 .gh-head-actions {
     font-weight: 400;
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step-min-1);
     text-transform: lowercase;
     height: 4rem;
 }

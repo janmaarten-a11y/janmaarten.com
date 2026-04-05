@@ -87,6 +87,10 @@
     white-space: nowrap;
 }
 
+.experiences .feed-calendar {
+    font-size: var(--size-step-min-1);
+}
+
 .post-feed.expanded .feed-calendar {
     margin-top: 8px;
 }

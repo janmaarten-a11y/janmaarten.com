@@ -57,13 +57,12 @@
     object-fit: cover;
 }
 
-/* Fix title: sans-serif, smaller */
 .featured-posts .card-overlay .card-title {
     font-family: var(--font-base);
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-size: var(--size-step-1);
+    font-weight: var(--font-semi-bold);
     color: #fff;
-    line-height: 1.3;
+    line-height: var(--leading-fine);
 }
 
 /* Constrain the overlay within the card */

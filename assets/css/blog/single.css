@@ -247,3 +247,12 @@
         width: 50%;
     }
 }
+
+/* Footnotes */
+.footnotes {
+    font-size: var(--size-step-min-1);
+    color: var(--secondary-text-color);
+    margin-top: var(--space-xl);
+    border-top: 1px solid var(--divider-color);
+    padding-top: var(--space-m);
+}
