@@ -118,17 +118,18 @@
 <script src="{{asset "built/main.min.js"}}"></script>
 <script src="{{asset "js/prism.js"}}"></script>
 
-{{!-- TOC --}}
+{{!-- TOC — only init when a .toc container exists (long-form posts) --}}
 <script src="{{asset "js/tocbot.js"}}"></script>
 <script>
-    tocbot.init({
-        tocSelector: '.toc',
-        contentSelector: '.single-content',
-        headingSelector: 'h2, h3',
-        hasInnerContainers: true,
-    });
+    if (document.querySelector('.toc')) {
+        tocbot.init({
+            tocSelector: '.toc',
+            contentSelector: '.single-content',
+            headingSelector: 'h2, h3',
+            hasInnerContainers: true,
+        });
+    }
 </script>
-{{!-- TOC --}}
 
 {{!-- Progress --}}
 {{#is "post"}}

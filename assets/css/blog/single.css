@@ -248,11 +248,19 @@
     }
 }
 
-/* Footnotes */
+/* Footnotes — Ghost inserts an <hr> before <section class="footnotes"> */
+.gh-content > hr + .footnotes {
+    margin-top: 0;
+}
+
+.gh-content > hr:has(+ .footnotes) {
+    display: none;
+}
+
 .footnotes {
     font-size: var(--size-step-min-1);
     color: var(--secondary-text-color);
-    margin-top: var(--space-xl);
+    margin-top: var(--space-m);
     border-top: 1px solid var(--divider-color);
-    padding-top: var(--space-m);
+    padding-top: var(--space-s);
 }

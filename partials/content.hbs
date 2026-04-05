@@ -92,6 +92,14 @@
      {{/match}}
 
     <div class="single-content gh-content kg-canvas {{#unless @page.show_title_and_feature_image}}reset-space{{/unless}}">
+        {{#has tag="#long-form"}}
+            <aside class="kg-side-bar toc-container">
+                <details class="toc-sidebar" open>
+                    <summary>{{t 'Table of contents'}}</summary>
+                    <nav class="toc" aria-label="{{t 'Table of contents'}}"></nav>
+                </details>
+            </aside>
+        {{/has}}
         {{content}}
     </div>
     {{#is "post"}}
