@@ -5,6 +5,7 @@
 /* ---- Desktop TOC ---- */
 .toc-desktop {
     position: fixed;
+    top: var(--space-l);
     left: var(--space-m);
     z-index: 10;
     max-width: 14rem;

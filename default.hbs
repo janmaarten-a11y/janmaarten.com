@@ -150,12 +150,16 @@
         var header = desktop.querySelector('.toc-header');
         var manualToggle = false;
         var content = document.querySelector('.single-content');
-        var contentTop = content ? content.getBoundingClientRect().top + window.scrollY : 0;
+        var contentOffsetTop = content ? content.getBoundingClientRect().top + window.scrollY : 0;
+        var stickyTop = 24; // px from viewport top once scrolled past content start
 
         // Align TOC vertically with the top of body text
-        if (content) {
-            desktop.style.top = contentTop + 'px';
+        function updateTocPosition() {
+            if (!content) return;
+            var contentViewportTop = contentOffsetTop - window.scrollY;
+            desktop.style.top = Math.max(stickyTop, contentViewportTop) + 'px';
         }
+        updateTocPosition();
 
         if (header) {
             header.addEventListener('click', function() {
@@ -166,13 +170,15 @@
             });
         }
 
-        // Auto-collapse after scrolling half a viewport into the article
+        // Update position + auto-collapse on scroll
         var autoCollapsed = false;
 
         if (content) {
             window.addEventListener('scroll', function() {
+                updateTocPosition();
+
                 if (manualToggle) return;
-                var scrolledPast = window.scrollY - contentTop;
+                var scrolledPast = window.scrollY - contentOffsetTop;
 
                 if (scrolledPast > window.innerHeight * 0.5 && !autoCollapsed) {
                     autoCollapsed = true;
