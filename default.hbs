@@ -148,32 +148,38 @@
     // Desktop: toggle collapse on header click
     if (desktop) {
         var header = desktop.querySelector('.toc-header');
+        var manualToggle = false;
+
         if (header) {
             header.addEventListener('click', function() {
+                manualToggle = true;
                 desktop.classList.toggle('collapsed');
                 var expanded = !desktop.classList.contains('collapsed');
                 header.setAttribute('aria-expanded', String(expanded));
             });
         }
 
-        // Auto-collapse when scrolled to sticky position
+        // Auto-collapse after scrolling one viewport height into the article
+        var content = document.querySelector('.single-content');
         var autoCollapsed = false;
-        var manualToggle = false;
-        header.addEventListener('click', function() { manualToggle = true; });
 
-        window.addEventListener('scroll', function() {
-            if (manualToggle) return;
-            var rect = desktop.getBoundingClientRect();
-            if (rect.top <= 32 && !autoCollapsed) {
-                autoCollapsed = true;
-                desktop.classList.add('collapsed');
-                header.setAttribute('aria-expanded', 'false');
-            } else if (rect.top > 32 && autoCollapsed) {
-                autoCollapsed = false;
-                desktop.classList.remove('collapsed');
-                header.setAttribute('aria-expanded', 'true');
-            }
-        }, { passive: true });
+        if (content) {
+            window.addEventListener('scroll', function() {
+                if (manualToggle) return;
+                var contentTop = content.getBoundingClientRect().top + window.scrollY;
+                var scrolledPast = window.scrollY - contentTop;
+
+                if (scrolledPast > window.innerHeight * 0.5 && !autoCollapsed) {
+                    autoCollapsed = true;
+                    desktop.classList.add('collapsed');
+                    header.setAttribute('aria-expanded', 'false');
+                } else if (scrolledPast <= window.innerHeight * 0.5 && autoCollapsed) {
+                    autoCollapsed = false;
+                    desktop.classList.remove('collapsed');
+                    header.setAttribute('aria-expanded', 'true');
+                }
+            }, { passive: true });
+        }
     }
 })();
 </script>

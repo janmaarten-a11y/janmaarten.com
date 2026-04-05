@@ -91,15 +91,18 @@
         </header>
      {{/match}}
 
+    {{#has tag="#show-toc"}}
+        <aside class="toc-container toc-desktop" aria-label="{{t 'Table of contents'}}">
+            <div class="toc-header" aria-expanded="true">
+                {{> "icons/chevron-right"}}
+                <h4>{{t 'Table of contents'}}</h4>
+            </div>
+            <nav class="toc" aria-label="{{t 'Table of contents'}}"></nav>
+        </aside>
+    {{/has}}
+
     <div class="single-content gh-content kg-canvas {{#unless @page.show_title_and_feature_image}}reset-space{{/unless}}">
         {{#has tag="#show-toc"}}
-            <aside class="toc-container toc-desktop">
-                <div class="toc-header" aria-expanded="true">
-                    {{> "icons/chevron-right"}}
-                    <h4>{{t 'Table of contents'}}</h4>
-                </div>
-                <nav class="toc" aria-label="{{t 'Table of contents'}}"></nav>
-            </aside>
             <details class="toc-container toc-mobile">
                 <summary>
                     {{> "icons/chevron-right"}}

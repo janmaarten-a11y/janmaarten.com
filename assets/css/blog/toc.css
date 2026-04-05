@@ -1,25 +1,21 @@
 /* Table of contents — triggered by #show-toc tag
-   Desktop: sticky sidebar left of content
+   Desktop: fixed to left side of viewport
    Mobile: collapsible <details> above content */
 
 /* ---- Desktop TOC ---- */
 .toc-desktop {
-    grid-column: wide-start / main-start;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    display: block;
+    position: fixed;
+    top: var(--space-xl);
+    left: var(--space-m);
+    z-index: 10;
+    max-width: 14rem;
 }
 
 .toc-desktop .toc-header {
-    position: sticky;
-    top: var(--space-l);
     display: flex;
     align-items: center;
     gap: var(--space-3xs);
     cursor: pointer;
-    padding-right: var(--space-s);
     user-select: none;
 }
 
@@ -33,8 +29,8 @@
 }
 
 .toc-desktop .toc-header .icon {
-    width: 1em;
-    height: 1em;
+    width: 0.8em;
+    height: 0.8em;
     flex-shrink: 0;
     fill: currentColor;
     transition: transform var(--transition-duration) var(--transition-timing);
@@ -46,11 +42,9 @@
 }
 
 .toc-desktop .toc {
-    position: sticky;
-    top: calc(var(--space-l) + 2.4em);
     max-height: calc(100vh - var(--space-3xl) - 3em);
     overflow-y: auto;
-    padding: var(--space-3xs) var(--space-s) 0 0;
+    padding-top: var(--space-xs);
     transition: opacity var(--transition-duration) var(--transition-timing),
                 max-height var(--transition-duration) var(--transition-timing);
 }
@@ -93,8 +87,8 @@
 }
 
 .toc-mobile summary .icon {
-    width: 1em;
-    height: 1em;
+    width: 0.8em;
+    height: 0.8em;
     flex-shrink: 0;
     fill: currentColor;
     transition: transform var(--transition-duration) var(--transition-timing);
@@ -121,14 +115,14 @@
 }
 
 .toc-list-item {
-    font-size: var(--size-step-min-2);
+    font-size: 0.8rem;
     padding: var(--space-3xs) 0;
     line-height: var(--leading-fine);
 }
 
 /* Nested items smaller */
 .toc-list .toc-list .toc-list-item {
-    font-size: 0.85em;
+    font-size: 0.7rem;
 }
 
 .toc-list-item a {
@@ -147,7 +141,10 @@
 }
 
 /* ---- Responsive ---- */
-@media (max-width: 991px) {
+/* Hide desktop TOC when viewport is too narrow for sidebar clearance.
+   At 1280px the content is ~1034px + 10vw padding = ~1162px,
+   leaving only ~60px per side — not enough for the TOC. */
+@media (max-width: 1439px) {
     .toc-desktop {
         display: none;
     }
