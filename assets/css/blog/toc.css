@@ -5,7 +5,6 @@
 /* ---- Desktop TOC ---- */
 .toc-desktop {
     position: fixed;
-    top: var(--space-xl);
     left: var(--space-m);
     z-index: 10;
     max-width: 14rem;
@@ -115,14 +114,14 @@
 }
 
 .toc-list-item {
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
     padding: var(--space-3xs) 0;
     line-height: var(--leading-fine);
 }
 
 /* Nested items smaller */
 .toc-list .toc-list .toc-list-item {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
 }
 
 .toc-list-item a {

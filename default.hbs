@@ -149,6 +149,13 @@
     if (desktop) {
         var header = desktop.querySelector('.toc-header');
         var manualToggle = false;
+        var content = document.querySelector('.single-content');
+        var contentTop = content ? content.getBoundingClientRect().top + window.scrollY : 0;
+
+        // Align TOC vertically with the top of body text
+        if (content) {
+            desktop.style.top = contentTop + 'px';
+        }
 
         if (header) {
             header.addEventListener('click', function() {
@@ -159,14 +166,12 @@
             });
         }
 
-        // Auto-collapse after scrolling one viewport height into the article
-        var content = document.querySelector('.single-content');
+        // Auto-collapse after scrolling half a viewport into the article
         var autoCollapsed = false;
 
         if (content) {
             window.addEventListener('scroll', function() {
                 if (manualToggle) return;
-                var contentTop = content.getBoundingClientRect().top + window.scrollY;
                 var scrolledPast = window.scrollY - contentTop;
 
                 if (scrolledPast > window.innerHeight * 0.5 && !autoCollapsed) {
