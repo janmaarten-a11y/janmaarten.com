@@ -2,8 +2,8 @@
 
 <div class="content-area">
     <main class="site-main" id="main">
-        <section class="container wide">
-            <div class="hero-wrapper">
+        <section class="wrapper container wide">
+            <div class="hero-wrapper flow">
                 <h1 class="h1 home-hero-header">{{@custom.hero_text}}</h1>
                 {{#if @site.description}}
                     <p class="body-1 hero-desc"> {{@site.description}}</p>
@@ -16,7 +16,7 @@
         </section>
 
         {{#if @custom.personal_project_title}}
-            <section class="section-container section-personal-project">
+            <section class="section-container section-personal-project region">
                 <header class="feed-header container wide">
                     <div class="feed-header-wrapper">
                         <h2 class="section-title feed-header-title">{{@custom.personal_project_title}}</h2>
@@ -32,7 +32,7 @@
             </section>
         {{/if}}
 
-        <section class="section-container section-blog">
+        <section class="section-container section-blog region">
             <header class="feed-header container wide">
                 {{#if @custom.feed_title}}
                     <div class="feed-header-wrapper">
