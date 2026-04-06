@@ -133,6 +133,9 @@
             contentSelector: '.single-content',
             headingSelector: 'h2, h3',
             hasInnerContainers: true,
+            ignoreSelector: '.toc-ignore',
+            headingsOffset: 120,
+            scrollSmooth: false,
         });
     }
 
@@ -150,15 +153,69 @@
         var header = desktop.querySelector('.toc-header');
         var manualToggle = false;
         var content = document.querySelector('.single-content');
-        var contentOffsetTop = content ? content.getBoundingClientRect().top + window.scrollY : 0;
+        // Account for content's top margin so TOC aligns with actual text
+        var contentStyle = content ? getComputedStyle(content) : null;
+        var contentMarginTop = contentStyle ? parseFloat(contentStyle.marginTop) : 0;
+        var contentTextTop = content ? content.getBoundingClientRect().top + window.scrollY + contentMarginTop : 0;
         var stickyTop = 24; // px from viewport top once scrolled past content start
+        var collapseThreshold = window.innerHeight * 0.5;
 
-        // Align TOC vertically with the top of body text
+        // Sliding active marker — uses MutationObserver, not scroll
+        var tocList = desktop.querySelector('.toc-list');
+        var marker = document.createElement('div');
+        marker.className = 'toc-active-marker';
+        marker.style.display = 'none';
+        if (tocList) tocList.appendChild(marker);
+
+        function updateMarkerPosition() {
+            if (!tocList) return;
+            // Find the deepest active item (h3 inside h2, or h2 itself)
+            var allActive = tocList.querySelectorAll('.toc-list-item.is-active-li');
+            var active = allActive.length ? allActive[allActive.length - 1] : null;
+            if (!active) return; // keep last position, don't hide
+            marker.style.display = '';
+            var link = active.querySelector(':scope > a');
+            var fontSize = link ? parseFloat(getComputedStyle(link).fontSize) : 14;
+            // Sum offsetTop up the chain to the root toc-list
+            var top = parseFloat(getComputedStyle(active).paddingTop) + fontSize * 0.3;
+            var el = active;
+            while (el && el !== tocList) {
+                top += el.offsetTop;
+                el = el.offsetParent;
+            }
+            marker.style.top = top + 'px';
+        }
+
+        // Watch for tocbot class changes instead of polling on scroll
+        if (tocList) {
+            var observer = new MutationObserver(function() {
+                updateMarkerPosition();
+            });
+            observer.observe(tocList, {
+                attributes: true,
+                attributeFilter: ['class'],
+                subtree: true,
+            });
+        }
+
+        // Align TOC vertically with the top of body text (not above it)
         function updateTocPosition() {
             if (!content) return;
-            var contentViewportTop = contentOffsetTop - window.scrollY;
-            desktop.style.top = Math.max(stickyTop, contentViewportTop) + 'px';
+            var textViewportTop = contentTextTop - window.scrollY;
+            desktop.style.top = Math.max(stickyTop, textViewportTop) + 'px';
         }
+
+        // Collapse state based on scroll position
+        var autoCollapsed = false;
+        var scrolledPastThreshold = (window.scrollY - contentTextTop) > collapseThreshold;
+
+        // If page is already scrolled past threshold on load, start collapsed
+        if (scrolledPastThreshold) {
+            autoCollapsed = true;
+            desktop.classList.add('collapsed');
+            if (header) header.setAttribute('aria-expanded', 'false');
+        }
+
         updateTocPosition();
 
         if (header) {
@@ -171,26 +228,27 @@
         }
 
         // Update position + auto-collapse on scroll
-        var autoCollapsed = false;
-
         if (content) {
             window.addEventListener('scroll', function() {
                 updateTocPosition();
 
                 if (manualToggle) return;
-                var scrolledPast = window.scrollY - contentOffsetTop;
+                var scrolledPast = window.scrollY - contentTextTop;
 
-                if (scrolledPast > window.innerHeight * 0.5 && !autoCollapsed) {
+                if (scrolledPast > collapseThreshold && !autoCollapsed) {
                     autoCollapsed = true;
                     desktop.classList.add('collapsed');
                     header.setAttribute('aria-expanded', 'false');
-                } else if (scrolledPast <= window.innerHeight * 0.5 && autoCollapsed) {
+                } else if (scrolledPast <= collapseThreshold && autoCollapsed) {
                     autoCollapsed = false;
                     desktop.classList.remove('collapsed');
                     header.setAttribute('aria-expanded', 'true');
                 }
             }, { passive: true });
         }
+
+        // Initial marker position (tocbot may take a moment to set active class)
+        setTimeout(updateMarkerPosition, 200);
     }
 })();
 </script>

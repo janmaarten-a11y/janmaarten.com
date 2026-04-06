@@ -33,6 +33,12 @@ blockquote.kg-blockquote-alt */
   grid-column: wide-start/wide-end;
 }
 
+/* Lists — slightly smaller than serif body text */
+.tag-hash-long-form .single-content ol li,
+.tag-hash-long-form .single-content ul li {
+  font-size: 1.4rem;
+}
+
 
 /* Reading time */
 .reading-progress {

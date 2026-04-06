@@ -42,8 +42,6 @@
 }
 
 .toc-desktop .toc {
-    max-height: calc(100vh - var(--space-3xl) - 3em);
-    overflow-y: auto;
     padding-top: var(--space-xs);
     transition: opacity var(--transition-duration) var(--transition-timing),
                 max-height var(--transition-duration) var(--transition-timing);
@@ -110,19 +108,10 @@
     margin: 0;
 }
 
-.toc-list .toc-list {
-    padding-left: var(--space-s);
-}
-
 .toc-list-item {
-    font-size: 0.8125rem;
+    font-size: 1rem;
     padding: var(--space-3xs) 0;
     line-height: var(--leading-fine);
-}
-
-/* Nested items smaller */
-.toc-list .toc-list .toc-list-item {
-    font-size: 0.75rem;
 }
 
 .toc-list-item a {
@@ -135,9 +124,133 @@
     color: var(--primary-text-color);
 }
 
-.toc-list-item.is-active-li > a {
+/* ---- Mobile TOC list styles ---- */
+.toc-mobile .toc-list {
+    list-style: decimal;
+    padding-left: var(--space-m);
+}
+
+.toc-mobile .toc-list .toc-list {
+    list-style: none;
+    padding-left: var(--space-s);
+    margin-top: 2px;
+}
+
+.toc-mobile .toc-list-item {
+    font-size: 1.1rem;
+    padding: 0;
+}
+
+.toc-mobile .toc-list-item a {
+    text-decoration: none;
+    border-bottom: 1px dashed currentColor;
+    padding-bottom: 1px;
+    transition: color var(--transition-duration) var(--transition-timing),
+                border-color var(--transition-duration) var(--transition-timing);
+}
+
+.toc-mobile .toc-list-item a:hover {
+    color: var(--color-teal);
+    border-bottom: 1px solid var(--color-teal);
+}
+
+[data-theme="dark"] .toc-mobile .toc-list-item a:hover {
+    color: var(--color-teal-subdued);
+    border-color: var(--color-teal-subdued);
+}
+
+.toc-mobile .toc-list-item {
+    margin-top: 0.4rem;
+}
+
+/* ---- Desktop-only: vertical line, markers, nested sizing ---- */
+.toc-desktop .toc-list {
+    position: relative;
+    padding-left: var(--space-s) !important;
+}
+
+.toc-desktop .toc-list .toc-list {
+    padding-left: var(--space-s);
+}
+
+.toc-desktop .toc-list-item {
+    position: relative;
+}
+
+/* Nested items smaller (desktop only) */
+.toc-desktop .toc-list .toc-list .toc-list-item {
+    font-size: 0.875rem;
+}
+
+.toc-desktop .toc-list-item.is-active-li > a {
     color: var(--brand-color);
     font-weight: var(--font-semi-bold);
+}
+
+/* Vertical track line — clipped to start/end circles */
+.toc-desktop .toc-list::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: calc(var(--space-3xs) + 0.45em + 3px);
+    bottom: calc(var(--space-3xs) + 0.45em + 3px);
+    width: 2px;
+    background: var(--color-gray-500);
+}
+
+/* Start circle — first item only */
+.toc-desktop .toc-list > .toc-list-item:first-of-type::before {
+    content: "";
+    position: absolute;
+    left: calc(-1 * var(--space-s) + 1px);
+    top: calc(var(--space-3xs) + 0.45em);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-gray-500);
+    z-index: 1;
+}
+
+/* End circle — last item only */
+.toc-desktop .toc-list > .toc-list-item:last-of-type::after {
+    content: "";
+    position: absolute;
+    left: calc(-1 * var(--space-s) + 1px);
+    top: calc(var(--space-3xs) + 0.45em);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-gray-500);
+    z-index: 1;
+}
+
+/* Sliding active marker — positioned by JS */
+.toc-active-marker {
+    position: absolute;
+    left: 0px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-teal);
+    z-index: 2;
+    transition: top 0.25s ease;
+    pointer-events: none;
+}
+
+[data-theme="dark"] .toc-active-marker {
+    background: var(--color-teal-subdued);
+}
+
+/* Hide markers/circles on nested lists */
+.toc-desktop .toc-list .toc-list::before,
+.toc-desktop .toc-list .toc-list > .toc-list-item:first-of-type::before,
+.toc-desktop .toc-list .toc-list > .toc-list-item:last-of-type::after {
+    display: none;
+}
+
+/* Disable smooth scroll for TOC link clicks — instant jump */
+html:has(.toc-desktop) {
+    scroll-behavior: auto;
 }
 
 /* ---- Responsive ---- */
