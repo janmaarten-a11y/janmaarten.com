@@ -21,19 +21,11 @@
     --background-color: var(--color-gray-100);
     --white-color: #fff;
     --black-color: #000;
-    --green-color: #28a745;
     --orange-color: #ffc107;
-    --red-color: #dc3545;
-    --facebook-color: #3b5998;
     --twitter-color: #1da1f2;
-    --rss-color: #f26522;
     --animation-base: ease-in-out;
-    --font-base: "Atkinson Hyperlegible Next", system-ui, sans-serif;
     --font-serif: var(--font-display);
     --font-long-form: "EB Garamond", Georgia, serif;
-    --font-weight-regular: var(--font-regular);
-    --font-weight-semi-bold: var(--font-semi-bold);
-    --font-weight-bold: var(--font-bold);
     --navbar-height: 14rem;
     --form-input-height: 4rem;
     --base-text-size: var(--size-step-00);
@@ -83,15 +75,8 @@
 }
 
 html {
-    box-sizing: border-box;
     font-size: 100%;
     overflow-x: hidden;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
 }
 
 
