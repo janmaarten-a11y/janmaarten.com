@@ -43,6 +43,8 @@
 @import "blog/webmentions.css";
 @import "blog/logo-board.css";
 @import "blog/hero.css";
+@import "components/accessible-toggle.css";
+@import "components/private-youtube.css";
 @import "vendor/tiny-slider.css";
 @import "vendor/pswp.css";
 @import "vendor/msme.css";

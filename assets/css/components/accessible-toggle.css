@@ -1,0 +1,72 @@
+/* Accessible Toggle — <details>/<summary> styled to match Ghost toggle card */
+
+.accessible-toggle {
+    background: var(--hero-background-color);
+    border: 1px dashed var(--ghost-accent-color);
+    border-radius: 4px;
+    margin-block: var(--space-s);
+}
+
+.accessible-toggle summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    font-size: var(--base-text-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-text-color);
+    cursor: pointer;
+    list-style: none;
+}
+
+/* Remove default marker in webkit */
+.accessible-toggle summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Remove default marker in Firefox */
+.accessible-toggle summary::marker {
+    content: "";
+}
+
+/* Chevron icon */
+.accessible-toggle summary::after {
+    content: "";
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    margin-left: 1rem;
+    background-color: var(--ghost-accent-color);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M23.25 7.311 12.53 18.03a.749.749 0 0 1-1.06 0L.75 7.311'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M23.25 7.311 12.53 18.03a.749.749 0 0 1-1.06 0L.75 7.311'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    transition: transform 0.2s ease;
+}
+
+.accessible-toggle[open] summary::after {
+    transform: rotate(180deg);
+}
+
+.accessible-toggle summary:focus-visible {
+    outline: 4px solid var(--ghost-accent-color);
+    outline-offset: -4px;
+    border-radius: 3px;
+}
+
+/* Content area */
+.accessible-toggle .toggle-content {
+    padding: 0 1.5rem 1.5rem;
+}
+
+.accessible-toggle .toggle-content > *:first-child {
+    margin-top: 0;
+}
+
+.accessible-toggle .toggle-content > *:last-child {
+    margin-bottom: 0;
+}

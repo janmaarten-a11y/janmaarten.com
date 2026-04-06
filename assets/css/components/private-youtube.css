@@ -1,0 +1,84 @@
+/* Private YouTube — <private-youtube> web component */
+
+private-youtube {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--color-gray-900);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-block: var(--space-s);
+}
+
+private-youtube iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Thumbnail + play button */
+.private-youtube-activate {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.private-youtube-thumb {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Play button overlay */
+.private-youtube-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.1);
+    transition: background 0.2s ease;
+}
+
+.private-youtube-activate:hover .private-youtube-play,
+.private-youtube-activate:focus-visible .private-youtube-play {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.private-youtube-play svg {
+    width: 68px;
+    height: 48px;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+}
+
+.private-youtube-activate:hover .private-youtube-play svg,
+.private-youtube-activate:focus-visible .private-youtube-play svg {
+    opacity: 1;
+}
+
+.private-youtube-activate:focus-visible {
+    outline: 4px solid var(--ghost-accent-color);
+    outline-offset: -4px;
+}
+
+/* Fallback link styling (when JS hasn't run yet) */
+private-youtube:not(.private-youtube-active) > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: var(--color-gray-200);
+    text-decoration: underline;
+    font-size: var(--size-step-0);
+}
