@@ -53,7 +53,7 @@
     color: var(--tertiary-text-color-overlay);
 }
 .card-overlay .sub-heading.card-excerpt {
-    font-size: var(--size-step--2);
+    font-size: var(--size-step--1);
   }
 
 .featured-posts .card-overlay .card-excerpt {
