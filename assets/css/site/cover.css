@@ -1,6 +1,6 @@
 .hero-header {
     margin-bottom: 1.6rem;
-    font-size: 4rem;
+    font-size: var(--size-step-4);
     line-height: 1.25;
 }
 

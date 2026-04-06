@@ -221,7 +221,7 @@ figure {
 figcaption {
     margin-top: 1.5rem;
     color: var(--secondary-text-color);
-    font-size: 1.4rem;
+    font-size: var(--size-step-min-2);
     line-height: 1.4;
     text-align: center;
 }
@@ -234,7 +234,7 @@ figcaption a {
 pre {
     overflow-x: scroll;
     padding: 1.6rem 2.2rem;
-    font-size: 1.6rem !important;
+    font-size: var(--size-step-min-1) !important;
     line-height: 1.5;
     background-color: var( --lighter-gray-color);
     border-radius: 8px !important;
@@ -253,7 +253,7 @@ hr {
 table:not(.highlight) {
     width: 100%;
     border-collapse: collapse;
-    font-size: 1.5rem;
+    font-size: var(--size-step-min-1);
     word-break: normal;
 }
 

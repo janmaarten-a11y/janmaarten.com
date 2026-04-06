@@ -123,7 +123,7 @@
 }
 
 .toc-list-item {
-    font-size: 1rem;
+    font-size: var(--size-step-min-2);
     padding: var(--space-3xs) 0;
     line-height: var(--leading-fine);
 }
@@ -151,7 +151,7 @@
 }
 
 .toc-mobile .toc-list-item {
-    font-size: 1.1rem;
+    font-size: var(--size-step-min-1);
     padding: 0;
 }
 
@@ -193,7 +193,7 @@
 
 /* Nested items smaller (desktop only) */
 .toc-desktop .toc-list .toc-list .toc-list-item {
-    font-size: 0.875rem;
+    font-size: var(--size-step-min-2);
 }
 
 .toc-desktop .toc-list-item.is-active-li > a {

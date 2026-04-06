@@ -1,0 +1,30 @@
+/* Side Note — <side-note> element (CSS only, no JS)
+   Desktop (≥1440px): floated into right margin as an aside
+   Mobile (<1440px): renders inline in the paragraph flow, unstyled */
+
+/* --- Base: inline within the paragraph, inherits body styles --- */
+side-note {
+    display: inline;
+}
+
+/* ---- Desktop: floated into right margin ---- */
+@media (min-width: 1440px) {
+    side-note {
+        display: block;
+        float: right;
+        clear: right;
+        width: 220px;
+        margin-right: calc(-220px - var(--space-xs));
+        margin-bottom: var(--space-3xs);
+        padding-left: var(--space-xs);
+        border-left: 2px solid var(--color-gray-400);
+        font-size: var(--size-step-min-2);
+        line-height: var(--leading-fine);
+        color: var(--secondary-text-color);
+    }
+}
+
+/* ---- Dark mode ---- */
+[data-theme="dark"] side-note {
+    border-left-color: var(--color-gray-600);
+}

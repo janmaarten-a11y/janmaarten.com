@@ -1,6 +1,6 @@
 label {
     display: block;
-    font-size: 1.4rem;
+    font-size: var(--size-step-min-2);
     font-weight: var(--font-weight-bold);
     color: var(--primary-text-color);
     margin-top: 3.2rem;
@@ -27,7 +27,7 @@ textarea {
     /* flex: 1 0 0; */
     height: var(--form-input-height);
     padding: 0 1.5rem;
-    font-size: 1.6rem;
+    font-size: var(--size-step-00);
     color: var(--primary-text-color);
     appearance: none;
     background-color: var(--input-background-color);
@@ -83,7 +83,7 @@ input,
     justify-content: center; */
     height: 40px;
     padding: 0 15px;
-    font-size: 1.6rem;
+    font-size: var(--size-step-00);
     font-weight: 700;
     color: var(--white-color);
     /* cursor: pointer; */

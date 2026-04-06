@@ -94,7 +94,7 @@ footnote-side {
 
 /* ---- Dark mode adjustments ---- */
 [data-theme="dark"] .footnote-side-content {
-    border-left-color: var(--color-gray-600);
+    border-left-color: var(--ghost-accent-color);
 }
 
 [data-theme="dark"] .footnote-side-number {

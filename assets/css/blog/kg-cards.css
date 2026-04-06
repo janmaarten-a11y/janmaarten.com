@@ -5,13 +5,13 @@
 
 .kg-header-card.kg-width-full.kg-layout-split h2.kg-header-card-heading, 
 .kg-signup-card.kg-width-full.kg-layout-split h2.kg-signup-card-heading {
-    font-size: clamp(3.6rem,4vw,5.2rem) !important;
+    font-size: var(--size-step-4) !important;
     line-height: 1.2;
 }
 
 .kg-header-card.kg-width-full.kg-layout-split .kg-header-card-subheading, 
 .kg-header-card.kg-width-wide .kg-header-card-subheading {
-    font-size: clamp(1.05em,2vw,2rem) !important;
+    font-size: var(--size-step-00) !important;
     line-height: 1.4;
 }
 
@@ -33,11 +33,11 @@
     padding: 0 0 2rem 0;
 }
 .tag-hash-content-experience .feed-title {
-    font-size: 1.6rem;
+    font-size: var(--size-step-min-1);
     font-weight: normal;
 }
 .tag-hash-content-experience .sub-heading {
-    font-size: 1.1rem;
+    font-size: var(--size-step-min-2);
 }
 .tag-hash-content-experience .feed-right {
   display: flex;

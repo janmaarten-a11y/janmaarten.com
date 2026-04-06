@@ -14,7 +14,7 @@
 
 .featured-wrapper .post-title {
     margin-bottom: 0;
-    font-size: 1.8rem;
+    font-size: var(--size-step-0);
     font-weight: 700;
 }
 
