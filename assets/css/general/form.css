@@ -1,7 +1,7 @@
 label {
     display: block;
     font-size: var(--size-step-min-2);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-bold);
     color: var(--primary-text-color);
     margin-top: 3.2rem;
     margin-bottom: .8rem;
@@ -84,7 +84,7 @@ input,
     height: 40px;
     padding: 0 15px;
     font-size: var(--size-step-00);
-    font-weight: 700;
+    font-weight: var(--font-bold);
     color: var(--white-color);
     /* cursor: pointer; */
     background-color: var(--brand-color);

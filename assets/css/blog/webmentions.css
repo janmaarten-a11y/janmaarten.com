@@ -84,7 +84,7 @@
 }
 
 .wm-reply-author {
-    font-weight: 600;
+    font-weight: var(--font-semi-bold);
     color: var(--primary-text-color);
 }
 

@@ -9,7 +9,7 @@
     color: var(--brand-color);
     font-family: var(--font-base);
     font-size: var(--size-step-min-1);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-bold);
     letter-spacing: 0.5px;
     border-radius: var(--border-radius-small);
     cursor: pointer;

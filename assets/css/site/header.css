@@ -19,7 +19,7 @@
 }
 
 .gh-head-logo-text {
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-bold);
     height: 4rem;
 }
 
@@ -107,7 +107,7 @@
 
 .gh-head-menu,
 .gh-head-actions {
-    font-weight: 400;
+    font-weight: var(--font-regular);
     font-size: var(--size-step-min-1);
     text-transform: lowercase;
     height: 4rem;

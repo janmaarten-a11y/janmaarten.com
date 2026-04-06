@@ -53,7 +53,7 @@ pull-quote {
     color: var(--primary-text-color);
     font-size: var(--base-text-size);
     line-height: 1.7;
-    font-weight: 400;
+    font-weight: var(--font-regular);
     letter-spacing: -0.03rem;
 }
 

@@ -15,7 +15,7 @@
 .featured-wrapper .post-title {
     margin-bottom: 0;
     font-size: var(--size-step-0);
-    font-weight: 700;
+    font-weight: var(--font-bold);
 }
 
 /* Grid layout for featured posts (replaces carousel) */

@@ -17,7 +17,7 @@
 .tag-list-container {
     margin-top: var(--space-2xl);
     padding-top: var(--spacepsection);
-    font-weight: 400;
+    font-weight: var(--font-regular);
     font-size: var(--size-step-1);
 }
 

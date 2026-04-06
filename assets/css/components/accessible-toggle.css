@@ -13,7 +13,7 @@
     justify-content: space-between;
     padding: 1rem 1.5rem;
     font-size: var(--base-text-size);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-bold);
     color: var(--primary-text-color);
     cursor: pointer;
     list-style: none;

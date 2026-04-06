@@ -168,7 +168,7 @@ h6 {
     color: var(--primary-text-color);
     font-family: var(--font-base);
     line-height: var(--leading-fine);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-bold);
 }
 h1,
 h2 {
@@ -193,12 +193,12 @@ blockquote:not([class]) {
     color: var(--primary-text-color);
     font-size: var(--base-text-size);
     line-height: 1.7;
-    font-weight: 400;
+    font-weight: var(--font-regular);
     letter-spacing: -0.03rem;
 }
 
 blockquote:not([class]) strong {
-    font-weight: 400;
+    font-weight: var(--font-regular);
     color: var(--primary-text-color);
 }
 
@@ -230,7 +230,7 @@ figcaption {
 
 figcaption a {
     color: var(--secondary-text-color) !important;
-    font-weight: 400 !important;
+    font-weight: var(--font-regular) !important;
 }
 
 pre {
@@ -286,7 +286,7 @@ table:not(.highlight) tfoot {
 }
 
 table:not(.highlight) tfoot td {
-    font-weight: 700;
+    font-weight: var(--font-bold);
 }
 
 @media (max-width: 767px) {

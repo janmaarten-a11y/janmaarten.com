@@ -41,7 +41,7 @@
 
 .kg-card.kg-toggle-card .kg-toggle-heading-text {
     font-size: var(--base-text-size);
-    font-weight: 700;
+    font-weight: var(--font-bold);
 }
 
 .has-serif-title .kg-toggle-heading-text {
@@ -65,7 +65,7 @@
 blockquote.kg-blockquote-alt {
     font-size: var(--size-step-1);
     font-style: normal;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-bold);
     line-height: 1.25;
     color: var(--primary-text-color);
     text-align: left;

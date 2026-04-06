@@ -28,13 +28,13 @@
 .comments h2 {
     width: 100%;
     max-width: 720px;
-    font-weight: 700;
+    font-weight: var(--font-bold);
     /* font-size: 3.4rem; */
 }
 
 .comments .comment-count {
     color: var(--color-midgrey);
-    font-weight: 600;
+    font-weight: var(--font-semi-bold);
     white-space: nowrap;
 }
 
