@@ -153,11 +153,42 @@
         var details = desktop.querySelector('.toc-details');
         var manualToggle = false;
         var content = document.querySelector('.single-content');
-        // Account for content's top margin so TOC aligns with actual text
-        var contentMarginTop = content ? parseFloat(getComputedStyle(content).marginTop) : 0;
-        var contentTextTop = content ? content.getBoundingClientRect().top + window.scrollY + contentMarginTop : 0;
         var stickyTop = 24; // px from viewport top once scrolled past content start
         var collapseThreshold = window.innerHeight * 0.5;
+
+        // Recalculate content top — call after images load or layout shifts
+        var contentTextTop = 0;
+        function recalcContentTop() {
+            if (!content) return;
+            var contentMarginTop = parseFloat(getComputedStyle(content).marginTop);
+            contentTextTop = content.getBoundingClientRect().top + window.scrollY + contentMarginTop;
+        }
+        recalcContentTop();
+
+        // Recalculate when feature image (or any image) finishes loading
+        var article = document.querySelector('.single-header');
+        if (article) {
+            var imgs = article.querySelectorAll('img');
+            imgs.forEach(function(img) {
+                if (!img.complete) {
+                    img.addEventListener('load', recalcContentTop);
+                }
+            });
+        }
+        // Final recalculate once all resources are loaded
+        window.addEventListener('load', function() {
+            recalcContentTop();
+            updateTocPosition();
+            desktop.classList.add('is-positioned');
+        });
+
+        // Also reveal on scroll — user may scroll before images finish
+        window.addEventListener('scroll', function revealOnScroll() {
+            recalcContentTop();
+            updateTocPosition();
+            desktop.classList.add('is-positioned');
+            window.removeEventListener('scroll', revealOnScroll);
+        }, { passive: true });
 
         // Sliding active marker — uses MutationObserver, not scroll
         var tocList = desktop.querySelector('.toc-list');

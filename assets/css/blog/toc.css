@@ -14,6 +14,13 @@
     backdrop-filter: blur(10px);
     padding: var(--space-xs) var(--space-s) var(--space-xs) var(--space-xs);
     border-radius: var(--border-radius-medium);
+    /* Hidden until JS calculates correct position after images load */
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.toc-desktop.is-positioned {
+    opacity: 1;
 }
 
 .toc-desktop .toc-details {

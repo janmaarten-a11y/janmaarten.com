@@ -105,7 +105,7 @@ blockquote.kg-blockquote-alt {
     grid-template-columns:
         [full-start] minmax(4vw,auto) 
         [wide-start] minmax(auto,200px) 
-        [main-start] min(640px,calc(100% - 8vw)) 
+        [main-start] min(860px,calc(100% - 8vw)) 
         [main-end] minmax(auto,200px) 
         [wide-end] minmax(4vw,auto) 
         [full-end];

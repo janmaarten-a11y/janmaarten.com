@@ -49,7 +49,7 @@
     margin-bottom: 0;
     letter-spacing: var(--tracking-s);
     text-align: left;
-    font-size: var(--size-step-4);
+    font-size: var(--size-step-3);
 }
 
 .has-serif-title .single-title {

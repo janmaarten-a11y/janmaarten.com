@@ -23,7 +23,7 @@ blockquote.kg-blockquote-alt */
 .tag-hash-long-form .single-content blockquote,
 .tag-hash-long-form .single-content p,
 .tag-hash-long-form .single-content li:not(.toc-list-item) {
-  font-size: var(--size-step-00);
+  font-size: var(--size-step-0);
 }
 /* Blockquote Alt - blockquote.kg-blockquote-alt */
 .tag-hash-long-form .single-content blockquote.kg-blockquote-alt {
@@ -36,7 +36,7 @@ blockquote.kg-blockquote-alt */
 /* Lists — slightly smaller than serif body text */
 .tag-hash-long-form .single-content ol li:not(.toc-list-item),
 .tag-hash-long-form .single-content ul li:not(.toc-list-item) {
-  font-size: var(--size-step-min-1);
+  font-size: var(--size-step-00);
 }
 
 
@@ -65,7 +65,7 @@ blockquote.kg-blockquote-alt */
   
 /* Drop cap  */
 article.tag-hash-long-form p.dropcap:first-letter {
-    font-size: 6.25rem;
+    font-size: var(--size-step-6);
     float: left;
     line-height: .6; /* from 1 */
     margin-right: 0.05em;

@@ -6,11 +6,18 @@
 
 .home-hero-header {
     margin-bottom: 3.2rem;
-    line-height: 1.25;
+    font-family: var(--font-serif);
+    font-weight: var(--font-regular);
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: var(--size-step-3);
+    line-height: var(--leading-fine);
 }
 
 .hero-desc {
     color: var(--secondary-text-color);
+    font-size: var(--size-step-0);
+    line-height: var(--leading-standard);
 }
 
 @media (max-width: 767px) {
