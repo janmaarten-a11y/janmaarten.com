@@ -104,11 +104,12 @@ blockquote.kg-blockquote-alt {
     display: grid;
     grid-template-columns:
         [full-start] minmax(4vw,auto) 
-        [wide-start] minmax(auto,200px) 
+        [wide-start] minmax(0,200px) 
         [main-start] min(860px,calc(100% - 8vw)) 
-        [main-end] minmax(auto,200px) 
+        [main-end] minmax(0,200px) 
         [wide-end] minmax(4vw,auto) 
         [full-end];
+    max-width: 100%;
 }
 
 .kg-canvas > * {
