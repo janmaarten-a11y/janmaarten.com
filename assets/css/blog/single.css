@@ -264,3 +264,8 @@
     border-top: 1px solid var(--divider-color);
     padding-top: var(--space-s);
 }
+
+/* blockquote-alt — wide on all posts, not just long-form */
+.single-content blockquote.kg-blockquote-alt {
+    grid-column: wide-start / wide-end;
+}

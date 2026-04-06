@@ -1,0 +1,81 @@
+/* Citation Card — structured blockquote with title and attribution
+   Usage in Ghost HTML card:
+     <figure class="citation-card">
+       <figcaption class="citation-label">Bell's Exhibit A</figcaption>
+       <blockquote>
+         <p>"One should never so exhaust a subject that nothing is left
+         for readers to do."</p>
+       </blockquote>
+       <cite>The Spirit of the Laws — Baron de Montesquieu, <time>1750</time></cite>
+     </figure>
+*/
+
+.citation-card {
+    margin-block: var(--space-m);
+    padding: var(--space-3xs) var(--space-m) var(--space-s);
+    background-color: var(--hero-background-color);
+    border-left: 4px solid var(--ghost-accent-color);
+    border-radius: var(--border-radius-medium);
+}
+
+/* Label / contextual title */
+.citation-label {
+    font-size: var(--size-step-min-1);
+    font-weight: var(--font-semi-bold);
+    font-variant: all-petite-caps;
+    letter-spacing: 0.05em;
+    color: var(--ghost-accent-color);
+    margin: var(--space-3xs) 0;
+    text-align: left;
+}
+
+/* The quote itself */
+.citation-card blockquote {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 2vw, 2rem);
+    font-style: italic;
+    line-height: var(--leading-tight);
+    color: var(--primary-text-color);
+}
+
+.has-serif-title .citation-card blockquote,
+.has-serif-body .citation-card blockquote {
+    font-family: var(--font-serif);
+}
+
+.citation-card blockquote p {
+    margin: 0;
+}
+
+.citation-card blockquote p + p {
+    margin-top: var(--space-3xs);
+}
+
+/* Attribution */
+.citation-card cite {
+    display: block;
+    margin-top: var(--space-xs);
+    font-size: var(--size-step-min-2);
+    font-style: normal;
+    color: var(--secondary-text-color);
+}
+
+.citation-source {
+    font-style: italic;
+}
+
+.citation-author {
+    font-weight: var(--font-semi-bold);
+}
+
+/* ---- Dark mode adjustments ---- */
+[data-theme="dark"] .citation-label {
+    color: var(--color-teal-subdued);
+}
+
+[data-theme="dark"] .citation-card {
+    border-left-color: var(--color-teal-subdued);
+}

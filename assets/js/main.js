@@ -9,11 +9,22 @@ footerGroup();
 pagination(false);
 externalLinks();
 bookmarkFocus();
+preTabindex();
 
 function bookmarkFocus() {
     const bookmarkDescription = document.querySelectorAll('.kg-bookmark-description');
     bookmarkDescription .forEach(element => {
         element.setAttribute('tabindex', '-1');
+    });
+}
+
+// Undo prism.js adding tabindex="0" to all <pre> elements.
+// Only keep it when the pre has horizontal overflow (scrollbar).
+function preTabindex() {
+    document.querySelectorAll('pre[tabindex="0"]').forEach(function(pre) {
+        if (pre.scrollWidth <= pre.clientWidth) {
+            pre.removeAttribute('tabindex');
+        }
     });
 }
 

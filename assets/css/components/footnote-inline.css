@@ -1,0 +1,90 @@
+/* Footnote Inline — <footnote-inline> web component
+   Always inline: toggle button reveals content below the parent
+   paragraph. Never in the margin. */
+
+/* --- Base element --- */
+footnote-inline {
+    display: inline;
+}
+
+/* --- Superscript toggle button --- */
+.footnote-inline-toggle {
+    display: inline;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    vertical-align: baseline;
+    font: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
+.footnote-inline-number {
+    font-size: 0.75em;
+    color: var(--ghost-accent-color);
+    font-weight: var(--font-semi-bold);
+    text-decoration: none;
+    padding: 0 0.1em;
+}
+
+.footnote-inline-toggle:hover .footnote-inline-number,
+.footnote-inline-toggle:focus-visible .footnote-inline-number {
+    background-color: var(--ghost-accent-color);
+    color: var(--white-color);
+    border-radius: 2px;
+}
+
+.footnote-inline-toggle:focus-visible {
+    outline: 2px solid var(--ghost-accent-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* --- Note content (placed after parent paragraph by JS) --- */
+.footnote-inline-content {
+    display: none;
+    font-size: var(--size-step-min-2);
+    line-height: var(--leading-fine);
+    color: var(--secondary-text-color);
+    background-color: var(--hero-background-color);
+    border-left: 3px solid var(--ghost-accent-color);
+    border-radius: var(--border-radius-medium);
+    padding: var(--space-xs) var(--space-s);
+    margin-block: var(--space-3xs);
+}
+
+/* Override .gh-content > [id]:not(:first-child) { margin-top: 6.4rem }
+   Match specificity (0-3-0) with .class[attr].class */
+.gh-content > .footnote-inline-content[id] {
+    margin-top: var(--space-3xs);
+}
+
+.footnote-inline-index {
+    font-weight: var(--font-semi-bold);
+    color: var(--ghost-accent-color);
+}
+
+/* Show when toggled via JS */
+.footnote-inline-content.footnote-inline-visible {
+    display: block;
+}
+
+/* ---- Dark mode adjustments ---- */
+[data-theme="dark"] .footnote-inline-number {
+    color: var(--color-teal-subdued);
+}
+
+[data-theme="dark"] .footnote-inline-toggle:hover .footnote-inline-number,
+[data-theme="dark"] .footnote-inline-toggle:focus-visible .footnote-inline-number {
+    background-color: var(--color-teal-subdued);
+    color: var(--color-gray-900);
+}
+
+[data-theme="dark"] .footnote-inline-content {
+    border-left-color: var(--color-teal-subdued);
+}
+
+[data-theme="dark"] .footnote-inline-index {
+    color: var(--color-teal-subdued);
+}

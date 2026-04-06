@@ -93,11 +93,13 @@
 
     {{#has tag="#show-toc"}}
         <aside class="toc-container toc-desktop" aria-label="{{t 'Table of contents'}}">
-            <div class="toc-header" aria-expanded="true">
-                {{> "icons/chevron-right"}}
-                <h4>{{t 'Table of contents'}}</h4>
-            </div>
-            <nav class="toc" aria-label="{{t 'Table of contents'}}"></nav>
+            <details class="toc-details" open>
+                <summary class="toc-header">
+                    {{> "icons/chevron-right"}}
+                    <h4>{{t 'Table of contents'}}</h4>
+                </summary>
+                <nav class="toc" aria-label="{{t 'Table of contents'}}"></nav>
+            </details>
         </aside>
     {{/has}}
 

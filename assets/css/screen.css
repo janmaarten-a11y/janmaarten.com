@@ -45,6 +45,9 @@
 @import "blog/hero.css";
 @import "components/accessible-toggle.css";
 @import "components/private-youtube.css";
+@import "components/footnote-side.css";
+@import "components/footnote-inline.css";
+@import "components/citation-card.css";
 @import "vendor/tiny-slider.css";
 @import "vendor/pswp.css";
 @import "vendor/msme.css";

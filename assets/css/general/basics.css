@@ -63,6 +63,7 @@
     --background-color: var(--color-gray-800);
     --underline-color: var(--color-teal-subdued);
     --brand-color: var(--color-teal-subdued);
+    --color-lighter-gray: rgb(255 255 255 / 10%);
 }
 
 .dark-page body,

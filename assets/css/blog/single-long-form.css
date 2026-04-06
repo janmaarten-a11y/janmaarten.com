@@ -22,7 +22,7 @@ blockquote.kg-blockquote-alt */
 /*  */
 .tag-hash-long-form .single-content blockquote,
 .tag-hash-long-form .single-content p,
-.tag-hash-long-form .single-content li {
+.tag-hash-long-form .single-content li:not(.toc-list-item) {
   font-size: 1.6rem;
 }
 /* Blockquote Alt - blockquote.kg-blockquote-alt */
@@ -34,8 +34,8 @@ blockquote.kg-blockquote-alt */
 }
 
 /* Lists — slightly smaller than serif body text */
-.tag-hash-long-form .single-content ol li,
-.tag-hash-long-form .single-content ul li {
+.tag-hash-long-form .single-content ol li:not(.toc-list-item),
+.tag-hash-long-form .single-content ul li:not(.toc-list-item) {
   font-size: 1.4rem;
 }
 

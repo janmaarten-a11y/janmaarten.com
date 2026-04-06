@@ -1,0 +1,112 @@
+/* Footnote Side — <footnote-side> web component
+   Desktop (≥1440px): floated into right margin (Tufte-CSS approach)
+   Mobile (<1440px): toggle button reveals content inline */
+
+/* --- Base element --- */
+footnote-side {
+    display: inline;
+}
+
+/* --- Superscript toggle button --- */
+.footnote-side-toggle {
+    display: inline;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    vertical-align: baseline;
+    font: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
+.footnote-side-number {
+    font-size: 0.75em;
+    color: var(--ghost-accent-color);
+    font-weight: var(--font-semi-bold);
+    text-decoration: none;
+    padding: 0 0.1em;
+}
+
+.footnote-side-toggle:hover .footnote-side-number,
+.footnote-side-toggle:focus-visible .footnote-side-number {
+    background-color: var(--ghost-accent-color);
+    color: var(--white-color);
+    border-radius: 2px;
+}
+
+.footnote-side-toggle:focus-visible {
+    outline: 2px solid var(--ghost-accent-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* --- Note content --- */
+.footnote-side-content {
+    font-size: var(--size-step-min-2);
+    line-height: var(--leading-fine);
+    color: var(--secondary-text-color);
+}
+
+.footnote-side-index {
+    font-weight: var(--font-semi-bold);
+    color: var(--ghost-accent-color);
+}
+
+/* ---- Desktop: floated into right margin (Tufte-CSS approach) ----
+   float + clear: right prevents consecutive sidenotes from overlapping.
+   Negative margin-right pushes the content past the paragraph boundary
+   into the .kg-canvas right gutter. */
+@media (min-width: 1440px) {
+    .footnote-side-content {
+        display: block;
+        float: right;
+        clear: right;
+        width: 220px;
+        margin-right: calc(-220px - var(--space-xs));
+        margin-bottom: var(--space-3xs);
+        padding-left: var(--space-xs);
+        border-left: 2px solid var(--color-gray-400);
+    }
+}
+
+/* ---- Mobile: toggled below paragraph (like footnote-inline) ---- */
+@media (max-width: 1439px) {
+    .footnote-side-content {
+        display: none;
+        background-color: var(--hero-background-color);
+        border-left: 3px solid var(--ghost-accent-color);
+        border-radius: var(--border-radius-medium);
+        padding: var(--space-xs) var(--space-s);
+        margin-block: var(--space-3xs);
+    }
+
+    /* Show when toggled via JS */
+    .footnote-side-content.footnote-side-visible {
+        display: block;
+    }
+}
+
+/* Override .gh-content > [id]:not(:first-child) { margin-top: 6.4rem } */
+.gh-content > .footnote-side-content[id] {
+    margin-top: var(--space-3xs);
+}
+
+/* ---- Dark mode adjustments ---- */
+[data-theme="dark"] .footnote-side-content {
+    border-left-color: var(--color-gray-600);
+}
+
+[data-theme="dark"] .footnote-side-number {
+    color: var(--color-teal-subdued);
+}
+
+[data-theme="dark"] .footnote-side-toggle:hover .footnote-side-number,
+[data-theme="dark"] .footnote-side-toggle:focus-visible .footnote-side-number {
+    background-color: var(--color-teal-subdued);
+    color: var(--color-gray-900);
+}
+
+[data-theme="dark"] .footnote-side-index {
+    color: var(--color-teal-subdued);
+}
