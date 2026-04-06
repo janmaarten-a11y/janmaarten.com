@@ -49,7 +49,7 @@
 }
 
 .kg-card.kg-button-card a.kg-btn {
-    font-size: var(--size-step-min-1);
+    font-size: var(--size-step--1);
 }
 .kg-card.kg-toggle-card[data-kg-toggle-state="open"] .kg-toggle-content {
     padding:0 var(--space-m) var(--space-m) var(--space-m);
@@ -63,7 +63,7 @@
 }
 
 blockquote.kg-blockquote-alt {
-    font-size: var(--size-step-1);
+    font-size: var(--size-step-2);
     font-style: normal;
     font-weight: var(--font-bold);
     line-height: 1.25;

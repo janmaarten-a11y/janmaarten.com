@@ -2,13 +2,13 @@
 .tag-hash-long-form .single-content h2,
 .tag-hash-long-form .single-content h3 {
   font-family: var(--font-serif);
-  font-size: var(--size-step-2);
+  font-size: var(--size-step-3);
   line-height:1.4;
   /* text-wrap:balance; */
   text-wrap:pretty;
 }  
 .tag-hash-long-form .single-content h3 {
-  font-size: var(--size-step-1);
+  font-size: var(--size-step-2);
 }
 
 
@@ -23,11 +23,11 @@ blockquote.kg-blockquote-alt */
 .tag-hash-long-form .single-content blockquote,
 .tag-hash-long-form .single-content p,
 .tag-hash-long-form .single-content li:not(.toc-list-item) {
-  font-size: var(--size-step-0);
+  font-size: var(--size-step-1);
 }
 /* Blockquote Alt - blockquote.kg-blockquote-alt */
 .tag-hash-long-form .single-content blockquote.kg-blockquote-alt {
-  font-size: var(--size-step-1);
+  font-size: var(--size-step-2);
   font-weight: normal;
   line-height: 1.55;
   grid-column: wide-start/wide-end;
@@ -36,7 +36,7 @@ blockquote.kg-blockquote-alt */
 /* Lists — slightly smaller than serif body text */
 .tag-hash-long-form .single-content ol li:not(.toc-list-item),
 .tag-hash-long-form .single-content ul li:not(.toc-list-item) {
-  font-size: var(--size-step-00);
+  font-size: var(--size-step-0);
 }
 
 
@@ -65,7 +65,7 @@ blockquote.kg-blockquote-alt */
   
 /* Drop cap  */
 article.tag-hash-long-form p.dropcap:first-letter {
-    font-size: var(--size-step-6);
+    font-size: var(--size-step-7);
     float: left;
     line-height: .6; /* from 1 */
     margin-right: 0.05em;
@@ -74,7 +74,7 @@ article.tag-hash-long-form p.dropcap:first-letter {
 
 /* Asides */
 .tag-hash-long-form .single-content .kg-card .kg-callout-text {
-    font-size: var(--size-step-min-1);
+    font-size: var(--size-step--1);
     line-height:1.7;
 }
 

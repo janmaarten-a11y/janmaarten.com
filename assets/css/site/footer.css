@@ -18,7 +18,7 @@
     padding-bottom: var(--space-m);
     color: var(--tertiary-text-color);
     line-height: 32px;
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
 }
 .footer-copyright p {
     padding-bottom: 1rem;
@@ -65,7 +65,7 @@
     grid-template-columns: 2fr 1fr;
 }
 .footer-group-header {
-    font-size: var(--size-step-min-1); 
+    font-size: var(--size-step--1); 
 }
 
 /* Webring */

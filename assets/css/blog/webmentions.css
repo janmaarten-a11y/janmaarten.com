@@ -44,7 +44,7 @@
 }
 
 .wm-reaction-count {
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     color: var(--tertiary-text-color);
     white-space: nowrap;
 }
@@ -79,7 +79,7 @@
 }
 
 .wm-reply-meta {
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     margin-bottom: 0.4rem;
 }
 

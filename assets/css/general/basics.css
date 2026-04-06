@@ -28,8 +28,8 @@
     --font-long-form: "EB Garamond", Georgia, serif;
     --navbar-height: 14rem;
     --form-input-height: 4rem;
-    --base-text-size: var(--size-step-00);
-    --content-font-size: var(--size-step-00);
+    --base-text-size: var(--size-step-0);
+    --content-font-size: var(--size-step-0);
     /* invert color */
     --primary-text-color-invert: rgb(250 250 250 / 95%);
     --secondary-text-color-invert: rgb(250 250 250 / 75%);
@@ -207,7 +207,7 @@ figure {
 figcaption {
     margin-top: var(--space-m);
     color: var(--secondary-text-color);
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     line-height: 1.4;
     text-align: center;
 }
@@ -220,7 +220,7 @@ figcaption a {
 pre {
     overflow-x: scroll;
     padding: var(--space-m) var(--space-l);
-    font-size: var(--size-step-min-1) !important;
+    font-size: var(--size-step--1) !important;
     line-height: 1.5;
     background-color: var( --lighter-gray-color);
     border-radius: 8px !important;
@@ -243,7 +243,7 @@ hr {
 table:not(.highlight) {
     width: 100%;
     border-collapse: collapse;
-    font-size: var(--size-step-min-1);
+    font-size: var(--size-step--1);
     word-break: normal;
 }
 

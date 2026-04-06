@@ -18,7 +18,7 @@ side-note {
         margin-bottom: var(--space-3xs);
         padding-left: var(--space-xs);
         border-left: 2px solid var(--color-gray-400);
-        font-size: var(--size-step-min-2);
+        font-size: var(--size-step--2);
         line-height: var(--leading-fine);
         color: var(--secondary-text-color);
     }

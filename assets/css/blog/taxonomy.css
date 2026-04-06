@@ -18,7 +18,7 @@
     margin-top: var(--space-2xl);
     padding-top: var(--space-3xl);
     font-weight: var(--font-regular);
-    font-size: var(--size-step-1);
+    font-size: var(--size-step-2);
 }
 
 .tag-list {

@@ -22,7 +22,7 @@
 .pull-quote-float {
     display: none;
     font-family: var(--font-display);
-    font-size: var(--size-step-1);
+    font-size: var(--size-step-2);
     font-weight: var(--font-regular);
     line-height: 1.4;
     color: var(--secondary-text-color);
@@ -85,7 +85,7 @@ pull-quote {
     /* Long-form: match EB Garamond + body font size */
     .tag-hash-long-form .single-content pull-quote[inline] {
         font-family: var(--font-long-form);
-        font-size: var(--size-step-00);
+        font-size: var(--size-step-0);
     }
 }
 

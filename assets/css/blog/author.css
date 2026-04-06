@@ -45,12 +45,12 @@
 .author-card-title {
     text-align: center;
     margin-top: var(--space-l);
-    font-size: var(--size-step-2);
+    font-size: var(--size-step-3);
 }
 
 .author-post-number {
     text-align: center;
-    font-size: var(--size-step-0);
+    font-size: var(--size-step-1);
 }
 
 .has-serif-title .author-card-title,

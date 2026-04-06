@@ -43,7 +43,7 @@ footnote-side {
 
 /* --- Note content --- */
 .footnote-side-content {
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     line-height: var(--leading-fine);
     color: var(--secondary-text-color);
 }

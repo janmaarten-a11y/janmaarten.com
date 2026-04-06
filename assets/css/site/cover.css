@@ -1,6 +1,6 @@
 .hero-header {
     margin-bottom: var(--space-m);
-    font-size: var(--size-step-4);
+    font-size: var(--size-step-5);
     line-height: 1.25;
 }
 
@@ -14,13 +14,13 @@ h1.h1.hero-header {
     font-weight: var(--font-regular);
     text-transform: none;
     letter-spacing: 0;
-    font-size: var(--size-step-3);
+    font-size: var(--size-step-4);
     line-height: var(--leading-fine);
 }
 
 .hero-desc {
     color: var(--secondary-text-color);
-    font-size: var(--size-step-0);
+    font-size: var(--size-step-1);
     line-height: var(--leading-standard);
 }
 

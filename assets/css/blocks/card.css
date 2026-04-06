@@ -18,7 +18,7 @@
 }
 
 .card__title {
-  font-size: var(--size-step-1);
+  font-size: var(--size-step-2);
 }
 
 .card__title a {
@@ -31,12 +31,12 @@
 }
 
 .card__meta {
-  font-size: var(--size-step-min-1);
+  font-size: var(--size-step--1);
   color: var(--color-text-accent);
 }
 
 .card__excerpt {
-  font-size: var(--size-step-min-1);
+  font-size: var(--size-step--1);
   color: var(--color-text-accent);
 }
 

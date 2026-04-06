@@ -19,7 +19,7 @@
     width: 3.2rem;
     height: 3.2rem;
     color: var(--primary-text-color);
-    font-size: var(--size-step-min-1);
+    font-size: var(--size-step--1);
     line-height: 0;
     font-weight: var(--font-regular);
     letter-spacing: 0.04rem;

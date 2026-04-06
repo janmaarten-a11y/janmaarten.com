@@ -44,7 +44,7 @@
 }
 
 .recommendation-title {
-    font-size: var(--size-step-min-1);
+    font-size: var(--size-step--1);
     font-weight: var(--font-bold);
     line-height: var(--leading-fine);
     margin: 0;
@@ -52,13 +52,13 @@
 
 .recommendation-url {
     display: block;
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     color: var(--tertiary-text-color);
     margin-top: 0.2rem;
 }
 
 .recommendation-description {
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     color: var(--secondary-text-color);
     line-height: var(--leading-fine);
     margin-top: var(--space-3xs);

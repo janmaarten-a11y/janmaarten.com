@@ -2,7 +2,7 @@
     margin-top:var(--space-3xl);
 }
 .gh-comments.kg-canvas h2 {
-    font-size: var(--size-step-1);
+    font-size: var(--size-step-2);
 }
 .utterances {
     max-width: 860px;

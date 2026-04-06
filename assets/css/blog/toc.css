@@ -45,7 +45,7 @@
 }
 
 .toc-desktop .toc-header h4 {
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     font-weight: var(--font-semi-bold);
     font-variant: all-petite-caps;
     letter-spacing: 0.05em;
@@ -89,7 +89,7 @@
     display: flex;
     align-items: center;
     gap: var(--space-3xs);
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     font-weight: var(--font-semi-bold);
     font-variant: all-petite-caps;
     letter-spacing: 0.05em;
@@ -130,7 +130,7 @@
 }
 
 .toc-list-item {
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     padding: var(--space-3xs) 0;
     line-height: var(--leading-fine);
 }
@@ -158,7 +158,7 @@
 }
 
 .toc-mobile .toc-list-item {
-    font-size: var(--size-step-min-1);
+    font-size: var(--size-step--1);
     padding: 0;
 }
 
@@ -200,7 +200,7 @@
 
 /* Nested items smaller (desktop only) */
 .toc-desktop .toc-list .toc-list .toc-list-item {
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
 }
 
 .toc-desktop .toc-list-item.is-active-li > a {

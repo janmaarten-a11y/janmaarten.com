@@ -14,7 +14,7 @@
 
 .featured-wrapper .post-title {
     margin-bottom: 0;
-    font-size: var(--size-step-0);
+    font-size: var(--size-step-1);
     font-weight: var(--font-bold);
 }
 
@@ -59,7 +59,7 @@
 
 .featured-posts .card-overlay .card-title {
     font-family: var(--font-base);
-    font-size: var(--size-step-1);
+    font-size: var(--size-step-2);
     font-weight: var(--font-semi-bold);
     color: #fff;
     line-height: var(--leading-fine);

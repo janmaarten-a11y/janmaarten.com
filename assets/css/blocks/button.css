@@ -9,7 +9,7 @@
   color: var(--color-light);
   text-decoration: none;
   font-weight: var(--font-bold);
-  font-size: var(--size-step-min-1);
+  font-size: var(--size-step--1);
   border: 2px solid var(--color-primary);
   border-radius: var(--border-radius-medium);
   cursor: pointer;
@@ -37,7 +37,7 @@
   background-color: var(--color-bg-accent);
   color: var(--color-text-accent);
   text-decoration: none;
-  font-size: var(--size-step-min-2);
+  font-size: var(--size-step--2);
   border-radius: var(--border-radius-small);
 }
 

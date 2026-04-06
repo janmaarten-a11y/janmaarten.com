@@ -80,6 +80,6 @@
     }
     
     .archive-wrapper .feed-title {
-        font-size: var(--size-step-0) !important;
+        font-size: var(--size-step-1) !important;
     }
 }

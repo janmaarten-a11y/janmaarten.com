@@ -20,7 +20,7 @@
 
 /* Label / contextual title */
 .citation-label {
-    font-size: var(--size-step-min-1);
+    font-size: var(--size-step--1);
     font-weight: var(--font-semi-bold);
     font-variant: all-petite-caps;
     letter-spacing: 0.05em;
@@ -35,7 +35,7 @@
     padding: 0;
     border: 0;
     font-family: var(--font-serif);
-    font-size: var(--size-step-0);
+    font-size: var(--size-step-1);
     font-style: italic;
     line-height: var(--leading-tight);
     color: var(--primary-text-color);
@@ -58,7 +58,7 @@
 .citation-card cite {
     display: block;
     margin-top: var(--space-xs);
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     font-style: normal;
     color: var(--secondary-text-color);
 }

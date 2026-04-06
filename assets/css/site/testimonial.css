@@ -1,5 +1,5 @@
 .testimonial-name {
-    font-size: var(--size-step-min-1);
+    font-size: var(--size-step--1);
 }
 
 .testimonial-image {
@@ -18,12 +18,12 @@
 .testimonial-content {
     padding-right: 24px;
     font-family: var(--font-long-form);
-    font-size: var(--size-step-min-1);
+    font-size: var(--size-step--1);
 }
 
 .sub-heading.testimonial-desc {
     color: var(--tertiary-text-color);
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     line-height: var(--leading-fine);
 }
 

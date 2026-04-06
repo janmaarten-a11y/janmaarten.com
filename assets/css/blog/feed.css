@@ -20,7 +20,7 @@
     font-family: var(--font-display);
     text-transform: none;
     letter-spacing: 0;
-    font-size: var(--size-step-2);
+    font-size: var(--size-step-3);
 }
 
 .post-feed {
@@ -91,7 +91,7 @@
 }
 
 .experiences .feed-calendar {
-    font-size: var(--size-step-min-1);
+    font-size: var(--size-step--1);
 }
 
 .post-feed.expanded .feed-calendar {
@@ -156,7 +156,7 @@
 }
 
 .post-feed.expanded .feed-title {
-    font-size: var(--size-step-0);
+    font-size: var(--size-step-1);
     line-height: 1.4;
     font-weight: var(--font-bold);
     white-space: normal;
@@ -197,7 +197,7 @@
     display: flex;
     align-items: center;
     color: var(--ghost-accent-color);
-    font-size: var(--size-step-min-1);
+    font-size: var(--size-step--1);
     margin-top: var(--space-3xs);
     transition: margin-right 0.2s var(--animation-base);
 }
@@ -270,7 +270,7 @@
     padding: var(--space-s) var(--space-m);
     width: inherit;
     color: var(--primary-text-color);
-    font-size: var(--size-step-min-1);
+    font-size: var(--size-step--1);
     font-weight: var(--font-extra-bold);
     letter-spacing: 0.05rem;
     text-transform: uppercase;

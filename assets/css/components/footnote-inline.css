@@ -44,7 +44,7 @@ footnote-inline {
 /* --- Note content (placed after parent paragraph by JS) --- */
 .footnote-inline-content {
     display: none;
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     line-height: var(--leading-fine);
     color: var(--secondary-text-color);
     background-color: var(--hero-background-color);

@@ -95,30 +95,30 @@ is the very first element in the post content */
 
 /* Now the content typography styles */
 .gh-content h1 {
-    font-size: var(--size-step-4);
+    font-size: var(--size-step-5);
     letter-spacing: .012em;
 }
 
 .gh-content h2 {
-    font-size: var(--size-step-2);
+    font-size: var(--size-step-3);
     letter-spacing: .004em;
 }
 
 .gh-content h3 {
-    font-size: var(--size-step-1);
+    font-size: var(--size-step-2);
     letter-spacing: .004em;
 }
 
 .gh-content h4 {
-    font-size: var(--size-step-0);
+    font-size: var(--size-step-1);
 }
 
 .gh-content h5 {
-    font-size: var(--size-step-00);
+    font-size: var(--size-step-0);
 }
 
 .gh-content h6 {
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     text-transform: uppercase;
     color: var(--tertiary-text-color);
     margin-bottom: calc(-1 * var(--space-3xl)) !important;
@@ -126,19 +126,19 @@ is the very first element in the post content */
 }
 
 .serie-page .gh-content h2 {
-    font-size: var(--size-step-1);
+    font-size: var(--size-step-2);
 }
 
 .serie-page .gh-content h3 {
-    font-size: var(--size-step-0);
+    font-size: var(--size-step-1);
 }
 
 .serie-page .gh-content h4 {
-    font-size: var(--size-step-0);
+    font-size: var(--size-step-1);
 }
 
 .serie-page .gh-content h5 {
-    font-size: var(--size-step-0);
+    font-size: var(--size-step-1);
 }
 
 

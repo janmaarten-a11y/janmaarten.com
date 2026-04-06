@@ -1,30 +1,30 @@
 /* Typography system — fluid type from design tokens */
 .h1 {
-    font-size: var(--size-step-5);
+    font-size: var(--size-step-6);
     line-height: var(--leading-fine);
     font-weight: var(--font-semi-bold);
 }
 
 .h2 {
-    font-size: var(--size-step-3);
+    font-size: var(--size-step-4);
     line-height: var(--leading-fine);
     font-weight: var(--font-semi-bold);
 }
 
 .h3 {
-    font-size: var(--size-step-1);
+    font-size: var(--size-step-2);
     line-height: var(--leading-fine);
     font-weight: var(--font-semi-bold);
 }
 
 .h4, h5, h6 {
-    font-size: var(--size-step-0);
+    font-size: var(--size-step-1);
     line-height: var(--leading-fine);
     font-weight: var(--font-semi-bold);
 }
 
 .section-title {
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step--2);
     font-weight: var(--font-bold);
     line-height: 1;
     letter-spacing: 2px;
@@ -32,19 +32,19 @@
 }
 
 .body-1 {
-    font-size: var(--size-step-1);
+    font-size: var(--size-step-2);
     font-weight: var(--font-regular);
     line-height: var(--leading-standard);
 }
 
 .sub-heading-large {
-    font-size: var(--size-step-0);
+    font-size: var(--size-step-1);
     font-weight: var(--font-regular);
     line-height: var(--leading-standard);
 }
 
 .sub-heading {
-    font-size: var(--size-step-min-1);
+    font-size: var(--size-step--1);
     font-weight: var(--font-regular);
     line-height: var(--leading-standard);
 }

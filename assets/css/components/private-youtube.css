@@ -80,5 +80,5 @@ private-youtube:not(.private-youtube-active) > a {
     height: 100%;
     color: var(--color-gray-200);
     text-decoration: underline;
-    font-size: var(--size-step-0);
+    font-size: var(--size-step-1);
 }
