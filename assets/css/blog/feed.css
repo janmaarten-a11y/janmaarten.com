@@ -304,3 +304,9 @@
     }
 
 }
+
+/* Feed wrapper alignment */
+.post-feed.right-thumbnail .feed-wrapper,
+.post-feed.expanded .feed-wrapper {
+    align-items: normal;
+}

@@ -3,6 +3,12 @@
     height: var(--navbar-height);
 }
 
+/* Hide "current page" nav group headers */
+.nav-pages.nav-current,
+.nav-links.nav-current {
+    display: none;
+}
+
 .gh-outer {
     padding-left: 0;
     padding-right: 0;

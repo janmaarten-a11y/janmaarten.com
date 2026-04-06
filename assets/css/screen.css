@@ -82,12 +82,10 @@
 @import "vendor/pswp.css";
 @import "vendor/msme.css";
 
-/* 9. Misc — Ghost card overrides, portal, animations */
+/* 9. Misc — Ghost card overrides, portal */
 @import "misc/kg.css";
 @import "misc/utils.css";
 @import "misc/portal.css";
-@import "misc/animations.css";
-@import "misc/demo.css";
 
 /* 10. Utilities — highest specificity intent */
 @import "utilities/region.css";

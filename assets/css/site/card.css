@@ -145,6 +145,18 @@
 .experiences {
     margin-top: var(--space-2xl);
 }
+
+/* Case study grid spacing */
+.section-case-study .cards.kg-grid {
+    row-gap: var(--space-2xl);
+}
+
+/* Design system annotations card overlay */
+.card.post.tag-hash-design-system-annotations.card-overlay .card-wrapper {
+    backdrop-filter: blur(8px);
+    background: rgba(1, 21, 44, 0.74);
+}
+
 @media (max-width: 767px) {
     .tag-hash-content-experience .feed-wrapper {
       flex-direction: column;

@@ -257,10 +257,8 @@ is the very first element in the post content */
 }
 
 .timeline-content.gh-content {
-    margin-top: calc(-1 * var(--space-l));
-}
-
-.timeline-content.gh-content {
+    margin-top: -1.25em;
+    margin-bottom: var(--space-2xl);
     padding-left: var(--space-xl);
 }
 

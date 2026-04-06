@@ -56,6 +56,10 @@
     font-family: var(--font-display);
 }
 
+h1.single-title {
+    font-family: var(--font-display);
+}
+
 .single-excerpt {
     margin-top: var(--space-m);
     color: var(--primary-text-color);

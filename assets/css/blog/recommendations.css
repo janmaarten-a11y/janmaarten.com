@@ -1,4 +1,8 @@
 /* Blogroll / Recommendations */
+.blogroll-intro {
+    margin-bottom: var(--space-2xl);
+}
+
 .recommendations {
     list-style: none;
     padding: 0;
@@ -10,7 +14,7 @@
 }
 
 .recommendation:last-child {
-    border-bottom: 1px solid var(--divider-color);
+    border-bottom: none;
 }
 
 .recommendation a {

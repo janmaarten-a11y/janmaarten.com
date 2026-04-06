@@ -30,7 +30,6 @@
     --form-input-height: 4rem;
     --base-text-size: var(--size-step-00);
     --content-font-size: var(--size-step-00);
-    --spacepsection: 10.4rem;
     /* invert color */
     --primary-text-color-invert: rgb(250 250 250 / 95%);
     --secondary-text-color-invert: rgb(250 250 250 / 75%);
@@ -226,6 +225,10 @@ pre {
     background-color: var( --lighter-gray-color);
     border-radius: 8px !important;
     -webkit-overflow-scrolling: touch;
+}
+
+pre[class*="language-"] {
+    line-height: 1.15;
 }
 
 hr {

@@ -4,6 +4,10 @@
     line-height: 1.25;
 }
 
+h1.h1.hero-header {
+    font-family: var(--font-display);
+}
+
 .home-hero-header {
     margin-bottom: var(--space-xl);
     font-family: var(--font-serif);
