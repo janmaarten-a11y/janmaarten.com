@@ -3,7 +3,7 @@
 }
 
 .featured-wrapper {
-    margin-top: 3rem;
+    margin-top: var(--space-xl);
     padding-top: 6vmin;
     padding-bottom: 3vmin;
 }
@@ -22,8 +22,8 @@
 .featured-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.6rem;
-    padding-top: 1.6rem;
+    gap: var(--space-m);
+    padding-top: var(--space-m);
 }
 
 @media (max-width: 767px) {
@@ -73,7 +73,7 @@
     right: 0;
     bottom: 0;
     justify-content: flex-end;
-    padding: 1.6rem;
+    padding: var(--space-m);
     background: linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,.1) 60%, transparent 100%);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;

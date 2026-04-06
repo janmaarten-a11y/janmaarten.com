@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 1.5rem;
+    padding: var(--space-s) var(--space-m);
     font-size: var(--base-text-size);
     font-weight: var(--font-bold);
     color: var(--primary-text-color);
@@ -35,7 +35,7 @@
     flex-shrink: 0;
     width: 24px;
     height: 24px;
-    margin-left: 1rem;
+    margin-left: var(--space-s);
     background-color: var(--ghost-accent-color);
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M23.25 7.311 12.53 18.03a.749.749 0 0 1-1.06 0L.75 7.311'/%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M23.25 7.311 12.53 18.03a.749.749 0 0 1-1.06 0L.75 7.311'/%3E%3C/svg%3E");
@@ -60,7 +60,7 @@
 
 /* Content area */
 .accessible-toggle .toggle-content {
-    padding: 0 1.5rem 1.5rem;
+    padding: 0 var(--space-m) var(--space-m);
 }
 
 .accessible-toggle .toggle-content > *:first-child {

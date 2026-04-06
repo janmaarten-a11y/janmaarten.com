@@ -4,14 +4,14 @@
 
 .taxonomy-media {
     overflow: hidden;
-    margin: 0 0 3rem;
+    margin: 0 0 var(--space-xl);
     width: 200px;
 }
 
 .taxonomy-media-small {
     width: 4rem;
-    margin-right: 12px;
-    margin-left: -10px;
+    margin-right: var(--space-s);
+    margin-left: calc(-1 * var(--space-s));
 }
 
 .tag-list-container {
@@ -35,7 +35,7 @@
 }
 
 .tag-list-item-wrapper {
-    padding: .8rem 2rem;
+    padding: var(--space-s) var(--space-l);
     background-color: var(--input-background-color);
     display: flex;
     flex-direction: row;
@@ -60,7 +60,7 @@
 }
 
 .tag-list-item + .tag-list-item {
-    margin-left: 1rem;
+    margin-left: var(--space-s);
 }
 
 @media (max-width: 767px) {

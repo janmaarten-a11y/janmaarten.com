@@ -35,7 +35,7 @@
 
 .card-title .icon {
     flex-shrink: 0;
-    margin: .4rem 0
+    margin: var(--space-xs) 0
 }
 
 :not(.featured-posts) .card-overlay .card-title {
@@ -77,7 +77,7 @@
 .card-image,
 .placeholder {
     position: relative;
-    margin-bottom: 16px;
+    margin-bottom: var(--space-m);
     aspect-ratio: 2/3;
     background-color: var(--input-background-color);
 }
@@ -105,10 +105,10 @@
 }
 
 .card-overlay .card-wrapper {
-    gap: 10px;
+    gap: var(--space-s);
     left: 0;
     max-width: 800px;
-    padding: 3rem;
+    padding: var(--space-xl);
     position: absolute;
     top: 0;
     width: 100%;
@@ -143,7 +143,7 @@
 } */
 
 .experiences {
-    margin-top: 4.8rem;
+    margin-top: var(--space-2xl);
 }
 @media (max-width: 767px) {
     .tag-hash-content-experience .feed-wrapper {
@@ -158,15 +158,15 @@
 
 .tags-list {
     display: flex;
-    gap: .8rem;
+    gap: var(--space-s);
     margin-top: .4rem;
 }
 .card-overlay .tags-list {
-    margin: .4rem 0 2rem;
+    margin: var(--space-xs) 0 2rem;
 }
 
 .tag-item {
-    padding: 0 1rem;
+    padding: 0 var(--space-s);
     border-radius: 4rem;
     border: solid 1px var(--divider-color);
     color: var(--secondary-text-color);
@@ -180,6 +180,6 @@
 
 @media (max-width: 767px) {
     .card-overlay .card-wrapper {
-        padding: 1.5rem;
+        padding: var(--space-m);
     }
 }

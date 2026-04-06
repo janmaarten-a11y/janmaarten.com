@@ -3,19 +3,19 @@ label {
     font-size: var(--size-step-min-2);
     font-weight: var(--font-bold);
     color: var(--primary-text-color);
-    margin-top: 3.2rem;
-    margin-bottom: .8rem;
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-s);
     font-family: var(--font-base);
     /* flex-basis: 100%; */
 }
 
 label + label {
-    margin-top: 2rem;
+    margin-top: var(--space-l);
 }
 
 label input,
 label textarea {
-    margin-top: 0.7rem;
+    margin-top: var(--space-s);
 }
 
 label p {
@@ -26,7 +26,7 @@ input,
 textarea {
     /* flex: 1 0 0; */
     height: var(--form-input-height);
-    padding: 0 1.5rem;
+    padding: 0 var(--space-m);
     font-size: var(--size-step-00);
     color: var(--primary-text-color);
     appearance: none;
@@ -48,15 +48,15 @@ textarea:focus {
 
 textarea {
     height: 100%;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-top: var(--space-m);
+    padding-bottom: var(--space-m);
     resize: vertical;
 }
 
 fieldset {
     border: 0;
     padding: 0;
-    margin-bottom: 2.4rem;
+    margin-bottom: var(--space-l);
 }
 
 .has-serif-body input,
@@ -82,7 +82,7 @@ input,
     align-items: center;
     justify-content: center; */
     height: 40px;
-    padding: 0 15px;
+    padding: 0 var(--space-m);
     font-size: var(--size-step-00);
     font-weight: var(--font-bold);
     color: var(--white-color);
@@ -127,22 +127,22 @@ input,
 .inline-form {
     display: flex;
     flex-direction: column;
-    gap: 1.6rem;
+    gap: var(--space-m);
 }
 
 .contact-form {
-    margin-top: 3rem;
+    margin-top: var(--space-xl);
 }
 
 .contact-form .button {
-    margin-top: 1.5rem;
+    margin-top: var(--space-m);
 }
 
 .subscription-wrapper {
-    margin-top: 3.2rem;
+    margin-top: var(--space-xl);
 }
 
 .subscribe-title {
     color: var(--secondary-text-color);
-    margin-bottom: 1.6rem;
+    margin-bottom: var(--space-m);
 }

@@ -56,7 +56,7 @@
 .gh-head-brand-wrapper {
     flex-direction: column;
     align-items: start;
-    gap: .4rem;
+    gap: var(--space-xs);
 }
 
 .gh-head .nav li {
@@ -135,11 +135,11 @@
 }
 
 .social-item + .social-item {
-    margin-left: 15px;
+    margin-left: var(--space-m);
 }
 
 .social-item + .social-item-rss {
-    margin-left: 24px;
+    margin-left: var(--space-l);
 }
 
 .social-item .icon {

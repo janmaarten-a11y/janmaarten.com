@@ -1,11 +1,11 @@
 .hero-header {
-    margin-bottom: 1.6rem;
+    margin-bottom: var(--space-m);
     font-size: var(--size-step-4);
     line-height: 1.25;
 }
 
 .home-hero-header {
-    margin-bottom: 3.2rem;
+    margin-bottom: var(--space-xl);
     font-family: var(--font-serif);
     font-weight: var(--font-regular);
     text-transform: none;

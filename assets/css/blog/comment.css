@@ -1,5 +1,5 @@
 .gh-comments.kg-canvas {
-    margin-top:100px;
+    margin-top:var(--space-3xl);
 }
 .gh-comments.kg-canvas h2 {
     font-size: var(--size-step-1);
@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 60px 0 44px;
+    margin: var(--space-2xl) 0 var(--space-xl);
 }
 
 
@@ -20,7 +20,7 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 32px;
+    margin-bottom: var(--space-xl);
     width: 100%;
     max-width: 720px;
 }
@@ -44,7 +44,7 @@
 }
 
 .comments-wrapper {
-    margin-top: 6rem;
+    margin-top: var(--space-2xl);
 }
 
 #ghost-comments-root .border-gray-100 {
@@ -53,5 +53,5 @@
 
 .comment-content {
     border-top: 2px solid var(--primary-text-color);
-    padding: 4.5rem 0 0;
+    padding: var(--space-2xl) 0 0;
 }

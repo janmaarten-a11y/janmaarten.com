@@ -2,12 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: .8rem;
+    gap: var(--space-s);
 }
 
 .share-label {
     writing-mode: vertical-lr;
-    margin-bottom: 0.8rem;
+    margin-bottom: var(--space-s);
     text-transform: uppercase;
     color: var(--secondary-text-color);
 }
@@ -52,11 +52,11 @@
 .share-link-label {
     width: auto;
     border-radius: 5px;
-    padding: 4px 16px;
+    padding: var(--space-3xs) var(--space-m);
 }
 
 .share-link-label .icon {
-    margin-right: 8px;
+    margin-right: var(--space-xs);
 }
 
 @media (max-width: 767px) {
@@ -64,7 +64,7 @@
         flex-direction: row;
         width: auto;
         justify-content: center;
-        gap: 1.6rem;
+        gap: var(--space-m);
     }
     .share-link {
         width: 4.4rem;
@@ -72,7 +72,7 @@
     }
     .share-label {
         writing-mode: horizontal-tb;
-        margin: 0 .8rem;
+        margin: 0 var(--space-s);
     }
 
     .gh-content .right-sidebar-container-post {

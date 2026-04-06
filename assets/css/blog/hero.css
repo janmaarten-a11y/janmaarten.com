@@ -26,5 +26,5 @@
 }
 
 .hero-intro > * + * {
-    margin-top: 2.4rem !important;
+    margin-top: var(--space-l) !important;
 }

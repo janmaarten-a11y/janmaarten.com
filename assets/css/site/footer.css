@@ -52,7 +52,7 @@
     }
 
     .footer-left {
-        margin-bottom: 3rem;
+        margin-bottom: var(--space-xl);
     }
 
     .footer-right {
@@ -86,7 +86,7 @@
     gap: var(--space-3xs);
 }
 .webring-nav li {
-    margin-left: 1.8rem;
+    margin-left: var(--space-l);
 }
 .webring-nav a:hover {
     text-decoration: underline;

@@ -188,7 +188,7 @@ img {
 blockquote:not([class]) {
     margin-right: 0;
     margin-left: 0;
-    padding: 0 2.2rem;
+    padding: 0 var(--space-l);
     border-left: 2px solid var(--brand-color);
     color: var(--primary-text-color);
     font-size: var(--base-text-size);
@@ -204,7 +204,7 @@ blockquote:not([class]) strong {
 
 ul,
 ol {
-    padding-left: 2rem;
+    padding-left: var(--space-l);
 }
 
 iframe,
@@ -221,7 +221,7 @@ figure {
 }
 
 figcaption {
-    margin-top: 1.5rem;
+    margin-top: var(--space-m);
     color: var(--secondary-text-color);
     font-size: var(--size-step-min-2);
     line-height: 1.4;
@@ -235,7 +235,7 @@ figcaption a {
 
 pre {
     overflow-x: scroll;
-    padding: 1.6rem 2.2rem;
+    padding: var(--space-m) var(--space-l);
     font-size: var(--size-step-min-1) !important;
     line-height: 1.5;
     background-color: var( --lighter-gray-color);
@@ -273,7 +273,7 @@ table:not(.highlight) tr:hover td {
 
 table:not(.highlight) th,
 table:not(.highlight) td {
-    padding: 1rem 1.5rem;
+    padding: var(--space-s) var(--space-m);
     line-height: 1.5;
 }
 
@@ -296,7 +296,7 @@ table:not(.highlight) tfoot td {
 
     .table tr {
         display: block;
-        padding: 1.2rem 0;
+        padding: var(--space-m) 0;
     }
 
     .table td {
