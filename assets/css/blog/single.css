@@ -41,7 +41,7 @@
 
 .single-meta-item + .single-meta-item::before {
     content: "✦"; 
-    padding: 0 var(--space-m);
+    padding: 0 var(--space-s);
     font-size: .8em;
 }
 

@@ -112,7 +112,7 @@
 .feed-meta-tag::before {
     content: "✦";
     font-size: .8em;
-    padding: 0 var(--space-m);
+    padding: 0 var(--space-s);
 }
 .feed-image {
     flex-shrink: 0;
@@ -197,7 +197,7 @@
     display: flex;
     align-items: center;
     color: var(--ghost-accent-color);
-    font-size: var(--size-step-min-2);
+    font-size: var(--size-step-min-1);
     margin-top: var(--space-3xs);
     transition: margin-right 0.2s var(--animation-base);
 }
