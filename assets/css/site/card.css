@@ -6,7 +6,7 @@
     position: relative;
 }
 
-.cards.container.full {
+.cards.wrapper[data-width="full"] {
     padding: 0;
 }
 .card:hover .card-title {

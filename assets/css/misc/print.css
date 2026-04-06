@@ -41,8 +41,7 @@
         padding-top: 1rem !important;
     }
 
-    .container,
-    .container.wide,
+    .wrapper,
     .kg-canvas {
         max-width: 100% !important;
         padding: 0 !important;
