@@ -5,19 +5,19 @@
         
         {{> "page-header" showCount=false}}
 
-        <section class="category-grid-container container medium">
+        <section class="category-grid-container wrapper" data-width="medium">
             {{> "components/category-grid"}}
         </section>
 
         <section class="section-container small">
             {{#match @custom.feed_layout "Minimal"}}
-                <div class="post-feed gh-feed container medium">
+                <div class="post-feed gh-feed wrapper" data-width="medium">
                     {{#foreach posts}}
                         {{> "loop" noDate=true}}
                     {{/foreach}}
                 </div>
             {{else}}
-                <div class="post-feed gh-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} container medium">
+                <div class="post-feed gh-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} wrapper" data-width="medium">
                     {{#foreach posts}}
                         {{> "loop" noDate=false}}
                     {{/foreach}}

@@ -9,13 +9,13 @@
         {{#page}}
             {{^has tag="#u-hide-overview"}}
                 <section class="section-container serie-overview">
-                    <header class="feed-header container medium">
+                    <header class="feed-header wrapper" data-width="medium">
                         <div class="feed-header-wrapper">
                             <h2 class="section-title feed-header-title">{{t 'On this page'}}</h2>
                         </div>
                     </header>
                     {{#get "posts" filter="tags:[{{twitter_description}}]" limit="100" order="published_at desc"}}
-                        <div class="post-feed container medium">
+                        <div class="post-feed wrapper" data-width="medium">
                             {{#foreach posts}}
                                 {{> "loop" noDate=false noLink=true}}
                             {{/foreach}}
@@ -31,7 +31,7 @@
                             <div class="single-content gh-content kg-canvas">
                                 {{> "components/post-full" showTitle=true link=true}}
                             </div>
-                            <div class="container medium">
+                            <div class="wrapper" data-width="medium">
                                 <div class="wave-separator"></div>
                             </div>
                         </section>

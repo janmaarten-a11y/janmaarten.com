@@ -2,7 +2,7 @@
 
 <div class="content-area">
     <main class="site-main" id="main">
-        <section class="wrapper container wide">
+        <section class="wrapper">
             <div class="hero-wrapper flow">
                 <h1 class="h1 home-hero-header">{{@custom.hero_text}}</h1>
                 {{#if @site.description}}
@@ -14,13 +14,13 @@
 
         {{#if @custom.personal_project_title}}
             <section class="section-container section-personal-project region">
-                <header class="feed-header container wide">
+                <header class="feed-header wrapper">
                     <div class="feed-header-wrapper">
                         <h2 class="section-title feed-header-title">{{@custom.personal_project_title}}</h2>
                     </div>
                 </header>
                 {{#get "pages" filter="tag:hash-content-personal-project" order="published_at desc"}}
-                    <div class="cards kg-grid kg-grid-2col gh-feed container wide">
+                    <div class="cards kg-grid kg-grid-2col gh-feed wrapper">
                         {{#foreach pages}}
                             {{> "components/card-project" showVisual=true isSmall=true}}
                         {{/foreach}}
@@ -30,7 +30,7 @@
         {{/if}}
 
         <section class="section-container section-blog region">
-            <header class="feed-header container wide">
+            <header class="feed-header wrapper">
                 {{#if @custom.feed_title}}
                     <div class="feed-header-wrapper">
                         <h2 class="section-title feed-header-title">{{@custom.feed_title}}</h2>
@@ -38,7 +38,7 @@
                 {{/if}}
             </header>
             {{#get "posts" limit="10" include="tags"}}
-                <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed container wide">
+                <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed wrapper">
                     {{#foreach posts}}
                         {{^has tag="#overlays"}}
                         {{> "loop" noDate=false}}
@@ -46,7 +46,7 @@
                     {{/foreach}}
                 </div>
             {{/get}}
-            <div class="container wide">
+            <div class="wrapper">
                 <a href="/blog/" class="button button-secondary round">{{t 'View all posts' count=pagination.total}} {{> "icons/arrow-right"}}</a>
             </div>
         </section>

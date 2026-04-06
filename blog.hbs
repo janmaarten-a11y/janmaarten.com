@@ -8,12 +8,12 @@
             <section class="section-container featured-posts">
                 {{#get "posts" include="tags" filter="featured:true" limit="2" as |featured|}}
                     {{#if featured}}
-                        <header class="feed-header featured-header container wide">
+                        <header class="feed-header featured-header wrapper">
                                 <div class="feed-header-wrapper">
                                     <h2 class="section-title feed-header-title">{{@custom.featured_title}}</h2>
                                 </div>
                         </header>
-                        <div class="cards container wide">
+                        <div class="cards wrapper">
                             <div class="featured-grid">
                             {{#foreach featured}}
                                 {{> "components/card-project" showVisual=true isOverlay=true isPost=true imageSizes="215px"}}
@@ -70,7 +70,7 @@
         {{/match}}
         
         <section class="section-container reset-spacing">
-            <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed container wide">
+            <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed wrapper">
                 {{#foreach posts}}
                     {{> "loop" noDate=true}}
                 {{/foreach}}

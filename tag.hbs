@@ -41,7 +41,7 @@
         {{pagination}}
         
         {{#tag}}
-            <div class="tag-list-wrapper container wide">
+            <div class="tag-list-wrapper wrapper">
                 {{#get "tags" limit="16" include='count.posts' order='count.posts desc' filter="id:-{{id}}+visibility:public" as |tags|}}
                     {{#if tags}}
                         <div class="wave-separator"></div>
