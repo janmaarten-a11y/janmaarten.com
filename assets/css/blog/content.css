@@ -8,7 +8,7 @@ headings, text, images and lists. We deal with cards lower down. */
 }
 /* Default vertical spacing */
 .gh-content > * + * {
-    margin-top: 2.8rem;
+    margin-top: var(--space-xl);
     margin-bottom: 0;
 }
 
@@ -24,32 +24,32 @@ headings, text, images and lists. We deal with cards lower down. */
 /* Add back a top margin to all headings, unless a heading
 is the very first element in the post content */
 .gh-content > [id]:not(:first-child) {
-    margin-top: 6.4rem;
+    margin-top: var(--space-3xl);
 }
 
 /* Add a small margin between a heading and anything after it */
 .gh-content > [id] + * {
-    margin-top: 2rem;
+    margin-top: var(--space-l);
 }
 
 .gh-content > [id] + p {
-    margin-top: 1.2rem;
+    margin-top: var(--space-m);
 }
 
 .gh-content > [id] + .kg-card {
-    margin-top: 2.8rem;
+    margin-top: var(--space-xl);
 }
 
 /* A larger margin before/after HRs and blockquotes */
 .gh-content > hr,
 .gh-content > blockquote {
     position: relative;
-    margin-top: 4.8rem;
+    margin-top: var(--space-2xl);
 }
 
 .gh-content > hr + *,
 .gh-content > blockquote + * {
-    margin-top: 4.8rem;
+    margin-top: var(--space-2xl);
 }
 
 .gh-content > hr {
@@ -77,20 +77,20 @@ is the very first element in the post content */
 
 /* Cards */
 .gh-content :not(.kg-card):not([id]) + .kg-card {
-    margin-top: 4.8rem;
+    margin-top: var(--space-2xl);
 }
 
 .gh-content .kg-card + :not(.kg-card):not([id]) {
-    margin-top: 4.8rem;
+    margin-top: var(--space-2xl);
 }
 
 .gh-content :not(.kg-card):not([id]) + .kg-card:not(.kg-width-wide):not(.kg-width-full) {
-    margin-top: 3.6rem;
+    margin-top: var(--space-xl);
 
 }
 
 .gh-content .kg-card:not(.kg-width-wide):not(.kg-width-full) + :not(.kg-card):not([id]) {
-    margin-top: 3.6rem;
+    margin-top: var(--space-xl);
 }
 
 /* Now the content typography styles */
@@ -121,8 +121,8 @@ is the very first element in the post content */
     font-size: var(--size-step-min-2);
     text-transform: uppercase;
     color: var(--tertiary-text-color);
-    margin-bottom: -6.4rem !important;
-    margin-top: 6.4rem !important;
+    margin-bottom: calc(-1 * var(--space-3xl)) !important;
+    margin-top: var(--space-3xl) !important;
 }
 
 .serie-page .gh-content h2 {
@@ -205,11 +205,11 @@ is the very first element in the post content */
 .gh-content > ul,
 .gh-content > ol,
 .gh-content > dl {
-    padding-left: 2.4rem;
+    padding-left: var(--space-l);
 }
 
 .gh-content li + li {
-    margin-top: 1.2rem;
+    margin-top: var(--space-m);
 }
 
 .gh-content-line {
@@ -224,15 +224,15 @@ is the very first element in the post content */
 
 .meta-sticky-top {
     position: sticky;
-    top: 1.2rem;
-    margin-top: -2rem;
+    top: var(--space-m);
+    margin-top: calc(-1 * var(--space-l));
     justify-content: end;
-    margin-right: 3.2rem;
+    margin-right: var(--space-xl);
 }
 
 .time-line {
     border-right: 1px dashed var(--tertiary-text-color);
-    margin-right: 2.8rem;
+    margin-right: var(--space-xl);
 }
 
 .time-line::before {
@@ -249,7 +249,7 @@ is the very first element in the post content */
 }
 
 .anchor-indent {
-    padding-top: 3.2rem;
+    padding-top: var(--space-xl);
 }
 
 .tag-hash-u-hide-overview .serie-overview {
@@ -257,11 +257,11 @@ is the very first element in the post content */
 }
 
 .timeline-content.gh-content {
-    margin-top: -2rem;
+    margin-top: calc(-1 * var(--space-l));
 }
 
 .timeline-content.gh-content {
-    padding-left: 3.2rem;
+    padding-left: var(--space-xl);
 }
 
 .timeline-content .toc-container {
@@ -270,9 +270,9 @@ is the very first element in the post content */
 
 .view-arrow {
     position: absolute;
-    top: -3rem;
+    top: calc(-1 * var(--space-l));
     right: 0;
-    padding: .8rem;
+    padding: var(--space-xs);
     background-color: var(--input-background-color);
     height: 3.2rem;
     width: 3.2rem;

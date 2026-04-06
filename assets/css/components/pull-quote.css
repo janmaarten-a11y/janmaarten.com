@@ -116,14 +116,14 @@ pull-quote {
 }
 
 .pull-quote-context > * + * {
-    margin-top: 2.8rem;
+    margin-top: var(--space-xl);
     margin-bottom: 0;
 }
 
 .pull-quote-context > [id]:not(:first-child) {
-    margin-top: 6.4rem;
+    margin-top: var(--space-3xl);
 }
 
 .pull-quote-context > [id] + * {
-    margin-top: 2rem;
+    margin-top: var(--space-l);
 }
