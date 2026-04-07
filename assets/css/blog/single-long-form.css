@@ -31,6 +31,8 @@ blockquote.kg-blockquote-alt */
   font-weight: normal;
   line-height: 1.55;
   grid-column: wide-start/wide-end;
+  border: none;
+  text-align: center;
 }
 
 /* Lists — slightly smaller than serif body text */
