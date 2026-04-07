@@ -1,0 +1,74 @@
+/* Link Tooltip — hover/focus tooltip for external links in .gh-content
+   Shows domain (default) + optional title/description/image via data-* attributes.
+   Hidden on touch-only devices via (hover: hover) media query in JS. */
+
+.link-tooltip {
+    position: absolute;
+    z-index: 100;
+    max-width: 400px;
+    padding: var(--space-xs) var(--space-s);
+    background-color: var(--background-color);
+    border: 1px solid var(--divider-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 4px 12px oklch(0 0 0 / 0.1);
+    font-size: var(--size-step-min-2);
+    line-height: var(--leading-fine);
+    color: var(--primary-text-color);
+    pointer-events: auto;
+}
+
+.link-tooltip[hidden] {
+    display: none;
+}
+
+.link-tooltip-title {
+    display: block;
+    font-weight: var(--font-semi-bold);
+    font-size: var(--size-step-min-1);
+    margin-bottom: var(--space-3xs);
+    color: var(--primary-text-color);
+}
+
+.link-tooltip-domain {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3em;
+    font-size: var(--size-step-min-2);
+    color: var(--ghost-accent-color);
+    word-break: break-all;
+}
+
+.link-tooltip-icon {
+    flex-shrink: 0;
+    position: relative;
+    top: 0.15em;
+}
+
+/* Only add bottom margin if followed by a description */
+.link-tooltip-domain:not(:last-child) {
+    margin-bottom: var(--space-3xs);
+}
+
+.link-tooltip-description {
+    display: block;
+    color: var(--secondary-text-color);
+}
+
+.link-tooltip-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: var(--space-xs);
+}
+
+/* ---- Dark mode ---- */
+[data-theme="dark"] .link-tooltip {
+    box-shadow: 0 4px 12px oklch(0 0 0 / 0.3);
+}
+
+[data-theme="dark"] .link-tooltip-domain {
+    color: var(--color-teal-subdued);
+}

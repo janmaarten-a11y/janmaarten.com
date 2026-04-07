@@ -75,6 +75,7 @@
 @import "components/footnote-inline.css";
 @import "components/side-note.css";
 @import "components/citation-card.css";
+@import "components/link-tooltip.css";
 @import "components/pull-quote.css";
 
 /* 8. Vendor */

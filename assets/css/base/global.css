@@ -64,7 +64,7 @@ blockquote {
 
 code {
   font-family: var(--font-mono);
-  font-size: 0.9em;
+  font-size: var(--size-step--1);
 }
 
 pre {
