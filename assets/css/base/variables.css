@@ -38,11 +38,11 @@
   --space-2xl-3xl: clamp(3.5625rem, 1.97rem + 7.98vw, 8.75rem);
 
   /* Text sizes */
-  --size-step--2: clamp(0.8125rem, 0.75rem + 0.29vw, 1rem);
-  --size-step--1: clamp(1rem, 0.88rem + 0.58vw, 1.375rem);
+  --size-step--2: clamp(0.875rem, 0.84rem + 0.19vw, 1rem);
+  --size-step--1: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
   --size-step-0: clamp(1.125rem, 1.05rem + 0.38vw, 1.375rem);
-  --size-step-1: clamp(1.1875rem, 1.01rem + 0.87vw, 1.75rem);
-  --size-step-2: clamp(1.4375rem, 1.21rem + 1.15vw, 2.1875rem);
+  --size-step-1: clamp(1.1875rem, 1.05rem + 0.67vw, 1.625rem);
+  --size-step-2: clamp(1.4375rem, 1.26rem + 0.87vw, 2rem);
   --size-step-3: clamp(1.6875rem, 1.36rem + 1.63vw, 2.75rem);
   --size-step-4: clamp(2.0625rem, 1.64rem + 2.12vw, 3.4375rem);
   --size-step-5: clamp(2.5rem, 1.96rem + 2.69vw, 4.25rem);
