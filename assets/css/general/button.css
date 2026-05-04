@@ -17,13 +17,13 @@
 
 .button:hover,
 .button.button-secondary:hover {
-    color: var(--ghost-accent-color);
-    border-color: var(--ghost-accent-color);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
 .button:focus-visible {
-    outline: 4px solid var(--ghost-accent-color);
-    outline-offset: 4px;
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
 }
 
 .button.button-primary {
@@ -61,7 +61,7 @@
 }
 
 .button-icon:hover .icon {
-    color: var(--ghost-accent-color);
+    color: var(--color-primary);
 }
 
 .button-text {

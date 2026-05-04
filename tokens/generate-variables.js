@@ -93,6 +93,15 @@ lines.push('  --tracking: -0.04ch;');
 lines.push('  --tracking-s: -0.075ch;');
 lines.push('  --stroke: 1px solid var(--color-bg-accent);');
 
+// Gradients
+if (tokens.gradients) {
+  lines.push('');
+  lines.push('  /* Gradients */');
+  for (const [name, value] of Object.entries(tokens.gradients)) {
+    lines.push(`  --gradient-${name}: ${value};`);
+  }
+}
+
 lines.push('}');
 
 // Semantic color mappings

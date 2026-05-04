@@ -17,9 +17,8 @@
 /* 1. Shared Ghost theme — provides .kg-* card styles, .gh-content base */
 @import "@tryghost/shared-theme-assets/assets/css/v1/screen.css";
 
-/* 2. Base — reset, fonts, design tokens, global element styles */
+/* 2. Base — reset, design tokens, global element styles */
 @import "base/reset.css";
-@import "base/fonts.css";
 @import "base/variables.css";
 @import "base/global.css";
 

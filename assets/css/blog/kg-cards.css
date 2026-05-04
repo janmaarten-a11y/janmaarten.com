@@ -52,18 +52,13 @@
 }
 
 .kg-bookmark-card a.kg-bookmark-container:hover {
-    border: 1px solid var(--ghost-accent-color);
-    box-shadow: 0 0 10px #3120aa25;
+    border: 1px solid var(--color-primary);
+    box-shadow: 0 0 10px oklch(from var(--color-secondary) l c h / 0.15);
 }
 
 .kg-bookmark-card a.kg-bookmark-container:hover .kg-bookmark-title {
     text-decoration: underline;
-    color: var(--ghost-accent-color);
-}
-
-.kg-bookmark-card a.kg-bookmark-container:hover:active * {
-    color: #fff !important;
-    opacity: 1;
+    color: var(--color-primary);
 }
 
 .kg-bookmark-card a.kg-bookmark-container:hover .kg-bookmark-description,

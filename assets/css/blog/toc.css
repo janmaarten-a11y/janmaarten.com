@@ -66,8 +66,8 @@
 }
 
 .toc-desktop .toc-header:focus-visible {
-    outline: 4px solid var(--ghost-accent-color);
-    outline-offset: 2px;
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
     border-radius: 2px;
 }
 
@@ -136,6 +136,7 @@
 }
 
 .toc-list-item a {
+    display: inline-block;
     text-decoration: none;
     color: var(--secondary-text-color);
     transition: color var(--transition-duration) var(--transition-timing);
@@ -143,6 +144,7 @@
 
 .toc-list-item a:hover {
     color: var(--primary-text-color);
+    text-decoration: underline;
 }
 
 /* ---- Mobile TOC list styles ---- */
@@ -171,13 +173,13 @@
 }
 
 .toc-mobile .toc-list-item a:hover {
-    color: var(--color-teal);
-    border-bottom: 1px solid var(--color-teal);
+    color: var(--color-indigo);
+    border-bottom: 1px solid var(--color-indigo);
 }
 
 [data-theme="dark"] .toc-mobile .toc-list-item a:hover {
-    color: var(--color-teal-subdued);
-    border-color: var(--color-teal-subdued);
+    color: var(--color-indigo-subdued);
+    border-color: var(--color-indigo-subdued);
 }
 
 .toc-mobile .toc-list-item {
@@ -204,8 +206,11 @@
 }
 
 .toc-desktop .toc-list-item.is-active-li > a {
-    color: var(--brand-color);
+    color: var(--color-indigo);
     font-weight: var(--font-semi-bold);
+}
+[data-theme="dark"] .toc-desktop .toc-list-item.is-active-li > a {
+    color: var(--color-teal-subdued);
 }
 
 /* Vertical track line — clipped to start/end circles */

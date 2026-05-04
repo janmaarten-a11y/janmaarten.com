@@ -11,11 +11,32 @@ h1.h1.hero-header {
 .home-hero-header {
     margin-bottom: var(--space-xl);
     font-family: var(--font-serif);
-    font-weight: var(--font-regular);
+    font-weight: var(--font-semi-bold);
     text-transform: none;
     letter-spacing: 0;
-    font-size: var(--size-step-4);
+    font-size: var(--size-step-5);
     line-height: var(--leading-fine);
+    color: var(--color-primary);
+    background-image: var(--gradient-cool-light);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-wrap: auto;
+}
+
+.home-hero-header::selection {
+    -webkit-text-fill-color: var(--color-light);
+    background: var(--color-secondary);
+}
+
+[data-theme="dark"] .home-hero-header {
+    background-image: var(--gradient-warm);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .home-hero-header {
+        background-image: var(--gradient-warm);
+    }
 }
 
 .hero-desc {

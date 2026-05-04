@@ -47,7 +47,7 @@
 .feed:not(.no-link):hover .feed-title,
 .card.post:not(.card-overlay):hover h3.card-title {
     text-decoration: underline;
-    color:var(--ghost-accent-color);
+    color: var(--color-primary);
 }
 
 .post-feed.expanded a.u-permalink:focus-visible {

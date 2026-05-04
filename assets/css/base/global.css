@@ -48,12 +48,16 @@ a {
 }
 
 a:hover {
-  text-decoration: none;
+  opacity: 1;
+}
+
+a:active {
+  color: var(--color-tertiary);
 }
 
 :focus-visible {
   outline: 3px solid var(--color-primary);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 blockquote {

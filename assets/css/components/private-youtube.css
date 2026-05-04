@@ -67,8 +67,8 @@ private-youtube iframe {
 }
 
 .private-youtube-activate:focus-visible {
-    outline: 4px solid var(--ghost-accent-color);
-    outline-offset: -4px;
+    outline: 3px solid var(--color-primary);
+    outline-offset: -3px;
 }
 
 /* Fallback link styling (when JS hasn't run yet) */

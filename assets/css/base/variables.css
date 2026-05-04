@@ -45,12 +45,12 @@
   --size-step-2: clamp(1.4375rem, 1.26rem + 0.87vw, 2rem);
   --size-step-3: clamp(1.6875rem, 1.36rem + 1.63vw, 2.75rem);
   --size-step-4: clamp(2.0625rem, 1.64rem + 2.12vw, 3.4375rem);
-  --size-step-5: clamp(2.5rem, 1.96rem + 2.69vw, 4.25rem);
-  --size-step-6: clamp(2.9375rem, 2.19rem + 3.75vw, 5.375rem);
-  --size-step-7: clamp(3.5625rem, 2.58rem + 4.90vw, 6.75rem);
+  --size-step-5: clamp(2.5rem, 2.08rem + 2.12vw, 3.875rem);
+  --size-step-6: clamp(2.9375rem, 2.38rem + 2.79vw, 4.75rem);
+  --size-step-7: clamp(3.5625rem, 2.89rem + 3.37vw, 5.75rem);
 
   /* Fonts */
-  --font-display: "Fraunces", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-display: "Petrona", Georgia, Cambria, "Times New Roman", Times, serif;
   --font-base: "Atkinson Hyperlegible Next", system-ui, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
 
@@ -77,6 +77,12 @@
   --tracking: -0.04ch;
   --tracking-s: -0.075ch;
   --stroke: 1px solid var(--color-bg-accent);
+
+  /* Gradients */
+  --gradient-viridis: linear-gradient(90deg, #440154, #3b528b, #21918c, #5ec962, #fde725);
+  --gradient-cool: linear-gradient(90deg, #440154, #3b528b, #21918c);
+  --gradient-cool-light: linear-gradient(10deg,#600077,#3758ab,#00b1a9);
+  --gradient-warm: linear-gradient(90deg, #21918c, #5ec962, #fde725);
 }
 
 /* Semantic color mappings */

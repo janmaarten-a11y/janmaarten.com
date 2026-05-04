@@ -53,8 +53,8 @@
 }
 
 .accessible-toggle summary:focus-visible {
-    outline: 4px solid var(--ghost-accent-color);
-    outline-offset: -4px;
+    outline: 3px solid var(--color-primary);
+    outline-offset: -3px;
     border-radius: 3px;
 }
 

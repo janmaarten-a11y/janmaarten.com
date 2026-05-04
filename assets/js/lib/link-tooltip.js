@@ -205,21 +205,34 @@
     }, true);
 
     // Keyboard: show on focus, hide on blur
+    // Defer show so scroll-into-view (triggered by Tab) completes first,
+    // preventing the tooltip from positioning against a stale rect.
+    var focusShowTimer = null;
+
     content.addEventListener('focusin', function (e) {
         var link = e.target.closest('a');
         if (!link || !isEligible(link)) return;
-        showTooltip(link);
+        clearTimers();
+        if (focusShowTimer) { clearTimeout(focusShowTimer); focusShowTimer = null; }
+        focusShowTimer = setTimeout(function () {
+            focusShowTimer = null;
+            // Confirm focus is still on this link after scroll settled
+            if (document.activeElement === link || link.contains(document.activeElement)) {
+                showTooltip(link);
+            }
+        }, 150);
     });
 
     content.addEventListener('focusout', function (e) {
         var link = e.target.closest('a');
         if (!link) return;
-        // Small delay to allow focus moving to tooltip content
+        if (focusShowTimer) { clearTimeout(focusShowTimer); focusShowTimer = null; }
+        // Delay hide to allow focus moving to next element
         setTimeout(function () {
             if (activeTooltip && !activeTooltip.contains(document.activeElement)) {
                 hideTooltip();
             }
-        }, 50);
+        }, 100);
     });
 
     // Escape key dismisses

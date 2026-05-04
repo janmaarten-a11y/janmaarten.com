@@ -14,7 +14,7 @@
     margin-block: var(--space-m);
     padding: var(--space-3xs) var(--space-m) var(--space-s);
     background-color: var(--hero-background-color);
-    border-left: 4px solid var(--ghost-accent-color);
+    border-left: 4px solid var(--color-tertiary);
     border-radius: var(--border-radius-medium);
 }
 
@@ -24,7 +24,7 @@
     font-weight: var(--font-semi-bold);
     font-variant: all-petite-caps;
     letter-spacing: 0.05em;
-    color: var(--ghost-accent-color);
+    color: var(--color-tertiary);
     margin: var(--space-3xs) 0;
     text-align: left;
 }
@@ -72,10 +72,4 @@
 }
 
 /* ---- Dark mode adjustments ---- */
-[data-theme="dark"] .citation-label {
-    color: var(--color-teal-subdued);
-}
-
-[data-theme="dark"] .citation-card {
-    border-left-color: var(--color-teal-subdued);
-}
+/* --color-tertiary maps to --color-purple-subdued in dark mode automatically */

@@ -44,11 +44,12 @@
 }
 
 .tag-list-item-wrapper:hover {
-    background-color: var(--light-gray-color);
+    background-color: oklch(from var(--color-secondary) l c h / 0.1);
 }
 
 .tag-list-item {
     display: block;
+    color: var(--color-secondary);
 }
 
 .has-serif-body .tag-list-item {

@@ -109,13 +109,6 @@ a:hover,
 a:focus {
     text-decoration: none;
 }
-a:not(.u-permalink):active,
-a:not(.u-permalink):hover:active {
-    background: var(--ghost-accent-color) !important;
-    border-color: var(--ghost-accent-color) !important;
-    color:#fff !important;
-    opacity: 1;
-}
 
 .webring-nav a,
 footer a,
@@ -138,8 +131,8 @@ a.kg-bookmark-container:focus-visible,
 a.u-permalink:focus-visible,
 .kg-toggle-card-icon:focus-visible,
 button.gh-burger:focus-visible {
-    outline: 4px solid var(--ghost-accent-color);
-    outline-offset: 4px;
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
 }
   
 h1,
@@ -173,11 +166,12 @@ blockquote:not([class]) {
     margin-right: 0;
     margin-left: 0;
     padding: 0 var(--space-l);
-    border-left: 2px solid var(--brand-color);
+    border-left: 6px solid var(--brand-color);
     color: var(--primary-text-color);
     font-size: var(--base-text-size);
     line-height: 1.7;
     font-weight: var(--font-regular);
+    font-family: var(--font-display);
     letter-spacing: -0.03rem;
 }
 

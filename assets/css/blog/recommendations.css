@@ -27,7 +27,7 @@
 }
 
 .recommendation a:hover .recommendation-title {
-    color: var(--ghost-accent-color);
+    color: var(--color-primary);
     text-decoration: underline;
 }
 

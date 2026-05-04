@@ -232,7 +232,17 @@
         function updateTocPosition() {
             if (!content) return;
             var textViewportTop = contentTextTop - window.scrollY;
-            desktop.style.top = Math.max(stickyTop, textViewportTop) + 'px';
+            var tocHeight = desktop.offsetHeight;
+            var contentBottom = content.getBoundingClientRect().bottom;
+            var maxTop = contentBottom - tocHeight;
+
+            // Hide TOC when it would overlap below the content area
+            if (maxTop < stickyTop) {
+                desktop.style.visibility = 'hidden';
+            } else {
+                desktop.style.visibility = '';
+                desktop.style.top = Math.max(stickyTop, Math.min(textViewportTop, maxTop)) + 'px';
+            }
         }
 
         // Track manual toggle: user clicked summary

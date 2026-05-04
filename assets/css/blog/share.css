@@ -29,9 +29,9 @@
 }
 
 .share-link:hover {
-    background-color: var(--brand-color);
-    border-color: var(--brand-color);
-    color: var(--white-color);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-light);
 }
 
 .share-link:hover .icon {
