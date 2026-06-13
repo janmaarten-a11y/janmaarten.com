@@ -110,13 +110,18 @@
         return tooltip;
     }
 
-    // Position tooltip above the link (or below if no space above)
+    // Position tooltip above the link (or below if no space above).
+    // For multi-line links, anchor to the first line fragment so the tooltip
+    // sits visually next to where the user's eye is.
     function positionTooltip(tooltip, link) {
         tooltip.removeAttribute('hidden');
         tooltip.style.visibility = 'hidden';
         tooltip.style.display = 'block';
 
-        var linkRect = link.getBoundingClientRect();
+        // Use the first ClientRect (first line fragment) rather than the
+        // bounding box, which spans all wrapped lines.
+        var rects = link.getClientRects();
+        var linkRect = rects.length ? rects[0] : link.getBoundingClientRect();
         var tipRect = tooltip.getBoundingClientRect();
         var scrollY = window.scrollY;
         var scrollX = window.scrollX;
@@ -163,6 +168,12 @@
         if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
     }
 
+    // True when the active link is still keyboard-focused; mouse-driven
+    // hide handlers should defer to keyboard state in that case.
+    function activeLinkHasFocus() {
+        return activeLink && document.activeElement === activeLink;
+    }
+
     // Delegated mouse events on .gh-content
     var content = document.querySelector('.gh-content');
     if (!content) return;
@@ -184,6 +195,8 @@
         clearTimers();
         // Grace period: allow moving to the tooltip
         hideTimer = setTimeout(function () {
+            // Don't hide if the link is still keyboard-focused
+            if (activeLinkHasFocus()) return;
             hideTooltip();
         }, HIDE_GRACE);
     }, true);
@@ -199,6 +212,8 @@
         if (e.target.closest && e.target.closest('.link-tooltip')) {
             clearTimers();
             hideTimer = setTimeout(function () {
+                // Don't hide if the link is still keyboard-focused
+                if (activeLinkHasFocus()) return;
                 hideTooltip();
             }, HIDE_GRACE);
         }

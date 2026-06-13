@@ -1,0 +1,32 @@
+/* Dense lists — for posts with long reference/footnote lists.
+   Trigger: add internal tag #dense-lists to the post in Ghost.
+   Ghost renders this as `tag-hash-dense-lists` on the <article> wrapper.
+
+   Forces sans-serif (overrides long-form serif), smaller font size,
+   tighter line-height, and reduced row spacing on every ol/ul
+   inside .single-content. */
+
+.tag-hash-dense-lists .single-content ol,
+.tag-hash-dense-lists .single-content ul {
+    font-family: var(--font-base);
+    font-size: var(--size-step--1);
+    line-height: var(--leading-fine);
+}
+
+/* Tighter top margin on the list itself (overrides .gh-content > * + *) */
+.tag-hash-dense-lists .gh-content > ol,
+.tag-hash-dense-lists .gh-content > ul {
+    margin-top: var(--space-m);
+}
+
+.tag-hash-dense-lists .single-content ol li:not(.toc-list-item),
+.tag-hash-dense-lists .single-content ul li:not(.toc-list-item) {
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+}
+
+.tag-hash-dense-lists .single-content ol li + li,
+.tag-hash-dense-lists .single-content ul li + li {
+    margin-top: var(--space-s);
+}

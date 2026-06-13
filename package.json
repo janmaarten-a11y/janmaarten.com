@@ -165,7 +165,8 @@
         }
     },
     "scripts": {
-        "dev": "gulp",
+        "dev": "bash scripts/dev.sh",
+        "dev:watch": "gulp",
         "test": "gscan .",
         "zip": "gulp zip"
     },

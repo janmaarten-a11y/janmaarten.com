@@ -46,19 +46,148 @@
   color: inherit;
 }
 
-/* Bookmark cards */
+/* Bookmark cards.
+   Default state: simple gray border via the two-layer background trick
+   (so we don't have to wrestle with Ghost's vendor !important rules later).
+
+   Hover: ::before paints a viridis gradient over the link, masked so only
+   the 2px border ring is visible. The gradient slides horizontally via
+   background-position-x animation.
+
+   Light mode uses the full viridis spectrum; dark mode uses the warm
+   half (teal → green → lavender) to match the long-form progress bar.
+
+   Note: tried conic-gradient rotation and linear-gradient angle rotation
+   via @property — both rendered statically with mask-composite. The
+   horizontal slide below works consistently. */
+/* Bookmark cards.
+   Resting border via inset box-shadow (lets the hover ::before sit at the
+   true outer edge without a transparent-border offset). Background uses
+   !important to defeat the shared-theme-assets background rule.
+
+   Hover: ::before paints a viridis gradient over the link, masked so only
+   the 2px border ring is visible. The gradient slides horizontally via
+   background-position-x animation.
+
+   Light mode uses the full viridis spectrum; dark mode uses the warm
+   half (teal → green → lavender) to match the long-form progress bar.
+
+   Note: tried conic-gradient rotation and linear-gradient angle rotation
+   via @property — both rendered statically with mask-composite. The
+   horizontal slide below works consistently. */
 .kg-bookmark-card a.kg-bookmark-container {
-    border: 1px solid rgba(124, 139, 154, 0.5);
+    position: relative;
+    --bookmark-stops: #440154, #3b528b, #21918c, #5ec962, #fde725, #5ec962, #21918c, #3b528b, #440154;
+    background-color: var(--background-color) !important;
+    box-shadow: inset 0 0 0 2px rgba(124, 139, 154, 0.5);
+}
+
+/* Dark mode: switch to the warm gradient (matches reading progress bar) */
+[data-theme="dark"] .kg-bookmark-card a.kg-bookmark-container {
+    --bookmark-stops: #21918c, #73d677, #a295ff, #73d677, #21918c, #73d677, #a295ff, #73d677, #21918c;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .kg-bookmark-card a.kg-bookmark-container {
+        --bookmark-stops: #21918c, #73d677, #a295ff, #73d677, #21918c, #73d677, #a295ff, #73d677, #21918c;
+    }
+}
+
+/* Sliding gradient ring (masked to border only).
+   z-index: 1 so the ring renders above child thumbnails. The mask clips
+   everything except the 2px border area, so the thumbnail underneath stays
+   fully visible — only the ring paints over the thumbnail's outer edge. */
+.kg-bookmark-card a.kg-bookmark-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(90deg, var(--bookmark-stops));
+    background-size: 800% 100%;
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+            mask-composite: exclude;
+    opacity: 0;
+    transition: opacity var(--transition-duration) var(--transition-timing);
+    pointer-events: none;
+}
+
+.kg-bookmark-card a.kg-bookmark-container:hover::before {
+    opacity: 1;
+    animation: bookmark-ring 10s linear infinite;
 }
 
 .kg-bookmark-card a.kg-bookmark-container:hover {
-    border: 1px solid var(--color-primary);
-    box-shadow: 0 0 10px oklch(from var(--color-secondary) l c h / 0.15);
+    /* Hide resting border (inset shadow first), keep halo glow (outer shadow second) */
+    box-shadow:
+        inset 0 0 0 2px transparent,
+        0 0 30px oklch(from var(--color-secondary) l c h / 0.25);
+    /* Reset the thick highlight-style underline inherited from .gh-content a:hover */
+    text-decoration-thickness: 1px;
+    text-underline-offset: auto;
+}
+
+/* Focus-visible: bookmark card is a wrapper link, not body text.
+   Suppress the .gh-content a focus styles (background + bottom border)
+   and show an offset outline + stronger halo instead. */
+.kg-bookmark-card a.kg-bookmark-container:focus,
+.kg-bookmark-card a.kg-bookmark-container:focus-visible {
+    background-color: var(--background-color) !important;
+    border-bottom: 0;
+    text-decoration: none;
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+    box-shadow:
+        inset 0 0 0 2px transparent,
+        0 0 40px oklch(from var(--color-primary) l c h / 0.35);
+}
+
+/* Focus + hover: gradient ring takes over the inset border, outline shifts
+   to tertiary (purple light / lavender dark) so the overlap state reads as
+   intentional — same pattern used for content links. */
+.kg-bookmark-card a.kg-bookmark-container:focus:hover,
+.kg-bookmark-card a.kg-bookmark-container:focus-visible:hover {
+    border-bottom: 0;
+    text-decoration: none;
+    outline: 3px solid var(--color-tertiary);
+    outline-offset: 4px;
+    box-shadow:
+        inset 0 0 0 2px transparent,
+        0 0 40px oklch(from var(--color-tertiary) l c h / 0.35);
+}
+
+/* Loop 0% → 100%. With background-size: 800%, this translates the gradient
+   by 700% of the card's width per cycle. The viridis pattern is symmetric
+   (purple…yellow…purple) so the loop seam is invisible. */
+@keyframes bookmark-ring {
+    0%   { background-position-x: 0%; }
+    100% { background-position-x: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .kg-bookmark-card a.kg-bookmark-container:hover::before {
+        animation: none;
+    }
 }
 
 .kg-bookmark-card a.kg-bookmark-container:hover .kg-bookmark-title {
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
     color: var(--color-primary);
+}
+
+/* Focus + hover: title color matches the tertiary outline */
+.kg-bookmark-card a.kg-bookmark-container:focus:hover .kg-bookmark-title,
+.kg-bookmark-card a.kg-bookmark-container:focus-visible:hover .kg-bookmark-title {
+    color: var(--color-tertiary);
 }
 
 .kg-bookmark-card a.kg-bookmark-container:hover .kg-bookmark-description,
@@ -71,7 +200,8 @@
 }
 
 .kg-bookmark-card .kg-bookmark-thumbnail img {
-    background: var(--input-background-color);
+    background: none;
+    padding: 2px 2px 2px 0;
 }
 
 /* Wide image borders */

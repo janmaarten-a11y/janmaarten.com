@@ -157,7 +157,7 @@ is the very first element in the post content */
 .gh-content a:hover {
   color: var(--color-secondary);
   text-decoration-thickness: .7ch;
-  text-underline-offset: -.3ch;
+  text-underline-offset: -.2ch;
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
   text-decoration-color: oklch(from var(--color-purple-subdued) l c h / 0.5);
@@ -167,7 +167,16 @@ is the very first element in the post content */
 .gh-content a:focus-visible {
     background: oklch(from var(--color-purple-subdued) l c h / 0.35);
     color: var(--primary-text-color);
-    border-bottom: 4px solid var(--color-primary);
+    border-bottom: .4ch solid var(--color-primary);
+    text-decoration: none;
+}
+
+/* Combined: keyboard-focused AND mouse-hovered.
+   Use the tertiary accent so the overlap reads as intentional. */
+.gh-content a:focus:hover,
+.gh-content a:focus-visible:hover {
+    background: oklch(from var(--color-tertiary) l c h / 0.25);
+    border-bottom-color: var(--color-tertiary);
 }
 
 /* ---- Dark mode content links ---- */
@@ -177,15 +186,22 @@ is the very first element in the post content */
 }
 
 [data-theme="dark"] .gh-content a:hover {
-    color: var(--color-teal-subdued);
-    text-decoration-color: oklch(from var(--color-purple-subdued) l c h / 0.25);
+    color: var(--color-lavender);
+    text-decoration-color: oklch(from var(--color-lavender) l c h / 0.35);
 }
 
 [data-theme="dark"] .gh-content a:focus,
 [data-theme="dark"] .gh-content a:focus-visible {
     background: oklch(from var(--color-teal-subdued) l c h / 0.15);
     color: var(--primary-text-color);
-    border-bottom-color: var(--color-teal-subdued);
+    border-bottom: .4ch solid var(--color-teal-subdued);
+    text-decoration: none;
+}
+
+[data-theme="dark"] .gh-content a:focus:hover,
+[data-theme="dark"] .gh-content a:focus-visible:hover {
+    background: oklch(from var(--color-lavender) l c h / 0.2);
+    border-bottom-color: var(--color-lavender);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -195,15 +211,22 @@ is the very first element in the post content */
     }
 
     :root:not([data-theme="light"]) .gh-content a:hover {
-        color: var(--color-indigo-subdued);
-        text-decoration-color: oklch(from var(--color-teal-subdued) l c h / 0.5);
+        color: var(--color-lavender);
+        text-decoration-color: oklch(from var(--color-lavender) l c h / 0.35);
     }
 
     :root:not([data-theme="light"]) .gh-content a:focus,
     :root:not([data-theme="light"]) .gh-content a:focus-visible {
         background: oklch(from var(--color-teal-subdued) l c h / 0.15);
         color: var(--primary-text-color);
-        border-bottom-color: var(--color-teal-subdued);
+        border-bottom: .4ch solid var(--color-teal-subdued);
+        text-decoration: none;
+    }
+
+    :root:not([data-theme="light"]) .gh-content a:focus:hover,
+    :root:not([data-theme="light"]) .gh-content a:focus-visible:hover {
+        background: oklch(from var(--color-lavender) l c h / 0.2);
+        border-bottom-color: var(--color-lavender);
     }
 }
 

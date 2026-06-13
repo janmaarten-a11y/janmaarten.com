@@ -67,6 +67,28 @@ blockquote.kg-blockquote-alt */
     background: var(--gradient-viridis);
     background-size: 100vw 100%;
 }
+
+/* Dark mode: swap to warm gradient (teal → green → yellow)
+   so the start of the bar is visible against the dark background */
+[data-theme="dark"] .reading-progress::-moz-progress-bar {
+    background: var(--gradient-warm);
+    background-size: 100vw 100%;
+}
+[data-theme="dark"] .reading-progress::-webkit-progress-value {
+    background: var(--gradient-warm);
+    background-size: 100vw 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .reading-progress::-moz-progress-bar {
+        background: var(--gradient-warm);
+        background-size: 100vw 100%;
+    }
+    :root:not([data-theme="light"]) .reading-progress::-webkit-progress-value {
+        background: var(--gradient-warm);
+        background-size: 100vw 100%;
+    }
+}
   
 /* Drop cap  */
 article.tag-hash-long-form p.dropcap:first-letter {
@@ -80,7 +102,7 @@ article.tag-hash-long-form p.dropcap:first-letter {
 
 /* Asides */
 .tag-hash-long-form .single-content .kg-card .kg-callout-text {
-    font-size: var(--size-step--1);
-    line-height:1.7;
+    font-size: var(--size-step-0);
+    line-height: 1.6;
 }
 
