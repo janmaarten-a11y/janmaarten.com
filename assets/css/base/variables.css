@@ -15,9 +15,9 @@
   --color-teal: oklch(49.51% 0.13 190.3);
   --color-teal-alt: oklch(73.46% 0.1099 190.5);
   --color-indigo: oklch(44.84% 0.16 266.0);
-  --color-indigo-alt: oklch(79.27% 0.1467 145.2);
+  --color-green-alt: oklch(79.27% 0.1467 145.2);
   --color-purple: oklch(28.50% 0.20 300);
-  --color-purple-alt: oklch(86.25% 0.1521 100.8);
+  --color-yellow-alt: oklch(86.25% 0.1521 100.8);
   --color-lavender: oklch(70% 0.13 290);
 
   /* Spacing */
@@ -111,7 +111,7 @@
     --color-text: var(--color-gray-100);
     --color-bg: var(--color-gray-800);
     --color-primary: var(--color-teal-alt);
-    --color-secondary: var(--color-indigo-alt);
+    --color-secondary: var(--color-green-alt);
     --color-tertiary: var(--color-lavender);
     --color-text-accent: var(--color-gray-300);
     --color-bg-accent: var(--color-gray-700);
@@ -123,7 +123,7 @@
   --color-text: var(--color-gray-100);
   --color-bg: var(--color-gray-800);
   --color-primary: var(--color-teal-alt);
-  --color-secondary: var(--color-indigo-alt);
+  --color-secondary: var(--color-green-alt);
   --color-tertiary: var(--color-lavender);
   --color-text-accent: var(--color-gray-300);
   --color-bg-accent: var(--color-gray-700);

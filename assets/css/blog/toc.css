@@ -178,8 +178,8 @@
 }
 
 [data-mode="dark"] .toc-mobile .toc-list-item a:hover {
-    color: var(--color-indigo-alt);
-    border-color: var(--color-indigo-alt);
+    color: var(--color-green-alt);
+    border-color: var(--color-green-alt);
 }
 
 .toc-mobile .toc-list-item {
