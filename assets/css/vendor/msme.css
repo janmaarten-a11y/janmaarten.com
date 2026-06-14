@@ -583,69 +583,69 @@
    Dark mode
    ============================================ */
 
-[data-theme="dark"] .msme-content-border {
+[data-mode="dark"] .msme-content-border {
     background-image: linear-gradient(135deg, #333F3E, #343636);
 }
 
-[data-theme="dark"] .msme-content {
+[data-mode="dark"] .msme-content {
     background-image: linear-gradient(135deg, #282828, #020A0A);
 }
 
-[data-theme="dark"] .x-msme-icon path,
-[data-theme="dark"] .x-impaling-twitter-msme-icon-x-portion,
-[data-theme="dark"] .reddit-msme-icon path,
-[data-theme="dark"] .threads-msme-icon path,
-[data-theme="dark"] .mastodon-black-and-white-msme-icon,
-[data-theme="dark"] .mastodon-purple-msme-icon path.mastodon-m,
-[data-theme="dark"] .instagram-msme-icon {
+[data-mode="dark"] .x-msme-icon path,
+[data-mode="dark"] .x-impaling-twitter-msme-icon-x-portion,
+[data-mode="dark"] .reddit-msme-icon path,
+[data-mode="dark"] .threads-msme-icon path,
+[data-mode="dark"] .mastodon-black-and-white-msme-icon,
+[data-mode="dark"] .mastodon-purple-msme-icon path.mastodon-m,
+[data-mode="dark"] .instagram-msme-icon {
     fill: #E7E9EA;
 }
 
-[data-theme="dark"] .msme-link-embed-title {
+[data-mode="dark"] .msme-link-embed-title {
     color: #E7E9EA !important;
 }
 
-[data-theme="dark"] .msme-username,
-[data-theme="dark"] .quote-post-text p,
-[data-theme="dark"] .msme-link-embed-excerpt {
+[data-mode="dark"] .msme-username,
+[data-mode="dark"] .quote-post-text p,
+[data-mode="dark"] .msme-link-embed-excerpt {
     color: #E7E9EA;
 }
 
-[data-theme="dark"] .msme-handle,
-[data-theme="dark"] .repost-username,
-[data-theme="dark"] .quote-post-date {
+[data-mode="dark"] .msme-handle,
+[data-mode="dark"] .repost-username,
+[data-mode="dark"] .quote-post-date {
     color: #71767B;
 }
 
-[data-theme="dark"] .msme-link-embed-website {
+[data-mode="dark"] .msme-link-embed-website {
     color: #71767B !important;
 }
 
-[data-theme="dark"] figure blockquote {
+[data-mode="dark"] figure blockquote {
     background-color: transparent !important;
 }
 
-[data-theme="dark"] .repost-block svg {
+[data-mode="dark"] .repost-block svg {
     fill: #71767B;
 }
 
-[data-theme="dark"] .msme-text p,
-[data-theme="dark"] .quote-post-text p {
+[data-mode="dark"] .msme-text p,
+[data-mode="dark"] .quote-post-text p {
     color: #E7E9EA !important;
 }
 
-[data-theme="dark"] .msme-time,
-[data-theme="dark"] .msme-date {
+[data-mode="dark"] .msme-time,
+[data-mode="dark"] .msme-date {
     color: #71767B !important;
 }
 
-[data-theme="dark"] .quote-post,
-[data-theme="dark"] .readers-added-context,
-[data-theme="dark"] .remove-msme-link .msme-image,
-[data-theme="dark"] .msme-link-embed {
+[data-mode="dark"] .quote-post,
+[data-mode="dark"] .readers-added-context,
+[data-mode="dark"] .remove-msme-link .msme-image,
+[data-mode="dark"] .msme-link-embed {
     border: solid 1px #333F3E;
 }
 
-[data-theme="dark"] .msme-connection-line {
+[data-mode="dark"] .msme-connection-line {
     background-color: #475150;
 }

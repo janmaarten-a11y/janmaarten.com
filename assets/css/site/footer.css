@@ -21,7 +21,7 @@
     font-size: var(--size-step--2);
 }
 .footer-copyright p {
-    padding-bottom: 1rem;
+    padding-bottom: 0;
 }
 .footer-nav .nav {
     display: flex;

@@ -8,8 +8,8 @@
   --color-gray-300: oklch(75.10% 0.0031 84.6);
   --color-gray-400: oklch(60.01% 0.0032 84.6);
   --color-gray-500: oklch(50.09% 0.0040 67.7);
-  --color-gray-600: oklch(39.92% 0.0043 67.7);
-  --color-gray-700: oklch(34.98% 0.0044 67.7);
+  --color-gray-600: oklch(39.92% 0.02 260);
+  --color-gray-700: oklch(34.98% 0.02 260);
   --color-gray-800: oklch(30.15% 0.035 260);
   --color-gray-900: oklch(20.05% 0.02 260);
   --color-teal: oklch(49.51% 0.13 190.3);
@@ -94,7 +94,7 @@
 }
 
 :root,
-:root[data-theme="light"] {
+:root[data-mode="light"] {
   --color-text: var(--color-gray-800);
   --color-bg: var(--color-gray-100);
   --color-primary: var(--color-teal);
@@ -106,7 +106,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-mode="light"]) {
     --color-text: var(--color-gray-100);
     --color-bg: var(--color-gray-800);
     --color-primary: var(--color-teal-subdued);
@@ -118,7 +118,7 @@
   }
 }
 
-:root[data-theme="dark"] {
+:root[data-mode="dark"] {
   --color-text: var(--color-gray-100);
   --color-bg: var(--color-gray-800);
   --color-primary: var(--color-teal-subdued);

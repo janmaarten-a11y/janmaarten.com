@@ -101,7 +101,7 @@ pull-quote {
 }
 
 /* --- Dark mode --- */
-[data-theme="dark"] .pull-quote-float:not(.pull-quote-float--inline) {
+[data-mode="dark"] .pull-quote-float:not(.pull-quote-float--inline) {
     border-top-color: var(--color-teal-subdued);
 }
 

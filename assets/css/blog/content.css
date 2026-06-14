@@ -180,51 +180,51 @@ is the very first element in the post content */
 }
 
 /* ---- Dark mode content links ---- */
-[data-theme="dark"] .gh-content a {
+[data-mode="dark"] .gh-content a {
     color: var(--color-teal-subdued);
     text-decoration-color: oklch(from var(--color-teal-subdued) l c h / 0.75);
 }
 
-[data-theme="dark"] .gh-content a:hover {
+[data-mode="dark"] .gh-content a:hover {
     color: var(--color-lavender);
     text-decoration-color: oklch(from var(--color-lavender) l c h / 0.35);
 }
 
-[data-theme="dark"] .gh-content a:focus,
-[data-theme="dark"] .gh-content a:focus-visible {
+[data-mode="dark"] .gh-content a:focus,
+[data-mode="dark"] .gh-content a:focus-visible {
     background: oklch(from var(--color-teal-subdued) l c h / 0.15);
     color: var(--primary-text-color);
     border-bottom: .4ch solid var(--color-teal-subdued);
     text-decoration: none;
 }
 
-[data-theme="dark"] .gh-content a:focus:hover,
-[data-theme="dark"] .gh-content a:focus-visible:hover {
+[data-mode="dark"] .gh-content a:focus:hover,
+[data-mode="dark"] .gh-content a:focus-visible:hover {
     background: oklch(from var(--color-lavender) l c h / 0.2);
     border-bottom-color: var(--color-lavender);
 }
 
 @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .gh-content a {
+    :root:not([data-mode="light"]) .gh-content a {
         color: var(--color-teal-subdued);
         text-decoration-color: oklch(from var(--color-indigo-subdued) l c h / 0.5);
     }
 
-    :root:not([data-theme="light"]) .gh-content a:hover {
+    :root:not([data-mode="light"]) .gh-content a:hover {
         color: var(--color-lavender);
         text-decoration-color: oklch(from var(--color-lavender) l c h / 0.35);
     }
 
-    :root:not([data-theme="light"]) .gh-content a:focus,
-    :root:not([data-theme="light"]) .gh-content a:focus-visible {
+    :root:not([data-mode="light"]) .gh-content a:focus,
+    :root:not([data-mode="light"]) .gh-content a:focus-visible {
         background: oklch(from var(--color-teal-subdued) l c h / 0.15);
         color: var(--primary-text-color);
         border-bottom: .4ch solid var(--color-teal-subdued);
         text-decoration: none;
     }
 
-    :root:not([data-theme="light"]) .gh-content a:focus:hover,
-    :root:not([data-theme="light"]) .gh-content a:focus-visible:hover {
+    :root:not([data-mode="light"]) .gh-content a:focus:hover,
+    :root:not([data-mode="light"]) .gh-content a:focus-visible:hover {
         background: oklch(from var(--color-lavender) l c h / 0.2);
         border-bottom-color: var(--color-lavender);
     }

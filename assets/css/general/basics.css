@@ -43,7 +43,7 @@
 
 :root.has-light-text,
 :root.dark-page,
-[data-theme="dark"] {
+[data-mode="dark"] {
     --primary-text-color: var(--color-gray-100);
     --secondary-text-color: var(--color-gray-200);
     --tertiary-text-color: var(--color-gray-300);
@@ -59,11 +59,11 @@
 }
 
 .dark-page body,
-[data-theme="dark"] body {
+[data-mode="dark"] body {
     background-color: var(--background-color);
 }
 
-[data-theme="dark"] .gh-head-logo-wrapper img {
+[data-mode="dark"] .gh-head-logo-wrapper img {
     filter: invert(1) brightness(2);
 }
 

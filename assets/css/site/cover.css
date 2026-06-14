@@ -14,7 +14,7 @@ h1.h1.hero-header {
     font-weight: var(--font-semi-bold);
     text-transform: none;
     letter-spacing: 0;
-    font-size: var(--size-step-5);
+    font-size: var(--size-step-4);
     line-height: var(--leading-fine);
     color: var(--color-primary);
     background-image: var(--gradient-cool-light);
@@ -29,12 +29,12 @@ h1.h1.hero-header {
     background: var(--color-secondary);
 }
 
-[data-theme="dark"] .home-hero-header {
+[data-mode="dark"] .home-hero-header {
     background-image: var(--gradient-warm);
 }
 
 @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .home-hero-header {
+    :root:not([data-mode="light"]) .home-hero-header {
         background-image: var(--gradient-warm);
     }
 }

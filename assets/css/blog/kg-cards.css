@@ -83,12 +83,12 @@
 }
 
 /* Dark mode: switch to the warm gradient (matches reading progress bar) */
-[data-theme="dark"] .kg-bookmark-card a.kg-bookmark-container {
+[data-mode="dark"] .kg-bookmark-card a.kg-bookmark-container {
     --bookmark-stops: #21918c, #73d677, #a295ff, #73d677, #21918c, #73d677, #a295ff, #73d677, #21918c;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .kg-bookmark-card a.kg-bookmark-container {
+    :root:not([data-mode="light"]) .kg-bookmark-card a.kg-bookmark-container {
         --bookmark-stops: #21918c, #73d677, #a295ff, #73d677, #21918c, #73d677, #a295ff, #73d677, #21918c;
     }
 }

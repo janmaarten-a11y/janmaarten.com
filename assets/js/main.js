@@ -10,6 +10,24 @@ pagination(false);
 externalLinks();
 bookmarkFocus();
 preTabindex();
+modeSwitcher();
+
+function modeSwitcher() {
+    var switchers = document.querySelectorAll('select[data-mode-switcher]');
+    if (!switchers.length || typeof window.setMode !== 'function') return;
+    var current = typeof window.getMode === 'function' ? window.getMode() : 'system';
+
+    switchers.forEach(function (select) {
+        select.value = current;
+        select.addEventListener('change', function () {
+            window.setMode(select.value);
+            // Keep any other switchers in sync
+            document.querySelectorAll('select[data-mode-switcher]').forEach(function (other) {
+                if (other !== select) { other.value = select.value; }
+            });
+        });
+    });
+}
 
 function bookmarkFocus() {
     const bookmarkDescription = document.querySelectorAll('.kg-bookmark-description');

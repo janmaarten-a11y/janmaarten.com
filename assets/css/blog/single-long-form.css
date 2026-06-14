@@ -70,21 +70,21 @@ blockquote.kg-blockquote-alt */
 
 /* Dark mode: swap to warm gradient (teal → green → yellow)
    so the start of the bar is visible against the dark background */
-[data-theme="dark"] .reading-progress::-moz-progress-bar {
+[data-mode="dark"] .reading-progress::-moz-progress-bar {
     background: var(--gradient-warm);
     background-size: 100vw 100%;
 }
-[data-theme="dark"] .reading-progress::-webkit-progress-value {
+[data-mode="dark"] .reading-progress::-webkit-progress-value {
     background: var(--gradient-warm);
     background-size: 100vw 100%;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .reading-progress::-moz-progress-bar {
+    :root:not([data-mode="light"]) .reading-progress::-moz-progress-bar {
         background: var(--gradient-warm);
         background-size: 100vw 100%;
     }
-    :root:not([data-theme="light"]) .reading-progress::-webkit-progress-value {
+    :root:not([data-mode="light"]) .reading-progress::-webkit-progress-value {
         background: var(--gradient-warm);
         background-size: 100vw 100%;
     }

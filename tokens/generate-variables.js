@@ -116,7 +116,7 @@ lines.push('}');
 // Light theme
 lines.push('');
 lines.push(':root,');
-lines.push(':root[data-theme="light"] {');
+lines.push(':root[data-mode="light"] {');
 lines.push('  --color-text: var(--color-gray-800);');
 lines.push('  --color-bg: var(--color-gray-100);');
 lines.push('  --color-primary: var(--color-teal);');
@@ -130,7 +130,7 @@ lines.push('}');
 // Dark theme
 lines.push('');
 lines.push('@media (prefers-color-scheme: dark) {');
-lines.push('  :root {');
+lines.push('  :root:not([data-mode="light"]) {');
 lines.push('    --color-text: var(--color-gray-100);');
 lines.push('    --color-bg: var(--color-gray-800);');
 lines.push('    --color-primary: var(--color-teal-subdued);');
@@ -143,7 +143,7 @@ lines.push('  }');
 lines.push('}');
 
 lines.push('');
-lines.push(':root[data-theme="dark"] {');
+lines.push(':root[data-mode="dark"] {');
 lines.push('  --color-text: var(--color-gray-100);');
 lines.push('  --color-bg: var(--color-gray-800);');
 lines.push('  --color-primary: var(--color-teal-subdued);');

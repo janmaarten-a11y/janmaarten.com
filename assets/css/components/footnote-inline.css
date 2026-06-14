@@ -71,20 +71,20 @@ footnote-inline {
 }
 
 /* ---- Dark mode adjustments ---- */
-[data-theme="dark"] .footnote-inline-number {
+[data-mode="dark"] .footnote-inline-number {
     color: var(--color-teal-subdued);
 }
 
-[data-theme="dark"] .footnote-inline-toggle:hover .footnote-inline-number,
-[data-theme="dark"] .footnote-inline-toggle:focus-visible .footnote-inline-number {
+[data-mode="dark"] .footnote-inline-toggle:hover .footnote-inline-number,
+[data-mode="dark"] .footnote-inline-toggle:focus-visible .footnote-inline-number {
     background-color: var(--color-teal-subdued);
     color: var(--color-gray-900);
 }
 
-[data-theme="dark"] .footnote-inline-content {
+[data-mode="dark"] .footnote-inline-content {
     border-left-color: var(--color-teal-subdued);
 }
 
-[data-theme="dark"] .footnote-inline-index {
+[data-mode="dark"] .footnote-inline-index {
     color: var(--color-teal-subdued);
 }

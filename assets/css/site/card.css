@@ -70,7 +70,7 @@
     overflow: hidden;
 }
 
-[data-theme="dark"] .section-personal-project .card-image img {
+[data-mode="dark"] .section-personal-project .card-image img {
     filter: brightness(0) invert(1);
 }
 

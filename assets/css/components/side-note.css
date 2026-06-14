@@ -25,6 +25,6 @@ side-note {
 }
 
 /* ---- Dark mode ---- */
-[data-theme="dark"] side-note {
+[data-mode="dark"] side-note {
     border-left-color: var(--color-gray-600);
 }

@@ -79,6 +79,7 @@
 @import "components/citation-card.css";
 @import "components/link-tooltip.css";
 @import "components/pull-quote.css";
+@import "components/mode-switcher.css";
 
 /* 8. Vendor */
 @import "vendor/tiny-slider.css";

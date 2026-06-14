@@ -119,34 +119,34 @@
 
 /* ---- Dark mode: brighten colors so they're visible on charcoal bg ---- */
 
-[data-theme="dark"] .gh-content .kg-callout-card-blue,
-[data-theme="dark"] .gh-content .kg-callout-card-blue::before {
+[data-mode="dark"] .gh-content .kg-callout-card-blue,
+[data-mode="dark"] .gh-content .kg-callout-card-blue::before {
     --c: oklch(72% 0.14 265);
 }
-[data-theme="dark"] .gh-content .kg-callout-card-green,
-[data-theme="dark"] .gh-content .kg-callout-card-green::before {
+[data-mode="dark"] .gh-content .kg-callout-card-green,
+[data-mode="dark"] .gh-content .kg-callout-card-green::before {
     --c: oklch(72% 0.13 175);
 }
-[data-theme="dark"] .gh-content .kg-callout-card-yellow,
-[data-theme="dark"] .gh-content .kg-callout-card-yellow::before {
+[data-mode="dark"] .gh-content .kg-callout-card-yellow,
+[data-mode="dark"] .gh-content .kg-callout-card-yellow::before {
     --c: oklch(80% 0.13 85);
 }
-[data-theme="dark"] .gh-content .kg-callout-card-red,
-[data-theme="dark"] .gh-content .kg-callout-card-red::before {
+[data-mode="dark"] .gh-content .kg-callout-card-red,
+[data-mode="dark"] .gh-content .kg-callout-card-red::before {
     --c: oklch(70% 0.16 25);
 }
-[data-theme="dark"] .gh-content .kg-callout-card-pink,
-[data-theme="dark"] .gh-content .kg-callout-card-pink::before {
+[data-mode="dark"] .gh-content .kg-callout-card-pink,
+[data-mode="dark"] .gh-content .kg-callout-card-pink::before {
     --c: oklch(75% 0.15 350);
 }
-[data-theme="dark"] .gh-content .kg-callout-card-purple,
-[data-theme="dark"] .gh-content .kg-callout-card-purple::before {
+[data-mode="dark"] .gh-content .kg-callout-card-purple,
+[data-mode="dark"] .gh-content .kg-callout-card-purple::before {
     --c: oklch(72% 0.15 310);
 }
 
-[data-theme="dark"] .gh-content [class*="kg-callout-card-"]:is(.kg-callout-card-blue, .kg-callout-card-green, .kg-callout-card-yellow, .kg-callout-card-red, .kg-callout-card-pink, .kg-callout-card-purple) {
+[data-mode="dark"] .gh-content [class*="kg-callout-card-"]:is(.kg-callout-card-blue, .kg-callout-card-green, .kg-callout-card-yellow, .kg-callout-card-red, .kg-callout-card-pink, .kg-callout-card-purple) {
     border-left-color: var(--c);
 }
-[data-theme="dark"] .gh-content [class*="kg-callout-card-"]:is(.kg-callout-card-blue, .kg-callout-card-green, .kg-callout-card-yellow, .kg-callout-card-red, .kg-callout-card-pink, .kg-callout-card-purple)::before {
+[data-mode="dark"] .gh-content [class*="kg-callout-card-"]:is(.kg-callout-card-blue, .kg-callout-card-green, .kg-callout-card-yellow, .kg-callout-card-red, .kg-callout-card-pink, .kg-callout-card-purple)::before {
     color: var(--c);
 }

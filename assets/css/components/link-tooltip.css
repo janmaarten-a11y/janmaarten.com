@@ -68,13 +68,13 @@
 }
 
 /* ---- Dark mode ---- */
-[data-theme="dark"] .link-tooltip {
+[data-mode="dark"] .link-tooltip {
     background-color: var(--color-gray-900);
     box-shadow: 0 4px 12px oklch(0 0 0 / 0.4);
 }
 
 @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .link-tooltip {
+    :root:not([data-mode="light"]) .link-tooltip {
         background-color: var(--color-gray-900);
         box-shadow: 0 4px 12px oklch(0 0 0 / 0.4);
     }

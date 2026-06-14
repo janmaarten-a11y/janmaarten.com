@@ -314,21 +314,21 @@
     transition: background 0.25s ease, transform 0.45s ease;
 }
 
-[data-theme="dark"] .moon-or-sun {
+[data-mode="dark"] .moon-or-sun {
     transform: scale(0.55);
     overflow: visible;
 }
 
-[data-theme="dark"] .moon-or-sun::before {
+[data-mode="dark"] .moon-or-sun::before {
     transform: translate(14px, -14px);
     opacity: 0;
 }
 
-[data-theme="dark"] .moon-or-sun::after {
+[data-mode="dark"] .moon-or-sun::after {
     transform: scale(1);
 }
 
-[data-theme="dark"] .moon-mask {
+[data-mode="dark"] .moon-mask {
     transform: translate(14px, -14px);
     opacity: 0;
 }
