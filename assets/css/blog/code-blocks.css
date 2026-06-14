@@ -10,12 +10,14 @@
    display name supplied per-rule. Languages not listed fall back to the
    raw class name, capitalized via CSS.
 
-   Theming: the <pre> keeps Prism's Monokai background for now. Only the
-   frame (rounded corners, label) uses theme tokens. */
+   Theming: override Prism's hard-coded Monokai background with our cool
+   dark token so languaged + un-languaged blocks match. Syntax token
+   colours from Prism's Monokai are retained — only the surface changes. */
 
 .gh-content pre[class*="language-"] {
     position: relative;
     margin-block: var(--space-l);
+    background: var(--color-dark);
 }
 
 /* Remove Prism's duplicate background on the inner <code> — keeps just the

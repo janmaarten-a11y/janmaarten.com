@@ -118,23 +118,140 @@ a:focus {
     text-decoration: none;
 }
 
+/* ----- Footer + webring + post-tag links ----------------------------------
+   Rest state: neutral text + dotted underline.  Distinct from content links
+   (which use a solid 2px underline) so the footer reads as "meta / nav".
+   Interactive states share the content-link colour vocabulary so the whole
+   site has one language of meaning: teal = interactive, tertiary = active.
+   Webring links underline only the label span (not the icon span) — the
+   markup wraps the visible text in <span> so we can target it precisely.
+   --------------------------------------------------------------------------- */
 .webring-nav a,
 footer a,
 a.post-tag {
-  text-decoration-line: underline;
-  text-decoration-style: dotted;
+    color: var(--primary-text-color);
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: oklch(from var(--primary-text-color) l c h / 0.4);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25ch;
+    transition:
+        color var(--transition-duration, 0.15s) var(--transition-timing, ease),
+        text-decoration-color var(--transition-duration, 0.15s) var(--transition-timing, ease),
+        background-color var(--transition-duration, 0.15s) var(--transition-timing, ease),
+        border-color var(--transition-duration, 0.15s) var(--transition-timing, ease);
 }
-.webring-nav a:hover,
+
+/* Webring links: underline lives on the label span, not the <a>, so the
+   icon span (<span aria-hidden>←</span>) doesn't get an underline painted
+   over it by the parent. */
+.webring-nav a {
+    text-decoration: none;
+}
+.webring-nav a > span:not([aria-hidden]) {
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: oklch(from var(--primary-text-color) l c h / 0.4);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25ch;
+    transition:
+        text-decoration-color var(--transition-duration, 0.15s) var(--transition-timing, ease);
+}
+
+.webring-nav a:hover > span:not([aria-hidden]),
 footer a:hover,
 a.post-tag:hover {
-    text-decoration:underline;
-    color: var(--underline-color);
+    color: var(--color-teal);
+    text-decoration-style: dotted;
+    text-decoration-color: var(--color-teal);
+}
+.webring-nav a:hover {
+    color: var(--color-teal);
 }
 
-
-header a:focus-visible,
+.webring-nav a:focus-visible,
 footer a:focus-visible,
-.webring a:focus-visible,
+a.post-tag:focus-visible {
+    outline: none;
+    background: oklch(from var(--color-teal) l c h / 0.12);
+    color: var(--color-teal);
+    border-bottom: 2px solid var(--color-teal);
+    text-decoration: none;
+}
+.webring-nav a:focus-visible > span:not([aria-hidden]) {
+    text-decoration: none;
+}
+
+/* Combined: keyboard-focused AND mouse-hovered → shift to tertiary. */
+.webring-nav a:focus-visible:hover,
+footer a:focus-visible:hover,
+a.post-tag:focus-visible:hover {
+    background: oklch(from var(--color-tertiary) l c h / 0.15);
+    color: var(--color-tertiary);
+    border-bottom-color: var(--color-tertiary);
+}
+/* Make sure the label span tracks the tertiary shift too (the hover
+   selector targets the span directly, which would otherwise outrank
+   the colour inherited from the <a>). */
+.webring-nav a:focus-visible:hover > span:not([aria-hidden]) {
+    color: var(--color-tertiary);
+}
+
+/* Dark mode counterparts — teal-alt + lavender follow the content-link map. */
+[data-mode="dark"] .webring-nav a:hover,
+[data-mode="dark"] .webring-nav a:hover > span:not([aria-hidden]),
+[data-mode="dark"] footer a:hover,
+[data-mode="dark"] a.post-tag:hover {
+    color: var(--color-teal-alt);
+    text-decoration-color: var(--color-teal-alt);
+}
+[data-mode="dark"] .webring-nav a:focus-visible,
+[data-mode="dark"] footer a:focus-visible,
+[data-mode="dark"] a.post-tag:focus-visible {
+    background: oklch(from var(--color-teal-alt) l c h / 0.15);
+    color: var(--primary-text-color);
+    border-bottom-color: var(--color-teal-alt);
+}
+[data-mode="dark"] .webring-nav a:focus-visible:hover,
+[data-mode="dark"] footer a:focus-visible:hover,
+[data-mode="dark"] a.post-tag:focus-visible:hover {
+    background: oklch(from var(--color-lavender) l c h / 0.2);
+    color: var(--color-lavender);
+    border-bottom-color: var(--color-lavender);
+}
+[data-mode="dark"] .webring-nav a:focus-visible:hover > span:not([aria-hidden]) {
+    color: var(--color-lavender);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .webring-nav a:hover,
+    :root:not([data-mode="light"]) .webring-nav a:hover > span:not([aria-hidden]),
+    :root:not([data-mode="light"]) footer a:hover,
+    :root:not([data-mode="light"]) a.post-tag:hover {
+        color: var(--color-teal-alt);
+        text-decoration-color: var(--color-teal-alt);
+    }
+    :root:not([data-mode="light"]) .webring-nav a:focus-visible,
+    :root:not([data-mode="light"]) footer a:focus-visible,
+    :root:not([data-mode="light"]) a.post-tag:focus-visible {
+        background: oklch(from var(--color-teal-alt) l c h / 0.15);
+        color: var(--primary-text-color);
+        border-bottom-color: var(--color-teal-alt);
+    }
+    :root:not([data-mode="light"]) .webring-nav a:focus-visible:hover,
+    :root:not([data-mode="light"]) footer a:focus-visible:hover,
+    :root:not([data-mode="light"]) a.post-tag:focus-visible:hover {
+        background: oklch(from var(--color-lavender) l c h / 0.2);
+        color: var(--color-lavender);
+        border-bottom-color: var(--color-lavender);
+    }
+    :root:not([data-mode="light"]) .webring-nav a:focus-visible:hover > span:not([aria-hidden]) {
+        color: var(--color-lavender);
+    }
+}
+
+/* Fallback outline for other footer-area focusables that don't get the
+   bg-tint treatment (bookmark cards, permalinks, toggle icons, burger). */
+header a:focus-visible,
 a.kg-bookmark-container:focus-visible,
 a.u-permalink:focus-visible,
 .kg-toggle-card-icon:focus-visible,
@@ -220,13 +337,16 @@ figcaption a {
 }
 
 pre {
-    overflow-x: scroll;
+    overflow-x: auto;
     padding: var(--space-m) var(--space-l);
-    font-size: var(--size-step--1) !important;
+    font-size: var(--size-step--1);
     line-height: 1.5;
-    background-color: #272822; /* match Prism Monokai for un-languaged blocks */
+    /* Cool dark charcoal (gray-900 hue 260) instead of Monokai's warm
+       #272822. Prism's languaged blocks get the same token override in
+       blog/code-blocks.css so all <pre> elements share one surface. */
+    background-color: var(--color-dark);
     color: #f8f8f2;
-    border-radius: 8px !important;
+    border-radius: var(--border-radius-medium);
     -webkit-overflow-scrolling: touch;
 }
 

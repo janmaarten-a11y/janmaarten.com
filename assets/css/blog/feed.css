@@ -43,6 +43,8 @@
     /* overflow: hidden; */
     padding: var(--space-xs) 0;
     line-height: 1;
+    /* Ensure keyboard focus brings the whole entry into view */
+    scroll-margin-block: var(--space-l);
 }
 
 .feed:not(.no-link):hover .feed-title,

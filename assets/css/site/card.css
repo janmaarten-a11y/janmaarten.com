@@ -114,6 +114,10 @@
     }
 }
 
+.section-personal-project .card {
+    scroll-margin-block: var(--space-l);
+}
+
 .section-personal-project .card:has(.u-permalink:focus-visible) {
     outline: 3px solid var(--color-primary);
     outline-offset: 6px;

@@ -79,15 +79,19 @@
     font-size: var(--size-step--1);
 }
 
-/* Webring — heading+description on left, prev/random/next on right */
+/* Webring — heading+description on left, prev/random/next on right.
+   The visual top gap (from border to heading cap-height) reads larger
+   than the bottom gap (from descender to footer-copyright border)
+   because of standard font metric asymmetry — cap-line sits ~0.2em
+   below the line-box top.  Compensate by trimming padding-top. */
 .webring {
     margin: var(--space-l) 0 0;
-    padding: var(--space-m) 0;
+    padding-block: var(--space-s) var(--space-m);
     border-top: 1px solid oklch(from var(--primary-text-color) l c h / 0.1);
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-m) var(--space-l);
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -126,7 +130,5 @@
     align-items: baseline;
     gap: 0.35em;
 }
-.webring-nav a:hover {
-    text-decoration: underline;
-    color: var(--ghost-accent-color);
-}
+/* Hover / focus / focus+hover states defined in general/basics.css
+   alongside the rest of the footer link state machine. */

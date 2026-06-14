@@ -8,23 +8,33 @@
     overflow: hidden;
     position: relative;
     isolation: isolate;
+    scroll-margin-block: var(--space-l);
     /* No aspect-ratio: height flows from content (card-wrapper) */
     transition: box-shadow var(--transition-duration) var(--transition-timing);
 }
 
-/* Static viridis inset border on hover (no animation) */
+/* Animated viridis inset border on hover. Uses an @property-driven
+   gradient angle rotation; palindromic stops + 0° → 360° = byte
+   identical loop wrap. @property --ring-angle and @keyframes
+   card-ring-rotate are defined in featured.css (shared). */
 .section-case-study .card-overlay::after {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
     padding: 2px;
-    background: linear-gradient(135deg,
-        oklch(28.5% 0.20 318),
-        oklch(44.84% 0.16 266),
-        oklch(49.51% 0.13 190),
-        oklch(60% 0.20 145)
-    );
+    /* Light mode: lifted gradient for visibility on dark imagery */
+    --ring-stops:
+        oklch(72% 0.22 318),
+        oklch(75% 0.20 266),
+        oklch(78% 0.18 190),
+        oklch(82% 0.22 145),
+        oklch(92% 0.20 105),
+        oklch(82% 0.22 145),
+        oklch(78% 0.18 190),
+        oklch(75% 0.20 266),
+        oklch(72% 0.22 318);
+    background: linear-gradient(var(--ring-angle), var(--ring-stops));
     -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
@@ -39,12 +49,47 @@
     z-index: 3;
 }
 
+[data-mode="dark"] .section-case-study .card-overlay::after {
+    --ring-stops:
+        oklch(28.5% 0.20 318),
+        oklch(44.84% 0.16 266),
+        oklch(49.51% 0.13 190),
+        oklch(60% 0.20 145),
+        oklch(49.51% 0.13 190),
+        oklch(44.84% 0.16 266),
+        oklch(28.5% 0.20 318);
+    background: linear-gradient(var(--ring-angle), var(--ring-stops));
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .section-case-study .card-overlay::after {
+        --ring-stops:
+            oklch(28.5% 0.20 318),
+            oklch(44.84% 0.16 266),
+            oklch(49.51% 0.13 190),
+            oklch(60% 0.20 145),
+            oklch(49.51% 0.13 190),
+            oklch(44.84% 0.16 266),
+            oklch(28.5% 0.20 318);
+        background: linear-gradient(var(--ring-angle), var(--ring-stops));
+    }
+}
+
 .section-case-study .card-overlay:hover::after {
     opacity: 1;
+    animation: card-ring-rotate 8s linear infinite;
 }
 
 .section-case-study .card-overlay:hover {
+    box-shadow: 0 8px 32px oklch(from var(--color-dark) l c h / 0.35);
+}
+
+[data-mode="dark"] .section-case-study .card-overlay:hover {
     box-shadow: 0 8px 32px oklch(from var(--color-primary) l c h / 0.25);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .section-case-study .card-overlay:hover {
+        box-shadow: 0 8px 32px oklch(from var(--color-primary) l c h / 0.25);
+    }
 }
 
 /* Focus ring on grid item (avoid clipping by card overflow:hidden) */
@@ -236,6 +281,9 @@
     .section-case-study .card-overlay .card-wrapper::after,
     .section-case-study .card-overlay::after {
         transition: none;
+    }
+    .section-case-study .card-overlay:hover::after {
+        animation: none;
     }
     .section-case-study .card-overlay:hover .card-image img,
     .section-case-study .card-overlay:hover .card-wrapper::after {

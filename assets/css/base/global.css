@@ -103,12 +103,9 @@ code {
   font-size: var(--size-step--1);
 }
 
-pre {
-  overflow-x: auto;
-  padding: var(--space-s);
-  border-radius: var(--border-radius-medium);
-  background-color: var(--color-bg-accent);
-}
+/* <pre> styling lives in general/basics.css so there's a single source
+   of truth (Monokai bg, padding, radius).  Don't add a competing rule
+   here — it caused the un-languaged code-block background regression. */
 
 hr {
   border: none;

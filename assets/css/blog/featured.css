@@ -40,7 +40,18 @@
     overflow: hidden;
     position: relative;
     isolation: isolate;
+    scroll-margin-block: var(--space-l);
     transition: box-shadow var(--transition-duration) var(--transition-timing);
+}
+
+/* Animated angle property for ring rotation.
+   Palindromic stops + 0° → 360° rotation = byte-identical loop wrap.
+   This replaced an earlier background-position sweep that created
+   visible tile seams whenever the gradient angle was non-horizontal. */
+@property --ring-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 160deg;
 }
 
 /* Viridis inset border + soft halo on hover. Uses ::after so it sits
@@ -52,12 +63,19 @@
     inset: 0;
     border-radius: inherit;
     padding: 2px;
-    background: linear-gradient(135deg,
-        oklch(28.5% 0.20 318),
-        oklch(44.84% 0.16 266),
-        oklch(49.51% 0.13 190),
-        oklch(60% 0.20 145)
-    );
+    /* Light mode: lifted gradient for visibility on dark imagery.
+       Palindromic stops so the rotation loop seam is invisible. */
+    --ring-stops:
+        oklch(72% 0.22 318),
+        oklch(75% 0.20 266),
+        oklch(78% 0.18 190),
+        oklch(82% 0.22 145),
+        oklch(92% 0.20 105),
+        oklch(82% 0.22 145),
+        oklch(78% 0.18 190),
+        oklch(75% 0.20 266),
+        oklch(72% 0.22 318);
+    background: linear-gradient(var(--ring-angle), var(--ring-stops));
     -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
@@ -72,12 +90,55 @@
     z-index: 3;
 }
 
+/* Dark mode: original mid-luminance viridis stops, same rotation. */
+[data-mode="dark"] .featured-posts .card-overlay::after {
+    --ring-stops:
+        oklch(28.5% 0.20 318),
+        oklch(44.84% 0.16 266),
+        oklch(49.51% 0.13 190),
+        oklch(60% 0.20 145),
+        oklch(49.51% 0.13 190),
+        oklch(44.84% 0.16 266),
+        oklch(28.5% 0.20 318);
+    background: linear-gradient(var(--ring-angle), var(--ring-stops));
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .featured-posts .card-overlay::after {
+        --ring-stops:
+            oklch(28.5% 0.20 318),
+            oklch(44.84% 0.16 266),
+            oklch(49.51% 0.13 190),
+            oklch(60% 0.20 145),
+            oklch(49.51% 0.13 190),
+            oklch(44.84% 0.16 266),
+            oklch(28.5% 0.20 318);
+        background: linear-gradient(var(--ring-angle), var(--ring-stops));
+    }
+}
+
 .featured-posts .card-overlay:hover::after {
     opacity: 1;
+    animation: card-ring-rotate 8s linear infinite;
+}
+
+/* Rotate through a full 360°; palindromic stops ensure the start and
+   end frames are visually identical, so the loop is truly seamless. */
+@keyframes card-ring-rotate {
+    from { --ring-angle: 0deg; }
+    to   { --ring-angle: 360deg; }
 }
 
 .featured-posts .card-overlay:hover {
+    box-shadow: 0 8px 32px oklch(from var(--color-dark) l c h / 0.35);
+}
+
+[data-mode="dark"] .featured-posts .card-overlay:hover {
     box-shadow: 0 8px 32px oklch(from var(--color-primary) l c h / 0.25);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .featured-posts .card-overlay:hover {
+        box-shadow: 0 8px 32px oklch(from var(--color-primary) l c h / 0.25);
+    }
 }
 
 /* Focus ring on the grid item (outline on the card itself would be
@@ -201,6 +262,9 @@
     .featured-posts .card-overlay .card-arrow,
     .featured-posts .card-overlay::after {
         transition: none;
+    }
+    .featured-posts .card-overlay:hover::after {
+        animation: none;
     }
     .featured-posts .card-overlay:hover .card-image img,
     .featured-posts .card-overlay:hover .card-arrow {

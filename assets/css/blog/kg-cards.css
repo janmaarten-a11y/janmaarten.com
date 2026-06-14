@@ -77,19 +77,21 @@
    horizontal slide below works consistently. */
 .kg-bookmark-card a.kg-bookmark-container {
     position: relative;
-    --bookmark-stops: #440154, #3b528b, #21918c, #5ec962, #fde725, #5ec962, #21918c, #3b528b, #440154;
+    /* 5-stop palindrome: longer colour bands around the rotating ring.
+       Light mode: purple → teal → yellow → teal → purple (viridis ends + middle). */
+    --bookmark-stops: #440154, #21918c, #fde725, #21918c, #440154;
     background-color: var(--background-color) !important;
     box-shadow: inset 0 0 0 2px rgba(124, 139, 154, 0.5);
 }
 
-/* Dark mode: switch to the warm gradient (matches reading progress bar) */
+/* Dark mode: warm palette palindrome — teal → lavender → teal. */
 [data-mode="dark"] .kg-bookmark-card a.kg-bookmark-container {
-    --bookmark-stops: #21918c, #73d677, #a295ff, #73d677, #21918c, #73d677, #a295ff, #73d677, #21918c;
+    --bookmark-stops: #21918c, #73d677, #a295ff, #73d677, #21918c;
 }
 
 @media (prefers-color-scheme: dark) {
     :root:not([data-mode="light"]) .kg-bookmark-card a.kg-bookmark-container {
-        --bookmark-stops: #21918c, #73d677, #a295ff, #73d677, #21918c, #73d677, #a295ff, #73d677, #21918c;
+        --bookmark-stops: #21918c, #73d677, #a295ff, #73d677, #21918c;
     }
 }
 
@@ -104,8 +106,7 @@
     z-index: 1;
     border-radius: inherit;
     padding: 2px;
-    background: linear-gradient(90deg, var(--bookmark-stops));
-    background-size: 800% 100%;
+    background: linear-gradient(var(--ring-angle), var(--bookmark-stops));
     -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
@@ -121,7 +122,7 @@
 
 .kg-bookmark-card a.kg-bookmark-container:hover::before {
     opacity: 1;
-    animation: bookmark-ring 10s linear infinite;
+    animation: card-ring-rotate 8s linear infinite;
 }
 
 .kg-bookmark-card a.kg-bookmark-container:hover {
@@ -163,13 +164,10 @@
         0 0 40px oklch(from var(--color-tertiary) l c h / 0.35);
 }
 
-/* Loop 0% → 100%. With background-size: 800%, this translates the gradient
-   by 700% of the card's width per cycle. The viridis pattern is symmetric
-   (purple…yellow…purple) so the loop seam is invisible. */
-@keyframes bookmark-ring {
-    0%   { background-position-x: 0%; }
-    100% { background-position-x: 100%; }
-}
+/* @property --ring-angle and @keyframes card-ring-rotate are defined in
+   blog/featured.css and shared across all three ring components
+   (bookmark, featured, case study). Palindromic stops + 0° → 360°
+   = byte-identical loop wrap, no visible seam. */
 
 @media (prefers-reduced-motion: reduce) {
     .kg-bookmark-card a.kg-bookmark-container:hover::before {
