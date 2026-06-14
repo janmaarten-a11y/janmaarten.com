@@ -35,10 +35,33 @@
 /* Constrain cards within grid */
 .featured-posts .card-overlay {
     aspect-ratio: 3/2;
-    border-radius: 0.4rem;
+    border-radius: var(--border-radius-medium);
     min-height: 16rem !important;
     overflow: hidden;
     position: relative;
+    /* Subtle inset border so card edge is visible even with a busy image */
+    box-shadow: inset 0 0 0 1px oklch(from var(--color-primary) l c h / 0.15);
+    transition:
+        box-shadow var(--transition-duration) var(--transition-timing);
+}
+
+.featured-posts .card-overlay:hover {
+    box-shadow:
+        inset 0 0 0 1px oklch(from var(--color-primary) l c h / 0.25),
+        0 8px 24px oklch(from var(--color-dark) l c h / 0.18);
+}
+
+/* Focus ring on the card via :focus-within.
+   Apply to the grid wrapper, not the card itself, so the outline
+   isn't clipped by overflow:hidden. */
+.featured-grid > :has(.u-permalink:focus-visible),
+.featured-grid > :focus-within {
+    border-radius: var(--border-radius-medium);
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+}
+.featured-posts .card-overlay .u-permalink:focus-visible {
+    outline: none;
 }
 
 .featured-posts .card-overlay .card-image {
@@ -49,20 +72,35 @@
     bottom: 0;
     aspect-ratio: unset;
     margin: 0;
+    border-radius: inherit;
 }
 
 .featured-posts .card-overlay .card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+    /* Subtle darken on hover for better text contrast */
+    transition: transform var(--transition-duration) var(--transition-timing),
+                filter var(--transition-duration) var(--transition-timing);
+}
+
+.featured-posts .card-overlay:hover .card-image img {
+    transform: scale(1.03);
+    filter: brightness(0.9);
 }
 
 .featured-posts .card-overlay .card-title {
-    font-family: var(--font-base);
+    font-family: var(--font-display);
     font-size: var(--size-step-2);
-    font-weight: var(--font-semi-bold);
+    font-weight: var(--font-bold);
     color: #fff;
     line-height: var(--leading-fine);
+    /* Soft text shadow for legibility regardless of underlying image */
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.6),
+        0 0 24px rgba(0, 0, 0, 0.3);
+    margin: 0;
 }
 
 /* Constrain the overlay within the card */
@@ -74,7 +112,14 @@
     bottom: 0;
     justify-content: flex-end;
     padding: var(--space-m);
-    background: linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,.1) 60%, transparent 100%);
+    /* Stronger gradient so titles always read */
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.6) 30%,
+        rgba(0, 0, 0, 0.15) 65%,
+        transparent 100%
+    );
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
 }
@@ -83,4 +128,14 @@
 .featured-posts .card-overlay .card-excerpt,
 .featured-posts .card-overlay .tags-list {
     display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .featured-posts .card-overlay,
+    .featured-posts .card-overlay .card-image img {
+        transition: none;
+    }
+    .featured-posts .card-overlay:hover .card-image img {
+        transform: none;
+    }
 }

@@ -164,7 +164,8 @@
     }
   }
 .featured-posts {
-    overflow-x: hidden;
+    /* No overflow clip here — would clip card focus outlines.
+       Featured cards are constrained by the grid + wrapper. */
     padding-top: 1.6rem;
 }
 

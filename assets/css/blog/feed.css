@@ -16,11 +16,12 @@
 .feed-header-title {
     margin-bottom: 0;
     color: var(--tertiary-text-color);
-    font-weight: var(--font-regular);
-    font-family: var(--font-display);
-    text-transform: none;
-    letter-spacing: 0;
-    font-size: var(--size-step-3);
+    font-family: var(--font-base);
+    font-size: var(--size-step--2);
+    font-weight: var(--font-bold);
+    line-height: 1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .post-feed {
