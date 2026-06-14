@@ -50,6 +50,25 @@
     outline-offset: 2px;
 }
 
+/* Dark mode: bump the resting border to gray-400 so it meets WCAG 1.4.11
+   3:1 against the page background (gray-800). gray-600 was ~1.9:1.
+   The :hover/:focus-visible overrides below need matching specificity
+   so the dark-mode rule doesn't outrank them in source order. */
+[data-mode="dark"] .mode-switcher__select {
+    border-color: var(--color-gray-400);
+}
+[data-mode="dark"] .mode-switcher__select:hover {
+    border-color: var(--color-primary);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .mode-switcher__select {
+        border-color: var(--color-gray-400);
+    }
+    :root:not([data-mode="light"]) .mode-switcher__select:hover {
+        border-color: var(--color-primary);
+    }
+}
+
 /* Footer layout — switcher sits on the right of the copyright */
 .footer-copyright {
     display: grid;

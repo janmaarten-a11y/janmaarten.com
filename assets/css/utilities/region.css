@@ -1,6 +1,6 @@
 /* Utility — Region (vertical spacing sections) */
 
 .region {
-  padding-block-start: var(--region-space, var(--space-l-xl));
-  padding-block-end: var(--region-space, var(--space-l-xl));
+  padding-block-start: var(--region-space, var(--space-l));
+  padding-block-end: var(--region-space, var(--space-l));
 }

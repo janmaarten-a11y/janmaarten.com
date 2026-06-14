@@ -80,13 +80,12 @@
 }
 
 /* Webring — heading+description on left, prev/random/next on right.
-   The visual top gap (from border to heading cap-height) reads larger
-   than the bottom gap (from descender to footer-copyright border)
-   because of standard font metric asymmetry — cap-line sits ~0.2em
-   below the line-box top.  Compensate by trimming padding-top. */
+   Asymmetric padding-block to compensate for the heading's cap-height
+   font-metric offset (cap-line sits ~0.2em below the line-box top, so
+   symmetric padding reads as more space on top than bottom). */
 .webring {
     margin: var(--space-l) 0 0;
-    padding-block: var(--space-s) var(--space-m);
+    padding-block: var(--space-m) var(--space-xs);
     border-top: 1px solid oklch(from var(--primary-text-color) l c h / 0.1);
     display: flex;
     flex-wrap: wrap;
