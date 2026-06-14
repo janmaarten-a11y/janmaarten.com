@@ -3,6 +3,43 @@
    https://github.com/nicklvsa/ghost-msme
    ============================================ */
 
+/* portforkioto overrides
+   ----------------------
+   The MSME pattern was authored for Ghost's default theme. A few rules
+   collide with our content styles: <blockquote> picks up the body
+   quote treatment (thick teal left border + indent), unbreakable strings
+   overflow the card, and the hover state should use our viridis palette
+   rather than the platform brand colour.
+
+   These overrides sit at the top so the rest of the original vendor CSS
+   below can stay untouched and easy to diff against upstream. */
+.gh-content .msme-block,
+.gh-content figure:has(> .msme-block) {
+    max-width: 36rem;
+    margin-inline: auto;
+}
+
+.gh-content blockquote.msme-blockquote {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-style: normal;
+}
+
+/* Long unbreakable strings (URLs, hashes, the Anthropic refusal trigger)
+   should wrap inside the card rather than push its width out. */
+.msme-text p {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* Purple border on hover/focus mirrors the SVG icon recolour from the
+   wrapper link's :hover state (icon inherits currentColor). */
+.msme-link:hover .msme-content-border,
+.msme-link:focus-visible .msme-content-border {
+    border-color: var(--color-tertiary);
+}
+
 .msme-block {
     width: 100%;
 }

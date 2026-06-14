@@ -241,16 +241,20 @@ is the very first element in the post content */
 
 /* MSME (Manual Social Media Embed) cards wrap their entire card in an <a>.
    Without this reset, the .gh-content a styling above paints the whole
-   card as a highlighted link \u2014 underlines under every text node, hover
-   colour shifts, focus borders, etc. Reset all link styling on the
-   wrapper itself; the inner content has its own typographic treatment. */
+   card as a highlighted link \u2014 underlines under every text node, focus
+   borders, background tint, etc. Reset all of that on the wrapper itself;
+   the inner content has its own typographic treatment.
+
+   color is intentionally NOT reset \u2014 the platform SVG icon uses
+   fill="currentColor" so it can recolour on hover/focus to match the
+   border. Inner text has explicit colour overrides in msme.css so the
+   body copy is unaffected. */
 .gh-content a.msme-link,
 .gh-content a.msme-link:hover,
 .gh-content a.msme-link:focus,
 .gh-content a.msme-link:focus-visible,
 .gh-content a.msme-link:focus:hover,
 .gh-content a.msme-link:focus-visible:hover {
-    color: inherit;
     background: none;
     border-bottom: 0;
     text-decoration: none;
