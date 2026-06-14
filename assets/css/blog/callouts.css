@@ -1,0 +1,152 @@
+/* Callout cards — semantic variants mapped to Ghost's color picker.
+
+   Ghost emits .kg-callout-card-{grey,white,blue,green,yellow,red,pink,purple,accent}
+   on the wrapper based on the author's color choice. We treat each color
+   as a semantic variant, not just a background:
+
+     blue   → "Side note"
+     green  → "Tip"
+     yellow → "Notice"
+     red    → "Content warning"
+     pink   → "Personal"
+     purple → "Definition"
+     grey, white, accent → no label (background color only)
+
+   Visual treatment: thick left border in a saturated color, label in the
+   same color rendered above the body text. Variants are theme-aware via
+   custom properties.
+
+   The emoji (.kg-callout-emoji) renders in its default position when set.
+   Authors can leave it blank if the label alone is enough.
+
+   Note: Ghost's editor (Koenig) does not load theme CSS, so authors see
+   the default pastel background while editing. Publish + view to preview. */
+
+.gh-content .kg-callout-card {
+    position: relative;
+    display: block;
+    padding: var(--space-m) var(--space-l);
+    border-left: 6px solid var(--color-gray-400);
+    border-radius: 0 var(--border-radius-medium) var(--border-radius-medium) 0;
+}
+
+/* Emoji renders in the page gutter to the left of the card, aligned with
+   the label. Decorative — hidden on viewports too narrow to clear the
+   content column without overlapping. */
+.gh-content .kg-callout-card .kg-callout-emoji {
+    position: absolute;
+    top: var(--space-m);
+    right: calc(100% + var(--space-m));
+    width: auto;
+    margin: 0;
+    text-align: center;
+    line-height: 1;
+    padding: 0;
+}
+
+@media (max-width: 900px) {
+    .gh-content .kg-callout-card .kg-callout-emoji {
+        display: none;
+    }
+}
+
+/* Label — only rendered for labelled variants below.
+   Block-level (full width of the card) prevents per-letter wrapping. */
+.gh-content .kg-callout-card-blue::before,
+.gh-content .kg-callout-card-green::before,
+.gh-content .kg-callout-card-yellow::before,
+.gh-content .kg-callout-card-red::before,
+.gh-content .kg-callout-card-pink::before,
+.gh-content .kg-callout-card-purple::before {
+    display: block;
+    width: 100%;
+    font-size: var(--size-step-0);
+    font-weight: var(--font-bold);
+    font-variant: all-petite-caps;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-xs);
+}
+
+/* ---- Variant colors + labels ---- */
+
+.gh-content .kg-callout-card-blue {
+    border-left-color: oklch(58% 0.15 265);
+}
+.gh-content .kg-callout-card-blue::before {
+    content: 'Side note';
+    color: oklch(58% 0.15 265);
+}
+
+.gh-content .kg-callout-card-green {
+    border-left-color: oklch(55% 0.13 175);
+}
+.gh-content .kg-callout-card-green::before {
+    content: 'Tip';
+    color: oklch(55% 0.13 175);
+}
+
+.gh-content .kg-callout-card-yellow {
+    border-left-color: oklch(62% 0.15 80);
+}
+.gh-content .kg-callout-card-yellow::before {
+    content: 'Notice';
+    color: oklch(62% 0.15 80);
+}
+
+.gh-content .kg-callout-card-red {
+    border-left-color: oklch(58% 0.18 25);
+}
+.gh-content .kg-callout-card-red::before {
+    content: 'Content warning';
+    color: oklch(58% 0.18 25);
+}
+
+.gh-content .kg-callout-card-pink {
+    border-left-color: oklch(65% 0.17 350);
+}
+.gh-content .kg-callout-card-pink::before {
+    content: 'Personal';
+    color: oklch(65% 0.17 350);
+}
+
+.gh-content .kg-callout-card-purple {
+    border-left-color: oklch(55% 0.18 310);
+}
+.gh-content .kg-callout-card-purple::before {
+    content: 'Definition';
+    color: oklch(55% 0.18 310);
+}
+
+/* ---- Dark mode: brighten colors so they're visible on charcoal bg ---- */
+
+[data-theme="dark"] .gh-content .kg-callout-card-blue,
+[data-theme="dark"] .gh-content .kg-callout-card-blue::before {
+    --c: oklch(72% 0.14 265);
+}
+[data-theme="dark"] .gh-content .kg-callout-card-green,
+[data-theme="dark"] .gh-content .kg-callout-card-green::before {
+    --c: oklch(72% 0.13 175);
+}
+[data-theme="dark"] .gh-content .kg-callout-card-yellow,
+[data-theme="dark"] .gh-content .kg-callout-card-yellow::before {
+    --c: oklch(80% 0.13 85);
+}
+[data-theme="dark"] .gh-content .kg-callout-card-red,
+[data-theme="dark"] .gh-content .kg-callout-card-red::before {
+    --c: oklch(70% 0.16 25);
+}
+[data-theme="dark"] .gh-content .kg-callout-card-pink,
+[data-theme="dark"] .gh-content .kg-callout-card-pink::before {
+    --c: oklch(75% 0.15 350);
+}
+[data-theme="dark"] .gh-content .kg-callout-card-purple,
+[data-theme="dark"] .gh-content .kg-callout-card-purple::before {
+    --c: oklch(72% 0.15 310);
+}
+
+[data-theme="dark"] .gh-content [class*="kg-callout-card-"]:is(.kg-callout-card-blue, .kg-callout-card-green, .kg-callout-card-yellow, .kg-callout-card-red, .kg-callout-card-pink, .kg-callout-card-purple) {
+    border-left-color: var(--c);
+}
+[data-theme="dark"] .gh-content [class*="kg-callout-card-"]:is(.kg-callout-card-blue, .kg-callout-card-green, .kg-callout-card-yellow, .kg-callout-card-red, .kg-callout-card-pink, .kg-callout-card-purple)::before {
+    color: var(--c);
+}

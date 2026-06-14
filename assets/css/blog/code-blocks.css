@@ -1,0 +1,90 @@
+/* Code block enhancements.
+   Adds a language label in the top-right corner of <pre> blocks when the
+   author has explicitly chosen a language in Ghost's code card editor.
+   Plain code blocks (no language) stay unlabelled.
+
+   Ghost renders code cards as:
+     <pre><code class="language-{name}">...</code></pre>
+
+   The label is generated via :before on the <pre>, with each language's
+   display name supplied per-rule. Languages not listed fall back to the
+   raw class name, capitalized via CSS.
+
+   Theming: the <pre> keeps Prism's Monokai background for now. Only the
+   frame (rounded corners, label) uses theme tokens. */
+
+.gh-content pre[class*="language-"] {
+    position: relative;
+    margin-block: var(--space-l);
+}
+
+/* Remove Prism's duplicate background on the inner <code> — keeps just the
+   <pre>'s painted area so there's no sub-pixel mismatch at the edges. */
+.gh-content pre[class*="language-"] > code[class*="language-"] {
+    background: transparent;
+}
+
+/* Label — only renders if a language class is set.
+   Positioned fully inside the <pre> so the overflow:auto (needed for
+   horizontal scroll) doesn't clip it. */
+.gh-content pre[class*="language-"]::before {
+    position: absolute;
+    top: var(--space-xs);
+    right: var(--space-xs);
+    padding: var(--space-3xs) var(--space-xs);
+    font-family: var(--font-base);
+    font-size: var(--size-step--2);
+    font-weight: var(--font-bold);
+    font-variant: all-petite-caps;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    background: oklch(from var(--color-gray-100) l c h / 0.1);
+    color: oklch(from var(--color-gray-100) l c h / 0.7);
+    border: 1px solid oklch(from var(--color-gray-100) l c h / 0.2);
+    border-radius: var(--border-radius-small);
+    pointer-events: none;
+}
+
+/* Language display names — extend with whatever you use most often.
+   Uses [class~="..."] (word match) instead of [class*="..."] (substring)
+   so "language-javascript" is not also matched by "language-java", etc. */
+.gh-content pre:has(code[class~="language-javascript"])::before,
+.gh-content pre:has(code[class~="language-js"])::before { content: 'JavaScript'; }
+.gh-content pre:has(code[class~="language-typescript"])::before,
+.gh-content pre:has(code[class~="language-ts"])::before { content: 'TypeScript'; }
+.gh-content pre:has(code[class~="language-jsx"])::before { content: 'JSX'; }
+.gh-content pre:has(code[class~="language-tsx"])::before { content: 'TSX'; }
+.gh-content pre:has(code[class~="language-html"])::before,
+.gh-content pre:has(code[class~="language-markup"])::before { content: 'HTML'; }
+.gh-content pre:has(code[class~="language-css"])::before { content: 'CSS'; }
+.gh-content pre:has(code[class~="language-scss"])::before { content: 'Sass'; }
+.gh-content pre:has(code[class~="language-json"])::before { content: 'JSON'; }
+.gh-content pre:has(code[class~="language-yaml"])::before,
+.gh-content pre:has(code[class~="language-yml"])::before { content: 'YAML'; }
+.gh-content pre:has(code[class~="language-toml"])::before { content: 'TOML'; }
+.gh-content pre:has(code[class~="language-markdown"])::before,
+.gh-content pre:has(code[class~="language-md"])::before { content: 'Markdown'; }
+.gh-content pre:has(code[class~="language-bash"])::before,
+.gh-content pre:has(code[class~="language-shell"])::before,
+.gh-content pre:has(code[class~="language-sh"])::before,
+.gh-content pre:has(code[class~="language-zsh"])::before { content: 'Shell'; }
+.gh-content pre:has(code[class~="language-python"])::before,
+.gh-content pre:has(code[class~="language-py"])::before { content: 'Python'; }
+.gh-content pre:has(code[class~="language-ruby"])::before,
+.gh-content pre:has(code[class~="language-rb"])::before { content: 'Ruby'; }
+.gh-content pre:has(code[class~="language-rust"])::before,
+.gh-content pre:has(code[class~="language-rs"])::before { content: 'Rust'; }
+.gh-content pre:has(code[class~="language-go"])::before { content: 'Go'; }
+.gh-content pre:has(code[class~="language-java"])::before { content: 'Java'; }
+.gh-content pre:has(code[class~="language-swift"])::before { content: 'Swift'; }
+.gh-content pre:has(code[class~="language-php"])::before { content: 'PHP'; }
+.gh-content pre:has(code[class~="language-sql"])::before { content: 'SQL'; }
+.gh-content pre:has(code[class~="language-graphql"])::before { content: 'GraphQL'; }
+.gh-content pre:has(code[class~="language-handlebars"])::before,
+.gh-content pre:has(code[class~="language-hbs"])::before { content: 'Handlebars'; }
+.gh-content pre:has(code[class~="language-svg"])::before { content: 'SVG'; }
+.gh-content pre:has(code[class~="language-xml"])::before { content: 'XML'; }
+.gh-content pre:has(code[class~="language-diff"])::before { content: 'Diff'; }
+.gh-content pre:has(code[class~="language-nginx"])::before { content: 'Nginx'; }
+.gh-content pre:has(code[class~="language-docker"])::before,
+.gh-content pre:has(code[class~="language-dockerfile"])::before { content: 'Dockerfile'; }

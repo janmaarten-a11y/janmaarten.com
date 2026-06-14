@@ -177,13 +177,17 @@
     }
 }
 
-.kg-bookmark-card a.kg-bookmark-container:hover .kg-bookmark-title {
+.kg-bookmark-card a.kg-bookmark-container:hover .kg-bookmark-title,
+.kg-bookmark-card a.kg-bookmark-container:focus .kg-bookmark-title,
+.kg-bookmark-card a.kg-bookmark-container:focus-visible .kg-bookmark-title {
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 2px;
+}
+.kg-bookmark-card a.kg-bookmark-container:focus .kg-bookmark-title,
+.kg-bookmark-card a.kg-bookmark-container:focus-visible .kg-bookmark-title {
     color: var(--color-primary);
 }
-
 /* Focus + hover: title color matches the tertiary outline */
 .kg-bookmark-card a.kg-bookmark-container:focus:hover .kg-bookmark-title,
 .kg-bookmark-card a.kg-bookmark-container:focus-visible:hover .kg-bookmark-title {
@@ -202,6 +206,13 @@
 .kg-bookmark-card .kg-bookmark-thumbnail img {
     background: none;
     padding: 2px 2px 2px 0;
+}
+
+/* Fallback link glyph when remote favicon fails (set by bookmark-fallback.js).
+   SVG already has its stroke color baked in to match the bookmark border. */
+.kg-bookmark-card .kg-bookmark-icon img[data-bookmark-fallback="applied"] {
+    background: none;
+    padding: 2px;
 }
 
 /* Wide image borders */

@@ -146,37 +146,37 @@ is the very first element in the post content */
   outline: none;
   text-decoration: underline;
   word-break: break-word;
-  transition: text-decoration-thickness var(--transition-duration) var(--transition-timing),text-underline-offset var(--transition-duration) var(--transition-timing),text-decoration-color var(--transition-duration) var(--transition-timing);
-  color: color-mix(in oklab,var(--color-teal),var(--color-secondary) 20%);
-  text-decoration-color: var(--color-secondary);
-  text-decoration-color: color(from var(--color-secondary) srgb r g b/65%);
+  transition: text-decoration-thickness var(--transition-duration) var(--transition-timing),text-underline-offset var(--transition-duration) var(--transition-timing),text-decoration-color var(--transition-duration) var(--transition-timing),color var(--transition-duration) var(--transition-timing);
+  color: var(--color-teal);
+  text-decoration-color: oklch(from var(--color-teal) l c h / 0.65);
   text-decoration-thickness: 2px;
   text-underline-offset: .15ch;
 }
 
 .gh-content a:hover {
-  color: var(--color-secondary);
+  color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);
+  text-decoration-color: oklch(from var(--color-purple-subdued) calc(l + .07) c h / .7);
   text-decoration-thickness: .7ch;
   text-underline-offset: -.2ch;
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
-  text-decoration-color: oklch(from var(--color-purple-subdued) l c h / 0.5);
 }
 
 .gh-content a:focus,
 .gh-content a:focus-visible {
-    background: oklch(from var(--color-purple-subdued) l c h / 0.35);
-    color: var(--primary-text-color);
-    border-bottom: .4ch solid var(--color-primary);
+    background: oklch(from var(--color-teal) l c h / 0.15);
+    color: var(--color-teal);
+    border-bottom: .4ch solid var(--color-teal);
     text-decoration: none;
 }
 
 /* Combined: keyboard-focused AND mouse-hovered.
-   Use the tertiary accent so the overlap reads as intentional. */
+   Shift to tertiary so the overlap reads as intentional. */
 .gh-content a:focus:hover,
 .gh-content a:focus-visible:hover {
-    background: oklch(from var(--color-tertiary) l c h / 0.25);
-    border-bottom-color: var(--color-tertiary);
+    background: oklch(from var(--color-purple-subdued) calc(l + .09) c h / .5);
+    color: oklch(from var(--color-tertiary) calc(l + .09) c h);
+    border-bottom-color: oklch(from var(--color-tertiary) calc(l + .12) c h);
 }
 
 /* ---- Dark mode content links ---- */

@@ -12,11 +12,11 @@
   --color-gray-700: oklch(34.98% 0.0044 67.7);
   --color-gray-800: oklch(30.15% 0.035 260);
   --color-gray-900: oklch(20.05% 0.02 260);
-  --color-teal: oklch(49.51% 0.0790 190.3);
+  --color-teal: oklch(49.51% 0.13 190.3);
   --color-teal-subdued: oklch(73.46% 0.1099 190.5);
-  --color-indigo: oklch(44.84% 0.0979 266.0);
+  --color-indigo: oklch(44.84% 0.16 266.0);
   --color-indigo-subdued: oklch(79.27% 0.1467 145.2);
-  --color-purple: oklch(28.50% 0.1366 318.1);
+  --color-purple: oklch(28.50% 0.20 300);
   --color-purple-subdued: oklch(86.25% 0.1521 100.8);
   --color-lavender: oklch(70% 0.13 290);
 
@@ -80,9 +80,9 @@
   --stroke: 1px solid var(--color-bg-accent);
 
   /* Gradients */
-  --gradient-viridis: linear-gradient(90deg, #440154, #3b528b, #21918c, #5ec962, #fde725);
-  --gradient-cool: linear-gradient(90deg, #440154, #3b528b, #21918c);
-  --gradient-cool-light: linear-gradient(10deg,#600077,#3758ab,#00b1a9);
+  --gradient-viridis: linear-gradient(90deg, oklch(28.5% 0.20 318), oklch(44.84% 0.16 266), oklch(49.51% 0.13 190), oklch(78% 0.22 145), oklch(95% 0.20 105));
+  --gradient-cool: linear-gradient(90deg, oklch(28.5% 0.20 318), oklch(44.84% 0.16 266), oklch(49.51% 0.13 190));
+  --gradient-cool-light: linear-gradient(10deg, oklch(36% 0.24 318), oklch(50% 0.22 266), oklch(60% 0.15 190));
   --gradient-warm: linear-gradient(90deg, #21918c, #73d677, #a295ff);
 }
 

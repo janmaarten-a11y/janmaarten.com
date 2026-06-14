@@ -96,8 +96,8 @@ body.with-custom-background {
 }
 
 ::selection {
-    background: var(--ghost-accent-color);
-    color:  var(--white-color);
+    background: var(--color-tertiary);
+    color: var(--white-color);
 }
 
 a {
@@ -216,7 +216,8 @@ pre {
     padding: var(--space-m) var(--space-l);
     font-size: var(--size-step--1) !important;
     line-height: 1.5;
-    background-color: var( --lighter-gray-color);
+    background-color: #272822; /* match Prism Monokai for un-languaged blocks */
+    color: #f8f8f2;
     border-radius: 8px !important;
     -webkit-overflow-scrolling: touch;
 }
