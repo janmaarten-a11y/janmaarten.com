@@ -1,6 +1,6 @@
 # [janmaarten.com](https://janmaarten.com)
 
-Personal portfolio and blog. Built on [Ghost](https://ghost.org/) with a heavily customised theme that began as a fork of [Kyoto](https://themex.studio/kyoto/) and has since diverged into its own thing — codenamed **portforkioto**.
+Personal portfolio and blog. Built on [Ghost](https://ghost.org/) with a heavily customised theme that began as a fork of [Kyoto](https://themex.studio/kyoto/) and has since diverged into its own thing.
 
 Issues with the site or its accessibility can be submitted [here](https://github.com/janmaarten-a11y/janmaarten.com/issues/new/choose).
 
