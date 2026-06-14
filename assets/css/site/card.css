@@ -74,6 +74,68 @@
     filter: brightness(0) invert(1);
 }
 
+/* Personal project cards — bump type to match the rest of the site */
+.section-personal-project .card-title {
+    font-size: var(--size-step-2);
+    font-family: var(--font-display);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-fine);
+    color: var(--primary-text-color);
+    transition: color var(--transition-duration) var(--transition-timing);
+}
+
+.section-personal-project .card-excerpt {
+    font-size: var(--size-step-0);
+    line-height: var(--leading-standard);
+    color: var(--tertiary-text-color);
+}
+
+/* Hover/focus — same vocabulary as feed article cards */
+.section-personal-project .card:hover .card-title,
+.section-personal-project .card:focus-within .card-title {
+    color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);
+    text-decoration: underline;
+    text-decoration-color: oklch(from var(--color-purple-subdued) calc(l + .07) c h / .7);
+    text-decoration-thickness: .25ch;
+    text-underline-offset: .15ch;
+}
+
+[data-mode="dark"] .section-personal-project .card:hover .card-title,
+[data-mode="dark"] .section-personal-project .card:focus-within .card-title {
+    color: var(--color-lavender);
+    text-decoration-color: oklch(from var(--color-lavender) l c h / 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .section-personal-project .card:hover .card-title,
+    :root:not([data-mode="light"]) .section-personal-project .card:focus-within .card-title {
+        color: var(--color-lavender);
+        text-decoration-color: oklch(from var(--color-lavender) l c h / 0.5);
+    }
+}
+
+.section-personal-project .card:has(.u-permalink:focus-visible) {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 6px;
+    border-radius: var(--border-radius-small);
+}
+.section-personal-project .card .u-permalink:focus-visible {
+    outline: none;
+}
+
+/* Combined: keyboard-focused AND mouse-hovered — shift outline to tertiary */
+.section-personal-project .card:hover:has(.u-permalink:focus-visible) {
+    outline-color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);
+}
+[data-mode="dark"] .section-personal-project .card:hover:has(.u-permalink:focus-visible) {
+    outline-color: var(--color-lavender);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .section-personal-project .card:hover:has(.u-permalink:focus-visible) {
+        outline-color: var(--color-lavender);
+    }
+}
+
 .card-image,
 .placeholder {
     position: relative;
@@ -160,12 +222,6 @@
     row-gap: var(--space-2xl);
 }
 
-/* Design system annotations card overlay */
-.card.post.tag-hash-design-system-annotations.card-overlay .card-wrapper {
-    backdrop-filter: blur(8px);
-    background: rgba(1, 21, 44, 0.74);
-}
-
 @media (max-width: 767px) {
     .tag-hash-content-experience .feed-wrapper {
       flex-direction: column;
@@ -175,7 +231,7 @@
 .featured-posts {
     /* No overflow clip here — would clip card focus outlines.
        Featured cards are constrained by the grid + wrapper. */
-    padding-top: 1.6rem;
+    padding-top: var(--space-s);
 }
 
 .tags-list {

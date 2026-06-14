@@ -46,8 +46,11 @@
                     {{/foreach}}
                 </div>
             {{/get}}
-            <div class="wrapper">
-                <a href="/blog/" class="button button-secondary round">{{t 'View all posts' count=pagination.total}} {{> "icons/arrow-right"}}</a>
+            <div class="wrapper section-blog-footer">
+                <a href="/blog/" class="pill-link">
+                    <span>{{t 'View all posts' count=pagination.total}}</span>
+                    <span aria-hidden="true">→</span>
+                </a>
             </div>
         </section>
 

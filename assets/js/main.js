@@ -49,15 +49,20 @@ function modeSwitcher() {
     if (!switchers.length || typeof window.setMode !== 'function') return;
     var current = typeof window.getMode === 'function' ? window.getMode() : 'system';
 
+    function syncAll(value) {
+        switchers.forEach(function (s) { s.value = value; });
+    }
+
     switchers.forEach(function (select) {
         select.value = current;
         select.addEventListener('change', function () {
             window.setMode(select.value);
-            // Keep any other switchers in sync
-            document.querySelectorAll('select[data-mode-switcher]').forEach(function (other) {
-                if (other !== select) { other.value = select.value; }
-            });
         });
+    });
+
+    // Listen for mode changes from anywhere (header toggle, other tabs, etc.)
+    window.addEventListener('jm:mode-change', function (e) {
+        syncAll(e.detail.mode);
     });
 }
 

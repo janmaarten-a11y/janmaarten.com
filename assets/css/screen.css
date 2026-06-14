@@ -48,6 +48,8 @@
 /* 6. Blog */
 @import "blog/feed.css";
 @import "blog/featured.css";
+@import "blog/case-study.css";
+@import "blog/speaking.css";
 @import "blog/pagination.css";
 @import "blog/single.css";
 @import "blog/single-long-form.css";

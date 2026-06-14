@@ -86,6 +86,8 @@
                     localStorage.setItem(MODE_KEY, m);
                 }
                 applyModeAnimated(m);
+                // Broadcast so other UI (footer select, etc.) can sync
+                window.dispatchEvent(new CustomEvent('jm:mode-change', { detail: { mode: m } }));
             };
             window.toggleTheme = function() {
                 window.setMode(effectiveMode() === 'dark' ? 'light' : 'dark');
@@ -157,11 +159,9 @@
 
                 <nav class="gh-head-menu">
                     {{navigation}}
-                    <button class="gh-theme-toggle gh-icon-btn" onclick="toggleTheme()" aria-label="Dark mode" aria-pressed="false" title="Toggle dark mode">
-                        <div class="theme-toggle-icon">
-                            <div class="moon-or-sun"></div>
-                            <div class="moon-mask"></div>
-                        </div>
+                    <button class="gh-theme-toggle gh-icon-btn" onclick="toggleTheme()" aria-label="Dark mode" aria-pressed="false">
+                        <svg class="theme-toggle-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                        <svg class="theme-toggle-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                     </button>
                 </nav>
             {{#if @custom.profile_photo }}

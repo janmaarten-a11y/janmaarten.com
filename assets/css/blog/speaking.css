@@ -1,0 +1,122 @@
+/* Speaking section
+   Replaces the dot-spacer "menu" format with a clearer card row:
+   date on the left, event/title/recording-link stacked on the right. */
+
+.section-experiences .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.speaking-entry {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: var(--space-l);
+    align-items: baseline;
+    padding: var(--space-l) 0;
+    border-top: 1px solid oklch(from var(--primary-text-color) l c h / 0.08);
+}
+
+.speaking-entry:last-child {
+    border-bottom: 1px solid oklch(from var(--primary-text-color) l c h / 0.08);
+}
+
+.speaking-meta {
+    /* Date column — baseline-align with the event line, no padding offset */
+    color: var(--tertiary-text-color);
+}
+
+.speaking-date {
+    display: inline-block;
+    font-weight: var(--font-bold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: var(--size-step--2);
+    color: var(--secondary-text-color);
+}
+
+.speaking-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+}
+
+/* "Axe-con 2026" — venue/event label.
+   If the content contains a link (legacy), keep it quiet — the
+   prominent "Watch the talk" pill below is the real CTA. */
+.speaking-event,
+.speaking-event p {
+    margin: 0;
+    color: var(--tertiary-text-color);
+    font-size: var(--size-step--1);
+    line-height: var(--leading-fine);
+}
+
+.speaking-event a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: oklch(from var(--color-primary) l c h / 0.3);
+    text-underline-offset: 0.2ch;
+}
+
+.speaking-event a:hover {
+    color: var(--color-primary);
+    text-decoration-color: var(--color-primary);
+}
+
+.speaking-event a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* Talk name — the main thing */
+.speaking-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--size-step-1);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-fine);
+    color: var(--primary-text-color);
+}
+
+/* Watch link — explicit pill button, can't be missed */
+.speaking-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    margin-top: var(--space-xs);
+    padding: var(--space-3xs) var(--space-s);
+    background: oklch(from var(--color-primary) l c h / 0.14);
+    color: var(--color-primary);
+    border-radius: 999px;
+    font-size: var(--size-step--1);
+    font-weight: var(--font-bold);
+    text-decoration: none;
+    width: fit-content;
+    transition:
+        background-color var(--transition-duration) var(--transition-timing),
+        color var(--transition-duration) var(--transition-timing);
+}
+
+.speaking-link:hover {
+    background: oklch(from var(--color-primary) l c h / 0.24);
+}
+
+.speaking-link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+.speaking-link [aria-hidden] {
+    font-size: 0.85em;
+    line-height: 1;
+}
+
+@media (max-width: 600px) {
+    .speaking-entry {
+        grid-template-columns: 1fr;
+        gap: var(--space-3xs);
+        padding: var(--space-m) 0;
+    }
+}

@@ -48,12 +48,43 @@
 .feed:not(.no-link):hover .feed-title,
 .card.post:not(.card-overlay):hover h3.card-title {
     text-decoration: underline;
-    color: var(--color-primary);
+    text-decoration-color: oklch(from var(--color-purple-subdued) calc(l + .07) c h / .7);
+    text-decoration-thickness: .25ch;
+    text-underline-offset: .15ch;
+    color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);
+}
+
+[data-mode="dark"] .feed:not(.no-link):hover .feed-title,
+[data-mode="dark"] .card.post:not(.card-overlay):hover h3.card-title {
+    color: var(--color-lavender);
+    text-decoration-color: oklch(from var(--color-lavender) l c h / 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .feed:not(.no-link):hover .feed-title,
+    :root:not([data-mode="light"]) .card.post:not(.card-overlay):hover h3.card-title {
+        color: var(--color-lavender);
+        text-decoration-color: oklch(from var(--color-lavender) l c h / 0.5);
+    }
 }
 
 .post-feed.expanded a.u-permalink:focus-visible {
     outline-offset: 6px;
- } 
+    border-radius: var(--border-radius-small);
+}
+
+/* Combined: keyboard-focused AND mouse-hovered — shift outline to tertiary */
+.post-feed.expanded .feed:hover a.u-permalink:focus-visible {
+    outline-color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);
+}
+[data-mode="dark"] .post-feed.expanded .feed:hover a.u-permalink:focus-visible {
+    outline-color: var(--color-lavender);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .post-feed.expanded .feed:hover a.u-permalink:focus-visible {
+        outline-color: var(--color-lavender);
+    }
+} 
 
 .feed:not(.no-link):hover .feed-right {
     margin-right: var(--space-l);
