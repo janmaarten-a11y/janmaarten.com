@@ -11,7 +11,11 @@ externalLinks();
 bookmarkFocus();
 preTabindex();
 modeSwitcher();
-headingAnchors();
+// On posts with a TOC, defer headingAnchors() until after tocbot has read
+// the headings — otherwise the appended "anchor" text leaks into the TOC.
+// default.hbs calls window.headingAnchors() after tocbot.init.
+if (!document.querySelector('.toc-desktop, .toc-mobile')) headingAnchors();
+window.headingAnchors = headingAnchors;
 
 function headingAnchors() {
     // Add a `#` permalink to every heading inside .gh-content that has an id.

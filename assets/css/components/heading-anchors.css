@@ -9,8 +9,15 @@
 
 .gh-content .heading-anchor {
     position: absolute;
-    right: calc(100% + 0.25em);
+    /* No gap between anchor and heading — the visual spacing comes from
+       padding-right INSIDE the anchor, so the cursor doesn't leave any
+       hover zone moving between them.  Without this, hovering the right
+       edge of the anchor created a hover-leave loop (anchor outside the
+       heading bounding box → heading un-hovers → anchor fades → cursor
+       re-enters heading → anchor reveals → flicker). */
+    right: 100%;
     top: 0;
+    padding-right: 0.25em;
     display: inline-block;
     /* Inherit the heading's font for visual cohesion */
     font: inherit;

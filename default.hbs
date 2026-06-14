@@ -220,6 +220,10 @@
         });
     }
 
+    // Append heading anchors AFTER tocbot has read the heading text
+    // (running earlier would inject "anchor" into the TOC labels).
+    if (typeof window.headingAnchors === 'function') window.headingAnchors();
+
     // Clone TOC into mobile nav
     if (desktop && mobile) {
         var desktopList = desktop.querySelector('.toc-list');
