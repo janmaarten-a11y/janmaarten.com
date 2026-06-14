@@ -300,11 +300,6 @@ blockquote:not([class]) {
     letter-spacing: -0.03rem;
 }
 
-blockquote:not([class]) strong {
-    font-weight: var(--font-regular);
-    color: var(--primary-text-color);
-}
-
 ul,
 ol {
     padding-left: var(--space-l);

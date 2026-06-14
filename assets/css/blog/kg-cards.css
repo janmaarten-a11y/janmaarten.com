@@ -130,7 +130,9 @@
     box-shadow:
         inset 0 0 0 2px transparent,
         0 0 30px oklch(from var(--color-secondary) l c h / 0.25);
-    /* Reset the thick highlight-style underline inherited from .gh-content a:hover */
+    /* Suppress the .gh-content a:hover highlight-style underline that would
+       otherwise paint a thick yellow bar across the bottom of the card. */
+    text-decoration: none;
     text-decoration-thickness: 1px;
     text-underline-offset: auto;
 }

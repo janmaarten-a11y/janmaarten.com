@@ -56,11 +56,14 @@
                 var name = escapeHtml(author.name || 'Someone');
                 var photo = author.photo || '';
                 var url = author.url || r.url || '#';
+                var initial = escapeHtml((author.name || '?').trim().charAt(0).toUpperCase());
+                html += '<a href="' + escapeHtml(url) + '" class="wm-avatar-link" rel="noopener noreferrer">';
                 if (photo) {
-                    html += '<a href="' + escapeHtml(url) + '" class="wm-avatar-link" rel="noopener noreferrer">';
-                    html += '<img src="' + escapeHtml(photo) + '" alt="' + name + '" class="wm-avatar" loading="lazy">';
-                    html += '</a>';
+                    html += '<img src="' + escapeHtml(photo) + '" alt="' + name + '" class="wm-avatar" loading="lazy" onerror="this.outerHTML=&quot;<span class=\&quot;wm-avatar wm-avatar-fallback\&quot; aria-label=\&quot;' + name + '\&quot;>' + initial + '</span>&quot;">';
+                } else {
+                    html += '<span class="wm-avatar wm-avatar-fallback" aria-label="' + name + '">' + initial + '</span>';
                 }
+                html += '</a>';
             });
             html += '</div>';
             var likeCount = likes.length;
@@ -86,8 +89,11 @@
                 var dateStr = date ? formatDate(date) : '';
 
                 html += '<article class="wm-reply">';
+                var initial = escapeHtml((author.name || '?').trim().charAt(0).toUpperCase());
                 if (photo) {
-                    html += '<img src="' + escapeHtml(photo) + '" alt="" class="wm-reply-avatar" loading="lazy">';
+                    html += '<img src="' + escapeHtml(photo) + '" alt="" class="wm-reply-avatar" loading="lazy" onerror="this.outerHTML=&quot;<span class=\&quot;wm-reply-avatar wm-avatar-fallback\&quot; aria-hidden=\&quot;true\&quot;>' + initial + '</span>&quot;">';
+                } else {
+                    html += '<span class="wm-reply-avatar wm-avatar-fallback" aria-hidden="true">' + initial + '</span>';
                 }
                 html += '<div class="wm-reply-content">';
                 html += '<div class="wm-reply-meta">';

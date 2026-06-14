@@ -74,6 +74,23 @@
     flex-shrink: 0;
 }
 
+/* Fallback avatar — used when the author has no photo URL or when the
+   remote image 404s.  Renders as a coloured circle with the author's
+   first initial.  Applied to both .wm-avatar and .wm-reply-avatar. */
+.wm-avatar-fallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-accent-2);
+    color: var(--color-text-accent);
+    font-family: var(--font-base);
+    font-weight: var(--font-bold);
+    font-size: 0.9em;
+    line-height: 1;
+    text-transform: uppercase;
+    user-select: none;
+}
+
 .wm-reply-content {
     min-width: 0;
 }

@@ -207,7 +207,7 @@ is the very first element in the post content */
 @media (prefers-color-scheme: dark) {
     :root:not([data-mode="light"]) .gh-content a {
         color: var(--color-teal-alt);
-        text-decoration-color: oklch(from var(--color-green-alt) l c h / 0.5);
+        text-decoration-color: oklch(from var(--color-teal-alt) l c h / 0.75);
     }
 
     :root:not([data-mode="light"]) .gh-content a:hover {
