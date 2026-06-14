@@ -47,6 +47,14 @@
         <h3 class="{{#if isLarge}}h2{{else}}h3{{/if}} card-title">
             {{title}}
         </h3>
+        {{#if isPost}}
+            <div class="card-meta">
+                {{#primary_tag}}<span class="card-meta-item card-meta-tag">{{name}}</span>{{/primary_tag}}
+                <span class="card-meta-item card-meta-time">{{reading_time}}</span>
+                <span class="card-meta-item card-meta-date"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM DD, YYYY"}}</time></span>
+            </div>
+            <span class="card-arrow" aria-hidden="true">→</span>
+        {{/if}}
         {{#if custom_excerpt}}
             <div class="sub-heading card-excerpt">{{excerpt words="20"}}</div>
         {{/if}}
