@@ -32,8 +32,10 @@ class FootnoteSide extends HTMLElement {
         //   On desktop: stays inside the element for Tufte-CSS float to work
         //   On mobile: moved after parent paragraph to avoid splitting it
         this.innerHTML =
-            '<button class="footnote-side-toggle" aria-expanded="false">' +
-                '<sup class="footnote-side-number">' + index + '</sup>' +
+            '<button class="footnote-side-toggle" aria-expanded="false" ' +
+                    'aria-label="Footnote ' + index + '" ' +
+                    'aria-controls="sn-' + index + '">' +
+                '<sup class="footnote-side-number" aria-hidden="true">' + index + '</sup>' +
             '</button>';
 
         // Build content element

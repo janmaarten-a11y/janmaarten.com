@@ -87,11 +87,13 @@
     gap: var(--space-2xs);
     margin-top: var(--space-xs);
     padding: var(--space-3xs) var(--space-s);
+    min-height: 2rem;
     background: oklch(from var(--color-primary) l c h / 0.14);
     color: var(--color-primary);
     border-radius: 999px;
     font-size: var(--size-step--1);
     font-weight: var(--font-bold);
+    line-height: 1.4;
     text-decoration: none;
     width: fit-content;
     transition:

@@ -69,6 +69,9 @@
         animation: none;
         background-color: oklch(from var(--color-primary) l c h / 0.1);
     }
+    .gh-content .heading-anchor {
+        transition: none;
+    }
 }
 
 /* Narrow viewports: gutter disappears — place the anchor inline instead */

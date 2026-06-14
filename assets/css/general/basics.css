@@ -99,7 +99,15 @@ body.with-custom-background {
     background: var(--color-tertiary);
     color: var(--white-color);
 }
-
+/* Dark mode: lavender bg + white text fails 2.77:1 — use dark text instead (~7.6:1) */
+[data-mode="dark"] ::selection {
+    color: var(--color-gray-900);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) ::selection {
+        color: var(--color-gray-900);
+    }
+}
 a {
     color: var(--primary-text-color);
     text-decoration: none;

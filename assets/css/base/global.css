@@ -28,6 +28,15 @@ html.theme-transitioning *::after {
   transition-delay: 0 !important;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html.theme-transitioning,
+  html.theme-transitioning *,
+  html.theme-transitioning *::before,
+  html.theme-transitioning *::after {
+    transition: none !important;
+  }
+}
+
 body {
   display: flex;
   flex-direction: column;

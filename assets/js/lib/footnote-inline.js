@@ -28,8 +28,10 @@ class FootnoteInline extends HTMLElement {
 
         // Build the inline trigger (stays in flow inside the paragraph)
         this.innerHTML =
-            '<button class="footnote-inline-toggle" aria-expanded="false">' +
-                '<sup class="footnote-inline-number">' + index + '</sup>' +
+            '<button class="footnote-inline-toggle" aria-expanded="false" ' +
+                    'aria-label="Footnote ' + index + '" ' +
+                    'aria-controls="fn-' + index + '">' +
+                '<sup class="footnote-inline-number" aria-hidden="true">' + index + '</sup>' +
             '</button>';
 
         // Build the expandable content and place it AFTER the parent

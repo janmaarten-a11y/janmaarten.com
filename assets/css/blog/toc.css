@@ -275,6 +275,10 @@
     pointer-events: none;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .toc-active-marker { transition: none; }
+}
+
 [data-mode="dark"] .toc-active-marker {
     background-image: linear-gradient(
         180deg,
