@@ -98,15 +98,15 @@ footnote-side {
 }
 
 [data-mode="dark"] .footnote-side-number {
-    color: var(--color-teal-subdued);
+    color: var(--color-teal-alt);
 }
 
 [data-mode="dark"] .footnote-side-toggle:hover .footnote-side-number,
 [data-mode="dark"] .footnote-side-toggle:focus-visible .footnote-side-number {
-    background-color: var(--color-teal-subdued);
+    background-color: var(--color-teal-alt);
     color: var(--color-gray-900);
 }
 
 [data-mode="dark"] .footnote-side-index {
-    color: var(--color-teal-subdued);
+    color: var(--color-teal-alt);
 }

@@ -48,7 +48,7 @@
 .feed:not(.no-link):hover .feed-title,
 .card.post:not(.card-overlay):hover h3.card-title {
     text-decoration: underline;
-    text-decoration-color: oklch(from var(--color-purple-subdued) calc(l + .07) c h / .7);
+    text-decoration-color: oklch(from var(--color-purple-alt) calc(l + .07) c h / .7);
     text-decoration-thickness: .25ch;
     text-underline-offset: .15ch;
     color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);

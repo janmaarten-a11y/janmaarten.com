@@ -178,8 +178,8 @@
 }
 
 [data-mode="dark"] .toc-mobile .toc-list-item a:hover {
-    color: var(--color-indigo-subdued);
-    border-color: var(--color-indigo-subdued);
+    color: var(--color-indigo-alt);
+    border-color: var(--color-indigo-alt);
 }
 
 .toc-mobile .toc-list-item {
@@ -210,7 +210,7 @@
     font-weight: var(--font-semi-bold);
 }
 [data-mode="dark"] .toc-desktop .toc-list-item.is-active-li > a {
-    color: var(--color-teal-subdued);
+    color: var(--color-teal-alt);
 }
 
 /* Vertical track line — clipped to start/end circles */

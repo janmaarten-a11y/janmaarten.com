@@ -155,7 +155,7 @@ is the very first element in the post content */
 
 .gh-content a:hover {
   color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);
-  text-decoration-color: oklch(from var(--color-purple-subdued) calc(l + .07) c h / .7);
+  text-decoration-color: oklch(from var(--color-purple-alt) calc(l + .07) c h / .7);
   text-decoration-thickness: .7ch;
   text-underline-offset: -.2ch;
   -webkit-text-decoration-skip-ink: none;
@@ -174,15 +174,15 @@ is the very first element in the post content */
    Shift to tertiary so the overlap reads as intentional. */
 .gh-content a:focus:hover,
 .gh-content a:focus-visible:hover {
-    background: oklch(from var(--color-purple-subdued) calc(l + .09) c h / .5);
+    background: oklch(from var(--color-purple-alt) calc(l + .09) c h / .5);
     color: oklch(from var(--color-tertiary) calc(l + .09) c h);
     border-bottom-color: oklch(from var(--color-tertiary) calc(l + .12) c h);
 }
 
 /* ---- Dark mode content links ---- */
 [data-mode="dark"] .gh-content a {
-    color: var(--color-teal-subdued);
-    text-decoration-color: oklch(from var(--color-teal-subdued) l c h / 0.75);
+    color: var(--color-teal-alt);
+    text-decoration-color: oklch(from var(--color-teal-alt) l c h / 0.75);
 }
 
 [data-mode="dark"] .gh-content a:hover {
@@ -192,9 +192,9 @@ is the very first element in the post content */
 
 [data-mode="dark"] .gh-content a:focus,
 [data-mode="dark"] .gh-content a:focus-visible {
-    background: oklch(from var(--color-teal-subdued) l c h / 0.15);
+    background: oklch(from var(--color-teal-alt) l c h / 0.15);
     color: var(--primary-text-color);
-    border-bottom: .4ch solid var(--color-teal-subdued);
+    border-bottom: .4ch solid var(--color-teal-alt);
     text-decoration: none;
 }
 
@@ -206,8 +206,8 @@ is the very first element in the post content */
 
 @media (prefers-color-scheme: dark) {
     :root:not([data-mode="light"]) .gh-content a {
-        color: var(--color-teal-subdued);
-        text-decoration-color: oklch(from var(--color-indigo-subdued) l c h / 0.5);
+        color: var(--color-teal-alt);
+        text-decoration-color: oklch(from var(--color-indigo-alt) l c h / 0.5);
     }
 
     :root:not([data-mode="light"]) .gh-content a:hover {
@@ -217,9 +217,9 @@ is the very first element in the post content */
 
     :root:not([data-mode="light"]) .gh-content a:focus,
     :root:not([data-mode="light"]) .gh-content a:focus-visible {
-        background: oklch(from var(--color-teal-subdued) l c h / 0.15);
+        background: oklch(from var(--color-teal-alt) l c h / 0.15);
         color: var(--primary-text-color);
-        border-bottom: .4ch solid var(--color-teal-subdued);
+        border-bottom: .4ch solid var(--color-teal-alt);
         text-decoration: none;
     }
 
