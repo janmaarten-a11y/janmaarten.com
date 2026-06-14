@@ -2,24 +2,24 @@
     <div class="footer-divider"></div>
     <div class="wrapper flow">
         <div class="footer-inner-main wrapper">
-            <div class="kg-grid twothirds">
-                <div class="kg-grid kg-grid-2col footer-nav">
+            <div class="footer-nav-wrap">
+                <div class="footer-nav">
                     {{navigation type="secondary"}}
                 </div>
-                <div class="legal">
-                    <div class="webring">
-                        <h3 class="footer-group-header" id="a11y-webring-club">a11y-webring.club</h3>
-                        <nav class="a11y-webring-club" aria-labelledby="a11y-webring-club">
-                            <p>This site is a member of the <a rel="external" href="https://a11y-webring.club/">a11y-webring.club</a>.</p>
-                            <ul class="webring-nav">
-                                <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/prev">Previous website</a></li>
-                                <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/random">Random website</a></li>
-                                <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/next">Next website</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
             </div>
+        </div>
+        <div class="webring">
+            <div class="webring-info">
+                <h3 class="footer-group-header" id="a11y-webring-club">a11y-webring.club</h3>
+                <p>This site is a member of the <a rel="external" href="https://a11y-webring.club/">a11y-webring.club</a>.</p>
+            </div>
+            <nav class="a11y-webring-club" aria-labelledby="a11y-webring-club">
+                <ul class="webring-nav">
+                    <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/prev"><span aria-hidden="true">←</span> Previous</a></li>
+                    <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/random"><span aria-hidden="true">?</span> Random</a></li>
+                    <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/next">Next <span aria-hidden="true">→</span></a></li>
+                </ul>
+            </nav>
         </div>
         <div class="footer-copyright">
             <p>© {{date format="YYYY"}} Jan Maarten. All Rights Reserved. This site uses Plausible analytics which collects no personal data.</p>
