@@ -6,26 +6,17 @@ Issues with the site or its accessibility can be submitted [here](https://github
 
 ## What this theme is
 
-A typography-forward Ghost theme designed for long-form writing and a portfolio of accessibility, design-systems and front-end work. The visual identity is built on the **viridis** colour palette — a perceptually uniform, colour-blind-safe gradient extended into a full design-token system.
+A content-forward Ghost theme designed for long-form writing and a portfolio of accessibility, design-systems and front-end work. The visual identity is built on the **viridis** colour palette — a perceptually uniform, colour-blind-safe gradient extended into a full design-token system.
 
 Key characteristics:
 
 - **OKLCH design tokens** in `tokens/tokens.json`, generated into CSS custom properties by `tokens/generate-variables.js` → `assets/css/base/variables.css`
+- **Fluid typography & spacing** via `clamp()` — every type step and spacing token scales smoothly between 320px and 1360px viewports without breakpoints
 - **CUBE CSS** methodology (Composition / Utility / Block / Exception) layered on top of the legacy Kyoto styles, progressively replacing them
 - **Theme + mode model**: `data-theme="viridis"` + `data-mode="light|dark"` (absent = follow OS). Light is the brand canon; dark is fully designed, not an afterthought.
 - **WCAG 2.2 AA** target, audited via subagent + manual checks; reduced-motion honoured throughout
 - **Custom web components** for editorial long-form (sidenotes, pull quotes, citation cards, footnotes) authored in Ghost's HTML card editor
 
-## Build & develop
-
-```bash
-npm install
-npx gulp build      # compile CSS + JS into assets/built/
-npm test            # gscan theme validator (must pass with 0 errors)
-npx gulp zip        # build + create distributable zip in dist/
-```
-
-Local Ghost runs at `http://localhost:2368/`; the theme is symlinked into the Ghost content directory. Restart Ghost after theme changes (`ghost restart` from the Ghost project root).
 
 ## Custom components
 
@@ -200,3 +191,15 @@ localStorage keys: `jm-theme` + `jm-mode`. Legacy single-key `theme` from the bi
 ## Licence
 
 Theme code: MIT (see [`LICENSE`](./LICENSE)). Content (writing, images, illustrations) is © Jan Maarten, all rights reserved.
+
+## Inspirations
+
+This theme stands on the shoulders of others. Direct credits:
+
+- **[Themex Studio](https://themex.studio/kyoto/)** — the original Kyoto Ghost theme that everything here was forked from
+- **[Andy Bell](https://andy-bell.co.uk/) / [Set Studio](https://set.studio/)** — the [CUBE CSS](https://cube.fyi/) methodology and the `.flow`, `.cluster`, `.repel`, `.wrapper` composition primitives used everywhere
+- **[Maggie Appleton](https://maggieappleton.com/)** — inspiration for the footnote, citation, table-of-contents, and other editorial long-form components
+- **[Tufte CSS](https://edwardtufte.github.io/tufte-css/)** — direct CSS basis for `<footnote-side>` and `<side-note>` (the float + clear margin sidenote pattern)
+- **[Mat “Wilto” Marquis](https://wil.to/)** — viridis gradient on the hero heading and the broader theme-switching pattern
+- **[Josh Collinsworth](https://joshcollinsworth.com/)** — sidenote and pull-quote treatments
+- **[Adrian Roselli](https://adrianroselli.com/)** — accessible heading anchor patterns
