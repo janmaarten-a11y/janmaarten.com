@@ -59,7 +59,7 @@
                 var initial = escapeHtml((author.name || '?').trim().charAt(0).toUpperCase());
                 html += '<a href="' + escapeHtml(url) + '" class="wm-avatar-link" rel="noopener noreferrer">';
                 if (photo) {
-                    html += '<img src="' + escapeHtml(photo) + '" alt="' + name + '" class="wm-avatar" loading="lazy" onerror="this.outerHTML=&quot;<span class=\&quot;wm-avatar wm-avatar-fallback\&quot; aria-label=\&quot;' + name + '\&quot;>' + initial + '</span>&quot;">';
+                    html += '<img src="' + escapeHtml(photo) + '" alt="' + name + '" class="wm-avatar" loading="lazy" data-fallback="' + initial + '">';
                 } else {
                     html += '<span class="wm-avatar wm-avatar-fallback" aria-label="' + name + '">' + initial + '</span>';
                 }
@@ -91,7 +91,7 @@
                 html += '<article class="wm-reply">';
                 var initial = escapeHtml((author.name || '?').trim().charAt(0).toUpperCase());
                 if (photo) {
-                    html += '<img src="' + escapeHtml(photo) + '" alt="" class="wm-reply-avatar" loading="lazy" onerror="this.outerHTML=&quot;<span class=\&quot;wm-reply-avatar wm-avatar-fallback\&quot; aria-hidden=\&quot;true\&quot;>' + initial + '</span>&quot;">';
+                    html += '<img src="' + escapeHtml(photo) + '" alt="" class="wm-reply-avatar" loading="lazy" data-fallback="' + initial + '">';
                 } else {
                     html += '<span class="wm-reply-avatar wm-avatar-fallback" aria-hidden="true">' + initial + '</span>';
                 }
@@ -113,6 +113,27 @@
 
         html += '</div>';
         el.innerHTML = html;
+
+        // Wire up avatar fallbacks: when an <img> fails to load (404,
+         // CORS, image-proxy 'Source image is unreachable', etc.), swap
+         // it for a coloured circle with the author's initial. Inline
+         // onerror handlers proved fragile through HTML escaping; this
+         // does the same job reliably after the markup is in the DOM. */
+        el.querySelectorAll('img[data-fallback]').forEach(function (img) {
+            var swap = function () {
+                var initial = img.getAttribute('data-fallback') || '?';
+                var aria = img.alt
+                    ? ' aria-label="' + img.alt.replace(/"/g, '&quot;') + '"'
+                    : ' aria-hidden="true"';
+                var cls = img.className + ' wm-avatar-fallback';
+                img.outerHTML = '<span class="' + cls + '"' + aria + '>' + initial + '</span>';
+            };
+            if (img.complete && img.naturalWidth === 0) {
+                swap();
+            } else {
+                img.addEventListener('error', swap, { once: true });
+            }
+        });
     }
 
     function escapeHtml(str) {

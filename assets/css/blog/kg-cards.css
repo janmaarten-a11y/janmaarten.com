@@ -139,9 +139,12 @@
 
 /* Focus-visible: bookmark card is a wrapper link, not body text.
    Suppress the .gh-content a focus styles (background + bottom border)
-   and show an offset outline + stronger halo instead. */
-.kg-bookmark-card a.kg-bookmark-container:focus,
-.kg-bookmark-card a.kg-bookmark-container:focus-visible {
+   and show an offset outline + stronger halo instead.
+   Doubled .kg-bookmark-card specificity so it beats the dark-mode
+   `:root:not([data-mode="light"]) .gh-content a:focus` rule which
+   paints a .4ch teal-alt border on the bottom edge of the card. */
+.kg-bookmark-card.kg-bookmark-card a.kg-bookmark-container:focus,
+.kg-bookmark-card.kg-bookmark-card a.kg-bookmark-container:focus-visible {
     background-color: var(--background-color) !important;
     border-bottom: 0;
     text-decoration: none;
@@ -155,8 +158,8 @@
 /* Focus + hover: gradient ring takes over the inset border, outline shifts
    to tertiary (purple light / lavender dark) so the overlap state reads as
    intentional — same pattern used for content links. */
-.kg-bookmark-card a.kg-bookmark-container:focus:hover,
-.kg-bookmark-card a.kg-bookmark-container:focus-visible:hover {
+.kg-bookmark-card.kg-bookmark-card a.kg-bookmark-container:focus:hover,
+.kg-bookmark-card.kg-bookmark-card a.kg-bookmark-container:focus-visible:hover {
     border-bottom: 0;
     text-decoration: none;
     outline: 3px solid var(--color-tertiary);
