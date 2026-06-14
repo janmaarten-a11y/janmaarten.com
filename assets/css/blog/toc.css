@@ -250,21 +250,49 @@
     z-index: 1;
 }
 
-/* Sliding active marker — positioned by JS */
+/* Sliding active marker — positioned by JS.
+   Acts as a viewing window onto a vertical viridis gradient that
+   spans the full rail height — so the dot color reflects how far
+   the reader has progressed through the article. */
 .toc-active-marker {
     position: absolute;
     left: 0px;
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--color-teal);
+    background-image: linear-gradient(
+        180deg,
+        oklch(28.5% 0.20 318),
+        oklch(44.84% 0.16 266),
+        oklch(49.51% 0.13 190),
+        oklch(60% 0.20 145)
+    );
+    background-repeat: no-repeat;
+    background-size: 100% var(--toc-rail-h, 600px);
+    background-position: 0 calc(-1 * var(--toc-marker-y, 0px));
     z-index: 2;
     transition: top 0.25s ease;
     pointer-events: none;
 }
 
 [data-mode="dark"] .toc-active-marker {
-    background: var(--color-teal-subdued);
+    background-image: linear-gradient(
+        180deg,
+        #21918c,
+        #73d677,
+        #a295ff
+    );
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .toc-active-marker {
+        background-image: linear-gradient(
+            180deg,
+            #21918c,
+            #73d677,
+            #a295ff
+        );
+    }
 }
 
 /* Hide markers/circles on nested lists */

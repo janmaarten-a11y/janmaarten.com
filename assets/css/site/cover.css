@@ -30,12 +30,12 @@ h1.h1.hero-header {
 }
 
 [data-mode="dark"] .home-hero-header {
-    background-image: var(--gradient-warm);
+    background-image: var(--gradient-warm-bright);
 }
 
 @media (prefers-color-scheme: dark) {
     :root:not([data-mode="light"]) .home-hero-header {
-        background-image: var(--gradient-warm);
+        background-image: var(--gradient-warm-bright);
     }
 }
 

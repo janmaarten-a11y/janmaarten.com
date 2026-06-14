@@ -5,6 +5,29 @@ html {
   color-scheme: light dark;
 }
 
+/* When a specific mode is locked in, narrow the color-scheme
+   so native UI (form controls, scrollbars, options) match. */
+html[data-mode="light"] { color-scheme: light; }
+html[data-mode="dark"]  { color-scheme: dark; }
+
+/* Smooth theme switching — only active while the user toggles.
+   .theme-transitioning is added by JS and removed after the swap. */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 220ms ease,
+    background-image 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease,
+    fill 220ms ease,
+    stroke 220ms ease,
+    box-shadow 220ms ease,
+    text-decoration-color 220ms ease !important;
+  transition-delay: 0 !important;
+}
+
 body {
   display: flex;
   flex-direction: column;

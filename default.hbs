@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
     <title>{{meta_title}}</title>
     <link rel="webmention" href="https://webmention.io/janmaarten.com/webmention">
     <link rel="pingback" href="https://webmention.io/janmaarten.com/xmlrpc">
@@ -45,6 +46,25 @@
                 updateToggleState();
             }
 
+            // Apply mode with a brief transition window for smooth theme swaps.
+            // Skips the transition on first call (initial page load).
+            var initialized = false;
+            function applyModeAnimated(m) {
+                if (!initialized) {
+                    applyMode(m);
+                    initialized = true;
+                    return;
+                }
+                var root = document.documentElement;
+                root.classList.add('theme-transitioning');
+                applyMode(m);
+                // Remove after transition completes (matches global.css 220ms)
+                window.clearTimeout(applyModeAnimated._t);
+                applyModeAnimated._t = window.setTimeout(function () {
+                    root.classList.remove('theme-transitioning');
+                }, 260);
+            }
+
             function effectiveMode() {
                 var m = localStorage.getItem(MODE_KEY) || 'system';
                 if (m === 'system') {
@@ -65,7 +85,7 @@
                 } else {
                     localStorage.setItem(MODE_KEY, m);
                 }
-                applyMode(m);
+                applyModeAnimated(m);
             };
             window.toggleTheme = function() {
                 window.setMode(effectiveMode() === 'dark' ? 'light' : 'dark');
@@ -74,7 +94,18 @@
 
             // React to system changes when in "system" mode
             var mq = window.matchMedia('(prefers-color-scheme: dark)');
-            var listener = function() { if (window.getMode() === 'system') { updateToggleState(); } };
+            var listener = function() {
+                if (window.getMode() === 'system') {
+                    // Animate the swap when OS preference flips
+                    var root = document.documentElement;
+                    root.classList.add('theme-transitioning');
+                    window.clearTimeout(applyModeAnimated._t);
+                    applyModeAnimated._t = window.setTimeout(function () {
+                        root.classList.remove('theme-transitioning');
+                    }, 260);
+                    updateToggleState();
+                }
+            };
             if (mq.addEventListener) { mq.addEventListener('change', listener); }
             else if (mq.addListener) { mq.addListener(listener); }
 
@@ -249,6 +280,10 @@
 
         function updateMarkerPosition() {
             if (!tocList) return;
+            // If the TOC is collapsed (display:none inside <details>), bail —
+            // rects would be zeroed and would leave the marker in a bad spot
+            // when the user reopens it.
+            if (!tocList.offsetParent) return;
             // Find the deepest active item (h3 inside h2, or h2 itself)
             var allActive = tocList.querySelectorAll('.toc-list-item.is-active-li');
             var active = allActive.length ? allActive[allActive.length - 1] : null;
@@ -256,14 +291,17 @@
             marker.style.display = '';
             var link = active.querySelector(':scope > a');
             var fontSize = link ? parseFloat(getComputedStyle(link).fontSize) : 14;
-            // Sum offsetTop up the chain to the root toc-list
-            var top = parseFloat(getComputedStyle(active).paddingTop) + fontSize * 0.3;
-            var el = active;
-            while (el && el !== tocList) {
-                top += el.offsetTop;
-                el = el.offsetParent;
-            }
+            // Use bounding rects — robust against offsetParent chain quirks
+            // (especially on first load when tocbot fires before layout settles)
+            var listRect = tocList.getBoundingClientRect();
+            var activeRect = active.getBoundingClientRect();
+            var top = activeRect.top - listRect.top
+                + parseFloat(getComputedStyle(active).paddingTop)
+                + fontSize * 0.3;
             marker.style.top = top + 'px';
+            // Feed the position to CSS so the dot's gradient slice reflects progress
+            marker.style.setProperty('--toc-marker-y', top + 'px');
+            marker.style.setProperty('--toc-rail-h', tocList.offsetHeight + 'px');
         }
 
         // Watch for tocbot class changes instead of polling on scroll
@@ -299,8 +337,17 @@
         if (details) {
             details.addEventListener('toggle', function() {
                 manualToggle = true;
+                // Recompute marker when the TOC opens — when it's been closed,
+                // the contents had display:none and the previous calculation
+                // would have used zeroed bounding rects.
+                if (details.open) {
+                    updateMarkerPosition();
+                }
             });
         }
+
+        // Recompute once more after images/fonts finalize layout
+        window.addEventListener('load', updateMarkerPosition);
 
         // Collapse state based on scroll position
         var autoCollapsed = false;

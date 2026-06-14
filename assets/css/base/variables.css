@@ -83,7 +83,8 @@
   --gradient-viridis: linear-gradient(90deg, oklch(28.5% 0.20 318), oklch(44.84% 0.16 266), oklch(49.51% 0.13 190), oklch(78% 0.22 145), oklch(95% 0.20 105));
   --gradient-cool: linear-gradient(90deg, oklch(28.5% 0.20 318), oklch(44.84% 0.16 266), oklch(49.51% 0.13 190));
   --gradient-cool-light: linear-gradient(10deg, oklch(36% 0.24 318), oklch(50% 0.22 266), oklch(60% 0.15 190));
-  --gradient-warm: linear-gradient(90deg, oklch(78% 0.13 190), oklch(82% 0.20 145), oklch(78% 0.13 290));
+  --gradient-warm: linear-gradient(90deg, #21918c, #73d677, #a295ff);
+  --gradient-warm-bright: linear-gradient(90deg, oklch(78% 0.13 190), oklch(82% 0.20 145), oklch(78% 0.13 290));
 }
 
 /* Semantic color mappings */
