@@ -49,8 +49,9 @@
         // Skip opt-out
         if (link.hasAttribute('data-no-tooltip')) return false;
 
-        // Skip links inside bookmark cards, nav, footer, header
-        if (link.closest('.kg-bookmark-card, nav, footer, header, .gh-head')) return false;
+        // Skip links inside bookmark cards, MSME embeds, nav, footer, header
+        if (link.closest('.kg-bookmark-card, .msme-block, nav, footer, header, .gh-head')) return false;
+        if (link.classList.contains('msme-link')) return false;
 
         return true;
     }
