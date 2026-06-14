@@ -80,6 +80,7 @@
 @import "components/link-tooltip.css";
 @import "components/pull-quote.css";
 @import "components/mode-switcher.css";
+@import "components/heading-anchors.css";
 
 /* 8. Vendor */
 @import "vendor/tiny-slider.css";

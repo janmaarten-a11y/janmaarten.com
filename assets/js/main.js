@@ -11,6 +11,38 @@ externalLinks();
 bookmarkFocus();
 preTabindex();
 modeSwitcher();
+headingAnchors();
+
+function headingAnchors() {
+    // Add a `#` permalink to every heading inside .gh-content that has an id.
+    // Skips post titles (those live outside .gh-content) and headings without an id
+    // (Ghost only auto-IDs h2–h4 by default).
+    var headings = document.querySelectorAll('.gh-content h2[id], .gh-content h3[id], .gh-content h4[id]');
+    headings.forEach(function (h) {
+        // Skip the TOC inside .gh-content (h2 "Table of contents" on mobile)
+        if (h.closest('.toc-container')) return;
+        // Skip headings explicitly marked to ignore
+        if (h.classList.contains('toc-ignore')) return;
+        // Don't double up if one already exists
+        if (h.querySelector('.heading-anchor')) return;
+
+        var a = document.createElement('a');
+        a.href = '#' + h.id;
+        a.className = 'heading-anchor';
+        // Accessible name is just "anchor" — the heading text is announced
+        // separately when the user navigates by headings, so repeating it
+        // in the link's name would be redundant.
+        var hash = document.createElement('span');
+        hash.setAttribute('aria-hidden', 'true');
+        hash.textContent = '#';
+        var label = document.createElement('span');
+        label.className = 'visually-hidden';
+        label.textContent = 'anchor';
+        a.appendChild(hash);
+        a.appendChild(label);
+        h.appendChild(a);
+    });
+}
 
 function modeSwitcher() {
     var switchers = document.querySelectorAll('select[data-mode-switcher]');

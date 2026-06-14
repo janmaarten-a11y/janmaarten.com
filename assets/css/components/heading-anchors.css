@@ -1,0 +1,91 @@
+/* Heading anchors
+   A faint `#` appears in the left gutter of headings inside .gh-content
+   on hover/focus. Clicking jumps to the heading and plays a brief
+   highlight pulse via :target. */
+
+.gh-content :is(h2, h3, h4) {
+    position: relative;
+}
+
+.gh-content .heading-anchor {
+    position: absolute;
+    right: calc(100% + 0.25em);
+    top: 0;
+    display: inline-block;
+    /* Inherit the heading's font for visual cohesion */
+    font: inherit;
+    /* But keep it a bit lighter weight than the heading */
+    font-weight: var(--font-regular);
+    color: var(--color-text-accent);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateX(0.25em);
+    transition:
+        opacity var(--transition-duration) var(--transition-timing),
+        transform var(--transition-duration) var(--transition-timing),
+        color var(--transition-duration) var(--transition-timing);
+    /* Stay on the same baseline as the heading text */
+    line-height: inherit;
+    white-space: nowrap;
+}
+
+/* Reveal on heading hover, anchor focus, or when the heading is the URL target */
+.gh-content :is(h2, h3, h4):hover > .heading-anchor,
+.gh-content :is(h2, h3, h4):focus-within > .heading-anchor,
+.gh-content :is(h2, h3, h4):target > .heading-anchor {
+    opacity: 0.4;
+    transform: none;
+}
+
+/* Stronger state when the anchor itself is interacted with.
+   Higher specificity than .gh-content a:hover so we win the cascade. */
+.gh-content :is(h2, h3, h4) > .heading-anchor:hover,
+.gh-content :is(h2, h3, h4) > .heading-anchor:focus-visible {
+    opacity: 1;
+    color: var(--color-primary);
+    text-decoration: none;
+    background: none;
+    border-bottom: none;
+}
+
+/* :target pulse — fires when the user clicks an anchor and the heading
+   becomes the URL fragment target */
+@keyframes heading-target-pulse {
+    0%   { background-color: oklch(from var(--color-primary) l c h / 0); }
+    20%  { background-color: oklch(from var(--color-primary) l c h / 0.18); }
+    100% { background-color: oklch(from var(--color-primary) l c h / 0); }
+}
+
+.gh-content :is(h2, h3, h4):target {
+    animation: heading-target-pulse 1.6s ease-out 1;
+    border-radius: var(--border-radius-small);
+    padding-inline: 0.25em;
+    margin-inline: -0.25em;
+    scroll-margin-block: var(--space-l);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gh-content :is(h2, h3, h4):target {
+        animation: none;
+        background-color: oklch(from var(--color-primary) l c h / 0.1);
+    }
+}
+
+/* Narrow viewports: gutter disappears — place the anchor inline instead */
+@media (max-width: 900px) {
+    .gh-content .heading-anchor {
+        position: static;
+        margin-left: 0.35em;
+        font-size: 0.75em;
+        transform: translateX(-0.25em);
+    }
+    .gh-content :is(h2, h3, h4):hover > .heading-anchor,
+    .gh-content :is(h2, h3, h4):focus-within > .heading-anchor,
+    .gh-content :is(h2, h3, h4):target > .heading-anchor {
+        transform: none;
+    }
+}
+
+@media print {
+    .gh-content .heading-anchor { display: none; }
+}

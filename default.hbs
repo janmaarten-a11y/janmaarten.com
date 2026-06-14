@@ -409,22 +409,25 @@
 </script>
 
 {{!-- Progress --}}
-{{#is "post"}}
+{{#post}}
+  {{#has tag="#long-form"}}
   <script>
-    const progressBar = document.querySelector('.reading-progress');
-
-    function updateProgress() {
-      const totalHeight = document.body.clientHeight;
-      const windowHeight = document.documentElement.clientHeight;
-      const position = window.scrollY;
-      const progress = position / (totalHeight - windowHeight) * 100;
-      progressBar.setAttribute('value', progress);
+    (function () {
+      var progressBar = document.querySelector('.reading-progress');
+      if (!progressBar) return;
+      function updateProgress() {
+        var totalHeight = document.body.clientHeight;
+        var windowHeight = document.documentElement.clientHeight;
+        var position = window.scrollY;
+        var progress = position / (totalHeight - windowHeight) * 100;
+        progressBar.setAttribute('value', progress);
+        requestAnimationFrame(updateProgress);
+      }
       requestAnimationFrame(updateProgress);
-    }
-
-    requestAnimationFrame(updateProgress);
+    })();
   </script>
-{{/is}}
+  {{/has}}
+{{/post}}
 {{!-- Progress --}}
 
 {{#is "post"}}
