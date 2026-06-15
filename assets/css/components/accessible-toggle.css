@@ -1,42 +1,53 @@
-/* Accessible Toggle — <details>/<summary> styled to match Ghost toggle card */
+/* Accessible Toggle — <details>/<summary> styled to match the rest of
+   the v2 theme. Replaces Ghost's inaccessible toggle card with native
+   HTML; browsers handle keyboard interaction, aria-expanded, and
+   open/close state for free. */
 
 .accessible-toggle {
-    background: var(--hero-background-color);
-    border: 1px dashed var(--ghost-accent-color);
-    border-radius: 4px;
-    margin-block: var(--space-s);
+    background: var(--color-bg-accent);
+    border: 1px solid var(--color-bg-accent-2);
+    border-left: 3px solid var(--color-primary);
+    border-radius: var(--border-radius-medium);
+    margin-block: var(--space-l);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.accessible-toggle[open] {
+    background: var(--color-bg);
+    border-color: var(--color-primary);
 }
 
 .accessible-toggle summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--space-s);
     padding: var(--space-s) var(--space-m);
-    font-size: var(--base-text-size);
-    font-weight: var(--font-bold);
+    font-size: var(--size-step-0);
+    font-weight: var(--font-semi-bold);
     color: var(--primary-text-color);
     cursor: pointer;
     list-style: none;
+    border-radius: calc(var(--border-radius-medium) - 1px);
+    transition: color 0.15s ease, background-color 0.15s ease;
 }
 
-/* Remove default marker in webkit */
+/* Remove default markers (Safari + Firefox) */
 .accessible-toggle summary::-webkit-details-marker {
     display: none;
 }
 
-/* Remove default marker in Firefox */
 .accessible-toggle summary::marker {
     content: "";
 }
 
-/* Chevron icon */
+/* Chevron icon — currentColor so hover/focus recolour applies */
 .accessible-toggle summary::after {
     content: "";
     flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    margin-left: var(--space-s);
-    background-color: var(--ghost-accent-color);
+    width: 1.2em;
+    height: 1.2em;
+    background-color: currentColor;
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M23.25 7.311 12.53 18.03a.749.749 0 0 1-1.06 0L.75 7.311'/%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M23.25 7.311 12.53 18.03a.749.749 0 0 1-1.06 0L.75 7.311'/%3E%3C/svg%3E");
     -webkit-mask-size: contain;
@@ -52,10 +63,26 @@
     transform: rotate(180deg);
 }
 
+/* --- Interactive states ---
+   Mirrors the four-state vocabulary used across the theme: rest /
+   hover / focus / focus+hover. Hover and focus both shift to
+   --color-primary; the combined state moves to --color-tertiary
+   (intentional overlap cue, same pattern as the footer links). */
+.accessible-toggle summary:hover {
+    color: var(--color-primary);
+    background: oklch(from var(--color-primary) l c h / 0.06);
+}
+
 .accessible-toggle summary:focus-visible {
     outline: 3px solid var(--color-primary);
     outline-offset: -3px;
-    border-radius: 3px;
+    color: var(--color-primary);
+}
+
+.accessible-toggle summary:focus-visible:hover {
+    color: var(--color-tertiary);
+    outline-color: var(--color-tertiary);
+    background: oklch(from var(--color-tertiary) l c h / 0.08);
 }
 
 /* Content area */
@@ -70,3 +97,4 @@
 .accessible-toggle .toggle-content > *:last-child {
     margin-bottom: 0;
 }
+

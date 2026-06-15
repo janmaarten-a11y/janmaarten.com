@@ -12,7 +12,12 @@
 
 .citation-card {
     position: relative;
-    margin-block: var(--space-m);
+    /* margin-top matches .gh-content > * + * so the card sits at the
+       same rhythm as the surrounding paragraphs. margin-bottom is
+       slightly smaller \u2014 cards visually have weight, so they don't
+       need as much breathing room before the next paragraph. */
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-l);
     padding: var(--space-3xs) var(--space-m) var(--space-s);
     background-color: var(--hero-background-color);
     border-left: 4px solid var(--color-tertiary);
