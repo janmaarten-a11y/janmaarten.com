@@ -1,12 +1,42 @@
+/* ============================================================
+   janmaarten.com — Ghost theme CSS entry point
+   ============================================================
+   Layer order:
+   1. Shared Ghost theme (kg-* card styles, gh-* base classes)
+   2. Base (reset, fonts, tokens, global element styles)
+   3. General (Kyoto aliases, forms, icons, typography)
+   4. Compositions (CUBE layout primitives)
+   5. Site chrome (layout, header, footer, cover, cards)
+   6. Blog (feed, single, content, toc, etc.)
+   7. Components (custom web components)
+   8. Vendor (third-party)
+   9. Misc (Ghost card overrides, utilities, portal)
+   10. Utilities (highest intent)
+   ============================================================ */
+
+/* 1. Shared Ghost theme — provides .kg-* card styles, .gh-content base */
 @import "@tryghost/shared-theme-assets/assets/css/v1/screen.css";
-@import "general/normalize.css";
+
+/* 2. Base — reset, design tokens, global element styles */
+@import "base/reset.css";
+@import "base/variables.css";
+@import "base/global.css";
+
+/* 3. General — Kyoto aliases, forms, icons, typography */
 @import "general/basics.css";
-@import "general/grid.css";
 @import "general/button.css";
 @import "general/form.css";
 @import "general/icons.css";
-@import "general/fonts.css";
 @import "general/typography.css";
+
+/* 4. Compositions — CUBE layout primitives */
+@import "compositions/flow.css";
+@import "compositions/cluster.css";
+@import "compositions/wrapper.css";
+@import "compositions/grid.css";
+@import "compositions/repel.css";
+
+/* 5. Site chrome */
 @import "site/layout.css";
 @import "site/header.css";
 @import "site/cover.css";
@@ -14,11 +44,18 @@
 @import "site/burger.css";
 @import "site/card.css";
 @import "site/testimonial.css";
+
+/* 6. Blog */
 @import "blog/feed.css";
 @import "blog/featured.css";
+@import "blog/case-study.css";
+@import "blog/speaking.css";
 @import "blog/pagination.css";
 @import "blog/single.css";
 @import "blog/single-long-form.css";
+@import "blog/dense-lists.css";
+@import "blog/callouts.css";
+@import "blog/code-blocks.css";
 @import "blog/content.css";
 @import "blog/author.css";
 @import "blog/share.css";
@@ -34,12 +71,30 @@
 @import "blog/webmentions.css";
 @import "blog/logo-board.css";
 @import "blog/hero.css";
+
+/* 7. Components */
+@import "components/accessible-toggle.css";
+@import "components/private-youtube.css";
+@import "components/footnote-side.css";
+@import "components/footnote-inline.css";
+@import "components/side-note.css";
+@import "components/citation-card.css";
+@import "components/link-tooltip.css";
+@import "components/pull-quote.css";
+@import "components/mode-switcher.css";
+@import "components/heading-anchors.css";
+
+/* 8. Vendor */
 @import "vendor/tiny-slider.css";
 @import "vendor/pswp.css";
 @import "vendor/msme.css";
+
+/* 9. Misc — Ghost card overrides, portal */
 @import "misc/kg.css";
 @import "misc/utils.css";
 @import "misc/portal.css";
-@import "misc/animations.css";
-@import "misc/demo.css";
+
+/* 10. Utilities — highest specificity intent */
+@import "utilities/region.css";
+@import "utilities/visually-hidden.css";
 @import "misc/print.css";

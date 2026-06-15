@@ -2,12 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: .8rem;
+    gap: var(--space-s);
 }
 
 .share-label {
     writing-mode: vertical-lr;
-    margin-bottom: 0.8rem;
+    margin-bottom: var(--space-s);
     text-transform: uppercase;
     color: var(--secondary-text-color);
 }
@@ -19,9 +19,9 @@
     width: 3.2rem;
     height: 3.2rem;
     color: var(--primary-text-color);
-    font-size: 1.6rem;
+    font-size: var(--size-step--1);
     line-height: 0;
-    font-weight: 400;
+    font-weight: var(--font-regular);
     letter-spacing: 0.04rem;
     border-radius: 50%;
     background-color: var(--divider-color);
@@ -29,9 +29,9 @@
 }
 
 .share-link:hover {
-    background-color: var(--brand-color);
-    border-color: var(--brand-color);
-    color: var(--white-color);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-light);
 }
 
 .share-link:hover .icon {
@@ -52,11 +52,11 @@
 .share-link-label {
     width: auto;
     border-radius: 5px;
-    padding: 4px 16px;
+    padding: var(--space-3xs) var(--space-m);
 }
 
 .share-link-label .icon {
-    margin-right: 8px;
+    margin-right: var(--space-xs);
 }
 
 @media (max-width: 767px) {
@@ -64,7 +64,7 @@
         flex-direction: row;
         width: auto;
         justify-content: center;
-        gap: 1.6rem;
+        gap: var(--space-m);
     }
     .share-link {
         width: 4.4rem;
@@ -72,7 +72,7 @@
     }
     .share-label {
         writing-mode: horizontal-tb;
-        margin: 0 .8rem;
+        margin: 0 var(--space-s);
     }
 
     .gh-content .right-sidebar-container-post {

@@ -1,35 +1,39 @@
 .feed-header {
-    margin-bottom: 3.2rem;
+    margin-bottom: var(--space-l);
 }
 
 .feed-header.featured-header {
-    margin-bottom: 0.4rem;
+    margin-bottom: var(--space-3xs);
 }
 
 .feed-header-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 1rem;
+    padding-bottom: var(--space-s);
 }
 
 .feed-header-title {
     margin-bottom: 0;
     color: var(--tertiary-text-color);
-    font-weight: var(--font-weight-bold);
-    font-family: var(--font-serif);
+    font-family: var(--font-base);
+    font-size: var(--size-step--2);
+    font-weight: var(--font-bold);
+    line-height: 1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .post-feed {
-    margin-top: -1.5rem;
+    margin-top: calc(-1 * var(--space-m));
 }
 
 .post-feed.expanded {
-    margin-top: -2.5rem;
+    margin-top: calc(-1 * var(--space-l));
 }
 
 .post-feed.text-only {
-    margin-top: -3rem;
+    margin-top: calc(-1 * var(--space-l));
 }
 
 .feed {
@@ -37,22 +41,55 @@
     display: flex;
     align-items: flex-start;
     /* overflow: hidden; */
-    padding: 8px 0;
+    padding: var(--space-xs) 0;
     line-height: 1;
+    /* Ensure keyboard focus brings the whole entry into view */
+    scroll-margin-block: var(--space-l);
 }
 
 .feed:not(.no-link):hover .feed-title,
 .card.post:not(.card-overlay):hover h3.card-title {
     text-decoration: underline;
-    color:var(--ghost-accent-color);
+    text-decoration-color: oklch(from var(--color-yellow-alt) calc(l + .07) c h / .7);
+    text-decoration-thickness: .25ch;
+    text-underline-offset: .15ch;
+    color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);
+}
+
+[data-mode="dark"] .feed:not(.no-link):hover .feed-title,
+[data-mode="dark"] .card.post:not(.card-overlay):hover h3.card-title {
+    color: var(--color-lavender);
+    text-decoration-color: oklch(from var(--color-lavender) l c h / 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .feed:not(.no-link):hover .feed-title,
+    :root:not([data-mode="light"]) .card.post:not(.card-overlay):hover h3.card-title {
+        color: var(--color-lavender);
+        text-decoration-color: oklch(from var(--color-lavender) l c h / 0.5);
+    }
 }
 
 .post-feed.expanded a.u-permalink:focus-visible {
     outline-offset: 6px;
- } 
+    border-radius: var(--border-radius-small);
+}
+
+/* Combined: keyboard-focused AND mouse-hovered — shift outline to tertiary */
+.post-feed.expanded .feed:hover a.u-permalink:focus-visible {
+    outline-color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);
+}
+[data-mode="dark"] .post-feed.expanded .feed:hover a.u-permalink:focus-visible {
+    outline-color: var(--color-lavender);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .post-feed.expanded .feed:hover a.u-permalink:focus-visible {
+        outline-color: var(--color-lavender);
+    }
+} 
 
 .feed:not(.no-link):hover .feed-right {
-    margin-right: 2.2rem;
+    margin-right: var(--space-l);
 }
 
 .post-feed.expanded .feed:hover .feed-right {
@@ -64,18 +101,18 @@
 }
 
 .post-feed > .feed + .feed.feed-paged {
-    margin-top: 3rem;
+    margin-top: var(--space-l);
     border-top: 0;
 }
 
 .post-feed.expanded .feed {
     align-items: flex-start;
-    padding: 3rem 0;
+    padding: var(--space-l) 0;
 }
 
 .post-feed.expanded:not(.text-only) .feed {
     padding: 0;
-    margin: 4rem 0;
+    margin: var(--space-xl) 0;
     border-top: 0;
 }
 
@@ -87,17 +124,21 @@
     white-space: nowrap;
 }
 
+.experiences .feed-calendar {
+    font-size: var(--size-step--1);
+}
+
 .post-feed.expanded .feed-calendar {
-    margin-top: 8px;
+    margin-top: var(--space-xs);
 }
 
 .feed-calendar-month {
-    margin-right: 1rem;
+    margin-right: var(--space-s);
 }
 
 .reading-time, 
 .feed-meta-tag {
-    margin: 8px 0 0 8px;
+    margin: var(--space-xs) 0 0 var(--space-xs);
     white-space: nowrap;
 }
 
@@ -105,17 +146,18 @@
 .feed-meta-tag::before {
     content: "✦";
     font-size: .8em;
-    padding: 0 1.2rem;
+    padding: 0 var(--space-s);
 }
 .feed-image {
     flex-shrink: 0;
-    margin-right: 2.5rem;
+    margin-right: var(--space-l);
     width: 140px;
+    border-radius: var(--border-radius-medium);
 }
 
 .post-feed.right-thumbnail .feed-image {
     margin-right: 0;
-    margin-left: 2.5rem;
+    margin-left: var(--space-l);
 }
 
 .post-feed:not(.expanded) .feed-image {
@@ -149,15 +191,15 @@
 }
 
 .post-feed.expanded .feed-title {
-    font-size: 1.8rem;
+    font-size: var(--size-step-1);
     line-height: 1.4;
-    font-weight: 700;
+    font-weight: var(--font-bold);
     white-space: normal;
     font-family: var(--font-serif);
 }
 
 .dot-spacer {
-    margin: 0 8px 10px 8px;
+    margin: 0 var(--space-xs) var(--space-s) var(--space-xs);
     align-self: end;
     height: 1px;
     border: 0;
@@ -172,7 +214,7 @@
 }
 
 .feed-excerpt {
-    margin-top: .5rem;
+    margin-top: var(--space-3xs);
     line-height: 1.5;
     color: var(--secondary-text-color);
 }
@@ -190,20 +232,20 @@
     display: flex;
     align-items: center;
     color: var(--ghost-accent-color);
-    font-size: 1.2rem;
-    margin-top: .5rem;
+    font-size: var(--size-step--1);
+    margin-top: var(--space-3xs);
     transition: margin-right 0.2s var(--animation-base);
 }
 
 .feed-visibility {
-    margin-right: .5rem;
+    margin-right: var(--space-3xs);
     color: var(--orange-color);
     line-height: 0;
 }
 
 .post-feed.expanded .feed-visibility {
     order: 1;
-    margin-left: 1rem;
+    margin-left: var(--space-s);
 }
 
 .feed-visibility-public {
@@ -259,12 +301,12 @@
     position: sticky;
     top: 0;
     z-index: 30;
-    margin: 0 -1.5rem;
-    padding: 1rem 1.5rem;
+    margin: 0 calc(-1 * var(--space-m));
+    padding: var(--space-s) var(--space-m);
     width: inherit;
     color: var(--primary-text-color);
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-size: var(--size-step--1);
+    font-weight: var(--font-extra-bold);
     letter-spacing: 0.05rem;
     text-transform: uppercase;
     background-color: rgba(255, 255, 255, 0.8);
@@ -284,9 +326,6 @@
     .feed-meta-tag.post-tag {
         display: none;
     }
-    .post-feed.expanded .feed-title {
-        font-size: 1.8rem;
-    }
 }
 @media (max-width: 767px) {
     .post-feed.expanded:not(.text-only) .feed {
@@ -296,7 +335,13 @@
         flex-basis: 100%;
         width: 100%;
         aspect-ratio: 5/3;
-        margin-bottom: 24px;
+        margin-bottom: var(--space-l);
     }
 
+}
+
+/* Feed wrapper alignment */
+.post-feed.right-thumbnail .feed-wrapper,
+.post-feed.expanded .feed-wrapper {
+    align-items: normal;
 }

@@ -1,6 +1,6 @@
 .site-footer {
     /* padding-top: 8rem; */
-    padding-bottom: 2rem;
+    padding-bottom: var(--space-m);
 }
 
 .footer-divider {
@@ -9,30 +9,45 @@
 }
 
 .footer-inner-main {
-    padding: 4rem 0 2rem;
+    padding: var(--space-xl) 0 var(--space-l);
     align-items: flex-start;
 }
 
-.footer-copyright {
-    padding-top: 0;
-    padding-bottom: 2rem;
-    color: var(--tertiary-text-color);
-    line-height: 32px;
-    font-size: 1.1rem;
+/* Secondary nav: groups spread across the full row */
+.footer-nav-wrap {
+    display: block;
 }
-.footer-copyright p {
-    padding-bottom: 1rem;
+
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-l) var(--space-2xl);
+    justify-content: space-between;
 }
+
 .footer-nav .nav {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding-left: 0;
+    margin: 0;
 }
 
 .footer-nav .nav li {
     list-style-type: none;
     padding: 4px 0;
+}
+
+.footer-copyright {
+    padding-top: var(--space-m);
+    padding-bottom: 0;
+    color: var(--tertiary-text-color);
+    line-height: 32px;
+    font-size: var(--size-step--2);
+    border-top: 1px solid oklch(from var(--primary-text-color) l c h / 0.1);
+}
+.footer-copyright p {
+    padding-bottom: 0;
 }
 
 .footer-group-header {
@@ -47,16 +62,12 @@
 
 @media (max-width: 767px) {
     .footer-inner-main {
-        grid-template-columns: 1fr;
-        padding-top: 3rem;
+        padding-top: var(--space-l);
     }
 
-    .footer-left {
-        margin-bottom: 3rem;
-    }
-
-    .footer-right {
-        align-items: flex-start;
+    .footer-nav-wrap,
+    .footer-nav {
+        justify-content: flex-start;
     }
 }
 
@@ -65,32 +76,58 @@
     grid-template-columns: 2fr 1fr;
 }
 .footer-group-header {
-    font-size: 1.3rem; 
+    font-size: var(--size-step--1);
 }
 
-/* Webring */
+/* Webring — heading+description on left, prev/random/next on right.
+   Asymmetric padding-block to compensate for the heading's cap-height
+   font-metric offset (cap-line sits ~0.2em below the line-box top, so
+   symmetric padding reads as more space on top than bottom). */
 .webring {
-    margin-bottom: 1.6rem;
+    margin: var(--space-l) 0 0;
+    padding-block: var(--space-m) var(--space-xs);
+    border-top: 1px solid oklch(from var(--primary-text-color) l c h / 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-m) var(--space-l);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.webring-info {
+    flex: 1 1 20rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+}
+
+.webring .footer-group-header {
+    margin: 0;
 }
 
 .webring p {
-    font-size: 1.2rem;
     color: var(--secondary-text-color);
-    margin-bottom: 0.8rem;
+    margin: 0;
+    font-size: var(--size-step--1);
 }
 
 .webring-nav {
     padding: 0;
-    font-size: 1.2rem;
-    list-style: symbols(cyclic "←" "?" "→");
+    margin: 0;
+    list-style: none;
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+    flex-wrap: wrap;
+    gap: var(--space-m);
+    flex: 0 0 auto;
+    align-self: center;
 }
 .webring-nav li {
-    margin-left: 1.8rem;
+    margin: 0;
 }
-.webring-nav a:hover {
-    text-decoration: underline;
-    color: var(--ghost-accent-color);
+.webring-nav a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35em;
 }
+/* Hover / focus / focus+hover states defined in general/basics.css
+   alongside the rest of the footer link state machine. */

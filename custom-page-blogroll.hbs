@@ -7,7 +7,7 @@
 
         {{#post}}
             {{#if html}}
-                <section class="blogroll-intro container wide">
+                <section class="blogroll-intro wrapper">
                     <div class="single-content gh-content">
                         {{content}}
                     </div>
@@ -16,7 +16,7 @@
         {{/post}}
 
         {{#match @site.recommendations_enabled}}
-            <section class="blogroll-list container wide">
+            <section class="blogroll-list wrapper">
                 {{recommendations limit="100" order="title asc"}}
             </section>
         {{/match}}

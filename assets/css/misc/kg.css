@@ -22,17 +22,17 @@
     border: 1px dashed var(--ghost-accent-color);
 }
 .kg-card.kg-toggle-card .kg-toggle-card-icon {
-    padding:10px;
+    padding:var(--space-s);
     width:44px;
     height:44px;
     margin-left: 0;
-    margin-right:1rem;
+    margin-right:var(--space-s);
 }
 .kg-card.kg-toggle-card .kg-toggle-heading {
     align-items: center;
     justify-content: left;
     flex-direction: row-reverse;
-    padding: 1rem 1.5rem;
+    padding: var(--space-s) var(--space-m);
 }
 .kg-card.kg-toggle-card .kg-toggle-heading svg {
     color:var(--ghost-accent-color);
@@ -41,7 +41,7 @@
 
 .kg-card.kg-toggle-card .kg-toggle-heading-text {
     font-size: var(--base-text-size);
-    font-weight: 700;
+    font-weight: var(--font-bold);
 }
 
 .has-serif-title .kg-toggle-heading-text {
@@ -49,10 +49,10 @@
 }
 
 .kg-card.kg-button-card a.kg-btn {
-    font-size: 1.5rem;
+    font-size: var(--size-step--1);
 }
 .kg-card.kg-toggle-card[data-kg-toggle-state="open"] .kg-toggle-content {
-    padding:0 1.2rem 1.2rem 1.2rem;
+    padding:0 var(--space-m) var(--space-m) var(--space-m);
 }
 .kg-card.kg-toggle-card[data-kg-toggle-state="open"] .kg-toggle-content p:first-child{
     margin-top:0;
@@ -63,9 +63,9 @@
 }
 
 blockquote.kg-blockquote-alt {
-    font-size: clamp(2.4rem, 3vw, 2.8rem);
+    font-size: var(--size-step-2);
     font-style: normal;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-bold);
     line-height: 1.25;
     color: var(--primary-text-color);
     text-align: left;
@@ -81,12 +81,6 @@ blockquote.kg-blockquote-alt {
 
 .has-serif-title .kg-canvas > blockquote.kg-blockquote-alt  {
     font-family: var(--font-serif);
-}
-
-@media (max-width: 575px) {
-    .kg-canvas > blockquote.kg-blockquote-alt {
-        font-size: 4.5rem;
-    }
 }
 
 .kg-card.kg-header-card h2.kg-header-card-header {
@@ -110,11 +104,12 @@ blockquote.kg-blockquote-alt {
     display: grid;
     grid-template-columns:
         [full-start] minmax(4vw,auto) 
-        [wide-start] minmax(auto,200px) 
-        [main-start] min(640px,calc(100% - 8vw)) 
-        [main-end] minmax(auto,200px) 
+        [wide-start] minmax(0,200px) 
+        [main-start] min(860px,calc(100% - 8vw)) 
+        [main-end] minmax(0,200px) 
         [wide-end] minmax(4vw,auto) 
         [full-end];
+    max-width: 100%;
 }
 
 .kg-canvas > * {
@@ -148,8 +143,8 @@ blockquote.kg-blockquote-alt {
 
 .kg-grid {
     display: grid;
-    column-gap: 24px;
-    row-gap: 24px;
+    column-gap: var(--space-l);
+    row-gap: var(--space-l);
 }
 
 .kg-grid-2col {
@@ -164,7 +159,7 @@ blockquote.kg-blockquote-alt {
     .kg-canvas .kg-side-bar {
         grid-column: main-start/main-end;
         position: relative;
-        margin-bottom: 2rem;
+        margin-bottom: var(--space-l);
     }
 }
 

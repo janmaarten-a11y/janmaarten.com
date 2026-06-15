@@ -1,0 +1,292 @@
+/* Works page — case study cards
+   Apply the same hover vocabulary as featured cards (viridis ring,
+   sliding arrow, blur-on-rest) but adapted for the larger format
+   that retains tags + excerpt. */
+
+.section-case-study .card-overlay {
+    border-radius: var(--border-radius-medium);
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    scroll-margin-block: var(--space-l);
+    /* No aspect-ratio: height flows from content (card-wrapper) */
+    transition: box-shadow var(--transition-duration) var(--transition-timing);
+}
+
+/* Animated viridis inset border on hover. Uses an @property-driven
+   gradient angle rotation; palindromic stops + 0° → 360° = byte
+   identical loop wrap. @property --ring-angle and @keyframes
+   card-ring-rotate are defined in featured.css (shared). */
+.section-case-study .card-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    /* Light mode: lifted gradient for visibility on dark imagery */
+    --ring-stops:
+        oklch(72% 0.22 318),
+        oklch(75% 0.20 266),
+        oklch(78% 0.18 190),
+        oklch(82% 0.22 145),
+        oklch(92% 0.20 105),
+        oklch(82% 0.22 145),
+        oklch(78% 0.18 190),
+        oklch(75% 0.20 266),
+        oklch(72% 0.22 318);
+    background: linear-gradient(var(--ring-angle), var(--ring-stops));
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+            mask-composite: exclude;
+    opacity: 0;
+    transition: opacity var(--transition-duration) var(--transition-timing);
+    pointer-events: none;
+    z-index: 3;
+}
+
+[data-mode="dark"] .section-case-study .card-overlay::after {
+    --ring-stops:
+        oklch(28.5% 0.20 318),
+        oklch(44.84% 0.16 266),
+        oklch(49.51% 0.13 190),
+        oklch(60% 0.20 145),
+        oklch(49.51% 0.13 190),
+        oklch(44.84% 0.16 266),
+        oklch(28.5% 0.20 318);
+    background: linear-gradient(var(--ring-angle), var(--ring-stops));
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .section-case-study .card-overlay::after {
+        --ring-stops:
+            oklch(28.5% 0.20 318),
+            oklch(44.84% 0.16 266),
+            oklch(49.51% 0.13 190),
+            oklch(60% 0.20 145),
+            oklch(49.51% 0.13 190),
+            oklch(44.84% 0.16 266),
+            oklch(28.5% 0.20 318);
+        background: linear-gradient(var(--ring-angle), var(--ring-stops));
+    }
+}
+
+.section-case-study .card-overlay:hover::after {
+    opacity: 1;
+    animation: card-ring-rotate 8s linear infinite;
+}
+
+.section-case-study .card-overlay:hover {
+    box-shadow: 0 8px 32px oklch(from var(--color-dark) l c h / 0.35);
+}
+
+[data-mode="dark"] .section-case-study .card-overlay:hover {
+    box-shadow: 0 8px 32px oklch(from var(--color-primary) l c h / 0.25);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .section-case-study .card-overlay:hover {
+        box-shadow: 0 8px 32px oklch(from var(--color-primary) l c h / 0.25);
+    }
+}
+
+/* Focus ring on grid item (avoid clipping by card overflow:hidden) */
+.section-case-study .cards.kg-grid > :has(.u-permalink:focus-visible),
+.section-case-study .cards.kg-grid > :focus-within {
+    border-radius: var(--border-radius-medium);
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+/* Combined focus + hover \u2014 shift to tertiary like the rest of the system */
+.section-case-study .cards.kg-grid > :hover:has(.u-permalink:focus-visible),
+.section-case-study .cards.kg-grid > :hover:focus-within {
+    outline-color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);
+}
+[data-mode="dark"] .section-case-study .cards.kg-grid > :hover:has(.u-permalink:focus-visible),
+[data-mode="dark"] .section-case-study .cards.kg-grid > :hover:focus-within {
+    outline-color: var(--color-lavender);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .section-case-study .cards.kg-grid > :hover:has(.u-permalink:focus-visible),
+    :root:not([data-mode="light"]) .section-case-study .cards.kg-grid > :hover:focus-within {
+        outline-color: var(--color-lavender);
+    }
+}
+
+.section-case-study .card-overlay .u-permalink:focus-visible {
+    outline: none;
+}
+
+.section-case-study .card-overlay:hover .card-image img {
+    transform: scale(1.03);
+    filter: brightness(0.9);
+}
+
+/* Sliding arrow — inserted as the last flex child of card-wrapper
+   so it flows naturally below the excerpt (no absolute positioning,
+   card height grows to fit) */
+.section-case-study .card-overlay .card-wrapper::after {
+    content: "\2192";
+    color: #fff;
+    font-size: var(--size-step-2);
+    line-height: 1;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    margin-top: var(--space-2xs);
+    transition: transform var(--transition-duration) var(--transition-timing);
+    pointer-events: none;
+    align-self: flex-start;
+}
+
+.section-case-study .card-overlay:hover .card-wrapper::after,
+.section-case-study .cards.kg-grid > :focus-within .card-overlay .card-wrapper::after {
+    transform: translateX(4px);
+}
+
+/* ---- Typography refinements ---- */
+
+/* Title: large serif, bumped one notch for prominence */
+.section-case-study .card-overlay .card-title {
+    font-size: var(--size-step-3);
+    font-family: var(--font-display);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-fine);
+    letter-spacing: -0.01em;
+}
+
+/* Excerpt: bumped two notches for readability */
+.section-case-study .card-overlay .card-excerpt {
+    font-size: var(--size-step-1);
+    font-family: var(--font-base);
+    line-height: var(--leading-standard);
+    color: oklch(from var(--color-light) l c h / 0.85);
+    max-width: 55ch;
+}
+
+/* Date pill ("Spring 2025") — add breathing room below */
+.section-case-study .card-overlay .tags-list {
+    margin: 0 0 var(--space-s);
+}
+
+.section-case-study .card-overlay .tag-item {
+    font-size: var(--size-step--2);
+    font-weight: var(--font-bold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px var(--space-xs);
+    color: oklch(from var(--color-light) l c h / 0.85);
+    border-color: oklch(from var(--color-light) l c h / 0.35);
+}
+
+/* The small "GitHub.blog series ↗" line above the title — calmer body line */
+.section-case-study .card-overlay .sub-heading.card-excerpt:has(.icon),
+.section-case-study .card-overlay > .card-wrapper > .card-excerpt:first-of-type {
+    font-size: var(--size-step--1);
+    font-family: var(--font-base);
+    font-weight: var(--font-bold);
+    letter-spacing: 0;
+    text-transform: none;
+    color: oklch(from var(--color-light) l c h / 0.85);
+    margin-top: var(--space-2xs);
+    margin-bottom: var(--space-2xs);
+    max-width: none;
+}
+
+/* Make the card-wrapper a constrained left column.
+   The image fills the whole card behind it; a horizontal gradient
+   keeps the text side dark and the image side mostly visible. */
+.section-case-study .card-overlay .card-wrapper {
+    position: relative;
+    inset: auto;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    height: auto;
+    /* Take just the left portion so the image is visible on the right */
+    width: 100%;
+    max-width: 36rem;
+    padding: var(--space-xl);
+    gap: var(--space-xs);
+    justify-content: flex-start;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: transparent;
+    z-index: 2;
+}
+
+/* Horizontal scrim: opaque-left → transparent-right, so the image
+   stays visible while text remains legible on the left. */
+.section-case-study .card-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.82) 0%,
+        rgba(0, 0, 0, 0.78) 36rem,
+        rgba(0, 0, 0, 0.4) 48rem,
+        rgba(0, 0, 0, 0) 64rem
+    );
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity var(--transition-duration) var(--transition-timing);
+}
+
+/* On narrow viewports the gradient stops would push past the card edge —
+   fall back to a vertical gradient so the text is still legible. */
+@media (max-width: 767px) {
+    .section-case-study .card-overlay::before {
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.85) 0%,
+            rgba(0, 0, 0, 0.7) 40%,
+            rgba(0, 0, 0, 0.3) 75%,
+            rgba(0, 0, 0, 0) 100%
+        );
+    }
+    .section-case-study .card-overlay .card-wrapper {
+        max-width: none;
+    }
+}
+
+/* Image fills behind the content wrapper */
+.section-case-study .card-overlay .card-image,
+.section-case-study .card-overlay .placeholder {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: unset;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 0;
+}
+
+.section-case-study .card-overlay .card-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-duration) var(--transition-timing),
+                filter var(--transition-duration) var(--transition-timing);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .section-case-study .card-overlay,
+    .section-case-study .card-overlay .card-image img,
+    .section-case-study .card-overlay .card-wrapper::after,
+    .section-case-study .card-overlay::after {
+        transition: none;
+    }
+    .section-case-study .card-overlay:hover::after {
+        animation: none;
+    }
+    .section-case-study .card-overlay:hover .card-image img,
+    .section-case-study .card-overlay:hover .card-wrapper::after {
+        transform: none;
+    }
+}

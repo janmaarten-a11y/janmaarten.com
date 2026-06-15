@@ -1,52 +1,52 @@
-/* typography system */
+/* Typography system — fluid type from design tokens */
 .h1 {
-    font-size: 2.6rem;
-    line-height: 4rem;
-    font-weight: var(--font-weight-bold);
+    font-size: var(--size-step-6);
+    line-height: var(--leading-fine);
+    font-weight: var(--font-semi-bold);
 }
 
 .h2 {
-    font-size: 2rem;
-    line-height: 3.2rem;
-    font-weight: var(--font-weight-bold);
+    font-size: var(--size-step-4);
+    line-height: var(--leading-fine);
+    font-weight: var(--font-semi-bold);
 }
 
 .h3 {
-    font-size: 1.6rem;
-    line-height: 2.8rem;
-    font-weight: var(--font-weight-bold);
+    font-size: var(--size-step-2);
+    line-height: var(--leading-fine);
+    font-weight: var(--font-semi-bold);
 }
 
 .h4, h5, h6 {
-    font-size: 1.4rem;
-    line-height: 3.2rem;
-    font-weight: var(--font-weight-bold);
+    font-size: var(--size-step-1);
+    line-height: var(--leading-fine);
+    font-weight: var(--font-semi-bold);
 }
 
 .section-title {
-    font-size: 1.2rem;
-    font-weight: var(--font-weight-bold);
+    font-size: var(--size-step--2);
+    font-weight: var(--font-bold);
     line-height: 1;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 
 .body-1 {
-    font-size: 1.8rem;
-    font-weight: var(--font-weight-regular);
-    line-height: 3.2rem;
+    font-size: var(--size-step-2);
+    font-weight: var(--font-regular);
+    line-height: var(--leading-standard);
 }
 
 .sub-heading-large {
-    font-size: 2rem;
-    font-weight: var(--font-weight-regular);
-    line-height: 3.2rem;
+    font-size: var(--size-step-1);
+    font-weight: var(--font-regular);
+    line-height: var(--leading-standard);
 }
 
 .sub-heading {
-    font-size: 1.4rem;
-    font-weight: var(--font-weight-regular);
-    line-height: 2.4rem;
+    font-size: var(--size-step--1);
+    font-weight: var(--font-regular);
+    line-height: var(--leading-standard);
 }
 
 /* font change */
@@ -61,5 +61,5 @@
 .has-serif-body .body-1,
 .has-serif-body .sub-heading,
 .has-serif-body .sub-heading-large {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
 }

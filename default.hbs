@@ -4,36 +4,116 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
     <title>{{meta_title}}</title>
     <link rel="webmention" href="https://webmention.io/janmaarten.com/webmention">
     <link rel="pingback" href="https://webmention.io/janmaarten.com/xmlrpc">
 
-    {{!-- <link rel="preconnect" href= "https://fonts.googleapis.com">
-    <link rel="preconnect" href= "https://fonts.gstatic.com" crossorigin>
-    <link href= "https://fonts.googleapis.com/css2?family=Inter:wght@100..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{asset "built/screen.css"}}">
     <script>
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-            var toggle = document.querySelector('.gh-theme-toggle');
-            if (toggle) { toggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false'); }
-        }
-        function getSystemTheme() {
-            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-        function toggleTheme() {
-            var current = document.documentElement.getAttribute('data-theme');
-            setTheme(current === 'dark' ? 'light' : 'dark');
-        }
+        /* Theme + mode system
+           - data-theme: design language (currently only "viridis")
+           - data-mode:  variant within theme ("light" | "dark"; absent = follow system)
+           localStorage:
+           - jm-theme: theme key (default "viridis")
+           - jm-mode:  "system" | "light" | "dark"  (default "system") */
         (function() {
-            var saved = localStorage.getItem('theme');
-            if (saved) { setTheme(saved); }
-            else { setTheme(getSystemTheme()); }
+            var THEME_KEY = 'jm-theme';
+            var MODE_KEY = 'jm-mode';
+            var DEFAULT_THEME = 'viridis';
+
+            // Migrate legacy localStorage `theme` (which stored a mode value)
+            var legacy = localStorage.getItem('theme');
+            if (legacy && !localStorage.getItem(MODE_KEY)) {
+                if (legacy === 'light' || legacy === 'dark') {
+                    localStorage.setItem(MODE_KEY, legacy);
+                }
+                localStorage.removeItem('theme');
+            }
+
+            var theme = localStorage.getItem(THEME_KEY) || DEFAULT_THEME;
+            var mode = localStorage.getItem(MODE_KEY) || 'system';
+
+            document.documentElement.setAttribute('data-theme', theme);
+            applyMode(mode);
+
+            function applyMode(m) {
+                if (m === 'light' || m === 'dark') {
+                    document.documentElement.setAttribute('data-mode', m);
+                } else {
+                    document.documentElement.removeAttribute('data-mode');
+                }
+                updateToggleState();
+            }
+
+            // Apply mode with a brief transition window for smooth theme swaps.
+            // Skips the transition on first call (initial page load).
+            var initialized = false;
+            function applyModeAnimated(m) {
+                if (!initialized) {
+                    applyMode(m);
+                    initialized = true;
+                    return;
+                }
+                var root = document.documentElement;
+                root.classList.add('theme-transitioning');
+                applyMode(m);
+                // Remove after transition completes (matches global.css 220ms)
+                window.clearTimeout(applyModeAnimated._t);
+                applyModeAnimated._t = window.setTimeout(function () {
+                    root.classList.remove('theme-transitioning');
+                }, 260);
+            }
+
+            function effectiveMode() {
+                var m = localStorage.getItem(MODE_KEY) || 'system';
+                if (m === 'system') {
+                    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                return m;
+            }
+
+            function updateToggleState() {
+                var toggle = document.querySelector('.gh-theme-toggle');
+                if (toggle) { toggle.setAttribute('aria-pressed', effectiveMode() === 'dark' ? 'true' : 'false'); }
+            }
+
+            // Expose
+            window.setMode = function(m) {
+                if (m === 'system') {
+                    localStorage.removeItem(MODE_KEY);
+                } else {
+                    localStorage.setItem(MODE_KEY, m);
+                }
+                applyModeAnimated(m);
+                // Broadcast so other UI (footer select, etc.) can sync
+                window.dispatchEvent(new CustomEvent('jm:mode-change', { detail: { mode: m } }));
+            };
+            window.toggleTheme = function() {
+                window.setMode(effectiveMode() === 'dark' ? 'light' : 'dark');
+            };
+            window.getMode = function() { return localStorage.getItem(MODE_KEY) || 'system'; };
+
+            // React to system changes when in "system" mode
+            var mq = window.matchMedia('(prefers-color-scheme: dark)');
+            var listener = function() {
+                if (window.getMode() === 'system') {
+                    // Animate the swap when OS preference flips
+                    var root = document.documentElement;
+                    root.classList.add('theme-transitioning');
+                    window.clearTimeout(applyModeAnimated._t);
+                    applyModeAnimated._t = window.setTimeout(function () {
+                        root.classList.remove('theme-transitioning');
+                    }, 260);
+                    updateToggleState();
+                }
+            };
+            if (mq.addEventListener) { mq.addEventListener('change', listener); }
+            else if (mq.addListener) { mq.addListener(listener); }
+
+            // Initialize toggle state once DOM is ready
+            document.addEventListener('DOMContentLoaded', updateToggleState);
         })();
-        window.matchMedia('(prefers-color-scheme: dark)').addListener(function(e) {
-            if (!localStorage.getItem('theme')) { setTheme(e.matches ? 'dark' : 'light'); }
-        });
     </script>
     {{ghost_head}}
 </head>
@@ -45,8 +125,7 @@
         <a class="skip-to-content-link" href="#main">
             Skip to content
         </a>
-        <div class="gh-head-inner container wide {{#unless @custom.profile_photo}}no-profile{{/unless}}">
-            {{!-- <div class="gh-head-nav"> --}}
+        <div class="gh-head-inner wrapper {{#unless @custom.profile_photo}}no-profile{{/unless}}">
                 <div class="gh-head-brand">
                     <div class="gh-head-brand-wrapper">
                         <div class="gh-head-logo-text">
@@ -68,11 +147,6 @@
                                 </a>
                             {{/if}}
                         </div>
-                        {{#if @custom.tagline_text }}
-                            <div class="sub-heading tagline">
-                                {{@custom.tagline_text}}
-                            </div>
-                        {{/if}}
                     </div>
                     <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
                     <button class="gh-burger"></button>
@@ -80,34 +154,11 @@
 
                 <nav class="gh-head-menu">
                     {{navigation}}
-                    <button class="gh-theme-toggle gh-icon-btn" onclick="toggleTheme()" aria-label="Dark mode" aria-pressed="false" title="Toggle dark mode">
-                        <div class="theme-toggle-icon">
-                            <div class="moon-or-sun"></div>
-                            <div class="moon-mask"></div>
-                        </div>
+                    <button class="gh-theme-toggle gh-icon-btn" onclick="toggleTheme()" aria-label="Dark mode" aria-pressed="false">
+                        <svg class="theme-toggle-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                        <svg class="theme-toggle-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                     </button>
-                    {{!-- <div class="head-action-social">
-                        <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
-                        <div class="social">
-                            {{#if @site.twitter}}
-                                <a class="social-item social-item-twitter"
-                                    href="{{social_url type="twitter"}}" target="_blank"
-                                    rel="noopener noreferrer" aria-label="Twitter">
-                                    {{> icons/twitter}}
-                                </a>
-                            {{/if}}
-                            {{#if @site.facebook}}
-                                <a class="social-item social-item-facebook"
-                                    href="{{social_url type="facebook"}}" target="_blank"
-                                    rel="noopener noreferrer" aria-label="Facebook">
-                                    {{> icons/facebook}}
-                                </a>
-                            {{/if}}
-                        </div> 
-
-                    </div>--}}
                 </nav>
-            {{!-- </div> --}}
             {{#if @custom.profile_photo }}
                 <div class="gh-head-actions">
                     <div class="gh-head-brand-wrapper">
@@ -127,12 +178,9 @@
                 </div>
             {{/if}}
         </div>
-        {{!--<div class="container wide">
-            <div class="wave-separator"></div>
-        </div>--}}
     </header>
 
-    <div class="site-content">
+    <div class="site-content flow">
         {{{body}}}
     </div>
     {{> footer}}
@@ -146,35 +194,239 @@
 <script src="{{asset "built/main.min.js"}}"></script>
 <script src="{{asset "js/prism.js"}}"></script>
 
-{{!-- TOC --}}
+{{!-- TOC — init when .toc-desktop or .toc-mobile exists (#show-toc posts) --}}
 <script src="{{asset "js/tocbot.js"}}"></script>
 <script>
-    tocbot.init({
-        tocSelector: '.toc',
-        contentSelector: '.single-content',
-        headingSelector: 'h2, h3',
-        hasInnerContainers: true,
-    });
-</script>
-{{!-- TOC --}}
+(function() {
+    var desktop = document.querySelector('.toc-desktop');
+    var mobile = document.querySelector('.toc-mobile');
+    if (!desktop && !mobile) return;
 
-{{!-- Progress --}}
-{{#is "post"}}
-  <script>
-    const progressBar = document.querySelector('.reading-progress');
-
-    function updateProgress() {
-      const totalHeight = document.body.clientHeight;
-      const windowHeight = document.documentElement.clientHeight;
-      const position = window.scrollY;
-      const progress = position / (totalHeight - windowHeight) * 100;
-      progressBar.setAttribute('value', progress);
-      requestAnimationFrame(updateProgress);
+    // Init tocbot for desktop nav
+    if (desktop) {
+        tocbot.init({
+            tocSelector: '.toc-desktop .toc',
+            contentSelector: '.single-content',
+            headingSelector: 'h2, h3',
+            hasInnerContainers: true,
+            ignoreSelector: '.toc-ignore',
+            headingsOffset: 120,
+            scrollSmooth: false,
+        });
     }
 
-    requestAnimationFrame(updateProgress);
+    // Append heading anchors AFTER tocbot has read the heading text
+    // (running earlier would inject "anchor" into the TOC labels).
+    if (typeof window.headingAnchors === 'function') window.headingAnchors();
+
+    // Clone TOC into mobile nav
+    if (desktop && mobile) {
+        var desktopList = desktop.querySelector('.toc-list');
+        var mobileNav = mobile.querySelector('.toc-mobile-nav');
+        if (desktopList && mobileNav) {
+            mobileNav.appendChild(desktopList.cloneNode(true));
+        }
+    }
+
+    // Desktop: auto-collapse based on scroll position
+    if (desktop) {
+        var details = desktop.querySelector('.toc-details');
+        var manualToggle = false;
+        var content = document.querySelector('.single-content');
+        var stickyTop = 24; // px from viewport top once scrolled past content start
+        var collapseThreshold = window.innerHeight * 0.5;
+
+        // Recalculate content top — call after images load or layout shifts
+        var contentTextTop = 0;
+        function recalcContentTop() {
+            if (!content) return;
+            var contentMarginTop = parseFloat(getComputedStyle(content).marginTop);
+            contentTextTop = content.getBoundingClientRect().top + window.scrollY + contentMarginTop;
+        }
+        recalcContentTop();
+
+        // Recalculate when feature image (or any image) finishes loading
+        var article = document.querySelector('.single-header');
+        if (article) {
+            var imgs = article.querySelectorAll('img');
+            imgs.forEach(function(img) {
+                if (!img.complete) {
+                    img.addEventListener('load', recalcContentTop);
+                }
+            });
+        }
+        // Final recalculate once all resources are loaded
+        window.addEventListener('load', function() {
+            recalcContentTop();
+            updateTocPosition();
+            desktop.classList.add('is-positioned');
+        });
+
+        // Also reveal on scroll — user may scroll before images finish
+        window.addEventListener('scroll', function revealOnScroll() {
+            recalcContentTop();
+            updateTocPosition();
+            desktop.classList.add('is-positioned');
+            window.removeEventListener('scroll', revealOnScroll);
+        }, { passive: true });
+
+        // Sliding active marker — uses MutationObserver, not scroll
+        var tocList = desktop.querySelector('.toc-list');
+        var marker = document.createElement('div');
+        marker.className = 'toc-active-marker';
+        marker.style.display = 'none';
+        if (tocList) tocList.appendChild(marker);
+
+        function updateMarkerPosition() {
+            if (!tocList) return;
+            // If the TOC is collapsed (display:none inside <details>), bail —
+            // rects would be zeroed and would leave the marker in a bad spot
+            // when the user reopens it.
+            if (!tocList.offsetParent) return;
+            // Find the deepest active item (h3 inside h2, or h2 itself)
+            var allActive = tocList.querySelectorAll('.toc-list-item.is-active-li');
+            var active = allActive.length ? allActive[allActive.length - 1] : null;
+            if (!active) return; // keep last position, don't hide
+            marker.style.display = '';
+            var link = active.querySelector(':scope > a');
+            var fontSize = link ? parseFloat(getComputedStyle(link).fontSize) : 14;
+            // Use bounding rects — robust against offsetParent chain quirks
+            // (especially on first load when tocbot fires before layout settles)
+            var listRect = tocList.getBoundingClientRect();
+            var activeRect = active.getBoundingClientRect();
+            var top = activeRect.top - listRect.top
+                + parseFloat(getComputedStyle(active).paddingTop)
+                + fontSize * 0.3;
+            marker.style.top = top + 'px';
+            // Feed the position to CSS so the dot's gradient slice reflects progress
+            marker.style.setProperty('--toc-marker-y', top + 'px');
+            marker.style.setProperty('--toc-rail-h', tocList.offsetHeight + 'px');
+        }
+
+        // Watch for tocbot class changes instead of polling on scroll
+        if (tocList) {
+            var observer = new MutationObserver(function() {
+                updateMarkerPosition();
+            });
+            observer.observe(tocList, {
+                attributes: true,
+                attributeFilter: ['class'],
+                subtree: true,
+            });
+        }
+
+        // Align TOC vertically with the top of body text (not above it)
+        function updateTocPosition() {
+            if (!content) return;
+            var textViewportTop = contentTextTop - window.scrollY;
+            var tocHeight = desktop.offsetHeight;
+            var contentBottom = content.getBoundingClientRect().bottom;
+            var maxTop = contentBottom - tocHeight;
+
+            // Hide TOC when it would overlap below the content area
+            if (maxTop < stickyTop) {
+                desktop.style.visibility = 'hidden';
+            } else {
+                desktop.style.visibility = '';
+                desktop.style.top = Math.max(stickyTop, Math.min(textViewportTop, maxTop)) + 'px';
+            }
+        }
+
+        // Track manual toggle: user clicked summary
+        if (details) {
+            details.addEventListener('toggle', function() {
+                manualToggle = true;
+                // Recompute marker when the TOC opens — when it's been closed,
+                // the contents had display:none and the previous calculation
+                // would have used zeroed bounding rects.
+                if (details.open) {
+                    updateMarkerPosition();
+                }
+            });
+        }
+
+        // Recompute once more after images/fonts finalize layout
+        window.addEventListener('load', updateMarkerPosition);
+
+        // Collapse state based on scroll position
+        var autoCollapsed = false;
+
+        function updateCollapseState() {
+            if (manualToggle || !details) return;
+            if (autoCollapsed && details.open) {
+                details.open = false;
+            } else if (!autoCollapsed && !details.open) {
+                details.open = true;
+            }
+        }
+
+        // If page is already scrolled past threshold on load, start collapsed
+        var scrolledPastThreshold = (window.scrollY - contentTextTop) > collapseThreshold;
+        if (scrolledPastThreshold && details) {
+            autoCollapsed = true;
+            details.open = false;
+        }
+
+        updateTocPosition();
+
+        // Update position + auto-collapse on scroll
+        if (content) {
+            window.addEventListener('scroll', function() {
+                updateTocPosition();
+
+                if (manualToggle) return;
+                var scrolledPast = window.scrollY - contentTextTop;
+                autoCollapsed = scrolledPast > collapseThreshold;
+                updateCollapseState();
+            }, { passive: true });
+        }
+
+        // Initial marker position (tocbot may take a moment to set active class)
+        setTimeout(updateMarkerPosition, 200);
+
+        // Scroll page to TOC when summary receives keyboard focus,
+        // since position:fixed prevents browser auto-scroll-into-view.
+        // Skip for mouse/touch — mousedown sets a flag that focus checks.
+        var summary = desktop.querySelector('.toc-header');
+        if (summary) {
+            var mouseTriggered = false;
+            summary.addEventListener('mousedown', function() {
+                mouseTriggered = true;
+            });
+            summary.addEventListener('focus', function() {
+                if (mouseTriggered) {
+                    mouseTriggered = false;
+                    return;
+                }
+                if (window.scrollY < contentTextTop - stickyTop) {
+                    window.scrollTo(0, contentTextTop - stickyTop);
+                }
+            });
+        }
+    }
+})();
+</script>
+
+{{!-- Progress --}}
+{{#post}}
+  {{#has tag="#long-form"}}
+  <script>
+    (function () {
+      var progressBar = document.querySelector('.reading-progress');
+      if (!progressBar) return;
+      function updateProgress() {
+        var totalHeight = document.body.clientHeight;
+        var windowHeight = document.documentElement.clientHeight;
+        var position = window.scrollY;
+        var progress = position / (totalHeight - windowHeight) * 100;
+        progressBar.setAttribute('value', progress);
+        requestAnimationFrame(updateProgress);
+      }
+      requestAnimationFrame(updateProgress);
+    })();
   </script>
-{{/is}}
+  {{/has}}
+{{/post}}
 {{!-- Progress --}}
 
 {{#is "post"}}

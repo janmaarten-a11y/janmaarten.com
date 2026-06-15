@@ -8,7 +8,7 @@ headings, text, images and lists. We deal with cards lower down. */
 }
 /* Default vertical spacing */
 .gh-content > * + * {
-    margin-top: 2.8rem;
+    margin-top: var(--space-xl);
     margin-bottom: 0;
 }
 
@@ -24,32 +24,32 @@ headings, text, images and lists. We deal with cards lower down. */
 /* Add back a top margin to all headings, unless a heading
 is the very first element in the post content */
 .gh-content > [id]:not(:first-child) {
-    margin-top: 6.4rem;
+    margin-top: var(--space-2xl);
 }
 
 /* Add a small margin between a heading and anything after it */
 .gh-content > [id] + * {
-    margin-top: 2rem;
+    margin-top: var(--space-l);
 }
 
 .gh-content > [id] + p {
-    margin-top: 1.2rem;
+    margin-top: var(--space-m);
 }
 
 .gh-content > [id] + .kg-card {
-    margin-top: 2.8rem;
+    margin-top: var(--space-xl);
 }
 
 /* A larger margin before/after HRs and blockquotes */
 .gh-content > hr,
 .gh-content > blockquote {
     position: relative;
-    margin-top: 4.8rem;
+    margin-top: var(--space-2xl);
 }
 
 .gh-content > hr + *,
 .gh-content > blockquote + * {
-    margin-top: 4.8rem;
+    margin-top: var(--space-2xl);
 }
 
 .gh-content > hr {
@@ -77,89 +77,175 @@ is the very first element in the post content */
 
 /* Cards */
 .gh-content :not(.kg-card):not([id]) + .kg-card {
-    margin-top: 4.8rem;
+    margin-top: var(--space-2xl);
 }
 
 .gh-content .kg-card + :not(.kg-card):not([id]) {
-    margin-top: 4.8rem;
+    margin-top: var(--space-2xl);
 }
 
 .gh-content :not(.kg-card):not([id]) + .kg-card:not(.kg-width-wide):not(.kg-width-full) {
-    margin-top: 3.6rem;
+    margin-top: var(--space-xl);
 
 }
 
 .gh-content .kg-card:not(.kg-width-wide):not(.kg-width-full) + :not(.kg-card):not([id]) {
-    margin-top: 3.6rem;
+    margin-top: var(--space-xl);
 }
 
 /* Now the content typography styles */
 .gh-content h1 {
-    font-size: 4.8rem;
+    font-size: var(--size-step-5);
     letter-spacing: .012em;
 }
 
 .gh-content h2 {
-    font-size: 2.6rem;
+    font-size: var(--size-step-3);
     letter-spacing: .004em;
 }
 
 .gh-content h3 {
-    font-size: 2.2rem;
+    font-size: var(--size-step-2);
     letter-spacing: .004em;
 }
 
 .gh-content h4 {
-    font-size: 1.8rem;
+    font-size: var(--size-step-1);
 }
 
 .gh-content h5 {
-    font-size: 1.6rem;
+    font-size: var(--size-step-0);
 }
 
 .gh-content h6 {
-    font-size: 1.2rem;
+    font-size: var(--size-step--2);
     text-transform: uppercase;
     color: var(--tertiary-text-color);
-    margin-bottom: -6.4rem !important;
-    margin-top: 6.4rem !important;
+    margin-bottom: calc(-1 * var(--space-3xl)) !important;
+    margin-top: var(--space-3xl) !important;
 }
 
 .serie-page .gh-content h2 {
-    font-size: 2.2rem;
+    font-size: var(--size-step-2);
 }
 
 .serie-page .gh-content h3 {
-    font-size: 1.8rem;
+    font-size: var(--size-step-1);
 }
 
 .serie-page .gh-content h4 {
-    font-size: 1.8rem;
+    font-size: var(--size-step-1);
 }
 
 .serie-page .gh-content h5 {
-    font-size: 1.8rem;
+    font-size: var(--size-step-1);
 }
 
 
-.gh-content a {
-    word-break: break-word;
-    text-decoration: none;
-    /* text-decoration-color: var(--underline-color, #FFF8B4);
-    text-decoration-skip-ink: none;
-    text-decoration-thickness: 0.8rem;
-    text-underline-offset: -0.4rem;
-    transition: text-decoration 300 var(--animation-base);
-    color: inherit; */
-    outline:none;
-    color: var(--underline-color);
-    border-bottom: 2px solid var(--underline-color);
+.gh-content a,
+.error-content a {
+  outline: none;
+  text-decoration: underline;
+  word-break: break-word;
+  transition: text-decoration-thickness var(--transition-duration) var(--transition-timing),text-underline-offset var(--transition-duration) var(--transition-timing),text-decoration-color var(--transition-duration) var(--transition-timing),color var(--transition-duration) var(--transition-timing);
+  color: var(--color-teal);
+  text-decoration-color: oklch(from var(--color-teal) l c h / 0.65);
+  text-decoration-thickness: 2px;
+  text-underline-offset: .15ch;
 }
+
+.gh-content a:hover,
+.error-content a:hover {
+  color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);
+  text-decoration-color: oklch(from var(--color-yellow-alt) calc(l + .07) c h / .7);
+  text-decoration-thickness: .7ch;
+  text-underline-offset: -.2ch;
+  -webkit-text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
+}
+
 .gh-content a:focus,
-.gh-content a:focus-visible {
-    background: rgba(31, 0, 255, 0.2);
+.gh-content a:focus-visible,
+.error-content a:focus,
+.error-content a:focus-visible {
+    background: oklch(from var(--color-teal) l c h / 0.15);
+    color: var(--color-teal);
+    border-bottom: .4ch solid var(--color-teal);
+    text-decoration: none;
+}
+
+/* Combined: keyboard-focused AND mouse-hovered.
+   Shift to tertiary so the overlap reads as intentional. */
+.gh-content a:focus:hover,
+.gh-content a:focus-visible:hover,
+.error-content a:focus:hover,
+.error-content a:focus-visible:hover {
+    background: oklch(from var(--color-yellow-alt) calc(l + .09) c h / .5);
+    color: oklch(from var(--color-tertiary) calc(l + .09) c h);
+    border-bottom-color: oklch(from var(--color-tertiary) calc(l + .12) c h);
+}
+
+/* ---- Dark mode content links ---- */
+[data-mode="dark"] .gh-content a,
+[data-mode="dark"] .error-content a {
+    color: var(--color-teal-alt);
+    text-decoration-color: oklch(from var(--color-teal-alt) l c h / 0.75);
+}
+
+[data-mode="dark"] .gh-content a:hover,
+[data-mode="dark"] .error-content a:hover {
+    color: var(--color-lavender);
+    text-decoration-color: oklch(from var(--color-lavender) l c h / 0.35);
+}
+
+[data-mode="dark"] .gh-content a:focus,
+[data-mode="dark"] .gh-content a:focus-visible,
+[data-mode="dark"] .error-content a:focus,
+[data-mode="dark"] .error-content a:focus-visible {
+    background: oklch(from var(--color-teal-alt) l c h / 0.15);
     color: var(--primary-text-color);
-    border-bottom: 4px solid var(--primary-text-color);
+    border-bottom: .4ch solid var(--color-teal-alt);
+    text-decoration: none;
+}
+
+[data-mode="dark"] .gh-content a:focus:hover,
+[data-mode="dark"] .gh-content a:focus-visible:hover,
+[data-mode="dark"] .error-content a:focus:hover,
+[data-mode="dark"] .error-content a:focus-visible:hover {
+    background: oklch(from var(--color-lavender) l c h / 0.2);
+    border-bottom-color: var(--color-lavender);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .gh-content a,
+    :root:not([data-mode="light"]) .error-content a {
+        color: var(--color-teal-alt);
+        text-decoration-color: oklch(from var(--color-teal-alt) l c h / 0.75);
+    }
+
+    :root:not([data-mode="light"]) .gh-content a:hover,
+    :root:not([data-mode="light"]) .error-content a:hover {
+        color: var(--color-lavender);
+        text-decoration-color: oklch(from var(--color-lavender) l c h / 0.35);
+    }
+
+    :root:not([data-mode="light"]) .gh-content a:focus,
+    :root:not([data-mode="light"]) .gh-content a:focus-visible,
+    :root:not([data-mode="light"]) .error-content a:focus,
+    :root:not([data-mode="light"]) .error-content a:focus-visible {
+        background: oklch(from var(--color-teal-alt) l c h / 0.15);
+        color: var(--primary-text-color);
+        border-bottom: .4ch solid var(--color-teal-alt);
+        text-decoration: none;
+    }
+
+    :root:not([data-mode="light"]) .gh-content a:focus:hover,
+    :root:not([data-mode="light"]) .gh-content a:focus-visible:hover,
+    :root:not([data-mode="light"]) .error-content a:focus:hover,
+    :root:not([data-mode="light"]) .error-content a:focus-visible:hover {
+        background: oklch(from var(--color-lavender) l c h / 0.2);
+        border-bottom-color: var(--color-lavender);
+    }
 }
 
 /* .gh-content a:not([class]):hover {
@@ -168,7 +254,38 @@ is the very first element in the post content */
 } */
 
 .gh-content a[class]:hover {
-    opacity: 1;
+    color: var(--color-primary);
+}
+
+/* MSME (Manual Social Media Embed) cards wrap their entire card in an <a>.
+   Without this reset, the .gh-content a styling above paints the whole
+   card as a highlighted link \u2014 underlines under every text node, focus
+   borders, background tint, etc. Reset all of that on the wrapper itself;
+   the inner content has its own typographic treatment.
+
+   color is intentionally NOT reset \u2014 the platform SVG icon uses
+   fill="currentColor" so it can recolour on hover/focus to match the
+   border. Inner text has explicit colour overrides in msme.css so the
+   body copy is unaffected. */
+.gh-content a.msme-link,
+.gh-content a.msme-link:hover,
+.gh-content a.msme-link:focus,
+.gh-content a.msme-link:focus-visible,
+.gh-content a.msme-link:focus:hover,
+.gh-content a.msme-link:focus-visible:hover {
+    background: none;
+    border-bottom: 0;
+    text-decoration: none;
+    text-decoration-thickness: initial;
+    text-underline-offset: initial;
+    outline: none;
+}
+/* Keyboard focus on the wrapper still needs a visible indicator \u2014 use the
+   standard offset outline instead of the content-link bg-tint pattern. */
+.gh-content a.msme-link:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+    border-radius: var(--border-radius-medium);
 }
 
 .gh-content > ol,
@@ -205,11 +322,11 @@ is the very first element in the post content */
 .gh-content > ul,
 .gh-content > ol,
 .gh-content > dl {
-    padding-left: 2.4rem;
+    padding-left: var(--space-l);
 }
 
 .gh-content li + li {
-    margin-top: 1.2rem;
+    margin-top: var(--space-m);
 }
 
 .gh-content-line {
@@ -224,15 +341,15 @@ is the very first element in the post content */
 
 .meta-sticky-top {
     position: sticky;
-    top: 1.2rem;
-    margin-top: -2rem;
+    top: var(--space-m);
+    margin-top: calc(-1 * var(--space-l));
     justify-content: end;
-    margin-right: 3.2rem;
+    margin-right: var(--space-xl);
 }
 
 .time-line {
     border-right: 1px dashed var(--tertiary-text-color);
-    margin-right: 2.8rem;
+    margin-right: var(--space-xl);
 }
 
 .time-line::before {
@@ -249,7 +366,7 @@ is the very first element in the post content */
 }
 
 .anchor-indent {
-    padding-top: 3.2rem;
+    padding-top: var(--space-xl);
 }
 
 .tag-hash-u-hide-overview .serie-overview {
@@ -257,11 +374,9 @@ is the very first element in the post content */
 }
 
 .timeline-content.gh-content {
-    margin-top: -2rem;
-}
-
-.timeline-content.gh-content {
-    padding-left: 3.2rem;
+    margin-top: -1.25em;
+    margin-bottom: var(--space-2xl);
+    padding-left: var(--space-xl);
 }
 
 .timeline-content .toc-container {
@@ -270,9 +385,9 @@ is the very first element in the post content */
 
 .view-arrow {
     position: absolute;
-    top: -3rem;
+    top: calc(-1 * var(--space-l));
     right: 0;
-    padding: .8rem;
+    padding: var(--space-xs);
     background-color: var(--input-background-color);
     height: 3.2rem;
     width: 3.2rem;
@@ -297,36 +412,6 @@ is the very first element in the post content */
 }
 
 @media (max-width: 767px) {
-    
-    /* .gh-content h1 {
-        font-size: 3.6rem;
-    }
-    
-    .gh-content h2 {
-        font-size: 3.2rem;
-    }
-    
-    .gh-content h3 {
-        font-size: 2.8rem;
-    }
-    .gh-content > ol,
-    .gh-content > ul,
-    .gh-content > dl,
-    .gh-content > p {
-        font-size: 2rem;
-        line-height: 1.66;
-    }
-
-    .gh-content .kg-callout-card .kg-callout-text,
-    .gh-content .kg-toggle-card .kg-toggle-content > ol,
-    .gh-content .kg-toggle-card .kg-toggle-content > ul,
-    .gh-content .kg-toggle-card .kg-toggle-content > p,
-    .gh-content .kg-product-card .kg-product-card-description > ol,
-    .gh-content .kg-product-card .kg-product-card-description > ul,
-    .gh-content .kg-product-card .kg-product-card-description > p {
-        font-size: 2rem;
-        line-height: 1.66;
-    } */
     
     .kg-card.kg-callout-card {
         flex-wrap: wrap;

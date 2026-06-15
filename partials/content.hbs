@@ -73,7 +73,6 @@
                 {{#unless no_image}}
                     <figure class="single-media kg-width-{{width}}">
                         <img 
-                            {{!-- srcset="{{> srcset}}"  --}}
                             srcset="{{img_url feature_image size="s"}} 400w,
                                     {{img_url feature_image size="l"}} 750w,
                                     {{img_url feature_image size="xl"}} 1140w,
@@ -92,7 +91,28 @@
         </header>
      {{/match}}
 
+    {{#has tag="#show-toc"}}
+        <aside class="toc-container toc-desktop" aria-label="{{t 'Table of contents'}}">
+            <details class="toc-details" open>
+                <summary class="toc-header">
+                    {{> "icons/chevron-right"}}
+                    <h4>{{t 'Table of contents'}}</h4>
+                </summary>
+                <nav class="toc" aria-label="{{t 'Table of contents'}}"></nav>
+            </details>
+        </aside>
+    {{/has}}
+
     <div class="single-content gh-content kg-canvas {{#unless @page.show_title_and_feature_image}}reset-space{{/unless}}">
+        {{#has tag="#show-toc"}}
+            <details class="toc-container toc-mobile">
+                <summary>
+                    {{> "icons/chevron-right"}}
+                    {{t 'Table of contents'}}
+                </summary>
+                <nav class="toc-mobile-nav" aria-label="{{t 'Table of contents'}}"></nav>
+            </details>
+        {{/has}}
         {{content}}
     </div>
     {{#is "post"}}
@@ -108,7 +128,6 @@
                                     {{@site.description}}
                                 {{/if}}
                             </div>
-                            {{!-- {{> subscription-box}} --}}
                             <p class="sub-heading single-cta-desc">
                                 {{t 'No spam, no sharing to third party. Only you and me.'}}
                             </p>

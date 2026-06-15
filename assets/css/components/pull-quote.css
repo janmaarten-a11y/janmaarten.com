@@ -1,0 +1,129 @@
+/* Pull Quote — <pull-quote> web component
+   Duplicative (default): repeats text for emphasis, hidden from AT
+   Non-duplicative (inline attr): text appears once, promoted visually
+
+   Desktop (≥1440px): JS creates a <span class="pull-quote-float">
+   and inserts it at the start of the next paragraph. The span uses
+   float:right + negative margin-right to push partially into the
+   right gutter. Body text narrows slightly beside it.
+
+   Mobile (<1440px): the original <pull-quote> element is shown as
+   a full-width block between paragraphs, styled like blockquote.
+
+   Usage: always as a STANDALONE Ghost HTML card before the paragraph
+   the pull-quote should float beside.
+
+   Visual hierarchy (border-left thickness):
+     blockquote:not([class]) = 2px  (regular quote)
+     pull-quote              = 3px  (emphasis)
+     citation-card           = 4px  (attributed source) */
+
+/* --- Desktop float span (created by JS, inserted into paragraphs) --- */
+.pull-quote-float {
+    display: none;
+    font-family: var(--font-display);
+    font-size: var(--size-step-2);
+    font-weight: var(--font-regular);
+    line-height: 1.4;
+    color: var(--secondary-text-color);
+    border-top: 3px solid var(--color-teal);
+    padding: var(--space-m) 0 var(--space-xs) var(--space-s);
+}
+
+@media (min-width: 1440px) {
+    .pull-quote-float {
+        display: block;
+        float: right;
+        width: 400px;
+        margin-right: calc(-200px - var(--space-s));
+        margin-left: var(--space-m);
+        margin-bottom: var(--space-xs);
+        margin-top: 2.8rem;
+    }
+}
+
+/* --- Mobile: original element styled like blockquote:not([class]) --- */
+pull-quote {
+    display: block;
+    margin-right: 0;
+    margin-left: 0;
+    margin-block: var(--space-m);
+    padding: 0 2.2rem;
+    border-left: 2px solid var(--brand-color);
+    color: var(--primary-text-color);
+    font-size: var(--base-text-size);
+    line-height: 1.7;
+    font-weight: var(--font-regular);
+    letter-spacing: -0.03rem;
+}
+
+/* Hide mobile element on desktop (JS also sets display:none) */
+@media (min-width: 1440px) {
+    pull-quote {
+        display: none;
+    }
+}
+
+/* --- Non-duplicative (inline) variant ---
+   Below 1440px: looks like body text (invisible as pull-quote).
+   At ≥1440px: keeps the same float styling as duplicative variant
+   but with italic + primary text color. */
+@media (max-width: 1439px) {
+    pull-quote[inline] {
+        border: 0;
+        padding: 0;
+        margin: 2.8rem 0 0;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        font-style: inherit;
+        line-height: inherit;
+        letter-spacing: inherit;
+        color: inherit;
+    }
+
+    /* Long-form: match EB Garamond + body font size */
+    .tag-hash-long-form .single-content pull-quote[inline] {
+        font-family: var(--font-long-form);
+        font-size: var(--size-step-0);
+    }
+}
+
+/* Desktop float: inline variant gets italic + primary color */
+.pull-quote-float--inline {
+    font-style: italic;
+    color: var(--primary-text-color);
+}
+
+/* --- Long-form posts: use display font for duplicative variant --- */
+.tag-hash-long-form .pull-quote-float:not(.pull-quote-float--inline) {
+    font-family: var(--font-display);
+}
+
+/* --- Dark mode --- */
+[data-mode="dark"] .pull-quote-float:not(.pull-quote-float--inline) {
+    border-top-color: var(--color-teal-alt);
+}
+
+/* --- Context wrapper (created by JS to prevent float clearing gaps) ---
+   Wraps the float + several following siblings so short paragraphs
+   don't get stranded below the float.
+   Replicates .gh-content > * + * spacing since children are no longer
+   direct children of .gh-content. */
+.pull-quote-context {
+    grid-column: main;
+    margin-top: 0;
+}
+
+.pull-quote-context > * + * {
+    margin-top: var(--space-xl);
+    margin-bottom: 0;
+}
+
+.pull-quote-context > [id]:not(:first-child) {
+    margin-top: var(--space-3xl);
+}
+
+.pull-quote-context > [id] + * {
+    margin-top: var(--space-l);
+}

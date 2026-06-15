@@ -1,66 +1,69 @@
+/* ============================================
+   Design tokens (generated from tokens/tokens.json)
+   ============================================ */
+@import "../base/variables.css";
+
+/* ============================================
+   Kyoto variable aliases → token values
+   Keeps all existing theme classes working.
+   ============================================ */
 :root {
-    --brand-color: var(--ghost-accent-color, #6c49b6);
-    --primary-text-color: hsla(214,70%,4%,0.92);
-    --secondary-text-color: hsla(0,0%,2%,0.7);
-    --tertiary-text-color: hsla(0,0%,2%,0.55);
+    --brand-color: var(--ghost-accent-color, var(--color-teal));
+    --primary-text-color: var(--color-gray-900);
+    --secondary-text-color: var(--color-gray-600);
+    --tertiary-text-color: var(--color-gray-500);
     --diabled-background-color: var(--tertiary-text-color);
     --divider-color: rgb(0 0 0 / 10%);
     --input-background-color: rgb(0 0 0 / 8%);
     --hero-background-color: rgb(0 0 0 / 4%);
-    --underline-color: #3120AA;
-    --base-contrast: #fff;
-    --background-color: #fff;
+    --underline-color: var(--color-teal);
+    --base-contrast: var(--color-gray-100);
+    --background-color: var(--color-gray-100);
     --white-color: #fff;
     --black-color: #000;
-    --green-color: #28a745;
     --orange-color: #ffc107;
-    --red-color: #dc3545;
-    --facebook-color: #3b5998;
     --twitter-color: #1da1f2;
-    --rss-color: #f26522;
     --animation-base: ease-in-out;
-    --font-base: 'Atkinson Hyperlegible',BlinkMacSystemFont,Segoe UI,Helvetica,Arial,Inter,sans-serif;
-    --font-serif: 'Merriweather', Georgia, serif;
-    --font-long-form: 'EB Garamond', Georgia, serif;
-    --font-weight-regular: 400;
-    --font-weight-bold: 600;
+    --font-serif: var(--font-display);
+    --font-long-form: "EB Garamond", Georgia, serif;
     --navbar-height: 14rem;
     --form-input-height: 4rem;
-    --base-text-size: 1.35rem;
-    --spacepsection: 10.4rem;
+    --base-text-size: var(--size-step-0);
+    --content-font-size: var(--size-step-0);
     /* invert color */
     --primary-text-color-invert: rgb(250 250 250 / 95%);
     --secondary-text-color-invert: rgb(250 250 250 / 75%);
     --tertiary-text-color-invert: rgb(250 250 250 / 55%);
-    --primary-text-color-overlay: hsla(214,70%,4%,0.92);
-    --secondary-text-color-overlay: hsla(214,70%,4%,0.7);
-    --tertiary-text-color-overlay: hsla(214,70%,4%,0.55);
+    --primary-text-color-overlay: var(--color-gray-900);
+    --secondary-text-color-overlay: var(--color-gray-600);
+    --tertiary-text-color-overlay: var(--color-gray-500);
     --divider-color-verlay: rgb(0 0 0 / 10%);
     --head-nav-gap: 2.4rem;
 }
 
 :root.has-light-text,
 :root.dark-page,
-[data-theme="dark"] {
-    --primary-text-color: rgb(255 255 255 / 90%);
-    --secondary-text-color: rgb(255 255 255 / 65%);
-    --tertiary-text-color: rgb(255 255 255 / 45%);
+[data-mode="dark"] {
+    --primary-text-color: var(--color-gray-100);
+    --secondary-text-color: var(--color-gray-200);
+    --tertiary-text-color: var(--color-gray-300);
     --darker-gray-color: var(--primary-text-color);
     --divider-color: rgb(255 255 255 / 12%);
     --input-background-color: rgb(255 255 255 / 8%);
     --hero-background-color: rgb(255 255 255 / 6%);
-    --base-contrast: hsla(214,70%,4%,0.92);
-    --background-color: #111;
-    --underline-color: #9b8ee8;
-    --brand-color: #9b8ee8;
+    --base-contrast: var(--color-gray-900);
+    --background-color: var(--color-gray-800);
+    --underline-color: var(--color-teal-alt);
+    --brand-color: var(--color-teal-alt);
+    --color-lighter-gray: rgb(255 255 255 / 10%);
 }
 
 .dark-page body,
-[data-theme="dark"] body {
+[data-mode="dark"] body {
     background-color: var(--background-color);
 }
 
-[data-theme="dark"] .gh-head-logo-wrapper img {
+[data-mode="dark"] .gh-head-logo-wrapper img {
     filter: invert(1) brightness(2);
 }
 
@@ -71,14 +74,8 @@
 }
 
 html {
-    box-sizing: border-box;
     font-size: 100%;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
+    overflow-x: hidden;
 }
 
 
@@ -86,7 +83,7 @@ body {
     color: var(--primary-text-color);
     font-family: var(--font-base);
     font-size: var(--base-text-size);
-    line-height: 1.77;
+    line-height: var(--leading-standard);
     text-rendering: optimizeLegibility;
     background-color: var(--background-color);
     -webkit-font-smoothing: antialiased;
@@ -99,10 +96,18 @@ body.with-custom-background {
 }
 
 ::selection {
-    background: var(--ghost-accent-color);
-    color:  var(--white-color);
+    background: var(--color-tertiary);
+    color: var(--white-color);
 }
-
+/* Dark mode: lavender bg + white text fails 2.77:1 — use dark text instead (~7.6:1) */
+[data-mode="dark"] ::selection {
+    color: var(--color-gray-900);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) ::selection {
+        color: var(--color-gray-900);
+    }
+}
 a {
     color: var(--primary-text-color);
     text-decoration: none;
@@ -112,37 +117,147 @@ a:hover,
 a:focus {
     text-decoration: none;
 }
-a:not(.u-permalink):active,
-a:not(.u-permalink):hover:active {
-    background: var(--ghost-accent-color) !important;
-    border-color: var(--ghost-accent-color) !important;
-    color:#fff !important;
-    opacity: 1;
-}
 
+/* ----- Footer + webring + post-tag links ----------------------------------
+   Rest state: neutral text + dotted underline.  Distinct from content links
+   (which use a solid 2px underline) so the footer reads as "meta / nav".
+   Interactive states share the content-link colour vocabulary so the whole
+   site has one language of meaning: teal = interactive, tertiary = active.
+   Webring links underline only the label span (not the icon span) — the
+   markup wraps the visible text in <span> so we can target it precisely.
+   --------------------------------------------------------------------------- */
 .webring-nav a,
 footer a,
 a.post-tag {
-  text-decoration-line: underline;
-  text-decoration-style: dotted;
+    color: var(--primary-text-color);
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: oklch(from var(--primary-text-color) l c h / 0.4);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25ch;
+    transition:
+        color var(--transition-duration, 0.15s) var(--transition-timing, ease),
+        text-decoration-color var(--transition-duration, 0.15s) var(--transition-timing, ease),
+        background-color var(--transition-duration, 0.15s) var(--transition-timing, ease),
+        border-color var(--transition-duration, 0.15s) var(--transition-timing, ease);
 }
-.webring-nav a:hover,
+
+/* Webring links: underline lives on the label span, not the <a>, so the
+   icon span (<span aria-hidden>←</span>) doesn't get an underline painted
+   over it by the parent. */
+.webring-nav a {
+    text-decoration: none;
+}
+.webring-nav a > span:not([aria-hidden]) {
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: oklch(from var(--primary-text-color) l c h / 0.4);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25ch;
+    transition:
+        text-decoration-color var(--transition-duration, 0.15s) var(--transition-timing, ease);
+}
+
+.webring-nav a:hover > span:not([aria-hidden]),
 footer a:hover,
 a.post-tag:hover {
-    text-decoration:underline;
-    color: var(--underline-color);
+    color: var(--color-teal);
+    text-decoration-style: dotted;
+    text-decoration-color: var(--color-teal);
+}
+.webring-nav a:hover {
+    color: var(--color-teal);
 }
 
-
-header a:focus-visible,
+.webring-nav a:focus-visible,
 footer a:focus-visible,
-.webring a:focus-visible,
+a.post-tag:focus-visible {
+    outline: none;
+    background: oklch(from var(--color-teal) l c h / 0.12);
+    color: var(--color-teal);
+    border-bottom: 2px solid var(--color-teal);
+    text-decoration: none;
+}
+.webring-nav a:focus-visible > span:not([aria-hidden]) {
+    text-decoration: none;
+}
+
+/* Combined: keyboard-focused AND mouse-hovered → shift to tertiary. */
+.webring-nav a:focus-visible:hover,
+footer a:focus-visible:hover,
+a.post-tag:focus-visible:hover {
+    background: oklch(from var(--color-tertiary) l c h / 0.15);
+    color: var(--color-tertiary);
+    border-bottom-color: var(--color-tertiary);
+}
+/* Make sure the label span tracks the tertiary shift too (the hover
+   selector targets the span directly, which would otherwise outrank
+   the colour inherited from the <a>). */
+.webring-nav a:focus-visible:hover > span:not([aria-hidden]) {
+    color: var(--color-tertiary);
+}
+
+/* Dark mode counterparts — teal-alt + lavender follow the content-link map. */
+[data-mode="dark"] .webring-nav a:hover,
+[data-mode="dark"] .webring-nav a:hover > span:not([aria-hidden]),
+[data-mode="dark"] footer a:hover,
+[data-mode="dark"] a.post-tag:hover {
+    color: var(--color-teal-alt);
+    text-decoration-color: var(--color-teal-alt);
+}
+[data-mode="dark"] .webring-nav a:focus-visible,
+[data-mode="dark"] footer a:focus-visible,
+[data-mode="dark"] a.post-tag:focus-visible {
+    background: oklch(from var(--color-teal-alt) l c h / 0.15);
+    color: var(--primary-text-color);
+    border-bottom-color: var(--color-teal-alt);
+}
+[data-mode="dark"] .webring-nav a:focus-visible:hover,
+[data-mode="dark"] footer a:focus-visible:hover,
+[data-mode="dark"] a.post-tag:focus-visible:hover {
+    background: oklch(from var(--color-lavender) l c h / 0.2);
+    color: var(--color-lavender);
+    border-bottom-color: var(--color-lavender);
+}
+[data-mode="dark"] .webring-nav a:focus-visible:hover > span:not([aria-hidden]) {
+    color: var(--color-lavender);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .webring-nav a:hover,
+    :root:not([data-mode="light"]) .webring-nav a:hover > span:not([aria-hidden]),
+    :root:not([data-mode="light"]) footer a:hover,
+    :root:not([data-mode="light"]) a.post-tag:hover {
+        color: var(--color-teal-alt);
+        text-decoration-color: var(--color-teal-alt);
+    }
+    :root:not([data-mode="light"]) .webring-nav a:focus-visible,
+    :root:not([data-mode="light"]) footer a:focus-visible,
+    :root:not([data-mode="light"]) a.post-tag:focus-visible {
+        background: oklch(from var(--color-teal-alt) l c h / 0.15);
+        color: var(--primary-text-color);
+        border-bottom-color: var(--color-teal-alt);
+    }
+    :root:not([data-mode="light"]) .webring-nav a:focus-visible:hover,
+    :root:not([data-mode="light"]) footer a:focus-visible:hover,
+    :root:not([data-mode="light"]) a.post-tag:focus-visible:hover {
+        background: oklch(from var(--color-lavender) l c h / 0.2);
+        color: var(--color-lavender);
+        border-bottom-color: var(--color-lavender);
+    }
+    :root:not([data-mode="light"]) .webring-nav a:focus-visible:hover > span:not([aria-hidden]) {
+        color: var(--color-lavender);
+    }
+}
+
+/* Fallback outline for other footer-area focusables that don't get the
+   bg-tint treatment (bookmark cards, permalinks, toggle icons, burger). */
+header a:focus-visible,
 a.kg-bookmark-container:focus-visible,
 a.u-permalink:focus-visible,
 .kg-toggle-card-icon:focus-visible,
 button.gh-burger:focus-visible {
-    outline: 4px solid var(--ghost-accent-color);
-    outline-offset: 4px;
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
 }
   
 h1,
@@ -154,12 +269,12 @@ h6 {
     margin: 0;
     color: var(--primary-text-color);
     font-family: var(--font-base);
-    line-height: 1.25;
-    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-fine);
+    font-weight: var(--font-bold);
 }
 h1,
 h2 {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
 }
 
 p {
@@ -175,23 +290,19 @@ img {
 blockquote:not([class]) {
     margin-right: 0;
     margin-left: 0;
-    padding: 0 2.2rem;
-    border-left: 2px solid var(--brand-color);
+    padding: 0 var(--space-l);
+    border-left: 6px solid var(--brand-color);
     color: var(--primary-text-color);
     font-size: var(--base-text-size);
     line-height: 1.7;
-    font-weight: 400;
+    font-weight: var(--font-regular);
+    font-family: var(--font-display);
     letter-spacing: -0.03rem;
-}
-
-blockquote:not([class]) strong {
-    font-weight: 400;
-    color: var(--primary-text-color);
 }
 
 ul,
 ol {
-    padding-left: 2rem;
+    padding-left: var(--space-l);
 }
 
 iframe,
@@ -208,26 +319,34 @@ figure {
 }
 
 figcaption {
-    margin-top: 1.5rem;
+    margin-top: var(--space-m);
     color: var(--secondary-text-color);
-    font-size: 1.4rem;
+    font-size: var(--size-step--2);
     line-height: 1.4;
     text-align: center;
 }
 
 figcaption a {
     color: var(--secondary-text-color) !important;
-    font-weight: 400 !important;
+    font-weight: var(--font-regular) !important;
 }
 
 pre {
-    overflow-x: scroll;
-    padding: 1.6rem 2.2rem;
-    font-size: 1.6rem !important;
+    overflow-x: auto;
+    padding: var(--space-m) var(--space-l);
+    font-size: var(--size-step--1);
     line-height: 1.5;
-    background-color: var( --lighter-gray-color);
-    border-radius: 8px !important;
+    /* Cool dark charcoal (gray-900 hue 260) instead of Monokai's warm
+       #272822. Prism's languaged blocks get the same token override in
+       blog/code-blocks.css so all <pre> elements share one surface. */
+    background-color: var(--color-dark);
+    color: #f8f8f2;
+    border-radius: var(--border-radius-medium);
     -webkit-overflow-scrolling: touch;
+}
+
+pre[class*="language-"] {
+    line-height: 1.15;
 }
 
 hr {
@@ -242,7 +361,7 @@ hr {
 table:not(.highlight) {
     width: 100%;
     border-collapse: collapse;
-    font-size: 1.5rem;
+    font-size: var(--size-step--1);
     word-break: normal;
 }
 
@@ -260,7 +379,7 @@ table:not(.highlight) tr:hover td {
 
 table:not(.highlight) th,
 table:not(.highlight) td {
-    padding: 1rem 1.5rem;
+    padding: var(--space-s) var(--space-m);
     line-height: 1.5;
 }
 
@@ -273,7 +392,7 @@ table:not(.highlight) tfoot {
 }
 
 table:not(.highlight) tfoot td {
-    font-weight: 700;
+    font-weight: var(--font-bold);
 }
 
 @media (max-width: 767px) {
@@ -283,7 +402,7 @@ table:not(.highlight) tfoot td {
 
     .table tr {
         display: block;
-        padding: 1.2rem 0;
+        padding: var(--space-m) 0;
     }
 
     .table td {

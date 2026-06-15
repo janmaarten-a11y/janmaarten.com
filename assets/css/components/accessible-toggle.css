@@ -1,0 +1,111 @@
+/* Accessible Toggle — <details>/<summary> styled to match the rest of
+   the v2 theme. Replaces Ghost's inaccessible toggle card with native
+   HTML; browsers handle keyboard interaction, aria-expanded, and
+   open/close state for free. */
+
+.accessible-toggle {
+    background: var(--color-bg-accent);
+    border: 1px solid var(--color-bg-accent-2);
+    border-left: 3px solid var(--color-bg-accent-2);
+    border-radius: var(--border-radius-medium);
+    margin-block: var(--space-m);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.accessible-toggle[open] {
+    border-left-color: var(--color-primary);
+}
+
+.accessible-toggle:has(summary:focus-visible) {
+    border-left-color: var(--color-tertiary);
+}
+
+.accessible-toggle summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding: var(--space-s) var(--space-m);
+    font-size: var(--size-step-0);
+    font-weight: var(--font-semi-bold);
+    color: var(--primary-text-color);
+    cursor: pointer;
+    list-style: none;
+    border-radius: calc(var(--border-radius-medium) - 1px);
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+/* Remove default markers (Safari + Firefox) */
+.accessible-toggle summary::-webkit-details-marker {
+    display: none;
+}
+
+.accessible-toggle summary::marker {
+    content: "";
+}
+
+/* Chevron icon — uses secondary text colour at rest so the closed
+   toggle reads as a neutral container. Recolours on hover/focus/open
+   via currentColor inheritance. */
+.accessible-toggle summary::after {
+    content: "";
+    flex-shrink: 0;
+    width: 1.2em;
+    height: 1.2em;
+    background-color: var(--secondary-text-color);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M23.25 7.311 12.53 18.03a.749.749 0 0 1-1.06 0L.75 7.311'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M23.25 7.311 12.53 18.03a.749.749 0 0 1-1.06 0L.75 7.311'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    transition: transform 0.2s ease, background-color 0.15s ease;
+}
+
+.accessible-toggle[open] summary::after {
+    transform: rotate(180deg);
+    background-color: var(--color-primary);
+}
+
+.accessible-toggle summary:hover::after,
+.accessible-toggle summary:focus-visible::after {
+    background-color: currentColor;
+}
+
+/* --- Interactive states ---
+   Rest is neutral so the surrounding article carries the colour
+   weight. Hover and open shift to --color-primary; focus and
+   focus+hover both move to --color-tertiary so the visible outline,
+   left rail, and summary text all read as one accent. */
+.accessible-toggle summary:hover {
+    color: var(--color-primary);
+    background: oklch(from var(--color-primary) l c h / 0.06);
+}
+
+.accessible-toggle summary:focus-visible {
+    outline: 3px solid var(--color-tertiary);
+    outline-offset: -3px;
+    color: var(--color-tertiary);
+    background: oklch(from var(--color-tertiary) l c h / 0.06);
+}
+
+.accessible-toggle summary:focus-visible:hover {
+    background: oklch(from var(--color-tertiary) l c h / 0.1);
+}
+
+/* Content area */
+.accessible-toggle .toggle-content {
+    padding: var(--space-s) var(--space-m) var(--space-m);
+}
+
+.accessible-toggle .toggle-content > *:first-child {
+    margin-top: 0;
+}
+
+.accessible-toggle .toggle-content > *:last-child {
+    margin-bottom: 0;
+}
+
+

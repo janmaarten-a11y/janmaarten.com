@@ -5,13 +5,13 @@
 
 .kg-header-card.kg-width-full.kg-layout-split h2.kg-header-card-heading, 
 .kg-signup-card.kg-width-full.kg-layout-split h2.kg-signup-card-heading {
-    font-size: clamp(3.6rem,4vw,5.2rem) !important;
+    font-size: var(--size-step-5) !important;
     line-height: 1.2;
 }
 
 .kg-header-card.kg-width-full.kg-layout-split .kg-header-card-subheading, 
 .kg-header-card.kg-width-wide .kg-header-card-subheading {
-    font-size: clamp(1.05em,2vw,2rem) !important;
+    font-size: var(--size-step-0) !important;
     line-height: 1.4;
 }
 
@@ -33,15 +33,193 @@
     padding: 0 0 2rem 0;
 }
 .tag-hash-content-experience .feed-title {
-    font-size: 1.6rem;
+    font-size: var(--size-step--1);
     font-weight: normal;
 }
 .tag-hash-content-experience .sub-heading {
-    font-size: 1.1rem;
+    font-size: var(--size-step--2);
 }
 .tag-hash-content-experience .feed-right {
   display: flex;
   align-items: center;
   height: 100%;
   color: inherit;
+}
+
+/* Bookmark cards.
+   Default state: simple gray border via the two-layer background trick
+   (so we don't have to wrestle with Ghost's vendor !important rules later).
+
+   Hover: ::before paints a viridis gradient over the link, masked so only
+   the 2px border ring is visible. The gradient slides horizontally via
+   background-position-x animation.
+
+   Light mode uses the full viridis spectrum; dark mode uses the warm
+   half (teal → green → lavender) to match the long-form progress bar.
+
+   Note: tried conic-gradient rotation and linear-gradient angle rotation
+   via @property — both rendered statically with mask-composite. The
+   horizontal slide below works consistently. */
+/* Bookmark cards.
+   Resting border via inset box-shadow (lets the hover ::before sit at the
+   true outer edge without a transparent-border offset). Background uses
+   !important to defeat the shared-theme-assets background rule.
+
+   Hover: ::before paints a viridis gradient over the link, masked so only
+   the 2px border ring is visible. The gradient slides horizontally via
+   background-position-x animation.
+
+   Light mode uses the full viridis spectrum; dark mode uses the warm
+   half (teal → green → lavender) to match the long-form progress bar.
+
+   Note: tried conic-gradient rotation and linear-gradient angle rotation
+   via @property — both rendered statically with mask-composite. The
+   horizontal slide below works consistently. */
+.kg-bookmark-card a.kg-bookmark-container {
+    position: relative;
+    /* 5-stop palindrome: longer colour bands around the rotating ring.
+       Light mode: purple → teal → yellow → teal → purple (viridis ends + middle). */
+    --bookmark-stops: #440154, #21918c, #fde725, #21918c, #440154;
+    background-color: var(--background-color) !important;
+    box-shadow: inset 0 0 0 2px rgba(124, 139, 154, 0.5);
+}
+
+/* Dark mode: warm palette palindrome — teal → lavender → teal. */
+[data-mode="dark"] .kg-bookmark-card a.kg-bookmark-container {
+    --bookmark-stops: #21918c, #73d677, #a295ff, #73d677, #21918c;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .kg-bookmark-card a.kg-bookmark-container {
+        --bookmark-stops: #21918c, #73d677, #a295ff, #73d677, #21918c;
+    }
+}
+
+/* Sliding gradient ring (masked to border only).
+   z-index: 1 so the ring renders above child thumbnails. The mask clips
+   everything except the 2px border area, so the thumbnail underneath stays
+   fully visible — only the ring paints over the thumbnail's outer edge. */
+.kg-bookmark-card a.kg-bookmark-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(var(--ring-angle), var(--bookmark-stops));
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+            mask-composite: exclude;
+    opacity: 0;
+    transition: opacity var(--transition-duration) var(--transition-timing);
+    pointer-events: none;
+}
+
+.kg-bookmark-card a.kg-bookmark-container:hover::before {
+    opacity: 1;
+    animation: card-ring-rotate 8s linear infinite;
+}
+
+.kg-bookmark-card a.kg-bookmark-container:hover {
+    /* Hide resting border (inset shadow first), keep halo glow (outer shadow second) */
+    box-shadow:
+        inset 0 0 0 2px transparent,
+        0 0 30px oklch(from var(--color-secondary) l c h / 0.25);
+    /* Suppress the .gh-content a:hover highlight-style underline that would
+       otherwise paint a thick yellow bar across the bottom of the card. */
+    text-decoration: none;
+    text-decoration-thickness: 1px;
+    text-underline-offset: auto;
+}
+
+/* Focus-visible: bookmark card is a wrapper link, not body text.
+   Suppress the .gh-content a focus styles (background + bottom border)
+   and show an offset outline + stronger halo instead.
+   Doubled .kg-bookmark-card specificity so it beats the dark-mode
+   `:root:not([data-mode="light"]) .gh-content a:focus` rule which
+   paints a .4ch teal-alt border on the bottom edge of the card. */
+.kg-bookmark-card.kg-bookmark-card a.kg-bookmark-container:focus,
+.kg-bookmark-card.kg-bookmark-card a.kg-bookmark-container:focus-visible {
+    background-color: var(--background-color) !important;
+    border-bottom: 0;
+    text-decoration: none;
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+    box-shadow:
+        inset 0 0 0 2px transparent,
+        0 0 40px oklch(from var(--color-primary) l c h / 0.35);
+}
+
+/* Focus + hover: gradient ring takes over the inset border, outline shifts
+   to tertiary (purple light / lavender dark) so the overlap state reads as
+   intentional — same pattern used for content links. */
+.kg-bookmark-card.kg-bookmark-card a.kg-bookmark-container:focus:hover,
+.kg-bookmark-card.kg-bookmark-card a.kg-bookmark-container:focus-visible:hover {
+    border-bottom: 0;
+    text-decoration: none;
+    outline: 3px solid var(--color-tertiary);
+    outline-offset: 4px;
+    box-shadow:
+        inset 0 0 0 2px transparent,
+        0 0 40px oklch(from var(--color-tertiary) l c h / 0.35);
+}
+
+/* @property --ring-angle and @keyframes card-ring-rotate are defined in
+   blog/featured.css and shared across all three ring components
+   (bookmark, featured, case study). Palindromic stops + 0° → 360°
+   = byte-identical loop wrap, no visible seam. */
+
+@media (prefers-reduced-motion: reduce) {
+    .kg-bookmark-card a.kg-bookmark-container:hover::before {
+        animation: none;
+    }
+}
+
+.kg-bookmark-card a.kg-bookmark-container:hover .kg-bookmark-title,
+.kg-bookmark-card a.kg-bookmark-container:focus .kg-bookmark-title,
+.kg-bookmark-card a.kg-bookmark-container:focus-visible .kg-bookmark-title {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+.kg-bookmark-card a.kg-bookmark-container:focus .kg-bookmark-title,
+.kg-bookmark-card a.kg-bookmark-container:focus-visible .kg-bookmark-title {
+    color: var(--color-primary);
+}
+/* Focus + hover: title color matches the tertiary outline */
+.kg-bookmark-card a.kg-bookmark-container:focus:hover .kg-bookmark-title,
+.kg-bookmark-card a.kg-bookmark-container:focus-visible:hover .kg-bookmark-title {
+    color: var(--color-tertiary);
+}
+
+.kg-bookmark-card a.kg-bookmark-container:hover .kg-bookmark-description,
+.kg-bookmark-card a.kg-bookmark-container:hover .kg-bookmark-author {
+    color: var(--primary-text-color);
+}
+
+.kg-bookmark-publisher {
+    display: none;
+}
+
+.kg-bookmark-card .kg-bookmark-thumbnail img {
+    background: none;
+    padding: 2px 2px 2px 0;
+}
+
+/* Fallback link glyph when remote favicon fails (set by bookmark-fallback.js).
+   SVG already has its stroke color baked in to match the bookmark border. */
+.kg-bookmark-card .kg-bookmark-icon img[data-bookmark-fallback="applied"] {
+    background: none;
+    padding: 2px;
+}
+
+/* Wide image borders */
+.kg-card.kg-image-card.kg-width-wide.border {
+    border: 1px solid rgba(124, 139, 154, 0.5);
+    line-height: 0;
 }

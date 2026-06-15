@@ -1,0 +1,15 @@
+/* Composition — Wrapper
+   Max-width constrained container with inline padding.
+   Replaces Kyoto's .container .wide / .medium / .small.
+   Content area = --wrapper-width; total box = that + 2 × gutter. */
+
+.wrapper {
+  max-width: calc(var(--wrapper-width, 1034px) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  width: 100%;
+}
+
+.wrapper[data-width="medium"] { --wrapper-width: 640px; }
+.wrapper[data-width="small"]  { --wrapper-width: 560px; }
+.wrapper[data-width="full"]   { --wrapper-width: 1130px; }

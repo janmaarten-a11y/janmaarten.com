@@ -1,0 +1,18 @@
+/* Block — Hero section */
+
+.hero {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  padding-block: var(--space-xl-2xl);
+  text-align: center;
+}
+
+.hero h1 {
+  color: var(--color-light);
+}
+
+.hero p {
+  max-inline-size: 50ch;
+  margin-inline: auto;
+  opacity: 0.9;
+}

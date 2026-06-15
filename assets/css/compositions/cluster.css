@@ -1,0 +1,9 @@
+/* Composition — Cluster
+   Horizontal flex grouping with consistent gap. */
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gutter, var(--space-s));
+  align-items: center;
+}

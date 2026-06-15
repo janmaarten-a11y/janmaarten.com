@@ -1,12 +1,12 @@
 /* Webmentions */
 .wm-section {
-    margin-top: 4rem;
-    padding-top: 2rem;
+    margin-top: var(--space-xl);
+    padding-top: var(--space-l);
     border-top: 1px solid var(--divider-color);
 }
 
 .wm-heading {
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-l);
     color: var(--tertiary-text-color);
 }
 
@@ -14,9 +14,9 @@
 .wm-reactions {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
+    gap: var(--space-m);
+    padding-bottom: var(--space-l);
+    margin-bottom: var(--space-l);
     border-bottom: 1px solid var(--divider-color);
 }
 
@@ -44,7 +44,7 @@
 }
 
 .wm-reaction-count {
-    font-size: 1.2rem;
+    font-size: var(--size-step--2);
     color: var(--tertiary-text-color);
     white-space: nowrap;
 }
@@ -57,8 +57,8 @@
 
 .wm-reply {
     display: flex;
-    gap: 1.2rem;
-    padding: 1.6rem 0;
+    gap: var(--space-m);
+    padding: var(--space-m) 0;
     border-bottom: 1px solid var(--divider-color);
 }
 
@@ -74,17 +74,34 @@
     flex-shrink: 0;
 }
 
+/* Fallback avatar — used when the author has no photo URL or when the
+   remote image 404s.  Renders as a coloured circle with the author's
+   first initial.  Applied to both .wm-avatar and .wm-reply-avatar. */
+.wm-avatar-fallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-accent-2);
+    color: var(--color-text-accent);
+    font-family: var(--font-base);
+    font-weight: var(--font-bold);
+    font-size: 0.9em;
+    line-height: 1;
+    text-transform: uppercase;
+    user-select: none;
+}
+
 .wm-reply-content {
     min-width: 0;
 }
 
 .wm-reply-meta {
-    font-size: 1.2rem;
+    font-size: var(--size-step--2);
     margin-bottom: 0.4rem;
 }
 
 .wm-reply-author {
-    font-weight: 600;
+    font-weight: var(--font-semi-bold);
     color: var(--primary-text-color);
 }
 

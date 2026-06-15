@@ -1,0 +1,81 @@
+/* Link Tooltip — hover/focus tooltip for external links in .gh-content
+   Shows domain (default) + optional title/description/image via data-* attributes.
+   Hidden on touch-only devices via (hover: hover) media query in JS. */
+
+.link-tooltip {
+    position: absolute;
+    z-index: 100;
+    max-width: 400px;
+    padding: var(--space-xs) var(--space-s);
+    background-color: var(--color-gray-200);
+    border: 1px solid var(--divider-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 4px 12px oklch(0 0 0 / 0.15);
+    font-size: var(--size-step--2);
+    line-height: var(--leading-fine);
+    color: var(--primary-text-color);
+    pointer-events: auto;
+}
+
+.link-tooltip[hidden] {
+    display: none;
+}
+
+.link-tooltip-title {
+    display: block;
+    font-weight: var(--font-semi-bold);
+    font-size: var(--size-step--1);
+    margin-bottom: var(--space-3xs);
+    color: var(--primary-text-color);
+}
+
+.link-tooltip-domain {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4em;
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    line-height: 1.4;
+    color: var(--color-primary);
+    overflow-wrap: anywhere;
+}
+
+.link-tooltip-icon {
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+}
+
+/* Only add bottom margin if followed by a description */
+.link-tooltip-domain:not(:last-child) {
+    margin-bottom: var(--space-3xs);
+}
+
+.link-tooltip-description {
+    display: block;
+    color: var(--secondary-text-color);
+}
+
+.link-tooltip-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: var(--space-xs);
+}
+
+/* ---- Dark mode ---- */
+[data-mode="dark"] .link-tooltip {
+    background-color: var(--color-gray-900);
+    box-shadow: 0 4px 12px oklch(0 0 0 / 0.4);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .link-tooltip {
+        background-color: var(--color-gray-900);
+        box-shadow: 0 4px 12px oklch(0 0 0 / 0.4);
+    }
+}

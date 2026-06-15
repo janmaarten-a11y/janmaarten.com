@@ -1,4 +1,8 @@
 /* Blogroll / Recommendations */
+.blogroll-intro {
+    margin-bottom: var(--space-2xl);
+}
+
 .recommendations {
     list-style: none;
     padding: 0;
@@ -10,27 +14,27 @@
 }
 
 .recommendation:last-child {
-    border-bottom: 1px solid var(--divider-color);
+    border-bottom: none;
 }
 
 .recommendation a {
     display: flex;
     align-items: flex-start;
-    gap: 1.2rem;
-    padding: 1.6rem 0;
+    gap: var(--space-xs);
+    padding: var(--space-s) 0;
     text-decoration: none;
     color: var(--primary-text-color);
 }
 
 .recommendation a:hover .recommendation-title {
-    color: var(--ghost-accent-color);
+    color: var(--color-primary);
     text-decoration: underline;
 }
 
 .recommendation-favicon {
     width: 2.4rem;
     height: 2.4rem;
-    border-radius: 0.4rem;
+    border-radius: var(--border-radius-small);
     flex-shrink: 0;
     margin-top: 0.2rem;
 }
@@ -40,22 +44,22 @@
 }
 
 .recommendation-title {
-    font-size: 1.4rem;
-    font-weight: 600;
-    line-height: 1.4;
+    font-size: var(--size-step--1);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-fine);
     margin: 0;
 }
 
 .recommendation-url {
     display: block;
-    font-size: 1.1rem;
+    font-size: var(--size-step--2);
     color: var(--tertiary-text-color);
     margin-top: 0.2rem;
 }
 
 .recommendation-description {
-    font-size: 1.2rem;
+    font-size: var(--size-step--2);
     color: var(--secondary-text-color);
-    line-height: 1.5;
-    margin-top: 0.4rem;
+    line-height: var(--leading-fine);
+    margin-top: var(--space-3xs);
 }

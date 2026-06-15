@@ -1,14 +1,16 @@
-<article class="feed {{post_class}} no-link" data-month="{{date format="MMMM YYYY"}}">
-    <div class="feed-wrapper">
-        <div>
-            <div class="sub-heading feed-sub-title">{{ content }}</div>
-            <h2 class="body-1 feed-title">{{title}}</h2>
-        </div>
-        <div class="dot-spacer"></div>
-        <div class="feed-right">
-            {{#if excerpt}}
-                <div class="body-1 feed-calendar">{{excerpt}}</div>
-            {{/if}}
-        </div>
+<article class="speaking-entry {{post_class}}" data-month="{{date format="MMMM YYYY"}}">
+    <div class="speaking-meta">
+        <time class="speaking-date" datetime="{{date format="YYYY-MM-DD"}}">{{#if excerpt}}{{excerpt}}{{else}}{{date published_at format="MMM YYYY"}}{{/if}}</time>
+    </div>
+    <div class="speaking-body">
+        <div class="speaking-event">{{{content}}}</div>
+        <h3 class="speaking-title">{{title}}</h3>
+        {{#if canonical_url}}
+            <a class="speaking-link" href="{{canonical_url}}" rel="external noopener">
+                <span aria-hidden="true">▶</span>
+                <span aria-hidden="true">Watch the talk</span>
+                <span class="visually-hidden">Watch the talk — {{title}}</span>
+            </a>
+        {{/if}}
     </div>
 </article>

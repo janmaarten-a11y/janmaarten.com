@@ -22,9 +22,9 @@
 }
 
 .hero-intro .word-reveal strong {
-    font-weight: 600;
+    font-weight: var(--font-semi-bold);
 }
 
 .hero-intro > * + * {
-    margin-top: 2.4rem !important;
+    margin-top: var(--space-l) !important;
 }

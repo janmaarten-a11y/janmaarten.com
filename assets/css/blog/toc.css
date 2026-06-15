@@ -1,69 +1,326 @@
-.kg-canvas .toc-container {
-    font-size: 1.4rem;
-    grid-column: main-start/main-end;
-    margin: 0 0 2vmin;
-    padding: 0;
-    position: static;
-    width: 100%;
+/* Table of contents — triggered by #show-toc tag
+   Desktop: fixed to left side of viewport
+   Mobile: collapsible <details> above content */
+
+/* ---- Desktop TOC ---- */
+.toc-desktop {
+    position: fixed;
+    top: var(--space-l);
+    left: var(--space-m);
+    z-index: 10;
+    max-width: 16rem;
+    background-color: oklch(from var(--background-color) l c h / 0.5);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    padding: var(--space-xs) var(--space-s) var(--space-xs) var(--space-xs);
+    border-radius: var(--border-radius-medium);
+    /* Hidden until JS calculates correct position after images load */
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
-.toc-sidebar {
-    background-color: var(--hero-background-color);
-    overflow-y: scroll;
-    padding: 2.4rem 2.4rem 1rem;
-    width: 100%;
+.toc-desktop.is-positioned {
+    opacity: 1;
 }
 
-.has-serif-title .toc-sidebar {
-    font-family: var(--font-serif);
+.toc-desktop .toc-details {
+    /* Remove default details marker */
 }
 
-.toc-sidebar h4 {
-    font-size: 2rem;
-    font-weight: 600;
+.toc-desktop .toc-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+}
+
+.toc-desktop .toc-header::-webkit-details-marker {
+    display: none;
+}
+
+.toc-desktop .toc-header::marker {
+    content: "";
+}
+
+.toc-desktop .toc-header h4 {
+    font-size: var(--size-step--2);
+    font-weight: var(--font-semi-bold);
     font-variant: all-petite-caps;
+    letter-spacing: 0.05em;
+    margin: 0;
+    white-space: nowrap;
 }
 
-.has-serif-title .toc-sidebar h4 {
-    font-family: var(--font-serif);
+.toc-desktop .toc-header .icon {
+    width: 0.8em;
+    height: 0.8em;
+    flex-shrink: 0;
+    fill: currentColor;
+    transition: transform var(--transition-duration) var(--transition-timing);
 }
 
-.toc {
-    align-self: stretch;
-    overflow-y: scroll;
-    padding: 1px 0 0;
+.toc-details[open] .toc-header .icon {
+    transform: rotate(90deg);
 }
 
-.toc > .toc-list {
-    /* padding-left: 0; */
-    margin: .8rem 0;
+.toc-desktop .toc-header:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: 2px;
 }
 
+.toc-desktop .toc {
+    padding-top: var(--space-xs);
+}
+
+/* ---- Mobile TOC ---- */
+.toc-mobile {
+    grid-column: main-start / main-end;
+    display: none;
+    margin-bottom: var(--space-m);
+    background-color: var(--hero-background-color);
+    border-radius: var(--border-radius-medium);
+    padding: var(--space-s);
+}
+
+.toc-mobile summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    font-size: var(--size-step--2);
+    font-weight: var(--font-semi-bold);
+    font-variant: all-petite-caps;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    list-style: none;
+}
+
+.toc-mobile summary::-webkit-details-marker {
+    display: none;
+}
+
+.toc-mobile summary::marker {
+    content: "";
+}
+
+.toc-mobile summary .icon {
+    width: 0.8em;
+    height: 0.8em;
+    flex-shrink: 0;
+    fill: currentColor;
+    transition: transform var(--transition-duration) var(--transition-timing);
+}
+
+.toc-mobile[open] summary .icon {
+    transform: rotate(90deg);
+}
+
+.toc-mobile-nav {
+    padding-top: var(--space-xs);
+}
+
+/* ---- Shared list styles ---- */
 .toc-list,
-.gh-content ol.toc-list li {
-    list-style-type: circle;
-}
-
-.gh-content ol.toc-list li li {
-    list-style-type: square;
+.toc-mobile-nav .toc-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
 }
 
 .toc-list-item {
-    font-size: 1.6rem;
-    padding: .4rem 0;
-    line-height: 1.4;
-}
-
-
-.gh-content li+li {
-    margin-top: 0;
-}
-
-.toc-list-item.is-active-li a {
-    font-weight: var(--font-weight-bold);
+    font-size: var(--size-step--2);
+    padding: var(--space-3xs) 0;
+    line-height: var(--leading-fine);
 }
 
 .toc-list-item a {
+    display: inline-block;
     text-decoration: none;
+    color: var(--secondary-text-color);
+    transition: color var(--transition-duration) var(--transition-timing);
+}
+
+.toc-list-item a:hover {
     color: var(--primary-text-color);
+    text-decoration: underline;
+}
+
+/* ---- Mobile TOC list styles ---- */
+.toc-mobile .toc-list {
+    list-style: decimal;
+    padding-left: var(--space-m);
+}
+
+.toc-mobile .toc-list .toc-list {
+    list-style: none;
+    padding-left: var(--space-s);
+    margin-top: 2px;
+}
+
+.toc-mobile .toc-list-item {
+    font-size: var(--size-step--1);
+    padding: 0;
+}
+
+.toc-mobile .toc-list-item a {
+    text-decoration: none;
+    border-bottom: 1px dashed var(--color-gray-400);
+    padding-bottom: 1px;
+    transition: color var(--transition-duration) var(--transition-timing),
+                border-color var(--transition-duration) var(--transition-timing);
+}
+
+.toc-mobile .toc-list-item a:hover {
+    color: var(--color-indigo);
+    border-bottom: 1px solid var(--color-indigo);
+}
+
+[data-mode="dark"] .toc-mobile .toc-list-item a:hover {
+    color: var(--color-green-alt);
+    border-color: var(--color-green-alt);
+}
+
+.toc-mobile .toc-list-item {
+    margin-top: 0.4rem;
+}
+
+/* ---- Desktop-only: vertical line, markers, nested sizing ---- */
+.toc-desktop .toc-list {
+    position: relative;
+    padding-left: var(--space-s) !important;
+}
+
+.toc-desktop .toc-list .toc-list {
+    padding-left: var(--space-s);
+}
+
+.toc-desktop .toc-list-item {
+    position: relative;
+}
+
+/* Nested items smaller (desktop only) */
+.toc-desktop .toc-list .toc-list .toc-list-item {
+    font-size: var(--size-step--2);
+}
+
+.toc-desktop .toc-list-item.is-active-li > a {
+    color: var(--color-indigo);
+    font-weight: var(--font-semi-bold);
+}
+[data-mode="dark"] .toc-desktop .toc-list-item.is-active-li > a {
+    color: var(--color-teal-alt);
+}
+
+/* Vertical track line — clipped to start/end circles */
+.toc-desktop .toc-list::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: calc(var(--space-3xs) + 0.45em + 3px);
+    bottom: calc(var(--space-3xs) + 0.45em + 3px);
+    width: 2px;
+    background: var(--color-bg-accent-2);
+}
+
+/* Start circle — first item only */
+.toc-desktop .toc-list > .toc-list-item:first-of-type::before {
+    content: "";
+    position: absolute;
+    left: calc(-1 * var(--space-s) + 1px);
+    top: calc(var(--space-3xs) + 0.45em);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-bg-accent-2);
+    z-index: 1;
+}
+
+/* End circle — last item only */
+.toc-desktop .toc-list > .toc-list-item:last-of-type::after {
+    content: "";
+    position: absolute;
+    left: calc(-1 * var(--space-s) + 1px);
+    top: calc(var(--space-3xs) + 0.45em);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-bg-accent-2);
+    z-index: 1;
+}
+
+/* Sliding active marker — positioned by JS.
+   Acts as a viewing window onto a vertical viridis gradient that
+   spans the full rail height — so the dot color reflects how far
+   the reader has progressed through the article. */
+.toc-active-marker {
+    position: absolute;
+    left: 0px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-image: linear-gradient(
+        180deg,
+        oklch(28.5% 0.20 318),
+        oklch(44.84% 0.16 266),
+        oklch(49.51% 0.13 190),
+        oklch(60% 0.20 145)
+    );
+    background-repeat: no-repeat;
+    background-size: 100% var(--toc-rail-h, 600px);
+    background-position: 0 calc(-1 * var(--toc-marker-y, 0px));
+    z-index: 2;
+    transition: top 0.25s ease;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .toc-active-marker { transition: none; }
+}
+
+[data-mode="dark"] .toc-active-marker {
+    background-image: linear-gradient(
+        180deg,
+        #21918c,
+        #73d677,
+        #a295ff
+    );
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .toc-active-marker {
+        background-image: linear-gradient(
+            180deg,
+            #21918c,
+            #73d677,
+            #a295ff
+        );
+    }
+}
+
+/* Hide markers/circles on nested lists */
+.toc-desktop .toc-list .toc-list::before,
+.toc-desktop .toc-list .toc-list > .toc-list-item:first-of-type::before,
+.toc-desktop .toc-list .toc-list > .toc-list-item:last-of-type::after {
+    display: none;
+}
+
+/* Disable smooth scroll for TOC link clicks — instant jump */
+html:has(.toc-desktop) {
+    scroll-behavior: auto;
+}
+
+/* ---- Responsive ---- */
+/* Hide desktop TOC when viewport is too narrow for sidebar clearance.
+   At 1280px the content is ~1034px + 10vw padding = ~1162px,
+   leaving only ~60px per side — not enough for the TOC. */
+@media (max-width: 1439px) {
+    .toc-desktop {
+        display: none;
+    }
+
+    .toc-mobile {
+        display: block;
+    }
 }

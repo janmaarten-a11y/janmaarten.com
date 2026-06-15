@@ -1,24 +1,24 @@
 .taxonomy {
-    margin-bottom: calc(var(--spacepsection) - 6rem);
+    margin-bottom: calc(var(--space-3xl) - var(--space-2xl));
 }
 
 .taxonomy-media {
     overflow: hidden;
-    margin: 0 0 3rem;
+    margin: 0 0 var(--space-xl);
     width: 200px;
 }
 
 .taxonomy-media-small {
     width: 4rem;
-    margin-right: 12px;
-    margin-left: -10px;
+    margin-right: var(--space-s);
+    margin-left: calc(-1 * var(--space-s));
 }
 
 .tag-list-container {
-    margin-top: 6rem;
-    padding-top: var(--spacepsection);
-    font-weight: 400;
-    font-size: 2rem;
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-3xl);
+    font-weight: var(--font-regular);
+    font-size: var(--size-step-2);
 }
 
 .tag-list {
@@ -30,12 +30,12 @@
 }
 
 .tag-list-label {
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-m);
     color: var(--secondary-text-color);
 }
 
 .tag-list-item-wrapper {
-    padding: .8rem 2rem;
+    padding: var(--space-s) var(--space-l);
     background-color: var(--input-background-color);
     display: flex;
     flex-direction: row;
@@ -44,15 +44,16 @@
 }
 
 .tag-list-item-wrapper:hover {
-    background-color: var(--light-gray-color);
+    background-color: oklch(from var(--color-secondary) l c h / 0.1);
 }
 
 .tag-list-item {
     display: block;
+    color: var(--color-secondary);
 }
 
 .has-serif-body .tag-list-item {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
 }
 
 .tag-list-item-count {
@@ -60,7 +61,7 @@
 }
 
 .tag-list-item + .tag-list-item {
-    margin-left: 1rem;
+    margin-left: var(--space-s);
 }
 
 @media (max-width: 767px) {

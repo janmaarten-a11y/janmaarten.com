@@ -1,0 +1,19 @@
+/* Block — Navigation */
+
+.site-nav {
+  padding-block: var(--space-s);
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: var(--font-bold);
+}
+
+.site-nav a:hover {
+  color: var(--color-primary);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--color-primary);
+}

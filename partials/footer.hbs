@@ -1,28 +1,36 @@
 <footer class="site-footer">
     <div class="footer-divider"></div>
-    <div class="container wide">
-        <div class="footer-inner-main container wide">
-            <div class="kg-grid twothirds">
-                <div class="kg-grid kg-grid-2col footer-nav">
+    <div class="wrapper flow">
+        <div class="footer-inner-main wrapper">
+            <div class="footer-nav-wrap">
+                <div class="footer-nav">
                     {{navigation type="secondary"}}
-                </div>
-                <div class="legal">
-                    <div class="webring">
-                        <h3 class="footer-group-header" id="a11y-webring-club">a11y-webring.club</h3>
-                        <nav class="a11y-webring-club" aria-labelledby="a11y-webring-club">
-                            <p>This site is a member of the <a rel="external" href="https://a11y-webring.club/">a11y-webring.club</a>.</p>
-                            <ul class="webring-nav">
-                                <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/prev">Previous website</a></li>
-                                <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/random">Random website</a></li>
-                                <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/next">Next website</a></li>
-                            </ul>
-                        </nav>
-                    </div>
                 </div>
             </div>
         </div>
+        <div class="webring">
+            <div class="webring-info">
+                <h3 class="footer-group-header" id="a11y-webring-club">a11y-webring.club</h3>
+                <p>This site is a member of the <a rel="external" href="https://a11y-webring.club/">a11y-webring.club</a>.</p>
+            </div>
+            <nav class="a11y-webring-club" aria-labelledby="a11y-webring-club">
+                <ul class="webring-nav">
+                    <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/prev"><span aria-hidden="true">←</span> <span>Previous</span></a></li>
+                    <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/random"><span aria-hidden="true">?</span> <span>Random</span></a></li>
+                    <li><a rel="external" referrerpolicy="strict-origin" href="https://a11y-webring.club/next"><span>Next</span> <span aria-hidden="true">→</span></a></li>
+                </ul>
+            </nav>
+        </div>
         <div class="footer-copyright">
             <p>© {{date format="YYYY"}} Jan Maarten. All Rights Reserved. This site uses Plausible analytics which collects no personal data.</p>
+            <div class="mode-switcher">
+                <label class="mode-switcher__label" for="appearance-mode">Appearance</label>
+                <select class="mode-switcher__select" id="appearance-mode" data-mode-switcher>
+                    <option value="system">System</option>
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </div>
         </div>
     </div>
 </footer>

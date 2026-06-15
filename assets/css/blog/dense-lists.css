@@ -1,0 +1,58 @@
+/* Dense lists — for sections with long reference/footnote-style lists.
+
+   Trigger: add class="dense-section" to a heading in Ghost's HTML editor
+   to OPEN a dense section, and add class="dense-section-end" to a heading
+   to CLOSE it. Any ol/ul siblings between the two markers get dense styling.
+
+     <h2 class="dense-section">References</h2>
+     <ol>...</ol>
+     <h2 class="dense-section-end">Next section</h2>
+     <ol>...</ol>  ← not dense
+
+   If there's nothing after the dense section (it's the last section in
+   the post), no closing marker is needed.
+
+   Implementation: the open rule applies dense styling to all subsequent
+   siblings. The close rule (later in source order, same specificity)
+   resets it for siblings of the close marker. */
+
+.gh-content .dense-section ~ ol,
+.gh-content .dense-section ~ ul {
+    font-family: var(--font-base);
+    font-size: var(--size-step--1);
+    line-height: var(--leading-fine);
+    margin-top: var(--space-m);
+}
+
+.gh-content .dense-section ~ ol li:not(.toc-list-item),
+.gh-content .dense-section ~ ul li:not(.toc-list-item) {
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+}
+
+.gh-content .dense-section ~ ol li + li,
+.gh-content .dense-section ~ ul li + li {
+    margin-top: var(--space-s);
+}
+
+/* Close the dense section — explicit opt-out marker on a later heading. */
+.gh-content .dense-section-end ~ ol,
+.gh-content .dense-section-end ~ ul {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin-top: var(--space-xl);
+}
+
+.gh-content .dense-section-end ~ ol li:not(.toc-list-item),
+.gh-content .dense-section-end ~ ul li:not(.toc-list-item) {
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+}
+
+.gh-content .dense-section-end ~ ol li + li,
+.gh-content .dense-section-end ~ ul li + li {
+    margin-top: var(--space-m);
+}

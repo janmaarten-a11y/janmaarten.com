@@ -1,0 +1,7 @@
+/* Composition — Flow
+   Vertical rhythm via lobotomized owl.
+   Every Layout: https://every-layout.dev/layouts/stack/ */
+
+.flow > * + * {
+  margin-block-start: var(--flow-space, 1em);
+}

@@ -6,15 +6,15 @@
 
 .site-content {
     flex-grow: 1;
-    padding: 8rem 0 2rem;
+    padding: var(--space-3xl) 0;
 }
 
 .section-container {
-    margin-top: var(--spacepsection);
+    margin-top: var(--space-3xl);
 }
 
 .section-container.reset-spacing {
-    margin-top: calc(var(--spacepsection) - 6rem);
+    margin-top: calc(var(--space-3xl) - var(--space-2xl));
 }
 
 .custom-page .site-main .section-container:first-child {
@@ -22,8 +22,8 @@
 }
 
 .section-container.post-expanded {
-    margin-bottom: 10.4rem;
-    margin-top: 16rem;
+    margin-bottom: var(--space-3xl);
+    margin-top: var(--space-3xl);
 }
 
 .is-head-brand .site-content {

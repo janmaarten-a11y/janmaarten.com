@@ -1,18 +1,18 @@
 .author-meta {
     text-align: left;
     width: 100%;
-    margin-left: .8rem;
+    margin-left: var(--space-s);
 }
 
 .author-social {
     justify-content: start;
-    margin-top: 2.5rem;
+    margin-top: var(--space-l);
 }
 
 .author-list {
     display: flex;
     align-items: center;
-    margin-left: .8rem;
+    margin-left: var(--space-s);
 }
 
 .author-list .author-name {
@@ -39,18 +39,18 @@
 
 .author-card {
     position: relative;
-    margin-bottom: 4rem;
+    margin-bottom: var(--space-xl);
 }
 
 .author-card-title {
     text-align: center;
-    margin-top: 2rem;
-    font-size: 2.8rem;
+    margin-top: var(--space-l);
+    font-size: var(--size-step-3);
 }
 
 .author-post-number {
     text-align: center;
-    font-size: 2rem;
+    font-size: var(--size-step-1);
 }
 
 .has-serif-title .author-card-title,

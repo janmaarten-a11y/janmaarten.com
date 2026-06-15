@@ -1,20 +1,20 @@
 {{!< default}}
 
 <div class="content-area custom-page">
-    <main class="site-main" id="main">
+    <main class="site-main flow" id="main">
 
         {{> "page-header"}}
         
 
         {{#if @custom.case_study_title}}
             <section class="section-container case-study section-case-study">
-                <header class="feed-header container wide">
+                <header class="feed-header wrapper">
                         <div class="feed-header-wrapper">
                             <h2 class="section-title feed-header-title">{{@custom.case_study_title}}</h2>
                         </div>
                 </header>
                 {{#get "pages" include="tags" filter="tag:hash-content-case-study" order="published_at desc"}}
-                    <div class="cards kg-grid {{#match @custom.card_style "Full row"}}full-row{{else}}kg-grid-2col{{/match}} gh-feed container full">
+                    <div class="cards kg-grid {{#match @custom.card_style "Full row"}}full-row{{else}}kg-grid-2col{{/match}} gh-feed wrapper" data-width="full">
                         {{#foreach pages}}
                             {{> "components/card-project" showVisual=true isOverlay=true isLarge=true postFeedStyle=@custom.card_style }}
                         {{/foreach}}
@@ -24,13 +24,13 @@
         {{/if}}
         {{#if @custom.personal_project_title}}
             <section class="section-container section-personal-project">
-                <header class="feed-header container wide">
+                <header class="feed-header wrapper">
                     <div class="feed-header-wrapper">
                         <h2 class="section-title feed-header-title">{{@custom.personal_project_title}}</h2>
                     </div>
                 </header>
-                {{#get "pages" filter="tag:hash-content-personal-project" order="published_at desc"}}
-                    <div class="cards kg-grid kg-grid-2col gh-feed container wide">
+                {{#get "pages" include="tags" filter="tag:hash-content-personal-project" order="published_at desc"}}
+                    <div class="cards kg-grid kg-grid-2col gh-feed wrapper">
                         {{#foreach pages}}
                             {{> "components/card-project" showVisual=true isSmall=true}}
                         {{/foreach}}
@@ -40,13 +40,13 @@
         {{/if}}
         {{#if @custom.experience_title }}
             <section class="section-container experiences section-experiences">
-                <header class="feed-header container wide">
+                <header class="feed-header wrapper">
                         <div class="feed-header-wrapper">
                             <h2 class="section-title feed-header-title">{{@custom.experience_title}}</h2>
                         </div>
                 </header>
                 {{#get "pages" include="tags" filter="tag:hash-content-experience" order="published_at desc"}}
-                    <div class="container wide">
+                    <div class="wrapper">
                         {{#foreach pages}}
                             {{> "components/experience" }}
                         {{/foreach}}
@@ -56,13 +56,13 @@
         {{/if}}
         {{#if @custom.testimonial_title }}
             <section class="section-container testimonials section-testimonials">
-                <header class="feed-header container wide">
+                <header class="feed-header wrapper">
                         <div class="feed-header-wrapper">
                             <h2 class="section-title feed-header-title">{{@custom.testimonial_title}}</h2>
                         </div>
                 </header>
                 {{#get "pages" include="tags" filter="tag:hash-content-testimonial" limit="6" order="published_at desc"}}   
-                    <div class="cards kg-grid kg-grid-2col container wide">
+                    <div class="testimonials-list wrapper">
                         {{#foreach pages}}
                             {{> "components/testimonial" }}
                         {{/foreach}}

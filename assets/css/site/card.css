@@ -6,7 +6,7 @@
     position: relative;
 }
 
-.cards.container.full {
+.cards.wrapper[data-width="full"] {
     padding: 0;
 }
 .card:hover .card-title {
@@ -15,9 +15,9 @@
 
 .card-wrapper {
     display: flex;
-    gap: .8rem;
+    gap: var(--space-xs);
     flex-direction: column;
-    margin-bottom: 1.8rem;
+    margin-bottom: var(--space-s);
 }
 
 .card-title {
@@ -29,19 +29,19 @@
     color: var(--primary-text-color);
     display: flex;
     align-items: flex-start;
-    gap: .8rem;
-    font-size: 1.8rem;
+    gap: var(--space-xs);
+    font-size: var(--size-step-1);
 }
 
 .card-title .icon {
     flex-shrink: 0;
-    margin: .4rem 0
+    margin: var(--space-xs) 0
 }
 
 :not(.featured-posts) .card-overlay .card-title {
     color: var(--primary-text-color-overlay);
-    font-size: 2.4rem;
-    font-family: var(--font-serif);
+    font-size: var(--size-step-3);
+    font-family: var(--font-display);
     font-weight: normal;
 }
 
@@ -53,7 +53,7 @@
     color: var(--tertiary-text-color-overlay);
 }
 .card-overlay .sub-heading.card-excerpt {
-    font-size: 1.4rem;
+    font-size: var(--size-step--1);
   }
 
 .featured-posts .card-overlay .card-excerpt {
@@ -64,20 +64,97 @@
 .card-image.small-image {
     width: 4.8rem;
     height: 4.8rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: var(--space-xs);
     aspect-ratio: 1/1;
-    border-radius: 0.6rem;
+    border-radius: var(--border-radius-medium);
     overflow: hidden;
 }
 
-[data-theme="dark"] .section-personal-project .card-image img {
+/* Opt-in dark-mode logo inversion.
+   Add the internal tag `#invert-on-dark` to a project page in Ghost
+   to flip its logo white in dark mode. Use for monochrome marks that
+   only ship in a dark colourway (e.g. the GitHub Octocat). Skip for
+   logos that work on both backgrounds (e.g. the Figma mark). */
+[data-mode="dark"] .section-personal-project .tag-hash-invert-on-dark .card-image img {
     filter: brightness(0) invert(1);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .section-personal-project .tag-hash-invert-on-dark .card-image img {
+        filter: brightness(0) invert(1);
+    }
+}
+
+/* Personal project cards — bump type to match the rest of the site */
+.section-personal-project .card-title {
+    font-size: var(--size-step-2);
+    font-family: var(--font-display);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-fine);
+    color: var(--primary-text-color);
+    transition: color var(--transition-duration) var(--transition-timing);
+}
+
+.section-personal-project .card-excerpt {
+    font-size: var(--size-step-0);
+    line-height: var(--leading-standard);
+    color: var(--tertiary-text-color);
+}
+
+/* Hover/focus — same vocabulary as feed article cards */
+.section-personal-project .card:hover .card-title,
+.section-personal-project .card:focus-within .card-title {
+    color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);
+    text-decoration: underline;
+    text-decoration-color: oklch(from var(--color-yellow-alt) calc(l + .07) c h / .7);
+    text-decoration-thickness: .25ch;
+    text-underline-offset: .15ch;
+}
+
+[data-mode="dark"] .section-personal-project .card:hover .card-title,
+[data-mode="dark"] .section-personal-project .card:focus-within .card-title {
+    color: var(--color-lavender);
+    text-decoration-color: oklch(from var(--color-lavender) l c h / 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .section-personal-project .card:hover .card-title,
+    :root:not([data-mode="light"]) .section-personal-project .card:focus-within .card-title {
+        color: var(--color-lavender);
+        text-decoration-color: oklch(from var(--color-lavender) l c h / 0.5);
+    }
+}
+
+.section-personal-project .card {
+    scroll-margin-block: var(--space-l);
+}
+
+.section-personal-project .card:has(.u-permalink:focus-visible) {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 6px;
+    border-radius: var(--border-radius-small);
+}
+.section-personal-project .card .u-permalink:focus-visible {
+    outline: none;
+}
+
+/* Combined: keyboard-focused AND mouse-hovered — shift outline to tertiary */
+.section-personal-project .card:hover:has(.u-permalink:focus-visible) {
+    outline-color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);
+}
+[data-mode="dark"] .section-personal-project .card:hover:has(.u-permalink:focus-visible) {
+    outline-color: var(--color-lavender);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .section-personal-project .card:hover:has(.u-permalink:focus-visible) {
+        outline-color: var(--color-lavender);
+    }
 }
 
 .card-image,
 .placeholder {
     position: relative;
-    margin-bottom: 16px;
+    margin-bottom: var(--space-m);
     aspect-ratio: 2/3;
     background-color: var(--input-background-color);
 }
@@ -89,6 +166,7 @@
 
 .full-row .card-image {
     aspect-ratio: 5/2;
+    min-height: 528px;
 }
 .tag-hash-ss2 ,
 .tag-hash-ss2 .card-image img {
@@ -104,23 +182,33 @@
 }
 
 .card-overlay .card-wrapper {
-    gap: 10px;
-    /* left: 0; */
+    gap: var(--space-s);
+    left: 0;
     max-width: 800px;
-    padding: 3rem;
-    /* position: absolute;
-    top: 0; */
+    padding: var(--space-xl);
+    position: absolute;
+    top: 0;
     width: 100%;
     height: 100%;
     justify-content: flex-start;
     background: rgba(0,0,0,.3);
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    transition:
+        backdrop-filter var(--transition-duration) var(--transition-timing),
+        -webkit-backdrop-filter var(--transition-duration) var(--transition-timing);
+}
+
+.card-overlay:hover .card-wrapper,
+.card-overlay:focus-within .card-wrapper {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
 }
 
 .card-overlay .card-image,
 .card-overlay .placeholder {
     margin-bottom: 0;
+    width: 100%;
 }
 
 .card-overlay.tag-hash-u-on-dark .card-title {
@@ -141,8 +229,14 @@
 } */
 
 .experiences {
-    margin-top: 4.8rem;
+    margin-top: var(--space-2xl);
 }
+
+/* Case study grid spacing */
+.section-case-study .cards.kg-grid {
+    row-gap: var(--space-2xl);
+}
+
 @media (max-width: 767px) {
     .tag-hash-content-experience .feed-wrapper {
       flex-direction: column;
@@ -150,21 +244,22 @@
     }
   }
 .featured-posts {
-    overflow-x: hidden;
-    padding-top: 1.6rem;
+    /* No overflow clip here — would clip card focus outlines.
+       Featured cards are constrained by the grid + wrapper. */
+    padding-top: var(--space-s);
 }
 
 .tags-list {
     display: flex;
-    gap: .8rem;
+    gap: var(--space-s);
     margin-top: .4rem;
 }
 .card-overlay .tags-list {
-    margin: .4rem 0 2rem;
+    margin: var(--space-xs) 0 2rem;
 }
 
 .tag-item {
-    padding: 0 1rem;
+    padding: 0 var(--space-s);
     border-radius: 4rem;
     border: solid 1px var(--divider-color);
     color: var(--secondary-text-color);
@@ -178,6 +273,6 @@
 
 @media (max-width: 767px) {
     .card-overlay .card-wrapper {
-        padding: 1.5rem;
+        padding: var(--space-m);
     }
 }

@@ -1,0 +1,91 @@
+/* Mode switcher
+   Native <select>: System / Light / Dark
+   Used in the site footer. */
+
+.mode-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-size: var(--size-step--1);
+    color: var(--color-text-accent);
+}
+
+.mode-switcher__label {
+    display: inline;
+    margin: 0;
+    font-size: inherit;
+    font-weight: var(--font-regular);
+    color: inherit;
+    cursor: pointer;
+}
+
+.mode-switcher__select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: var(--color-bg-accent);
+    color: var(--color-text);
+    border: 1px solid var(--color-bg-accent-2);
+    border-radius: 999px;
+    padding: var(--space-3xs) calc(var(--space-s) + 1.25em) var(--space-3xs) var(--space-s);
+    font: inherit;
+    font-weight: var(--font-semi-bold, 600);
+    line-height: 1.2;
+    cursor: pointer;
+    /* Caret */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='currentColor' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'><path d='M1.5 1.5 6 6l4.5-4.5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right var(--space-s) center;
+    background-size: 0.7em auto;
+    transition: border-color var(--transition-duration) var(--transition-timing),
+                background-color var(--transition-duration) var(--transition-timing);
+}
+
+.mode-switcher__select:hover {
+    border-color: var(--color-primary);
+}
+
+.mode-switcher__select:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Dark mode: bump the resting border to gray-400 so it meets WCAG 1.4.11
+   3:1 against the page background (gray-800). gray-600 was ~1.9:1.
+   The :hover/:focus-visible overrides below need matching specificity
+   so the dark-mode rule doesn't outrank them in source order. */
+[data-mode="dark"] .mode-switcher__select {
+    border-color: var(--color-gray-400);
+}
+[data-mode="dark"] .mode-switcher__select:hover {
+    border-color: var(--color-primary);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .mode-switcher__select {
+        border-color: var(--color-gray-400);
+    }
+    :root:not([data-mode="light"]) .mode-switcher__select:hover {
+        border-color: var(--color-primary);
+    }
+}
+
+/* Footer layout — switcher sits on the right of the copyright */
+.footer-copyright {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: var(--space-m);
+}
+
+.footer-copyright p {
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 767px) {
+    .footer-copyright {
+        grid-template-columns: 1fr;
+        justify-items: start;
+        gap: var(--space-s);
+    }
+}

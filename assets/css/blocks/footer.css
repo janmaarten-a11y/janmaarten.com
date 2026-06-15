@@ -1,0 +1,16 @@
+/* Block — Footer */
+
+.site-footer {
+  padding-block: var(--space-l-xl);
+  border-top: var(--stroke);
+  font-size: var(--size-step--1);
+  color: var(--color-text-accent);
+}
+
+.site-footer a {
+  color: var(--color-text-accent);
+}
+
+.site-footer a:hover {
+  color: var(--color-primary);
+}
