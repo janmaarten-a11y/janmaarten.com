@@ -153,9 +153,10 @@ Ghost's native callout card colours are mapped to semantic labels:
 | Green | Tip | Helpful advice |
 | Yellow | Notice | Heads-up / important |
 | Red | Content warning | Sensitive content |
-| Pink | Personal | First-person aside |
+| Pink | Editor's note | Tangential context from the "editor" |
 | Purple | Definition | Glossary-style terms |
-| Grey / White / Accent | *(no label)* | Pure background variants |
+| Accent | *(no label)* | Animated gradient border for fancy notes 💅 |
+| Grey / White | *(no label)* | Pure background variants |
 
 Pick the colour in Ghost's callout card UI — no HTML editing needed.
 
