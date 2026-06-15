@@ -334,7 +334,7 @@ figcaption a {
 pre {
     overflow-x: auto;
     padding: var(--space-m) var(--space-l);
-    font-size: var(--size-step--1);
+    font-size: var(--size-step--2);
     line-height: 1.5;
     /* Cool dark charcoal (gray-900 hue 260) instead of Monokai's warm
        #272822. Prism's languaged blocks get the same token override in
@@ -345,8 +345,14 @@ pre {
     -webkit-overflow-scrolling: touch;
 }
 
-pre[class*="language-"] {
-    line-height: 1.15;
+/* Prism's `pre[class*=language-] { font-size: 1em }` would otherwise inherit
+   from .gh-content (~22px desktop / 27px mobile via the shared Ghost theme),
+   making code blocks ridiculously large. Pin to the same step--2 token used
+   by the un-languaged <pre> above so all code blocks match. */
+pre[class*="language-"],
+pre[class*="language-"] > code[class*="language-"] {
+    font-size: var(--size-step--2);
+    line-height: 1.5;
 }
 
 hr {

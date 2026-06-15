@@ -6,6 +6,21 @@ headings, text, images and lists. We deal with cards lower down. */
 .side-timeline {
     position: relative;
 }
+
+/* Override the shared Ghost theme's mobile font-size rule.
+   That sheet sets `html { font-size: 62.5% }` and then
+   `@media (max-width: 767px) { .gh-content { font-size: 1.7rem } }`,
+   expecting 17px. Our own `html { font-size: 100% }` overrides the root
+   back to 16px, which makes shared theme's literal `1.7rem` compute as
+   27.2px — visibly too large on small viewports, especially for code.
+   Re-anchor `.gh-content` to our fluid `--content-font-size` token so the
+   body scales properly across breakpoints. Use a high-specificity selector
+   so the rule wins regardless of source order against the shared sheet. */
+@media (max-width: 767px) {
+    .gh-content.gh-content {
+        font-size: var(--content-font-size);
+    }
+}
 /* Default vertical spacing */
 .gh-content > * + * {
     margin-top: var(--space-xl);
