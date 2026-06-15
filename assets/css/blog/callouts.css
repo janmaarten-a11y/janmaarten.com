@@ -105,7 +105,7 @@
     border-left-color: oklch(65% 0.17 350);
 }
 .gh-content .kg-callout-card-pink::before {
-    content: 'Personal';
+    content: 'Editor\2019s note';
     color: oklch(65% 0.17 350);
 }
 
@@ -151,104 +151,99 @@
     color: var(--c);
 }
 
-/* ---- Accent variant: animated viridis gradient ----
+/* ---- Accent variant: animated viridis gradient bar ----
    Ghost's default fills .kg-callout-card-accent with --ghost-accent-color +
-   white text, which fails AA. Replace with a vertical viridis gradient that
-   slowly sweeps top-to-bottom. Same "viridis moments" family as the homepage
-   hero, 404, and dropcap — but here the gradient is the surface, not the text.
+   white text, which fails AA. Replace the fill with the same faint tint
+   the other variants get from Ghost's color picker, and re-style the left
+   border as a slowly sweeping viridis gradient bar. Matches the silhouette
+   of the labelled variants (6px left bar, subtle tinted surface, right-side
+   rounding from the base .kg-callout-card rule) but adds motion to mark
+   accent as the "look here" variant.
 
-   Palindromic 5-stop gradient (start === end) so the position animation loops
-   seamlessly without a visible jump. Light mode uses the darker cool palette
-   (purple → indigo → teal); white text hits AA on every stop. Dark mode uses
-   the warm-bright palette (lavender → blue → teal → green); near-black text
-   hits AA on every stop. */
+   Implementation: replace border-left with a 6px ::before bar absolutely
+   positioned on the left edge so we can animate its gradient cleanly. Use
+   a 9-stop palindrome (P-I-T-I-P-I-T-I-P) at background-size 100% 200% so
+   that every visible window of 5 consecutive stops contains all three
+   colours. Without this the bar would briefly show no purple (or no teal)
+   mid-animation and the sweep would look jumpy. */
 .gh-content .kg-callout-card-accent {
-    /* 5-stop palindrome — peak in middle, same colour at top and bottom. */
-    background:
-        linear-gradient(
-            180deg,
-            oklch(36% 0.24 318),
-            oklch(50% 0.22 266),
-            oklch(58% 0.16 190),
-            oklch(50% 0.22 266),
-            oklch(36% 0.24 318)
-        ) !important;
+    background: var(--hero-background-color) !important;
+    color: var(--primary-text-color);
+    border-left: 0;
+    padding-left: calc(var(--space-l) + 6px); /* keep text aligned with other variants */
+    position: relative;
+}
+
+.gh-content .kg-callout-card-accent::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 6px;
+    /* 9-stop palindrome: purple → indigo → teal → indigo → purple twice over.
+       At bg-size 100% 200%, any window of 5 consecutive stops contains all
+       three colours — so the sweep always shows the full palette. */
+    background: linear-gradient(
+        180deg,
+        oklch(36% 0.24 318) 0%,
+        oklch(50% 0.22 266) 12.5%,
+        oklch(58% 0.16 190) 25%,
+        oklch(50% 0.22 266) 37.5%,
+        oklch(36% 0.24 318) 50%,
+        oklch(50% 0.22 266) 62.5%,
+        oklch(58% 0.16 190) 75%,
+        oklch(50% 0.22 266) 87.5%,
+        oklch(36% 0.24 318) 100%
+    );
     background-size: 100% 200%;
     background-position-y: 0%;
-    color: var(--color-light);
-    border-left: 0;
-    border-radius: var(--border-radius-medium);
-    animation: callout-viridis-sweep 16s linear infinite;
+    animation: callout-accent-sweep 10s linear infinite;
 }
 
-/* Inherit white text on every descendant — overrides Ghost's
-   .kg-callout-text inline color and the .gh-content link rules. */
-.gh-content .kg-callout-card-accent,
-.gh-content .kg-callout-card-accent .kg-callout-text,
-.gh-content .kg-callout-card-accent a {
-    color: var(--color-light);
-}
-
-.gh-content .kg-callout-card-accent a {
-    text-decoration-color: oklch(from var(--color-light) l c h / 0.7);
-}
-
-@keyframes callout-viridis-sweep {
+@keyframes callout-accent-sweep {
     from { background-position-y: 0%; }
     to   { background-position-y: 100%; }
 }
 
-/* Dark mode: lighter gradient with dark text — flips the contrast envelope.
-   Warm-bright stops (lavender → blue → teal → green) are all L≥75%, so
-   near-black text hits AA on every stop. */
-[data-mode="dark"] .gh-content .kg-callout-card-accent {
-    background:
-        linear-gradient(
-            180deg,
-            oklch(77% 0.16 310),
-            oklch(75% 0.17 246),
-            oklch(78% 0.13 190),
-            oklch(75% 0.17 246),
-            oklch(77% 0.16 310)
-        ) !important;
-}
-
-[data-mode="dark"] .gh-content .kg-callout-card-accent,
-[data-mode="dark"] .gh-content .kg-callout-card-accent .kg-callout-text,
-[data-mode="dark"] .gh-content .kg-callout-card-accent a {
-    color: var(--color-gray-900);
-}
-
-[data-mode="dark"] .gh-content .kg-callout-card-accent a {
-    text-decoration-color: oklch(from var(--color-gray-900) l c h / 0.7);
+/* Dark mode: warm-bright palette on the bar (lavender → blue → teal →
+   blue → lavender), same 9-stop palindrome pattern. */
+[data-mode="dark"] .gh-content .kg-callout-card-accent::before {
+    background: linear-gradient(
+        180deg,
+        oklch(77% 0.16 310) 0%,
+        oklch(75% 0.17 246) 12.5%,
+        oklch(78% 0.13 190) 25%,
+        oklch(75% 0.17 246) 37.5%,
+        oklch(77% 0.16 310) 50%,
+        oklch(75% 0.17 246) 62.5%,
+        oklch(78% 0.13 190) 75%,
+        oklch(75% 0.17 246) 87.5%,
+        oklch(77% 0.16 310) 100%
+    );
+    background-size: 100% 200%;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root:not([data-mode="light"]) .gh-content .kg-callout-card-accent {
-        background:
-            linear-gradient(
-                180deg,
-                oklch(77% 0.16 310),
-                oklch(75% 0.17 246),
-                oklch(78% 0.13 190),
-                oklch(75% 0.17 246),
-                oklch(77% 0.16 310)
-            ) !important;
-    }
-
-    :root:not([data-mode="light"]) .gh-content .kg-callout-card-accent,
-    :root:not([data-mode="light"]) .gh-content .kg-callout-card-accent .kg-callout-text,
-    :root:not([data-mode="light"]) .gh-content .kg-callout-card-accent a {
-        color: var(--color-gray-900);
-    }
-
-    :root:not([data-mode="light"]) .gh-content .kg-callout-card-accent a {
-        text-decoration-color: oklch(from var(--color-gray-900) l c h / 0.7);
+    :root:not([data-mode="light"]) .gh-content .kg-callout-card-accent::before {
+        background: linear-gradient(
+            180deg,
+            oklch(77% 0.16 310) 0%,
+            oklch(75% 0.17 246) 12.5%,
+            oklch(78% 0.13 190) 25%,
+            oklch(75% 0.17 246) 37.5%,
+            oklch(77% 0.16 310) 50%,
+            oklch(75% 0.17 246) 62.5%,
+            oklch(78% 0.13 190) 75%,
+            oklch(75% 0.17 246) 87.5%,
+            oklch(77% 0.16 310) 100%
+        );
+        background-size: 100% 200%;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .gh-content .kg-callout-card-accent {
+    .gh-content .kg-callout-card-accent::before {
         animation: none;
         background-position-y: 50%; /* park at the saturated middle stop */
     }
