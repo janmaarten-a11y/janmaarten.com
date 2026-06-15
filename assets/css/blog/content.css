@@ -142,7 +142,8 @@ is the very first element in the post content */
 }
 
 
-.gh-content a {
+.gh-content a,
+.error-content a {
   outline: none;
   text-decoration: underline;
   word-break: break-word;
@@ -153,7 +154,8 @@ is the very first element in the post content */
   text-underline-offset: .15ch;
 }
 
-.gh-content a:hover {
+.gh-content a:hover,
+.error-content a:hover {
   color: oklch(from var(--color-tertiary) calc(l + 0.12) c h);
   text-decoration-color: oklch(from var(--color-yellow-alt) calc(l + .07) c h / .7);
   text-decoration-thickness: .7ch;
@@ -163,7 +165,9 @@ is the very first element in the post content */
 }
 
 .gh-content a:focus,
-.gh-content a:focus-visible {
+.gh-content a:focus-visible,
+.error-content a:focus,
+.error-content a:focus-visible {
     background: oklch(from var(--color-teal) l c h / 0.15);
     color: var(--color-teal);
     border-bottom: .4ch solid var(--color-teal);
@@ -173,25 +177,31 @@ is the very first element in the post content */
 /* Combined: keyboard-focused AND mouse-hovered.
    Shift to tertiary so the overlap reads as intentional. */
 .gh-content a:focus:hover,
-.gh-content a:focus-visible:hover {
+.gh-content a:focus-visible:hover,
+.error-content a:focus:hover,
+.error-content a:focus-visible:hover {
     background: oklch(from var(--color-yellow-alt) calc(l + .09) c h / .5);
     color: oklch(from var(--color-tertiary) calc(l + .09) c h);
     border-bottom-color: oklch(from var(--color-tertiary) calc(l + .12) c h);
 }
 
 /* ---- Dark mode content links ---- */
-[data-mode="dark"] .gh-content a {
+[data-mode="dark"] .gh-content a,
+[data-mode="dark"] .error-content a {
     color: var(--color-teal-alt);
     text-decoration-color: oklch(from var(--color-teal-alt) l c h / 0.75);
 }
 
-[data-mode="dark"] .gh-content a:hover {
+[data-mode="dark"] .gh-content a:hover,
+[data-mode="dark"] .error-content a:hover {
     color: var(--color-lavender);
     text-decoration-color: oklch(from var(--color-lavender) l c h / 0.35);
 }
 
 [data-mode="dark"] .gh-content a:focus,
-[data-mode="dark"] .gh-content a:focus-visible {
+[data-mode="dark"] .gh-content a:focus-visible,
+[data-mode="dark"] .error-content a:focus,
+[data-mode="dark"] .error-content a:focus-visible {
     background: oklch(from var(--color-teal-alt) l c h / 0.15);
     color: var(--primary-text-color);
     border-bottom: .4ch solid var(--color-teal-alt);
@@ -199,24 +209,30 @@ is the very first element in the post content */
 }
 
 [data-mode="dark"] .gh-content a:focus:hover,
-[data-mode="dark"] .gh-content a:focus-visible:hover {
+[data-mode="dark"] .gh-content a:focus-visible:hover,
+[data-mode="dark"] .error-content a:focus:hover,
+[data-mode="dark"] .error-content a:focus-visible:hover {
     background: oklch(from var(--color-lavender) l c h / 0.2);
     border-bottom-color: var(--color-lavender);
 }
 
 @media (prefers-color-scheme: dark) {
-    :root:not([data-mode="light"]) .gh-content a {
+    :root:not([data-mode="light"]) .gh-content a,
+    :root:not([data-mode="light"]) .error-content a {
         color: var(--color-teal-alt);
         text-decoration-color: oklch(from var(--color-teal-alt) l c h / 0.75);
     }
 
-    :root:not([data-mode="light"]) .gh-content a:hover {
+    :root:not([data-mode="light"]) .gh-content a:hover,
+    :root:not([data-mode="light"]) .error-content a:hover {
         color: var(--color-lavender);
         text-decoration-color: oklch(from var(--color-lavender) l c h / 0.35);
     }
 
     :root:not([data-mode="light"]) .gh-content a:focus,
-    :root:not([data-mode="light"]) .gh-content a:focus-visible {
+    :root:not([data-mode="light"]) .gh-content a:focus-visible,
+    :root:not([data-mode="light"]) .error-content a:focus,
+    :root:not([data-mode="light"]) .error-content a:focus-visible {
         background: oklch(from var(--color-teal-alt) l c h / 0.15);
         color: var(--primary-text-color);
         border-bottom: .4ch solid var(--color-teal-alt);
@@ -224,7 +240,9 @@ is the very first element in the post content */
     }
 
     :root:not([data-mode="light"]) .gh-content a:focus:hover,
-    :root:not([data-mode="light"]) .gh-content a:focus-visible:hover {
+    :root:not([data-mode="light"]) .gh-content a:focus-visible:hover,
+    :root:not([data-mode="light"]) .error-content a:focus:hover,
+    :root:not([data-mode="light"]) .error-content a:focus-visible:hover {
         background: oklch(from var(--color-lavender) l c h / 0.2);
         border-bottom-color: var(--color-lavender);
     }

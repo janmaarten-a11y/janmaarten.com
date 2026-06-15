@@ -93,13 +93,28 @@ blockquote.kg-blockquote-alt */
 /* Drop cap
    Gradient fill lives in site/cover.css alongside the homepage hero
    and 404 heading \u2014 these three are the canonical "viridis moments"
-   on the site. Sizing and float positioning stay here. */
+   on the site. Sizing and float positioning stay here.
+
+   Angle override: the shared rule uses 10deg, which on a tall single
+   letter reads as near-vertical. Re-apply the same stops at a steep
+   diagonal so the dropcap shows the gradient as an angle. */
 article.tag-hash-long-form p.dropcap:first-letter {
     font-size: var(--size-step-6);
     float: left;
     line-height: .6; /* from 1 */
     margin-right: 0.05em;
     margin-top: .8rem;
+    background-image: linear-gradient(135deg, oklch(36% 0.24 318), oklch(50% 0.22 266), oklch(60% 0.15 190));
+}
+
+[data-mode="dark"] article.tag-hash-long-form p.dropcap:first-letter {
+    background-image: linear-gradient(135deg, oklch(77% 0.16 310), oklch(75% 0.17 246), oklch(78% 0.13 190), oklch(80% 0.22 143));
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) article.tag-hash-long-form p.dropcap:first-letter {
+        background-image: linear-gradient(135deg, oklch(77% 0.16 310), oklch(75% 0.17 246), oklch(78% 0.13 190), oklch(80% 0.22 143));
+    }
 }
 
 /* Asides */
