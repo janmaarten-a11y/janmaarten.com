@@ -18,12 +18,23 @@
     position: relative;
     margin-block: var(--space-l);
     background: var(--color-dark);
+    /* Move horizontal scroll from <pre> to inner <code> so the language
+       label (::before, position: absolute) doesn't scroll with the content.
+       Absolutely-positioned children of a scroll container scroll with it;
+       pulling overflow inward to the code element keeps <pre> stationary. */
+    overflow: hidden;
+    padding: 0;
 }
 
 /* Remove Prism's duplicate background on the inner <code> — keeps just the
-   <pre>'s painted area so there's no sub-pixel mismatch at the edges. */
+   <pre>'s painted area so there's no sub-pixel mismatch at the edges.
+   Also takes over scrolling + padding from <pre> (see above). */
 .gh-content pre[class*="language-"] > code[class*="language-"] {
     background: transparent;
+    display: block;
+    overflow-x: auto;
+    padding: var(--space-m) var(--space-l);
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Label — only renders if a language class is set.
