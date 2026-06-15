@@ -6,15 +6,18 @@
 .accessible-toggle {
     background: var(--color-bg-accent);
     border: 1px solid var(--color-bg-accent-2);
-    border-left: 3px solid var(--color-primary);
+    border-left: 3px solid var(--color-bg-accent-2);
     border-radius: var(--border-radius-medium);
-    margin-block: var(--space-l);
+    margin-block: var(--space-m);
     transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .accessible-toggle[open] {
-    background: var(--color-bg);
-    border-color: var(--color-primary);
+    border-left-color: var(--color-primary);
+}
+
+.accessible-toggle:has(summary:focus-visible) {
+    border-left-color: var(--color-tertiary);
 }
 
 .accessible-toggle summary {
@@ -41,13 +44,15 @@
     content: "";
 }
 
-/* Chevron icon — currentColor so hover/focus recolour applies */
+/* Chevron icon — uses secondary text colour at rest so the closed
+   toggle reads as a neutral container. Recolours on hover/focus/open
+   via currentColor inheritance. */
 .accessible-toggle summary::after {
     content: "";
     flex-shrink: 0;
     width: 1.2em;
     height: 1.2em;
-    background-color: currentColor;
+    background-color: var(--secondary-text-color);
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M23.25 7.311 12.53 18.03a.749.749 0 0 1-1.06 0L.75 7.311'/%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M23.25 7.311 12.53 18.03a.749.749 0 0 1-1.06 0L.75 7.311'/%3E%3C/svg%3E");
     -webkit-mask-size: contain;
@@ -56,38 +61,43 @@
     mask-repeat: no-repeat;
     -webkit-mask-position: center;
     mask-position: center;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, background-color 0.15s ease;
 }
 
 .accessible-toggle[open] summary::after {
     transform: rotate(180deg);
+    background-color: var(--color-primary);
+}
+
+.accessible-toggle summary:hover::after,
+.accessible-toggle summary:focus-visible::after {
+    background-color: currentColor;
 }
 
 /* --- Interactive states ---
-   Mirrors the four-state vocabulary used across the theme: rest /
-   hover / focus / focus+hover. Hover and focus both shift to
-   --color-primary; the combined state moves to --color-tertiary
-   (intentional overlap cue, same pattern as the footer links). */
+   Rest is neutral so the surrounding article carries the colour
+   weight. Hover and open shift to --color-primary; focus and
+   focus+hover both move to --color-tertiary so the visible outline,
+   left rail, and summary text all read as one accent. */
 .accessible-toggle summary:hover {
     color: var(--color-primary);
     background: oklch(from var(--color-primary) l c h / 0.06);
 }
 
 .accessible-toggle summary:focus-visible {
-    outline: 3px solid var(--color-primary);
+    outline: 3px solid var(--color-tertiary);
     outline-offset: -3px;
-    color: var(--color-primary);
+    color: var(--color-tertiary);
+    background: oklch(from var(--color-tertiary) l c h / 0.06);
 }
 
 .accessible-toggle summary:focus-visible:hover {
-    color: var(--color-tertiary);
-    outline-color: var(--color-tertiary);
-    background: oklch(from var(--color-tertiary) l c h / 0.08);
+    background: oklch(from var(--color-tertiary) l c h / 0.1);
 }
 
 /* Content area */
 .accessible-toggle .toggle-content {
-    padding: 0 var(--space-m) var(--space-m);
+    padding: var(--space-s) var(--space-m) var(--space-m);
 }
 
 .accessible-toggle .toggle-content > *:first-child {
@@ -97,4 +107,5 @@
 .accessible-toggle .toggle-content > *:last-child {
     margin-bottom: 0;
 }
+
 
