@@ -5,9 +5,17 @@
         <section class="wrapper">
             <div class="hero-wrapper flow">
                 <h1 class="h1 home-hero-header">{{@custom.hero_text}}</h1>
-                {{#if @site.description}}
-                    <p class="body-1 hero-desc"> {{@site.description}}</p>
-                {{/if}}
+                {{#unless @member}}
+                    {{#if @custom.email_signup_text}}
+                        <p class="body-1 hero-desc">{{@custom.email_signup_text}}</p>
+                    {{else if @site.description}}
+                        <p class="body-1 hero-desc">{{@site.description}}</p>
+                    {{/if}}
+                {{else}}
+                    {{#if @site.description}}
+                        <p class="body-1 hero-desc">{{@site.description}}</p>
+                    {{/if}}
+                {{/unless}}
             </div>
             </div>
         </section>
