@@ -8,6 +8,37 @@ h1.h1.hero-header {
     font-family: var(--font-display);
 }
 
+/* --- Viridis gradient text ---
+   Shared treatment for the rare "moments" on the site: homepage hero,
+   long-form drop-cap, 404 page heading. Reserved use \u2014 adding it more
+   widely dilutes the impact. Light mode uses --gradient-cool-light
+   (purple \u2192 indigo \u2192 teal); dark mode uses --gradient-warm-bright
+   (lavender \u2192 blue \u2192 teal \u2192 green) so both backgrounds get a similarly
+   readable contrast envelope. */
+.home-hero-header,
+.error-header,
+article.tag-hash-long-form p.dropcap:first-letter {
+    background-image: var(--gradient-cool-light);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+[data-mode="dark"] .home-hero-header,
+[data-mode="dark"] .error-header,
+[data-mode="dark"] article.tag-hash-long-form p.dropcap:first-letter {
+    background-image: var(--gradient-warm-bright);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .home-hero-header,
+    :root:not([data-mode="light"]) .error-header,
+    :root:not([data-mode="light"]) article.tag-hash-long-form p.dropcap:first-letter {
+        background-image: var(--gradient-warm-bright);
+    }
+}
+
 .home-hero-header {
     margin-bottom: var(--space-xl);
     font-family: var(--font-serif);
@@ -16,27 +47,35 @@ h1.h1.hero-header {
     letter-spacing: 0;
     font-size: var(--size-step-4);
     line-height: var(--leading-fine);
-    color: var(--color-primary);
-    background-image: var(--gradient-cool-light);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
     text-wrap: auto;
 }
 
-.home-hero-header::selection {
+/* Selection state needs solid colours \u2014 a gradient fill can't survive
+   the browser's selection inversion. Applied to all three surfaces. */
+.home-hero-header::selection,
+.error-header::selection,
+article.tag-hash-long-form p.dropcap:first-letter::selection {
     -webkit-text-fill-color: var(--color-light);
+    color: var(--color-light);
     background: var(--color-secondary);
 }
 
-[data-mode="dark"] .home-hero-header {
-    background-image: var(--gradient-warm-bright);
+/* --- 404 page heading --- */
+.error-header {
+    font-family: var(--font-serif);
+    font-weight: var(--font-semi-bold);
+    font-size: clamp(8rem, 18vw, 16rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root:not([data-mode="light"]) .home-hero-header {
-        background-image: var(--gradient-warm-bright);
-    }
+.error-content {
+    padding-block: var(--space-xl) var(--space-2xl);
+    max-width: 60ch;
+}
+
+.error-content .hero-desc + .hero-desc {
+    margin-top: var(--space-s);
 }
 
 .hero-desc {

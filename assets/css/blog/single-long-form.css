@@ -90,14 +90,16 @@ blockquote.kg-blockquote-alt */
     }
 }
   
-/* Drop cap  */
+/* Drop cap
+   Gradient fill lives in site/cover.css alongside the homepage hero
+   and 404 heading \u2014 these three are the canonical "viridis moments"
+   on the site. Sizing and float positioning stay here. */
 article.tag-hash-long-form p.dropcap:first-letter {
     font-size: var(--size-step-6);
     float: left;
     line-height: .6; /* from 1 */
     margin-right: 0.05em;
     margin-top: .8rem;
-    color: var(--color-tertiary);
 }
 
 /* Asides */
