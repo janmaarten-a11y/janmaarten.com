@@ -21,7 +21,7 @@
                         <h2 class="section-title feed-header-title">{{@custom.personal_project_title}}</h2>
                     </div>
                 </header>
-                {{#get "pages" filter="tag:hash-content-personal-project" order="published_at desc"}}
+                {{#get "pages" include="tags" filter="tag:hash-content-personal-project" order="published_at desc"}}
                     <div class="cards kg-grid kg-grid-2col gh-feed wrapper">
                         {{#foreach pages}}
                             {{> "components/card-project" showVisual=true isSmall=true}}

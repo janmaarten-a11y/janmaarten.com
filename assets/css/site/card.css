@@ -70,8 +70,19 @@
     overflow: hidden;
 }
 
-[data-mode="dark"] .section-personal-project .card-image img {
+/* Opt-in dark-mode logo inversion.
+   Add the internal tag `#invert-on-dark` to a project page in Ghost
+   to flip its logo white in dark mode. Use for monochrome marks that
+   only ship in a dark colourway (e.g. the GitHub Octocat). Skip for
+   logos that work on both backgrounds (e.g. the Figma mark). */
+[data-mode="dark"] .section-personal-project .tag-hash-invert-on-dark .card-image img {
     filter: brightness(0) invert(1);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) .section-personal-project .tag-hash-invert-on-dark .card-image img {
+        filter: brightness(0) invert(1);
+    }
 }
 
 /* Personal project cards — bump type to match the rest of the site */

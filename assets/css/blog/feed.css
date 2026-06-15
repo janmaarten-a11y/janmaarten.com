@@ -152,6 +152,7 @@
     flex-shrink: 0;
     margin-right: var(--space-l);
     width: 140px;
+    border-radius: var(--border-radius-medium);
 }
 
 .post-feed.right-thumbnail .feed-image {
