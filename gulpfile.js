@@ -41,7 +41,11 @@ function css(done) {
         postcss([
             postcssImport,
             autoprefixer(),
-            cssnano()
+            cssnano({
+                preset: ['default', {
+                    calc: false
+                }]
+            })
         ]),
         dest('assets/built/', {sourcemaps: '.'}),
         livereload()
