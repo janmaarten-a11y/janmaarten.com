@@ -19,8 +19,8 @@
                                 {{img_url feature_image size="xxl" format="webp"}} 1920w{{else}}{{img_url feature_image size="m" format="webp"}} 750w,
                                 {{img_url feature_image size="l" format="webp"}} 960w
                                 {{/if}}"
-                        sizes="{{#if isLarge}}960px{{else}}410px{{/if}}"
-                        src="{{#if isLarge}}{{img_url feature_image size="xl"}}{{else}}{{img_url feature_image size="m"}}{{/if}}"
+                        sizes="{{#if isLarge}}(min-width: 1360px) 1336px, 100vw{{else}}410px{{/if}}"
+                        src="{{#if isLarge}}{{img_url feature_image size="xxl"}}{{else}}{{img_url feature_image size="m"}}{{/if}}"
                         alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
                         loading="lazy"
                     >
