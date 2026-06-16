@@ -4,11 +4,11 @@
    on the wrapper based on the author's color choice. We treat each color
    as a semantic variant, not just a background:
 
-     blue   → "Side note"
-     green  → "Tip"
-     yellow → "Notice"
+    blue   → "Side note"
+    green  → "Tip"
+    yellow → "Notice"
      red    → "Content warning"
-     pink   → "Personal"
+    pink   → "Disclaimer"
      purple → "Definition"
      grey, white, accent → no label (background color only)
 
@@ -105,7 +105,7 @@
     border-left-color: oklch(65% 0.17 350);
 }
 .gh-content .kg-callout-card-pink::before {
-    content: 'Editor\2019s note';
+    content: 'Disclaimer';
     color: oklch(65% 0.17 350);
 }
 
