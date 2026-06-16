@@ -1,0 +1,75 @@
+{{!< default}}
+{{!--
+    Custom page template — About.
+    Select this template in Ghost Admin on the page with slug `about`.
+
+    Layout:
+      1. Page header (title + custom_excerpt as bio strapline + optional
+         feature image as portrait) — reuses the existing `page-header`
+         partial, same treatment as the Works page.
+      2. Page body content via {{content}} — author writes the bio,
+         "How I work" principles, and "What I do" capability blocks
+         directly in the Ghost editor.
+      3. Speaking section — auto-queried from pages tagged with the
+         internal `#content-experience` tag (same source as the old
+         Works page section that has been removed).
+      4. Endorsements section — auto-queried from pages tagged with
+         the internal `#content-testimonial` tag (same source as the
+         old Works page section that has been removed).
+--}}
+
+<div class="content-area custom-page">
+    <main class="site-main flow" id="main">
+
+        {{> "page-header"}}
+
+        {{#post}}
+            {{#if html}}
+                <section class="wrapper">
+                    <div class="single-content gh-content">
+                        {{content}}
+                    </div>
+                </section>
+            {{/if}}
+        {{/post}}
+
+        {{!-- Speaking — pulled from pages tagged hash-content-experience.
+              Title can be overridden per page via the post's custom field
+              labelled "Speaking title" if you want a different heading. --}}
+        <section class="section-container experiences section-experiences">
+            <header class="feed-header wrapper">
+                <div class="feed-header-wrapper">
+                    <h2 class="section-title feed-header-title">Speaking</h2>
+                </div>
+            </header>
+            {{#get "pages" include="tags" filter="tag:hash-content-experience" order="published_at desc"}}
+                <div class="wrapper">
+                    {{#foreach pages}}
+                        {{> "components/experience" }}
+                    {{/foreach}}
+                </div>
+            {{/get}}
+        </section>
+
+        {{!-- Endorsements — pulled from pages tagged hash-content-testimonial.
+              Limit 6 matches the previous Works page treatment so the page
+              doesn't get bottom-heavy; raise it if you want more on display. --}}
+        <section class="section-container testimonials section-testimonials">
+            <header class="feed-header wrapper">
+                <div class="feed-header-wrapper">
+                    <h2 class="section-title feed-header-title">Endorsements</h2>
+                </div>
+            </header>
+            {{#get "pages" include="tags" filter="tag:hash-content-testimonial" limit="6" order="published_at desc"}}
+                <div class="testimonials-list wrapper">
+                    {{#foreach pages}}
+                        {{> "components/testimonial" }}
+                    {{/foreach}}
+                </div>
+            {{/get}}
+        </section>
+
+    </main>
+</div>
+
+{{#contentFor "body_class"}}{{#if @member}} logged-in{{/if}}{{/contentFor}}
