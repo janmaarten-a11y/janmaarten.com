@@ -182,7 +182,7 @@
   background-position: 0 -44px;
 }
 .pswp__button--share {
-  background-position: -44px -44px;
+  display: none;
 }
 .pswp__button--fs {
   display: none;
