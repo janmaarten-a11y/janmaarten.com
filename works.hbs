@@ -39,6 +39,36 @@
             </section>
         {{/if}}
 
+        <section class="section-container experiences section-experiences">
+            <header class="feed-header wrapper">
+                <div class="feed-header-wrapper">
+                    <h2 class="section-title feed-header-title">Speaking</h2>
+                </div>
+            </header>
+            {{#get "pages" include="tags" filter="tag:hash-content-experience" order="published_at desc"}}
+                <div class="wrapper">
+                    {{#foreach pages}}
+                        {{> "components/experience" }}
+                    {{/foreach}}
+                </div>
+            {{/get}}
+        </section>
+
+        <section class="section-container testimonials section-testimonials">
+            <header class="feed-header wrapper">
+                <div class="feed-header-wrapper">
+                    <h2 class="section-title feed-header-title">Endorsements</h2>
+                </div>
+            </header>
+            {{#get "pages" include="tags" filter="tag:hash-content-testimonial" limit="6" order="published_at desc"}}
+                <div class="testimonials-list wrapper">
+                    {{#foreach pages}}
+                        {{> "components/testimonial" }}
+                    {{/foreach}}
+                </div>
+            {{/get}}
+        </section>
+
     </main>
 </div>
 
