@@ -5,6 +5,7 @@ var st = 0;
 
 featured();
 darkPage();
+normalizeLocalhostAssetUrls();
 footerGroup();
 pagination(false);
 externalLinks();
@@ -16,6 +17,52 @@ modeSwitcher();
 // default.hbs calls window.headingAnchors() after tocbot.init.
 if (!document.querySelector('.toc-desktop, .toc-mobile')) headingAnchors();
 window.headingAnchors = headingAnchors;
+
+function normalizeLocalhostAssetUrls() {
+    var localhostPrefix = 'http://localhost:2368';
+    var targetOrigin = window.location.origin;
+
+    if (!targetOrigin || targetOrigin.indexOf('localhost') > -1) return;
+
+    function rewriteUrl(value) {
+        if (!value || typeof value !== 'string') return value;
+        return value.split(localhostPrefix).join(targetOrigin);
+    }
+
+    document.querySelectorAll('[src], [href], [poster], [srcset], [style]').forEach(function (el) {
+        var src = el.getAttribute('src');
+        if (src && src.indexOf(localhostPrefix) > -1) {
+            el.setAttribute('src', rewriteUrl(src));
+        }
+
+        var href = el.getAttribute('href');
+        if (href && href.indexOf(localhostPrefix) > -1) {
+            el.setAttribute('href', rewriteUrl(href));
+        }
+
+        var poster = el.getAttribute('poster');
+        if (poster && poster.indexOf(localhostPrefix) > -1) {
+            el.setAttribute('poster', rewriteUrl(poster));
+        }
+
+        var srcset = el.getAttribute('srcset');
+        if (srcset && srcset.indexOf(localhostPrefix) > -1) {
+            var rewrittenSrcset = srcset
+                .split(',')
+                .map(function (candidate) {
+                    return rewriteUrl(candidate.trim());
+                })
+                .join(', ');
+
+            el.setAttribute('srcset', rewrittenSrcset);
+        }
+
+        var style = el.getAttribute('style');
+        if (style && style.indexOf(localhostPrefix) > -1) {
+            el.setAttribute('style', rewriteUrl(style));
+        }
+    });
+}
 
 function headingAnchors() {
     // Add a `#` permalink to every heading inside .gh-content that has an id.
