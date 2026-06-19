@@ -201,6 +201,9 @@
     #gh-head .gh-head-inner {
         gap:0;
     }
+    #gh-head .gh-head-logo-text {
+        height: 3rem;
+    }
     #gh-head .gh-burger,
     #gh-head .gh-search.gh-icon-btn {
         display: none;

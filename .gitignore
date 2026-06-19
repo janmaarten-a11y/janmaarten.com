@@ -2,12 +2,10 @@ node_modules/
 dist/
 yarn.lock
 yarn-error.log
-site_header.html
-site_footer.html
 .github/**-in**
-site_footer.html
 portfolio.code-workspace
 .github/agents/
 **/.DS_Store
 .github/skills/
 link-tooltips.md
+drafts/
