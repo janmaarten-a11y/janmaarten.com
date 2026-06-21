@@ -39,10 +39,11 @@
             </section>
         {{/if}}
 
+        {{#if @custom.experience_title}}
         <section class="section-container experiences section-experiences">
             <header class="feed-header wrapper">
                 <div class="feed-header-wrapper">
-                    <h2 class="section-title feed-header-title">Speaking</h2>
+                    <h2 class="section-title feed-header-title">{{@custom.experience_title}}</h2>
                 </div>
             </header>
             {{#get "pages" include="tags" filter="tag:hash-content-experience" order="published_at desc"}}
@@ -53,11 +54,13 @@
                 </div>
             {{/get}}
         </section>
+        {{/if}}
 
+        {{#if @custom.testimonial_title}}
         <section class="section-container testimonials section-testimonials">
             <header class="feed-header wrapper">
                 <div class="feed-header-wrapper">
-                    <h2 class="section-title feed-header-title">Endorsements</h2>
+                    <h2 class="section-title feed-header-title">{{@custom.testimonial_title}}</h2>
                 </div>
             </header>
             {{#get "pages" include="tags" filter="tag:hash-content-testimonial" limit="6" order="published_at desc"}}
