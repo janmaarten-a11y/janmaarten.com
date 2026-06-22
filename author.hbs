@@ -1,47 +1,19 @@
 {{!< default}}
- 
-<div class="content-area">
+
+<div class="content-area custom-page">
     <main class="site-main" id="main">
-        {{#author}}
-            <section class="taxonomy">
-                <header class="single-header kg-canvas">
-                    {{#if profile_image}}
-                        <div class="taxonomy-media u-placeholder square round">
-                            <img class="u-object-fit" src="{{img_url profile_image size="s"}}" alt="{{name}}">
-                        </div>
-                    {{/if}}
-                    <div class="tag-wrapper">
-                        {{#if website}}
-                            <h1 class="single-title">
-                                <a href="{{website}}" target="_blank" rel="noopener noreferrer">{{name}}</a>
-                            </h1>
-                        {{else}}
-                            <h1 class="single-title">{{name}}</h1>
-                        {{/if}}
-
-                        {{#if location}}
-                            <div class="author-meta">{{location}}</div>
-                        {{/if}}
-
-                        <div class="single-excerpt">{{bio}}</div>
-
-                        {{> "components/staff-social-link"}}
-                    </div>
-                </header>
-            </section>
-        {{/author}}
-
-        <div class="kg-canvas">
-            <div class="post-feed gh-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}}">
-                {{#foreach posts}}
-                    {{> "loop"}}
-                {{/foreach}}
+        <div class="wrapper" data-width="medium">
+            <div class="error-content">
+                <h1 class="error-title hero-header">Redirecting to About</h1>
+                <p class="error-body body-2 hero-desc">This site does not use separate author archive pages.</p>
+                <p class="error-body body-2 hero-desc"><a href="{{@site.url}}/about/">Go to the About page</a>.</p>
             </div>
-
-            {{pagination}}
-
         </div>
     </main>
 </div>
-{{#contentFor "scripts"}}<meta name="robots" CONTENT="noindex,nofollow">{{/contentFor}}
-{{#contentFor "body_class"}}{{#if next}} paged-next{{/if}}{{#if @site.logo}}{{#if @site.cover_image}} with-alt-header{{/if}}{{/if}}{{/contentFor}}
+
+<script>
+    window.location.replace('{{@site.url}}/about/');
+</script>
+
+{{#contentFor "body_class"}}redirect-author{{/contentFor}}

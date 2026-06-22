@@ -1,10 +1,10 @@
 {{!< default}}
-<div class="content-area">
+<div class="content-area custom-page">
     <main class="site-main flow" id="main">
 
         {{> "page-header"}}
 
-        <section class="category-grid-container wrapper">
+        <section class="category-grid-container wrapper" data-width="medium">
             {{> "components/category-grid"}}
         </section>
 
@@ -16,7 +16,7 @@
                         {{> "components/feed-title" title=name view_all=true}}
                         
                         {{#get "posts" include="tags" filter="tag:{{slug}}" limit="7" order="featured desc,published_at desc"}}
-                            <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed wrapper">
+                            <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed wrapper" data-width="medium">
                                 {{#foreach posts}}
                                     {{> "loop"}}
                                 {{/foreach}}
@@ -33,7 +33,7 @@
                         {{> "components/feed-title" title=name view_all=true}}
                         
                         {{#get "posts" include="tags" filter="tag:{{slug}}" limit="7" order="featured desc,published_at desc"}}
-                            <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed wrapper">
+                            <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed wrapper" data-width="medium">
                                 {{#foreach posts}}
                                     {{> "loop"}}
                                 {{/foreach}}
