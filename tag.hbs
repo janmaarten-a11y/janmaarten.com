@@ -3,59 +3,60 @@
 <div class="content-area">
     <main class="site-main flow" id="main">
         {{#tag}}
-            <section class="taxonomy">
-                <header class="single-header kg-canvas">
-                    {{#if feature_image}}
-                        <div class="taxonomy-media u-placeholder square">
-                            <img class="u-object-fit" src="{{img_url feature_image size="s"}}" alt="{{name}}">
-                        </div>
+            <section class="wrapper">
+                <div class="hero-wrapper flow">
+                    <h1 class="h1 hero-header">{{name}}</h1>
+
+                    {{#if description}}
+                        <p class="body-1 hero-desc">{{description}}</p>
                     {{/if}}
-                    <div class="tag-wrapper">
-                        <h1 class="h1 single-title">{{name}}</h1>
-
-                        {{#if description}}
-                            <div class="sub-heading-large single-excerpt">{{description}}</div>
-                        {{/if}}
-                    </div>
-                </header>
-
+                </div>
             </section>
         {{/tag}}
 
-        <div class="kg-canvas">
-            {{#match @custom.feed_layout "Minimal"}}
-                <div class="post-feed gh-feed">
-                    {{#foreach posts}}
-                        {{> "loop" noDate=true}}
-                    {{/foreach}}
-                </div>
-            {{else}}
-                <div class="post-feed gh-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}}">
-                    {{#foreach posts}}
-                        {{> "loop" noDate=false}}
-                    {{/foreach}}
-                </div>
-            {{/match}}
-        </div>
+        <section class="section-container reset-spacing">
+            <div class="post-feed gh-feed wrapper{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}}">
+                {{#foreach posts}}
+                    {{> "loop" noDate=false}}
+                {{/foreach}}
+            </div>
 
-        {{pagination}}
-        
+            {{pagination}}
+        </section>
+
         {{#tag}}
-            <div class="tag-list-wrapper wrapper">
-                {{#get "tags" limit="16" include='count.posts' order='count.posts desc' filter="id:-{{id}}+visibility:public" as |tags|}}
-                    {{#if tags}}
-                        <div class="wave-separator"></div>
-                        <div class="tag-list-container">
-                            <h3 class="section-title related-title">{{t "Explore more topics"}}</h3>
-                            <div class="tag-list kg-grid kg-grid-4col tiny">
+            {{#get "tags" limit="16" include='count.posts' order='count.posts desc' filter="id:-{{id}}+visibility:public" as |tags|}}
+                {{#if tags}}
+                    <section class="section-container">
+                        <header class="feed-header wrapper">
+                            <div class="feed-header-wrapper">
+                                <h2 class="section-title feed-header-title">{{t "Explore more topics"}}</h2>
+                            </div>
+                        </header>
+
+                        <div class="tag-list-wrapper wrapper">
+                            <div class="tag-topic-list">
                                 {{#foreach tags}}
-                                    {{> "components/category-card"}}
+                                    {{#if count.posts}}
+                                        <a class="tag-topic-card{{#if feature_image}} has-image{{/if}}" href="{{url}}" style="--tag-accent: {{accent_color}};">
+                                            {{#if feature_image}}
+                                                <span class="tag-topic-card-media u-placeholder square">
+                                                    <img class="u-object-fit" src="{{img_url feature_image size="s"}}" alt="{{name}}">
+                                                </span>
+                                            {{/if}}
+
+                                            <span class="tag-topic-card-content">
+                                                <span class="tag-topic-card-name">{{name}}</span>
+                                                <span class="tag-topic-card-count">{{count.posts}} posts</span>
+                                            </span>
+                                        </a>
+                                    {{/if}}
                                 {{/foreach}}
                             </div>
                         </div>
-                    {{/if}}
-                {{/get}}
-            </div>
+                    </section>
+                {{/if}}
+            {{/get}}
         {{/tag}}
 
     </main>
