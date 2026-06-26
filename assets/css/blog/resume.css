@@ -88,25 +88,30 @@
 }
 
 .resume-nav ul {
-    --gutter: var(--space-m);
+    --gutter: var(--space-2xs);
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
+/* Pill affordance — distinct from the dot-separated meta line above, so
+   these read as tappable jump links rather than plain metadata. */
 .resume-nav a {
+    display: inline-block;
+    padding: var(--space-3xs) var(--space-s);
     font-size: var(--size-step--1);
-    color: var(--secondary-text-color);
+    color: var(--color-text-accent);
+    background-color: var(--color-bg-accent);
     text-decoration: none;
     font-variant: all-petite-caps;
     letter-spacing: 0.04em;
+    border-radius: var(--border-radius-small);
 }
 
 .resume-nav a:hover,
 .resume-nav a:focus-visible {
-    color: var(--color-primary);
-    text-decoration: underline;
-    text-underline-offset: 0.3ch;
+    color: var(--color-light);
+    background-color: var(--color-primary);
 }
 
 /* ---- Sections ---- */
