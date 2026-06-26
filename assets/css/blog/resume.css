@@ -8,15 +8,9 @@
     padding-block-end: var(--space-2xl);
 }
 
-/* Resume opens with the name — trim the global site-content top padding
-   so the page doesn't start with a large empty band. */
-.site-content:has(.resume-page) {
-    padding-block-start: var(--space-m);
-}
-
 .resume {
     --wrapper-width: 60ch;
-    margin-block-start: 0;
+    margin-block-start: var(--space-s);
 }
 
 /* ---- Header ---- */
@@ -40,15 +34,15 @@
 }
 
 .resume-tagline {
-    font-size: var(--size-step-1);
+    font-size: var(--size-step-0);
     color: var(--secondary-text-color);
     max-width: 50ch;
 }
 
-/* CPWA credential — sits inline at the end of the tagline, one step
-   smaller, with a bullet separator before it. */
+/* CPWA credential — sits inline at the end of the tagline, with a bullet
+   separator before it. */
 .resume-cred {
-    font-size: var(--size-step--1);
+    font-size: var(--size-step-0);
     font-variant: all-petite-caps;
     letter-spacing: 0.04em;
     color: var(--tertiary-text-color);
@@ -117,7 +111,7 @@
 
 /* ---- Timeline entries ---- */
 .resume-timeline {
-    --flow-space: var(--space-xl);
+    --flow-space: var(--space-2xl);
 }
 
 .resume-entry {
@@ -228,6 +222,11 @@
         display: none !important;
     }
 
+    /* Start near the top of the page — no large empty band before the name. */
+    .resume {
+        margin-block-start: 0;
+    }
+
     .resume-name {
         -webkit-text-fill-color: #000 !important;
         color: #000 !important;
@@ -236,6 +235,13 @@
 
     .resume-section {
         margin-block-start: var(--space-l);
+    }
+
+    /* Tighter list rhythm in print to fit more per page. */
+    .resume-points {
+        --flow-space: var(--space-2xs);
+        orphans: 2;
+        widows: 2;
     }
 
     /* Keep a section heading with the start of its content, but let long
@@ -251,11 +257,6 @@
 
     .resume-points li {
         break-inside: avoid;
-    }
-
-    .resume-points {
-        orphans: 2;
-        widows: 2;
     }
 
     .resume-org {
