@@ -8,16 +8,20 @@
     padding-block-end: var(--space-2xl);
 }
 
+/* Resume opens with the name — trim the global site-content top padding
+   so the page doesn't start with a large empty band. */
+.site-content:has(.resume-page) {
+    padding-block-start: var(--space-m);
+}
+
 .resume {
     --wrapper-width: 60ch;
-    margin-block-start: var(--space-s);
+    margin-block-start: 0;
 }
 
 /* ---- Header ---- */
 .resume-header {
     --flow-space: var(--space-xs);
-    padding-block-end: var(--space-l);
-    border-bottom: 1px solid oklch(from var(--primary-text-color) l c h / 0.1);
 }
 
 .resume-kicker {
@@ -41,29 +45,20 @@
     max-width: 50ch;
 }
 
-.resume-meta {
-    --gutter: var(--space-s);
-    --flow-space: var(--space-s);
+/* CPWA credential — sits inline at the end of the tagline, one step
+   smaller, with a bullet separator before it. */
+.resume-cred {
     font-size: var(--size-step--1);
+    font-variant: all-petite-caps;
+    letter-spacing: 0.04em;
     color: var(--tertiary-text-color);
-    list-style: none;
-    padding: 0;
 }
 
-.resume-meta li {
-    display: flex;
-    align-items: center;
-    gap: var(--space-s);
-}
-
-/* Dot separators between meta items */
-.resume-meta li + li::before {
-    content: "";
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: currentColor;
-    opacity: 0.5;
+.resume-cred::before {
+    content: "\2022";
+    margin-inline: var(--space-2xs);
+    color: var(--tertiary-text-color);
+    opacity: 0.6;
 }
 
 .resume-actions {
@@ -103,6 +98,11 @@
 .resume-section {
     margin-block-start: var(--space-2xl);
     scroll-margin-top: var(--space-l); /* breathing room on deep-link jumps */
+}
+
+/* First section sits closer to the header now that the divider is gone. */
+.resume-section:first-of-type {
+    margin-block-start: var(--space-l);
 }
 
 .resume-section-title {
@@ -262,8 +262,17 @@
         color: #000 !important;
     }
 
+    /* Background-filled bullets are dropped by print color suppression —
+       use a real glyph so the bullets survive in the PDF. */
     .resume-points li::before {
-        background: #000 !important;
+        content: "\2022";
+        background: none !important;
+        width: auto;
+        height: auto;
+        top: 0;
+        color: #000 !important;
+        font-size: 1em;
+        line-height: inherit;
     }
 
     .resume-chip {
