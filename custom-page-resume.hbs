@@ -1,0 +1,169 @@
+{{!< default}}
+{{!--
+    Custom page template — Resume / CV.
+
+    Select this template in Ghost Admin on a page with slug `resume`.
+    The structured content lives in this template (code-managed) rather
+    than in Ghost, because a resume changes rarely and benefits from
+    precise, semantic markup that the Koenig editor can't produce. The
+    Ghost page only needs to exist (it can be empty) to provide the
+    /resume/ route; this template supplies all the content and structure.
+
+    Web-over-paper affordances: anchored section nav, a print/PDF action,
+    and a layout that reflows responsively. The print stylesheet
+    (resume.css @media print) flattens it to a clean single-column PDF.
+--}}
+<div class="content-area custom-page">
+    <main class="site-main resume-page" id="main">
+        <article class="resume wrapper" data-width="medium">
+
+            <header class="resume-header flow">
+                <p class="resume-kicker">Curriculum Vitae</p>
+                <h1 class="resume-name">Jan Maarten</h1>
+                <p class="resume-tagline">Design Engineer in Accessibility and Design Systems</p>
+                <ul class="resume-meta cluster" role="list">
+                    <li>CPWA</li>
+                    <li>Remote</li>
+                    <li><a href="/about/">About</a></li>
+                </ul>
+                <div class="resume-actions">
+                    <button class="button resume-print" type="button">Print / Save as PDF</button>
+                </div>
+            </header>
+
+            <nav class="resume-nav" aria-label="Resume sections">
+                <ul class="cluster" role="list">
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#speaking">Speaking</a></li>
+                    <li><a href="#skills">Skills &amp; Tools</a></li>
+                </ul>
+            </nav>
+
+            {{!-- Experience --}}
+            <section class="resume-section" id="experience" aria-labelledby="experience-heading">
+                <h2 class="resume-section-title" id="experience-heading">Experience</h2>
+                <div class="resume-timeline flow">
+
+                    <article class="resume-entry flow">
+                        <div class="resume-entry-head repel">
+                            <h3 class="resume-role">Senior Accessibility Designer<span class="resume-org">GitHub</span></h3>
+                            <p class="resume-dates"><time datetime="2023-01">Jan 2023</time>&nbsp;– Present <span class="resume-loc">Remote</span></p>
+                        </div>
+                        <ul class="resume-points flow" role="list">
+                            <li>Created and open-sourced the GitHub Annotation Toolkit, an industry-leading accessibility annotation library for Figma adopted by organizations including Walmart, McDonald's, CVS Health, Khan Academy, and multiple government agencies. Cited in the 2025 Web Almanac.</li>
+                            <li>Embedded with the product team building GitHub's new user dashboard, ensuring zero blocking accessibility findings at launch for 180,000+ opt-in users under a high-visibility deadline.</li>
+                            <li>Shipped accessibility fixes directly to production in a large-scale Rails and React codebase, including theme contrast improvements, accessible form validation patterns, and design system token fixes.</li>
+                            <li>Prototyped accessible components for complex enterprise surfaces, coordinated external screen reader testing with users with lived experience, and iterated on findings to ship production-ready implementations.</li>
+                            <li>Built a new web app, Slackbot, and agent integration to provide just-in-time recommendations to teams with contextual guidance based on accessibility risk.</li>
+                            <li>Audited the Primer design system for parity between Figma, React, and documentation, identifying and resolving gaps in accessibility and implementation.</li>
+                            <li>Designed end-to-end features for open source maintainers, including new repository controls and custom iconography adopted into the Primer design system.</li>
+                            <li>Delivered conference talks, training workshops, and wrote a two-part blog series on accessible design annotations, growing an internal accessibility champions program across product teams.</li>
+                        </ul>
+                    </article>
+
+                    <article class="resume-entry flow">
+                        <div class="resume-entry-head repel">
+                            <h3 class="resume-role">Senior Accessibility Designer<span class="resume-org">CVS Health</span></h3>
+                            <p class="resume-dates"><time datetime="2021-11">Nov 2021</time>&nbsp;– <time datetime="2023-01">Jan 2023</time> <span class="resume-loc">Remote</span></p>
+                        </div>
+                        <ul class="resume-points flow" role="list">
+                            <li>Produced new accessibility annotation kits for web and iOS which were adopted by 34 agile teams and led to a 22% decrease in accessibility defects.</li>
+                            <li>Co-created and implemented a more efficient centralized model for the Inclusive Design department to support our 4,000+ person digital enterprise.</li>
+                            <li>Resolved accessibility and UX debt by designing accessible components for two internal design systems.</li>
+                            <li>Built and trained a small team of Accessibility Designers, shaping our collaborative practices to support nine scrum teams on the CVS Health Dashboard.</li>
+                            <li>Authored extensive documentation and training material to increase fluency in accessibility and inclusive design.</li>
+                            <li>Resolved hundreds of design defects found during end-to-end accessibility audits of our pre-flight and live experiences.</li>
+                        </ul>
+                    </article>
+
+                    <article class="resume-entry flow">
+                        <div class="resume-entry-head repel">
+                            <h3 class="resume-role">Freelance Designer &amp; Accessibility Specialist<span class="resume-org">Maarten &amp; Co</span></h3>
+                            <p class="resume-dates"><time datetime="2020-02">Feb 2020</time>&nbsp;– <time datetime="2021-11">Nov 2021</time> <span class="resume-loc">Remote</span></p>
+                        </div>
+                        <ul class="resume-points flow" role="list">
+                            <li>Digital design, branding, and accessibility consulting services for numerous startups and B2C clients.</li>
+                            <li>Crafted new websites, forums, and premiere videos for the digital launch of a game's highly anticipated sequel, resulting in a 53% increase in downloads.</li>
+                            <li>Conducted accessibility audits and documented recommendations that went beyond the scope of WCAG.</li>
+                            <li>Produced training for site administration and basic accessibility for clients during project hand-off.</li>
+                        </ul>
+                    </article>
+
+                    <article class="resume-entry flow">
+                        <div class="resume-entry-head repel">
+                            <h3 class="resume-role">Design Director<span class="resume-org">LearningHerbs.com</span></h3>
+                            <p class="resume-dates"><time datetime="2014-01">Jan 2014</time>&nbsp;– <time datetime="2020-02">Feb 2020</time> <span class="resume-loc">Remote</span></p>
+                        </div>
+                        <ul class="resume-points flow" role="list">
+                            <li>Redesigned a community web app, contributing to a 44% increase in subscriptions for the flagship product.</li>
+                            <li>Developed a custom WordPress e-learning platform for a dozen online courses and tens of thousands of users.</li>
+                            <li>Created the Second Edition of a children's board game. Remastered all art assets, designed new instructions, and fine-tuned game rules for accessibility.</li>
+                            <li>Designed assets for the launch campaigns of two best-selling books, including book covers, pre-order websites, and promotional materials.</li>
+                            <li>Served on the company's Leadership Team and managed IT operations.</li>
+                        </ul>
+                    </article>
+
+                </div>
+            </section>
+
+            {{!-- Certifications --}}
+            <section class="resume-section" id="certifications" aria-labelledby="certifications-heading">
+                <h2 class="resume-section-title" id="certifications-heading">Certifications</h2>
+                <div class="resume-timeline flow">
+                    <article class="resume-entry flow">
+                        <div class="resume-entry-head repel">
+                            <h3 class="resume-role">IAAP Certified Professional in Web Accessibility<span class="resume-org">CPWA</span></h3>
+                            <p class="resume-dates">Issued <time datetime="2021-03">Mar 2021</time></p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            {{!-- Speaking --}}
+            <section class="resume-section" id="speaking" aria-labelledby="speaking-heading">
+                <h2 class="resume-section-title" id="speaking-heading">Speaking</h2>
+                <p class="resume-prose">Six talks at axe-con, Inclusive Design 24, Figma Config, and Berghs School of Communication on accessible design annotations, design system accessibility, and inclusive UX writing (2022–2026).</p>
+            </section>
+
+            {{!-- Skills & Tools --}}
+            <section class="resume-section" id="skills" aria-labelledby="skills-heading">
+                <h2 class="resume-section-title" id="skills-heading">Skills &amp; Tools</h2>
+
+                <div class="resume-skillgroup flow">
+                    <h3 class="resume-subhead">Skills</h3>
+                    <ul class="resume-chips cluster" role="list">
+                        <li class="resume-chip">Accessibility strategy</li>
+                        <li class="resume-chip">Design systems</li>
+                        <li class="resume-chip">Component architecture</li>
+                        <li class="resume-chip">WCAG 2.x</li>
+                        <li class="resume-chip">ARIA</li>
+                        <li class="resume-chip">Screen reader testing (VoiceOver, NVDA, JAWS)</li>
+                        <li class="resume-chip">Front-end development</li>
+                        <li class="resume-chip">Information architecture</li>
+                        <li class="resume-chip">Usability testing</li>
+                        <li class="resume-chip">Technical documentation</li>
+                        <li class="resume-chip">Mentoring</li>
+                    </ul>
+                </div>
+
+                <div class="resume-skillgroup flow">
+                    <h3 class="resume-subhead">Tools</h3>
+                    <ul class="resume-chips cluster" role="list">
+                        <li class="resume-chip">Figma</li>
+                        <li class="resume-chip">HTML</li>
+                        <li class="resume-chip">CSS</li>
+                        <li class="resume-chip">React</li>
+                        <li class="resume-chip">Rails</li>
+                        <li class="resume-chip">Git</li>
+                        <li class="resume-chip">Copilot</li>
+                        <li class="resume-chip">Adobe Creative Suite</li>
+                    </ul>
+                </div>
+            </section>
+
+        </article>
+    </main>
+</div>
+
+{{#contentFor "body_class"}}{{#if @member}} logged-in{{/if}}{{/contentFor}}

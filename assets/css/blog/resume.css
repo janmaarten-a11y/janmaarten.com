@@ -1,0 +1,269 @@
+/* Resume / CV page
+   Web-native résumé built on the design system: token spacing, fluid
+   type, CUBE compositions (flow, cluster, repel). The name reuses the
+   shared viridis gradient "moment" (see cover.css). Print styles at the
+   bottom flatten it to a clean single-column PDF. */
+
+.resume-page {
+    padding-block-end: var(--space-2xl);
+}
+
+.resume {
+    margin-block-start: var(--space-xl);
+}
+
+/* ---- Header ---- */
+.resume-header {
+    --flow-space: var(--space-xs);
+    padding-block-end: var(--space-l);
+    border-bottom: 1px solid oklch(from var(--primary-text-color) l c h / 0.1);
+}
+
+.resume-kicker {
+    font-variant: all-petite-caps;
+    letter-spacing: 0.08em;
+    font-size: var(--size-step--1);
+    color: var(--secondary-text-color);
+}
+
+.resume-name {
+    font-family: var(--font-serif);
+    font-weight: var(--font-semi-bold);
+    font-size: var(--size-step-5);
+    line-height: var(--leading-fine);
+    letter-spacing: -0.01em;
+}
+
+.resume-tagline {
+    font-size: var(--size-step-1);
+    color: var(--secondary-text-color);
+    max-width: 50ch;
+}
+
+.resume-meta {
+    --gutter: var(--space-s);
+    --flow-space: var(--space-s);
+    font-size: var(--size-step--1);
+    color: var(--tertiary-text-color);
+    list-style: none;
+    padding: 0;
+}
+
+.resume-meta li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+}
+
+/* Dot separators between meta items */
+.resume-meta li + li::before {
+    content: "";
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+}
+
+.resume-actions {
+    --flow-space: var(--space-m);
+}
+
+.resume-print {
+    font-size: var(--size-step--1);
+    cursor: pointer;
+}
+
+/* ---- Section nav (anchored jump links) ---- */
+.resume-nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    margin-block: var(--space-l);
+    padding-block: var(--space-s);
+    background: oklch(from var(--background-color) l c h / 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid oklch(from var(--primary-text-color) l c h / 0.08);
+}
+
+.resume-nav ul {
+    --gutter: var(--space-m);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resume-nav a {
+    font-size: var(--size-step--1);
+    color: var(--secondary-text-color);
+    text-decoration: none;
+    font-variant: all-petite-caps;
+    letter-spacing: 0.04em;
+}
+
+.resume-nav a:hover,
+.resume-nav a:focus-visible {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 0.3ch;
+}
+
+/* ---- Sections ---- */
+.resume-section {
+    margin-block-start: var(--space-2xl);
+    scroll-margin-top: 5rem; /* clear the sticky nav on anchor jump */
+}
+
+.resume-section-title {
+    font-variant: all-petite-caps;
+    letter-spacing: 0.06em;
+    font-size: var(--size-step-1);
+    color: var(--secondary-text-color);
+    padding-block-end: var(--space-2xs);
+    margin-block-end: var(--space-l);
+    border-bottom: 2px solid oklch(from var(--color-primary) l c h / 0.25);
+}
+
+/* ---- Timeline entries ---- */
+.resume-timeline {
+    --flow-space: var(--space-xl);
+}
+
+.resume-entry {
+    --flow-space: var(--space-s);
+}
+
+.resume-entry-head {
+    --gutter: var(--space-2xs) var(--space-m);
+    align-items: baseline;
+}
+
+.resume-role {
+    font-family: var(--font-display);
+    font-size: var(--size-step-1);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-fine);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 var(--space-2xs);
+}
+
+.resume-org {
+    color: var(--color-primary);
+}
+
+.resume-org::before {
+    content: "·";
+    margin-inline-end: var(--space-2xs);
+    color: var(--tertiary-text-color);
+}
+
+.resume-dates {
+    font-size: var(--size-step--1);
+    color: var(--tertiary-text-color);
+    white-space: nowrap;
+}
+
+.resume-loc::before {
+    content: "·";
+    margin-inline: var(--space-2xs);
+}
+
+/* ---- Bullet points ---- */
+.resume-points {
+    --flow-space: var(--space-s);
+    padding-inline-start: var(--space-m);
+    max-width: 70ch;
+}
+
+.resume-points li {
+    list-style: none;
+    position: relative;
+    padding-inline-start: var(--space-m);
+    color: var(--primary-text-color);
+    line-height: var(--leading-loose, 1.6);
+}
+
+.resume-points li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.62em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: oklch(from var(--color-primary) l c h / 0.6);
+}
+
+/* ---- Prose (Speaking) ---- */
+.resume-prose {
+    max-width: 65ch;
+    line-height: var(--leading-loose, 1.6);
+}
+
+/* ---- Skills & Tools chips ---- */
+.resume-skillgroup + .resume-skillgroup {
+    margin-block-start: var(--space-l);
+}
+
+.resume-subhead {
+    font-size: var(--size-step--1);
+    font-variant: all-petite-caps;
+    letter-spacing: 0.04em;
+    color: var(--tertiary-text-color);
+    margin-block-end: var(--space-s);
+}
+
+.resume-chips {
+    --gutter: var(--space-2xs);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resume-chip {
+    display: inline-block;
+    padding: var(--space-3xs) var(--space-xs);
+    background-color: var(--color-bg-accent);
+    color: var(--color-text-accent);
+    font-size: var(--size-step--1);
+    border-radius: var(--border-radius-small);
+}
+
+/* ---- Print: clean single-column PDF ---- */
+@media print {
+    .resume-nav,
+    .resume-actions {
+        display: none !important;
+    }
+
+    .resume-name {
+        -webkit-text-fill-color: #000 !important;
+        color: #000 !important;
+        background: none !important;
+    }
+
+    .resume-section {
+        margin-block-start: var(--space-l);
+        break-inside: avoid-page;
+    }
+
+    .resume-entry {
+        break-inside: avoid;
+    }
+
+    .resume-org {
+        color: #000 !important;
+    }
+
+    .resume-points li::before {
+        background: #000 !important;
+    }
+
+    .resume-chip {
+        border: 1px solid #999;
+        background: none !important;
+        color: #000 !important;
+    }
+}

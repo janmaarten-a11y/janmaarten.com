@@ -12,6 +12,7 @@ externalLinks();
 bookmarkFocus();
 preTabindex();
 modeSwitcher();
+resumePrint();
 // On posts with a TOC, defer headingAnchors() until after tocbot has read
 // the headings — otherwise the appended "anchor" text leaks into the TOC.
 // default.hbs calls window.headingAnchors() after tocbot.init.
@@ -235,5 +236,15 @@ function footerGroup() {
         })
         nav.append(h3, ul);
         footerNav.appendChild(nav);
+    });
+}
+
+// Resume page: wire the Print / Save as PDF button. Guarded so it's
+// inert on every other page (the button only exists on the resume page).
+function resumePrint() {
+    var btn = document.querySelector('.resume-print');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+        window.print();
     });
 }

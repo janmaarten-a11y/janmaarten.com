@@ -17,6 +17,7 @@ h1.h1.hero-header {
    readable contrast envelope. */
 .home-hero-header,
 .error-header,
+.resume-name,
 article.tag-hash-long-form p.dropcap:first-letter {
     background-image: var(--gradient-cool-light);
     -webkit-background-clip: text;
@@ -27,6 +28,7 @@ article.tag-hash-long-form p.dropcap:first-letter {
 
 [data-mode="dark"] .home-hero-header,
 [data-mode="dark"] .error-header,
+[data-mode="dark"] .resume-name,
 [data-mode="dark"] article.tag-hash-long-form p.dropcap:first-letter {
     background-image: var(--gradient-warm-bright);
 }
@@ -34,6 +36,7 @@ article.tag-hash-long-form p.dropcap:first-letter {
 @media (prefers-color-scheme: dark) {
     :root:not([data-mode="light"]) .home-hero-header,
     :root:not([data-mode="light"]) .error-header,
+    :root:not([data-mode="light"]) .resume-name,
     :root:not([data-mode="light"]) article.tag-hash-long-form p.dropcap:first-letter {
         background-image: var(--gradient-warm-bright);
     }
@@ -54,6 +57,7 @@ article.tag-hash-long-form p.dropcap:first-letter {
    the browser's selection inversion. Applied to all three surfaces. */
 .home-hero-header::selection,
 .error-header::selection,
+.resume-name::selection,
 article.tag-hash-long-form p.dropcap:first-letter::selection {
     -webkit-text-fill-color: var(--color-light);
     color: var(--color-light);
