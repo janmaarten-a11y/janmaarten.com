@@ -9,7 +9,8 @@
 }
 
 .resume {
-    margin-block-start: var(--space-xl);
+    --wrapper-width: 60ch;
+    margin-block-start: var(--space-s);
 }
 
 /* ---- Header ---- */
@@ -246,11 +247,26 @@
 
     .resume-section {
         margin-block-start: var(--space-l);
-        break-inside: avoid-page;
     }
 
-    .resume-entry {
+    /* Keep a section heading with the start of its content, but let long
+       entries flow across pages so page 1 fills instead of breaking early. */
+    .resume-section-title,
+    .resume-role {
+        break-after: avoid;
+    }
+
+    .resume-entry-head {
+        break-after: avoid;
+    }
+
+    .resume-points li {
         break-inside: avoid;
+    }
+
+    .resume-points {
+        orphans: 2;
+        widows: 2;
     }
 
     .resume-org {
