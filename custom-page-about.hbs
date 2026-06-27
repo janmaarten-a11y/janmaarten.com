@@ -135,9 +135,10 @@
               Title can be overridden per page via the post's custom field
               labelled "Speaking title" if you want a different heading. --}}
         <section class="section-container experiences section-experiences">
-            <header class="feed-header wrapper">
-                <div class="feed-header-wrapper">
-                    <h2 class="section-title feed-header-title">Speaking</h2>
+            <header class="fluid-section-header flow wrapper">
+                <div class="fluid-section-heading flow">
+                    <p class="fluid-section-eyebrow">Talks &amp; workshops</p>
+                    <h2 class="fluid-section-title">Speaking</h2>
                 </div>
             </header>
             {{#get "pages" include="tags" filter="tag:hash-content-experience" order="published_at desc"}}
@@ -153,9 +154,10 @@
               Limit 6 matches the previous Works page treatment so the page
               doesn't get bottom-heavy; raise it if you want more on display. --}}
         <section class="section-container testimonials section-testimonials">
-            <header class="feed-header wrapper">
-                <div class="feed-header-wrapper">
-                    <h2 class="section-title feed-header-title">Endorsements</h2>
+            <header class="fluid-section-header flow wrapper">
+                <div class="fluid-section-heading flow">
+                    <p class="fluid-section-eyebrow">What people say</p>
+                    <h2 class="fluid-section-title">Endorsements</h2>
                 </div>
             </header>
             {{#get "pages" include="tags" filter="tag:hash-content-testimonial" limit="6" order="published_at desc"}}

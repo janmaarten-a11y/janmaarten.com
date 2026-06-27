@@ -2,7 +2,18 @@
    Replaces the dot-spacer "menu" format with a clearer card row:
    date on the left, event/title/recording-link stacked on the right. */
 
-.section-experiences .wrapper {
+/* Speaking + Endorsements reuse the fluid-section heading treatment
+   (eyebrow + display title) so all About sections share one heading scale.
+   Establish a container on the header so the title's cqi-based clamp
+   resolves the same way it does inside a fluid-section-body. The removed
+   .feed-header class previously supplied the bottom spacing. */
+.section-experiences .fluid-section-header,
+.section-testimonials .fluid-section-header {
+    container-type: inline-size;
+    margin-bottom: var(--space-l);
+}
+
+.section-experiences .wrapper:not(.fluid-section-header) {
     display: flex;
     flex-direction: column;
     gap: 0;
