@@ -267,6 +267,29 @@
     display: none;
 }
 
+/* Mobile: the card is full-width so the meta overlaps more (and potentially
+   lighter) image area. Brighten the meta to full white and deepen the scrim
+   so the meta keeps clear contrast over varied imagery. */
+@media (max-width: 767px) {
+    .featured-posts .card-overlay .card-meta {
+        color: #fff;
+    }
+
+    .featured-posts .card-overlay .card-meta-item + .card-meta-item::before {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .featured-posts .card-overlay .card-wrapper {
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.7) 35%,
+            rgba(0, 0, 0, 0.2) 70%,
+            transparent 100%
+        );
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .featured-posts .card-overlay,
     .featured-posts .card-overlay .card-image img,
