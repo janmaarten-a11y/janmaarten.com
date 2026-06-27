@@ -31,28 +31,34 @@
     align-items: start;
 }
 
-/* Wide: header sidebar + content grid. */
+/* Wide: header sidebar + content grid (default). */
 @media (min-width: 48rem) {
     .fluid-section-body {
         grid-template-columns: minmax(12rem, 16rem) 1fr;
     }
 
-    /* Quantity query: 4+ cards → header to the top, cards full width. */
-    .fluid-section-body:has(.fluid-card:nth-last-child(n + 4)) {
+    /* Banner layout — opt-in via data-layout="banner" on .fluid-section-body.
+       Header becomes a full-width top banner and the cards take the whole
+       row below. The article triggers this automatically on card count, but
+       on a medium-width container that squeezes 4+ cards; here it's a manual
+       choice so each section picks the layout that fits its content. Best
+       with FEWER, wider cards. */
+    .fluid-section-body[data-layout="banner"] {
         grid-template-columns: 1fr;
     }
 
-    .fluid-section-body:has(.fluid-card:nth-last-child(n + 4)) .fluid-section-header {
+    .fluid-section-body[data-layout="banner"] .fluid-section-header {
         display: flex;
         flex-wrap: wrap;
-        align-items: baseline;
+        align-items: end;
         gap: var(--space-2xs) var(--space-m);
         padding-bottom: var(--space-s);
         border-bottom: 2px solid oklch(from var(--color-primary) l c h / 0.25);
     }
 
-    .fluid-section-body:has(.fluid-card:nth-last-child(n + 4)) .fluid-section-intro {
-        margin-inline-start: auto; /* push intro to the right of the title */
+    /* Eyebrow + title stay stacked; the intro floats to the right. */
+    .fluid-section-body[data-layout="banner"] .fluid-section-intro {
+        margin-inline-start: auto;
         max-width: 40ch;
         text-align: right;
     }
@@ -61,6 +67,11 @@
 /* ---- Header ---- */
 .fluid-section-header {
     --flow-space: var(--space-2xs);
+}
+
+/* Eyebrow + title group — stays stacked in both layouts. */
+.fluid-section-heading {
+    --flow-space: var(--space-3xs);
 }
 
 .fluid-section-eyebrow {
