@@ -30,13 +30,6 @@
     .featured-grid {
         grid-template-columns: minmax(0, 1fr);
     }
-
-    /* The 16rem floor is only meaningful for narrow 2-column cards; on a
-       full-width mobile card it forces cards taller than their 3:2 ratio.
-       Let aspect-ratio govern so they stay proportional. */
-    .featured-posts .card-overlay {
-        min-height: 0 !important;
-    }
 }
 
 /* Constrain cards within grid */
@@ -49,6 +42,17 @@
     isolation: isolate;
     scroll-margin-block: var(--space-l);
     transition: box-shadow var(--transition-duration) var(--transition-timing);
+}
+
+/* The 16rem floor is only meaningful for narrow 2-column desktop cards;
+   on a full-width mobile card it implies a ~24rem min-width (16rem x 3/2)
+   that overflows the right gutter below ~424px. Drop the floor here.
+   MUST come after the base rule above: equal specificity + !important
+   means source order decides, so an earlier override would lose. */
+@media (max-width: 767px) {
+    .featured-posts .card-overlay {
+        min-height: 0 !important;
+    }
 }
 
 /* Animated angle property for ring rotation.
