@@ -33,6 +33,48 @@
             {{/if}}
         {{/post}}
 
+        {{!-- Fluid section (see assets/css/blog/fluid-section.css) — a reusable
+              header + adaptive card grid. Reuse the classes for any section of
+              this shape; do not fork the CSS. The header (eyebrow/title/intro)
+              is authored here per use. The cards below are placeholder content;
+              to make them tag-driven later, replace the hardcoded <li>s with a
+              loop over the fluid-card partial, e.g.:
+                {{#get "pages" filter="tag:hash-content-value" order="published_at asc"}}
+                  <ul class="fluid-grid" role="list">
+                    {{#foreach pages}}{{> "components/fluid-card"}}{{/foreach}}
+                  </ul>
+                {{/get}}
+              The fluid-card partial already supports feature images. --}}
+        <section class="section-container fluid-section">
+            <div class="fluid-section-body wrapper">
+                <header class="fluid-section-header flow">
+                    <p class="fluid-section-eyebrow">What drives the work</p>
+                    <h2 class="fluid-section-title">Values</h2>
+                    <p class="fluid-section-intro">A few principles I keep coming back to.</p>
+                </header>
+                <ul class="fluid-grid" role="list">
+                    <li class="fluid-card">
+                        <div class="fluid-card-body">
+                            <h3 class="fluid-card-title">Accessibility is the baseline</h3>
+                            <p class="fluid-card-desc">Inclusion is not a feature to bolt on at the end. It is the floor everything else is built on.</p>
+                        </div>
+                    </li>
+                    <li class="fluid-card">
+                        <div class="fluid-card-body">
+                            <h3 class="fluid-card-title">Systems over one-offs</h3>
+                            <p class="fluid-card-desc">Fix the pattern, not just the page. Durable solutions live in the design system, not in a single PR.</p>
+                        </div>
+                    </li>
+                    <li class="fluid-card">
+                        <div class="fluid-card-body">
+                            <h3 class="fluid-card-title">Lived experience leads</h3>
+                            <p class="fluid-card-desc">The people who rely on assistive technology are the experts. Test with them, not just for them.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
         {{!-- Speaking — pulled from pages tagged hash-content-experience.
               Title can be overridden per page via the post's custom field
               labelled "Speaking title" if you want a different heading. --}}

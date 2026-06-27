@@ -1,0 +1,181 @@
+/* Fluid section — reusable adaptive "section layout"
+   Methodology adapted from Ahmad Shadeed's "Solved By Modern CSS: Section
+   Layout" (ishadeed.com/article/modern-css-section-layout), translated to
+   the design-token system instead of the article's raw px/rem.
+
+   This is a GENERIC, content-agnostic component. Use it for any "header +
+   adaptive card grid" section (values, principles, services, etc.). The
+   header (eyebrow/title/intro) is authored per use; the cards can be
+   hardcoded or rendered from a Ghost {{#get}} loop via the fluid-card
+   partial. Do not fork this file per section — reuse the classes.
+
+   Behaviours from the article:
+   1. Section-as-grid: header column beside a content grid on wide
+      viewports, stacking on narrow ones.
+   2. Quantity query via :has() — 4+ cards moves the header to the top so
+      the cards get the full width.
+   3. Container queries + cqi units: card + section type scale to their own
+      width, not the viewport.
+   4. :has() conditionals for image / no-image and single-card cases. */
+
+.fluid-section {
+    margin-top: var(--space-2xl);
+}
+
+/* Size container so descendants can use cqi units. */
+.fluid-section-body {
+    container: fluid-section / inline-size;
+    display: grid;
+    gap: var(--space-l) var(--space-xl);
+    grid-template-columns: 1fr;
+    align-items: start;
+}
+
+/* Wide: header sidebar + content grid. */
+@media (min-width: 48rem) {
+    .fluid-section-body {
+        grid-template-columns: minmax(12rem, 16rem) 1fr;
+    }
+
+    /* Quantity query: 4+ cards → header to the top, cards full width. */
+    .fluid-section-body:has(.fluid-card:nth-last-child(n + 4)) {
+        grid-template-columns: 1fr;
+    }
+
+    .fluid-section-body:has(.fluid-card:nth-last-child(n + 4)) .fluid-section-header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: var(--space-2xs) var(--space-m);
+        padding-bottom: var(--space-s);
+        border-bottom: 2px solid oklch(from var(--color-primary) l c h / 0.25);
+    }
+
+    .fluid-section-body:has(.fluid-card:nth-last-child(n + 4)) .fluid-section-intro {
+        margin-inline-start: auto; /* push intro to the right of the title */
+        max-width: 40ch;
+        text-align: right;
+    }
+}
+
+/* ---- Header ---- */
+.fluid-section-header {
+    --flow-space: var(--space-2xs);
+}
+
+.fluid-section-eyebrow {
+    font-variant: all-petite-caps;
+    letter-spacing: 0.08em;
+    font-size: var(--size-step--1);
+    color: var(--secondary-text-color);
+}
+
+.fluid-section-title {
+    font-family: var(--font-display);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-fine);
+    /* Fluid against the section container (cqi), bounded by step tokens. */
+    font-size: clamp(var(--size-step-2), 1.4rem + 2cqi, var(--size-step-4));
+}
+
+.fluid-section-intro {
+    font-size: var(--size-step-0);
+    color: var(--secondary-text-color);
+    max-width: 26ch;
+}
+
+/* ---- Content grid ---- */
+.fluid-grid {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ---- Cards ---- */
+/* Each card is its own container so its contents scale to the card width. */
+.fluid-card {
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding: var(--space-m);
+    background-color: oklch(from var(--color-bg-accent) l c h / 0.4);
+    border-radius: var(--border-radius-medium);
+    border-top: 2px solid oklch(from var(--color-primary) l c h / 0.4);
+    transition:
+        border-color var(--transition-duration) var(--transition-timing),
+        transform var(--transition-duration) var(--transition-timing);
+}
+
+.fluid-card:hover {
+    border-top-color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+/* ---- Optional featured image (Ghost feature_image) ---- */
+.fluid-card-thumb {
+    margin: calc(-1 * var(--space-m)) calc(-1 * var(--space-m)) var(--space-2xs);
+    border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
+    overflow: hidden;
+    min-width: 0; /* article fix: stop image dictating flex min-width */
+}
+
+.fluid-card-thumb img {
+    display: block;
+    width: 100%;
+    /* Fluid image height, scaled to the card's own width (cqi). */
+    height: clamp(8rem, 6rem + 18cqi, 14rem);
+    object-fit: cover;
+}
+
+/* When a card has an image and enough width, go horizontal (image beside
+   text), mirroring the article's container-query card switch. */
+@container (min-width: 26rem) {
+    .fluid-card:has(.fluid-card-thumb) {
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    .fluid-card:has(.fluid-card-thumb) .fluid-card-thumb {
+        margin: calc(-1 * var(--space-m)) var(--space-2xs) calc(-1 * var(--space-m)) calc(-1 * var(--space-m));
+        border-radius: var(--border-radius-medium) 0 0 var(--border-radius-medium);
+        flex: 0 0 clamp(7rem, 4rem + 22cqi, 11rem);
+    }
+
+    .fluid-card:has(.fluid-card-thumb) .fluid-card-thumb img {
+        height: 100%;
+    }
+}
+
+.fluid-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    min-width: 0;
+}
+
+.fluid-card-title {
+    font-family: var(--font-display);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-fine);
+    color: var(--primary-text-color);
+    /* cqi: scales to the card's own width (article's per-card fluid type).
+       Bounds mirror step-0 → step-1. */
+    font-size: clamp(var(--size-step-0), 0.95rem + 1.5cqi, var(--size-step-1));
+}
+
+.fluid-card-desc {
+    font-size: var(--size-step--1);
+    color: var(--secondary-text-color);
+    line-height: var(--leading-loose, 1.6);
+}
+
+/* A single card reads as a statement — give it more room. */
+@media (min-width: 48rem) {
+    .fluid-grid:has(.fluid-card:only-child) .fluid-card {
+        padding: var(--space-l);
+    }
+}

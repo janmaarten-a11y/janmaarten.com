@@ -1,0 +1,37 @@
+{{!--
+    Fluid card — one card in a .fluid-grid.
+
+    Use inside a Ghost {{#get}} / {{#foreach}} loop so the section's content
+    is tag-driven, while the section header (eyebrow/title/intro) stays
+    hardcoded per use. Reads standard post/page context:
+      - title          → card title
+      - excerpt        → card description (custom_excerpt || excerpt)
+      - feature_image  → optional featured image (article-style)
+
+    Example:
+      {{#get "pages" filter="tag:hash-content-value" order="published_at asc"}}
+        <ul class="fluid-grid" role="list">
+          {{#foreach pages}}{{> "components/fluid-card"}}{{/foreach}}
+        </ul>
+      {{/get}}
+--}}
+<li class="fluid-card">
+    {{#if feature_image}}
+        <figure class="fluid-card-thumb">
+            <img
+                srcset="{{img_url feature_image size="s" format="webp"}} 400w,
+                        {{img_url feature_image size="m" format="webp"}} 750w"
+                sizes="(min-width: 48rem) 360px, 100vw"
+                src="{{img_url feature_image size="m"}}"
+                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                loading="lazy"
+            >
+        </figure>
+    {{/if}}
+    <div class="fluid-card-body">
+        <h3 class="fluid-card-title">{{title}}</h3>
+        {{#if excerpt}}
+            <p class="fluid-card-desc">{{excerpt}}</p>
+        {{/if}}
+    </div>
+</li>
