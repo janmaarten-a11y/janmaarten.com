@@ -91,6 +91,41 @@
             </div>
         </section>
 
+        {{!-- What I do — banner layout (data-layout="banner"): full-width
+              header on top, cards below. Suits fewer, wider cards. Same
+              reusable fluid-section component; placeholder content. --}}
+        <section class="section-container fluid-section">
+            <div class="fluid-section-body wrapper" data-layout="banner">
+                <header class="fluid-section-header flow">
+                    <div class="fluid-section-heading flow">
+                        <p class="fluid-section-eyebrow">How I help</p>
+                        <h2 class="fluid-section-title">What I do</h2>
+                    </div>
+                    <p class="fluid-section-intro">Accessibility and design systems work, from strategy through shipped code.</p>
+                </header>
+                <ul class="fluid-grid" role="list">
+                    <li class="fluid-card">
+                        <div class="fluid-card-body">
+                            <h3 class="fluid-card-title">Accessibility strategy</h3>
+                            <p class="fluid-card-desc">Audits, annotation kits, and the processes that help teams build inclusive products by default, not as a remediation pass.</p>
+                        </div>
+                    </li>
+                    <li class="fluid-card">
+                        <div class="fluid-card-body">
+                            <h3 class="fluid-card-title">Design systems</h3>
+                            <p class="fluid-card-desc">Accessible components and tokens with parity across Figma, code, and documentation, so the system is the easy path.</p>
+                        </div>
+                    </li>
+                    <li class="fluid-card">
+                        <div class="fluid-card-body">
+                            <h3 class="fluid-card-title">Design engineering</h3>
+                            <p class="fluid-card-desc">Prototyping and shipping production front-end, closing the gap between design intent and the interface people actually use.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
         {{!-- Speaking — pulled from pages tagged hash-content-experience.
               Title can be overridden per page via the post's custom field
               labelled "Speaking title" if you want a different heading. --}}
