@@ -52,47 +52,13 @@
                     {{#foreach pages}}{{> "components/fluid-card"}}{{/foreach}}
                   </ul>
                 {{/get}}
-              The fluid-card partial already supports feature images. --}}
-        <section class="section-container fluid-section">
-            <div class="fluid-section-body wrapper">
-                <header class="fluid-section-header flow">
-                    <div class="fluid-section-heading flow">
-                        <p class="fluid-section-eyebrow">What drives the work</p>
-                        <h2 class="fluid-section-title">Values</h2>
-                    </div>
-                    <p class="fluid-section-intro">A few principles I keep coming back to.</p>
-                </header>
-                <ul class="fluid-grid" role="list">
-                    <li class="fluid-card">
-                        <div class="fluid-card-body">
-                            <h3 class="fluid-card-title">Leave it better than I found it</h3>
-                            <p class="fluid-card-desc">Clean up the messes I pass through, even the ones I didn't make. I'll revive stale, half-broken work nobody owns, because someone should.</p>
-                        </div>
-                    </li>
-                    <li class="fluid-card">
-                        <div class="fluid-card-body">
-                            <h3 class="fluid-card-title">Name the trade-offs</h3>
-                            <p class="fluid-card-desc">Every decision defers something. I'd rather show why I chose this over that than hide the judgment behind “best practice.”</p>
-                        </div>
-                    </li>
-                    <li class="fluid-card">
-                        <div class="fluid-card-body">
-                            <h3 class="fluid-card-title">Lived experience leads</h3>
-                            <p class="fluid-card-desc">The people who rely on assistive technology are the experts. Test with them, not just for them.</p>
-                        </div>
-                    </li>
-                    <li class="fluid-card">
-                        <div class="fluid-card-body">
-                            <h3 class="fluid-card-title">Clarity is a kindness</h3>
-                            <p class="fluid-card-desc">Plain language, honest documentation, and legible interfaces respect people's time and attention.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </section>
+              The fluid-card partial already supports feature images.
 
-        {{!-- What I do — sidebar layout (default). Same reusable
-              fluid-section component; placeholder-ish content in JM's voice. --}}
+              Order: What I do (concrete craft) precedes Values (the person
+              behind it), so the page reads concrete → reflective → proof. --}}
+
+        {{!-- What I do — the disciplines, framed as craft independent of any
+              employer. Sidebar layout (default). --}}
         <section class="section-container fluid-section">
             <div class="fluid-section-body wrapper">
                 <header class="fluid-section-header flow">
@@ -100,19 +66,19 @@
                         <p class="fluid-section-eyebrow">How I help</p>
                         <h2 class="fluid-section-title">What I do</h2>
                     </div>
-                    <p class="fluid-section-intro">Accessibility and design systems work, from strategy through shipped code.</p>
+                    <p class="fluid-section-intro">Accessibility and design systems work, from early strategy through shipped code.</p>
                 </header>
                 <ul class="fluid-grid" role="list">
                     <li class="fluid-card">
                         <div class="fluid-card-body">
                             <h3 class="fluid-card-title">Accessibility, embedded</h3>
-                            <p class="fluid-card-desc">WCAG-fluent and embedded in product teams, owning accessibility quality from the design file through to the shipped fix.</p>
+                            <p class="fluid-card-desc">WCAG-fluent and embedded with the teams I work alongside, owning accessibility quality from the design file through to the shipped fix.</p>
                         </div>
                     </li>
                     <li class="fluid-card">
                         <div class="fluid-card-body">
                             <h3 class="fluid-card-title">Design systems</h3>
-                            <p class="fluid-card-desc">Mostly Primer: audits, component reviews, accessibility hardening, and the bridge between Figma and React.</p>
+                            <p class="fluid-card-desc">Audits, component reviews, accessibility hardening, and the bridge between the design library and the code that ships from it.</p>
                         </div>
                     </li>
                     <li class="fluid-card">
@@ -125,6 +91,45 @@
                         <div class="fluid-card-body">
                             <h3 class="fluid-card-title">Breaking down silos</h3>
                             <p class="fluid-card-desc">Getting designers and developers to a shared language so accessibility survives the handoff.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        {{!-- Values — discipline-agnostic beliefs (not practices). --}}
+        <section class="section-container fluid-section">
+            <div class="fluid-section-body wrapper">
+                <header class="fluid-section-header flow">
+                    <div class="fluid-section-heading flow">
+                        <p class="fluid-section-eyebrow">What drives the work</p>
+                        <h2 class="fluid-section-title">Values</h2>
+                    </div>
+                    <p class="fluid-section-intro">A few things I believe, whatever I'm working on.</p>
+                </header>
+                <ul class="fluid-grid" role="list">
+                    <li class="fluid-card">
+                        <div class="fluid-card-body">
+                            <h3 class="fluid-card-title">Leave it better than I found it</h3>
+                            <p class="fluid-card-desc">Clean up the messes I pass through, even the ones I didn't make. I'll revive stale, half-broken work nobody owns, because someone should.</p>
+                        </div>
+                    </li>
+                    <li class="fluid-card">
+                        <div class="fluid-card-body">
+                            <h3 class="fluid-card-title">Constraints sharpen the work</h3>
+                            <p class="fluid-card-desc">Accessibility, performance, plain language. The limits I design within are what make the result resilient, not lesser.</p>
+                        </div>
+                    </li>
+                    <li class="fluid-card">
+                        <div class="fluid-card-body">
+                            <h3 class="fluid-card-title">Nothing good is built alone</h3>
+                            <p class="fluid-card-desc">The best work happens when overlapping efforts merge instead of compete, and when the people closest to the problem are in the room.</p>
+                        </div>
+                    </li>
+                    <li class="fluid-card">
+                        <div class="fluid-card-body">
+                            <h3 class="fluid-card-title">Clarity is a kindness</h3>
+                            <p class="fluid-card-desc">Plain language, honest documentation, and legible interfaces respect people's time and attention.</p>
                         </div>
                     </li>
                 </ul>
