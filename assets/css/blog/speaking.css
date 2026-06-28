@@ -47,9 +47,22 @@
 }
 
 .speaking-body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3xs);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "event link"
+        "title link";
+    column-gap: var(--space-l);
+    row-gap: var(--space-3xs);
+    align-items: baseline;
+}
+
+.speaking-event {
+    grid-area: event;
+}
+
+.speaking-title {
+    grid-area: title;
 }
 
 /* "Axe-con 2026" — venue/event label.
@@ -91,12 +104,14 @@
     color: var(--primary-text-color);
 }
 
-/* Watch link — explicit pill button, can't be missed */
+/* Watch link — explicit pill button, can't be missed. Floats to the right
+   of the talk text on wide entries; stacks below on narrow (see media query). */
 .speaking-link {
+    grid-area: link;
+    align-self: center;
     display: inline-flex;
     align-items: center;
     gap: var(--space-2xs);
-    margin-top: var(--space-xs);
     padding: var(--space-3xs) var(--space-s);
     min-height: 2rem;
     background: oklch(from var(--color-primary) l c h / 0.14);
@@ -131,5 +146,19 @@
         grid-template-columns: 1fr;
         gap: var(--space-3xs);
         padding: var(--space-m) 0;
+    }
+
+    /* Stack the link back below the text when there's no room to float it. */
+    .speaking-body {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "event"
+            "title"
+            "link";
+    }
+
+    .speaking-link {
+        align-self: start;
+        margin-top: var(--space-2xs);
     }
 }
