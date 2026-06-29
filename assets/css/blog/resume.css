@@ -114,6 +114,43 @@
     --flow-space: var(--space-2xl);
 }
 
+/* Vertical rail connecting experience entries. Scoped to #experience so
+   single-entry sections (Certifications) stay flush. Rail + dot are pure
+   CSS — no markup change. Rail spans full height; dots sit on the role
+   line via the entry's own top padding. */
+#experience .resume-timeline {
+    position: relative;
+    padding-inline-start: var(--space-l);
+}
+
+#experience .resume-timeline::before {
+    content: "";
+    position: absolute;
+    inset-block: 0.6em auto;
+    block-size: calc(100% - 0.6em);
+    inset-inline-start: 0;
+    inline-size: 2px;
+    background: oklch(from var(--color-primary) l c h / 0.25);
+}
+
+#experience .resume-entry {
+    position: relative;
+}
+
+#experience .resume-entry::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 0.55em;
+    /* Center the dot on the rail (rail sits at the padding edge, 1.4rem
+       left of content; dot is 0.7rem, so shift its center onto the rail). */
+    inset-inline-start: calc(-1 * var(--space-l) - 0.35rem + 1px);
+    inline-size: 0.7rem;
+    block-size: 0.7rem;
+    border-radius: 50%;
+    background: var(--color-primary);
+    outline: 3px solid var(--background-color);
+}
+
 .resume-entry {
     --flow-space: var(--space-s);
 }
@@ -225,6 +262,15 @@
     /* Start near the top of the page — no large empty band before the name. */
     .resume {
         margin-block-start: 0;
+    }
+
+    /* Timeline rail + dots to black so they survive print color drop. */
+    #experience .resume-timeline::before {
+        background: #999 !important;
+    }
+    #experience .resume-entry::before {
+        background: #000 !important;
+        outline-color: #fff !important;
     }
 
     .resume-name {
