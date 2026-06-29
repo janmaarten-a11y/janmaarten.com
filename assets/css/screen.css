@@ -19,6 +19,7 @@
 
 /* 2. Base — reset, design tokens, global element styles */
 @import "base/reset.css";
+@import "base/fonts.css";
 @import "base/variables.css";
 @import "base/global.css";
 

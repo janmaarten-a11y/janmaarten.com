@@ -1,0 +1,49 @@
+/* Atkinson Hyperlegible Soft — trial self-host
+   A rounded variant of Atkinson Hyperlegible Next (namesakefyi). Not on
+   Bunny Fonts, so served from jsDelivr (GitHub mirror) as a try-out. If we
+   keep it, download the woff2 into assets/fonts and point the URLs local.
+   Loaded before tokens so --font-base can reference it. Tracked weights:
+   400/500/600/700/800 + italics, matching what the theme uses. */
+
+@font-face {
+    font-family: "Atkinson Hyperlegible Soft";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("https://cdn.jsdelivr.net/gh/namesakefyi/atkinson-hyperlegible-soft@main/woff2/AtkinsonHyperlegibleSoft-Regular.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Atkinson Hyperlegible Soft";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("https://cdn.jsdelivr.net/gh/namesakefyi/atkinson-hyperlegible-soft@main/woff2/AtkinsonHyperlegibleSoft-RegularItalic.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Atkinson Hyperlegible Soft";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("https://cdn.jsdelivr.net/gh/namesakefyi/atkinson-hyperlegible-soft@main/woff2/AtkinsonHyperlegibleSoft-SemiBold.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Atkinson Hyperlegible Soft";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("https://cdn.jsdelivr.net/gh/namesakefyi/atkinson-hyperlegible-soft@main/woff2/AtkinsonHyperlegibleSoft-Bold.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Atkinson Hyperlegible Soft";
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url("https://cdn.jsdelivr.net/gh/namesakefyi/atkinson-hyperlegible-soft@main/woff2/AtkinsonHyperlegibleSoft-BoldItalic.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Atkinson Hyperlegible Soft";
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url("https://cdn.jsdelivr.net/gh/namesakefyi/atkinson-hyperlegible-soft@main/woff2/AtkinsonHyperlegibleSoft-ExtraBold.woff2") format("woff2");
+}
